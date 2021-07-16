@@ -1,0 +1,1833 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Search</title>
+    <!-- FontAwesome CSS only -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Bootstrap CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <!-- ---------------BOOTSTRAP ICON CDN-------------------- -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.min.css"
+      integrity="sha512-YBSrHBAMjFhWHodf0RF58XB/x9lmuwBtyJv1LWDHQa1nOaWNXfG3Etc/lEXfW+qBx8ne79JnzccDs59je/ccVA=="
+      crossorigin="anonymous"
+    />
+
+    <!-- ---------------Manual-------------------- -->
+    <link rel="stylesheet" href="./css/jobSearch.css" />
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header
+      style="
+        background-image: url('./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/04/bg-slider2.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+      "
+      class="d-flex justify-content-center align-items-center flex-column"
+    >
+      <div
+        class="
+          topnav
+          d-flex
+          align-items-center
+          justify-content-center justify-content-around
+          my-4
+        "
+        id="myTopnav"
+      >
+        <div class="logoImage d-flex align-items-center">
+          <img
+            class="logo"
+            src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/04/logo-white.png"
+            alt="Yuklenmedi"
+          />
+        </div>
+
+        <ul class="d-flex align-items-center justify-content-end normal-menu">
+          <li type="none">
+            <a href="" style="color: white" class="menu-item">Home</a>
+          </li>
+          <li type="none" class="mx-3">
+            <a href="" style="color: white" class="menu-item">Find Jobs</a>
+          </li>
+          <li type="none">
+            <a href="" style="color: white" class="menu-item">Employers</a>
+          </li>
+          <li type="none" class="mx-3">
+            <a href="" style="color: white" class="menu-item">Candidates</a>
+          </li>
+          <li type="none">
+            <a href="" style="color: white" class="menu-item">Blog</a>
+          </li>
+
+          <li class="dropdown" type="none">
+            <a
+              class="ms-3 dropdown-toggle noselect"
+              id="dropdownMenu2"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              style="text-decoration: none; color: white"
+            >
+              Pages
+            </a>
+            <ul class="dropdown-menu mt-4" aria-labelledby="dropdownMenu2">
+              <li>
+                <button class="dropdown-item" type="button">Action</button>
+              </li>
+              <li>
+                <button class="dropdown-item" type="button">
+                  Another action
+                </button>
+              </li>
+              <li>
+                <button class="dropdown-item" type="button">
+                  Something else here
+                </button>
+              </li>
+            </ul>
+          </li>
+
+          <a href="" class="mx-4">
+            <button
+              class="
+                bg-unset
+                white
+                border-radius border-light
+                py-2
+                px-4
+                duration
+              "
+            >
+              Login / Register
+            </button>
+          </a>
+          <a href="">
+            <button
+              class="bg-white border-light py-2 px-4 border-radius"
+              style="color: #302eaa"
+            >
+              Add Job
+            </button>
+          </a>
+        </ul>
+
+        <div class="salam d-flex align-items-center mx-3">
+          <img
+            class="logo"
+            src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/themes/superio/images/logo.svg"
+            alt="Yuklenmedi"
+          />
+        </div>
+        <div class="responsive-menu">
+          <ul
+            class="
+              d-flex
+              justify-content-center
+              align-items-center align-content-center
+            "
+          >
+            <li
+              type="none"
+              class="
+                d-flex
+                justify-content-center
+                align-items-center align-content-center
+              "
+            >
+              <a href="" class="">
+                <i class="fas fa-user fs-4" style="font-weight: 100"></i>
+              </a>
+            </li>
+            <li
+              type="none"
+              class="
+                d-flex
+                justify-content-center
+                align-items-center align-content-center
+              "
+            >
+              <i class="fas fa-bars ms-3 fs-4"></i>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="backColorBlue py-5">
+        <div class="container">
+          <form class="p-4" action="">
+            <div
+              class="bg-white d-flex flex-row row g-4 p-4 border-radius"
+              style="max-width: 100% !important"
+            >
+              <div
+                class="
+                  d-flex
+                  flex-row
+                  col-xl-3 col-lg-6 col-12
+                  align-items-center
+                "
+              >
+                <div class="JobTitleIcon">
+                  <i class="fas fa-search" style="font-size: 20px"></i>
+                </div>
+                <div>
+                  <input
+                    type="text"
+                    class="onclickBorderNone p-2 Width"
+                    placeholder="Job Title..."
+                  />
+                </div>
+              </div>
+              <div
+                class="
+                  d-flex
+                  flex-row
+                  col-xl-3 col-lg-6 col-12
+                  align-items-center
+                "
+              >
+                <div class="JobTitleIcon">
+                  <i class="fas fa-map-marker-alt" style="font-size: 20px"></i>
+                </div>
+                <select name="" id="" class="ms-2 border-0 grey Width">
+                  <option value="" selected disabled>City or Postcode</option>
+                  <option value="">London</option>
+                  <option value="">Los Angeles</option>
+                  <option value="">Miami</option>
+                  <option value="">New York</option>
+                  <option value="">Paris</option>
+                </select>
+              </div>
+              <div
+                class="
+                  d-flex
+                  flex-row
+                  col-xl-3 col-lg-6 col-12
+                  align-items-center
+                "
+              >
+                <div class="JobTitleIcon">
+                  <i class="fas fa-briefcase" style="font-size: 20px"></i>
+                </div>
+                <select name="" id="" class="ms-2 border-0 grey Width">
+                  <option value="">Accounting / Finance</option>
+                  <option value="">Automotive Jobs</option>
+                  <option value="">Customer</option>
+                  <option value="">Design</option>
+                  <option value="">Development</option>
+                </select>
+              </div>
+              <div
+                class="
+                  d-flex
+                  flex-row
+                  col-lg-3 col-md-6 col-12
+                  blue
+                  align-items-center
+                "
+              >
+                <div class="JobTitleIcon">
+                  <i class="fas fa-angle-down"></i>
+                </div>
+                <div class="Advanced">Advanced</div>
+                <div class="ms-2">
+                  <button type="submit" class="btn btn-primary">
+                    Find Jobs
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div
+              class="
+                bg-white
+                border-radius
+                flex-row
+                row
+                p-4
+                me-2
+                mt-2
+                DropdownOnclickAdvanced
+              "
+            >
+              <div class="row">
+                <div class="col-lg-3 col-md-6 col-12 d-flex flex-column">
+                  <b>Type</b>
+                  <div class="mt-3 d-flex flex-row">
+                    <label class="switch d-flex">
+                      <input type="checkbox" />
+                      <span class="slider round"></span>
+                    </label>
+                    <div class="SwitchItem ms-2 grey">Freelance</div>
+                  </div>
+                  <div class="mt-3 d-flex flex-row">
+                    <label class="switch d-flex">
+                      <input type="checkbox" />
+                      <span class="slider round"></span>
+                    </label>
+                    <div class="SwitchItem ms-2 grey">Full Time</div>
+                  </div>
+                  <div class="mt-3 d-flex flex-row">
+                    <label class="switch d-flex">
+                      <input type="checkbox" />
+                      <span class="slider round"></span>
+                    </label>
+                    <div class="SwitchItem ms-2 grey">Internship</div>
+                  </div>
+                  <div class="mt-3 d-flex flex-row">
+                    <label class="switch d-flex">
+                      <input type="checkbox" />
+                      <span class="slider round"></span>
+                    </label>
+                    <div class="SwitchItem ms-2 grey">Part Time</div>
+                  </div>
+                  <div class="mt-3 d-flex flex-row">
+                    <label class="switch d-flex">
+                      <input type="checkbox" />
+                      <span class="slider round"></span>
+                    </label>
+                    <div class="SwitchItem ms-2 grey">Temporary</div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-12 d-flex flex-column">
+                  <b>Experience</b>
+                  <div class="mt-3 d-flex flex-row">
+                    <label class="switch d-flex">
+                      <input type="checkbox" />
+                      <span class="slider round"></span>
+                    </label>
+                    <div class="SwitchItem ms-2 grey">Fresh</div>
+                  </div>
+                  <div class="mt-3 d-flex flex-row">
+                    <label class="switch d-flex">
+                      <input type="checkbox" />
+                      <span class="slider round"></span>
+                    </label>
+                    <div class="SwitchItem ms-2 grey">1 Year</div>
+                  </div>
+                  <div class="mt-3 d-flex flex-row">
+                    <label class="switch d-flex">
+                      <input type="checkbox" />
+                      <span class="slider round"></span>
+                    </label>
+                    <div class="SwitchItem ms-2 grey">2 Year</div>
+                  </div>
+                  <div class="mt-3 d-flex flex-row">
+                    <label class="switch d-flex">
+                      <input type="checkbox" />
+                      <span class="slider round"></span>
+                    </label>
+                    <div class="SwitchItem ms-2 grey">3 Year</div>
+                  </div>
+                  <div class="mt-3 d-flex flex-row">
+                    <label class="switch d-flex">
+                      <input type="checkbox" />
+                      <span class="slider round"></span>
+                    </label>
+                    <div class="SwitchItem ms-2 grey">4 Year</div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-12 d-flex flex-column">
+                  <b>Career Level</b>
+                  <div class="mt-3 d-flex flex-row">
+                    <label class="switch d-flex">
+                      <input type="checkbox" />
+                      <span class="slider round"></span>
+                    </label>
+                    <div class="SwitchItem ms-2 grey">Manager</div>
+                  </div>
+                  <div class="mt-3 d-flex flex-row">
+                    <label class="switch d-flex">
+                      <input type="checkbox" />
+                      <span class="slider round"></span>
+                    </label>
+                    <div class="SwitchItem ms-2 grey">Officer</div>
+                  </div>
+                  <div class="mt-3 d-flex flex-row">
+                    <label class="switch d-flex">
+                      <input type="checkbox" />
+                      <span class="slider round"></span>
+                    </label>
+                    <div class="SwitchItem ms-2 grey">Student</div>
+                  </div>
+                  <div class="mt-3 d-flex flex-row">
+                    <label class="switch d-flex">
+                      <input type="checkbox" />
+                      <span class="slider round"></span>
+                    </label>
+                    <div class="SwitchItem ms-2 grey">Executive</div>
+                  </div>
+                  <div class="mt-3 d-flex flex-row">
+                    <label class="switch d-flex">
+                      <input type="checkbox" />
+                      <span class="slider round"></span>
+                    </label>
+                    <div class="SwitchItem ms-2 grey">Others</div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-12 d-flex flex-column">
+                  <b>Qualification</b>
+                  <div class="mt-3 d-flex flex-row">
+                    <label class="switch d-flex">
+                      <input type="checkbox" />
+                      <span class="slider round"></span>
+                    </label>
+                    <div class="SwitchItem ms-2 grey">Certificate</div>
+                  </div>
+                  <div class="mt-3 d-flex flex-row">
+                    <label class="switch d-flex">
+                      <input type="checkbox" />
+                      <span class="slider round"></span>
+                    </label>
+                    <div class="SwitchItem ms-2 grey">Associate Degree</div>
+                  </div>
+                  <div class="mt-3 d-flex flex-row">
+                    <label class="switch d-flex">
+                      <input type="checkbox" />
+                      <span class="slider round"></span>
+                    </label>
+                    <div class="SwitchItem ms-2 grey">Bachelor Degree</div>
+                  </div>
+                  <div class="mt-3 d-flex flex-row">
+                    <label class="switch d-flex">
+                      <input type="checkbox" />
+                      <span class="slider round"></span>
+                    </label>
+                    <div class="SwitchItem ms-2 grey">Master's Degree</div>
+                  </div>
+                  <div class="mt-3 d-flex flex-row">
+                    <label class="switch d-flex">
+                      <input type="checkbox" />
+                      <span class="slider round"></span>
+                    </label>
+                    <div class="SwitchItem ms-2 grey">Doctorate Degree</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row my-5">
+          <div class="col-md-6 col-12">Showing All 18 Results</div>
+          <div class="col-md-6 col-12">
+            <div class="d-flex flex-row justify-content-end">
+              <div class="d-flex flex-column">
+                <div class="backColorBlue border-radius px-4 py-2 SortBy">
+                  Sort By >
+                </div>
+                <div
+                  class="bg-white border-radius SortingBy p-3"
+                  style="border: 1px solid grey"
+                >
+                  <div class="d-flex flex-column">
+                    <span>Newest</span>
+                    <span>Oldest</span>
+                    <span>Random</span>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex flex-column ms-4">
+                <div class="backColorBlue border-radius px-4 py-2 AllClick">
+                  All >
+                </div>
+                <div
+                  class="bg-white border-radius All p-3"
+                  style="border: 1px solid grey"
+                >
+                  <div class="d-flex flex-column">
+                    <span>12 Per page</span>
+                    <span>All</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mx-4">
+        <div class="row my-5 g-4">
+          <div class="col-md-6 col-12">
+            <div class="card p-2 border-radius JobListCardShadow py-4">
+              <div class="container flex-row JobListCard">
+                <div class="JobListCardImage">
+                  <img
+                    src="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y2.jpg"
+                    alt=""
+                  />
+                </div>
+                <div class="row ms-2">
+                  <div class="row">
+                    <div class="col-sm-10 col-12 d-flex flex-row">
+                      <div class="row">
+                        <div class="col-lg-8 col-12">
+                          <h5><b>Junior Graphic Designer</b></h5>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                          <span class="green">Featured</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-2 col-12 d-flex flex-row">
+                      <i class="far fa-bookmark"></i>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div
+                      class="
+                        col-lg-4 col-md-6 col-12
+                        d-flex
+                        flex-row
+                        justify-content-center
+                        align-items-center
+                        grey
+                      "
+                    >
+                      <i class="fas fa-briefcase me-2"></i>
+                      <span>Design</span>
+                    </div>
+                    <div
+                      class="
+                        col-lg-4 col-md-6 col-12
+                        d-flex
+                        flex-row
+                        justify-content-center
+                        align-items-center
+                        grey
+                      "
+                    >
+                      <i class="fas fa-map-marker-alt me-2"></i>
+                      <span>New York</span>
+                    </div>
+                    <div
+                      class="
+                        col-lg-4 col-md-6 col-12
+                        d-flex
+                        flex-row
+                        justify-content-center
+                        align-items-center
+                        grey
+                      "
+                    >
+                      <i class="far fa-money-bill-alt me-2"></i>
+                      <span>$150-$180/month</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 col-12">
+                      <div
+                        class="
+                          border-radius
+                          px-2
+                          d-flex
+                          align-items-center
+                          justify-content-center
+                        "
+                        style="background-color: #dde8f8; color: #1967d2"
+                      >
+                        <span>FullTime</span>
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-12">
+                      <div
+                        class="
+                          border-radius
+                          px-2
+                          d-flex
+                          align-items-center
+                          justify-content-center
+                        "
+                        style="background-color: #fef2d9; color: #fbbb00"
+                      >
+                        <span>Urgent</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-12">
+            <div class="card p-2 border-radius JobListCardShadow  py-4">
+              <div class="container flex-row JobListCard">
+                <div class="JobListCardImage">
+                  <img
+                    src="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y2.jpg"
+                    alt=""
+                  />
+                </div>
+                <div class="row ms-2">
+                  <div class="row">
+                    <div class="col-sm-10 col-12 d-flex flex-row">
+                      <div class="row">
+                        <div class="col-lg-8 col-12">
+                          <h5><b>Junior Graphic Designer</b></h5>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                          <span class="green">Featured</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-2 col-12 d-flex flex-row">
+                      <i class="far fa-bookmark"></i>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div
+                      class="
+                        col-lg-4 col-md-6 col-12
+                        d-flex
+                        flex-row
+                        justify-content-center
+                        align-items-center
+                        grey
+                      "
+                    >
+                      <i class="fas fa-briefcase me-2"></i>
+                      <span>Design</span>
+                    </div>
+                    <div
+                      class="
+                        col-lg-4 col-md-6 col-12
+                        d-flex
+                        flex-row
+                        justify-content-center
+                        align-items-center
+                        grey
+                      "
+                    >
+                      <i class="fas fa-map-marker-alt me-2"></i>
+                      <span>New York</span>
+                    </div>
+                    <div
+                      class="
+                        col-lg-4 col-md-6 col-12
+                        d-flex
+                        flex-row
+                        justify-content-center
+                        align-items-center
+                        grey
+                      "
+                    >
+                      <i class="far fa-money-bill-alt me-2"></i>
+                      <span>$150-$180/month</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 col-12">
+                      <div
+                        class="
+                          border-radius
+                          px-2
+                          d-flex
+                          align-items-center
+                          justify-content-center
+                        "
+                        style="background-color: #dde8f8; color: #1967d2"
+                      >
+                        <span>FullTime</span>
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-12">
+                      <div
+                        class="
+                          border-radius
+                          px-2
+                          d-flex
+                          align-items-center
+                          justify-content-center
+                        "
+                        style="background-color: #fef2d9; color: #fbbb00"
+                      >
+                        <span>Urgent</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-12">
+            <div class="card p-2 border-radius JobListCardShadow  py-4">
+              <div class="container flex-row JobListCard">
+                <div class="JobListCardImage">
+                  <img
+                    src="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y2.jpg"
+                    alt=""
+                  />
+                </div>
+                <div class="row ms-2">
+                  <div class="row">
+                    <div class="col-sm-10 col-12 d-flex flex-row">
+                      <div class="row">
+                        <div class="col-lg-8 col-12">
+                          <h5><b>Junior Graphic Designer</b></h5>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                          <span class="green">Featured</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-2 col-12 d-flex flex-row">
+                      <i class="far fa-bookmark"></i>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div
+                      class="
+                        col-lg-4 col-md-6 col-12
+                        d-flex
+                        flex-row
+                        justify-content-center
+                        align-items-center
+                        grey
+                      "
+                    >
+                      <i class="fas fa-briefcase me-2"></i>
+                      <span>Design</span>
+                    </div>
+                    <div
+                      class="
+                        col-lg-4 col-md-6 col-12
+                        d-flex
+                        flex-row
+                        justify-content-center
+                        align-items-center
+                        grey
+                      "
+                    >
+                      <i class="fas fa-map-marker-alt me-2"></i>
+                      <span>New York</span>
+                    </div>
+                    <div
+                      class="
+                        col-lg-4 col-md-6 col-12
+                        d-flex
+                        flex-row
+                        justify-content-center
+                        align-items-center
+                        grey
+                      "
+                    >
+                      <i class="far fa-money-bill-alt me-2"></i>
+                      <span>$150-$180/month</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 col-12">
+                      <div
+                        class="
+                          border-radius
+                          px-2
+                          d-flex
+                          align-items-center
+                          justify-content-center
+                        "
+                        style="background-color: #dde8f8; color: #1967d2"
+                      >
+                        <span>FullTime</span>
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-12">
+                      <div
+                        class="
+                          border-radius
+                          px-2
+                          d-flex
+                          align-items-center
+                          justify-content-center
+                        "
+                        style="background-color: #fef2d9; color: #fbbb00"
+                      >
+                        <span>Urgent</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-12">
+            <div class="card p-2 border-radius JobListCardShadow  py-4">
+              <div class="container flex-row JobListCard">
+                <div class="JobListCardImage">
+                  <img
+                    src="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y2.jpg"
+                    alt=""
+                  />
+                </div>
+                <div class="row ms-2">
+                  <div class="row">
+                    <div class="col-sm-10 col-12 d-flex flex-row">
+                      <div class="row">
+                        <div class="col-lg-8 col-12">
+                          <h5><b>Junior Graphic Designer</b></h5>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                          <span class="green">Featured</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-2 col-12 d-flex flex-row">
+                      <i class="far fa-bookmark"></i>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div
+                      class="
+                        col-lg-4 col-md-6 col-12
+                        d-flex
+                        flex-row
+                        justify-content-center
+                        align-items-center
+                        grey
+                      "
+                    >
+                      <i class="fas fa-briefcase me-2"></i>
+                      <span>Design</span>
+                    </div>
+                    <div
+                      class="
+                        col-lg-4 col-md-6 col-12
+                        d-flex
+                        flex-row
+                        justify-content-center
+                        align-items-center
+                        grey
+                      "
+                    >
+                      <i class="fas fa-map-marker-alt me-2"></i>
+                      <span>New York</span>
+                    </div>
+                    <div
+                      class="
+                        col-lg-4 col-md-6 col-12
+                        d-flex
+                        flex-row
+                        justify-content-center
+                        align-items-center
+                        grey
+                      "
+                    >
+                      <i class="far fa-money-bill-alt me-2"></i>
+                      <span>$150-$180/month</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 col-12">
+                      <div
+                        class="
+                          border-radius
+                          px-2
+                          d-flex
+                          align-items-center
+                          justify-content-center
+                        "
+                        style="background-color: #dde8f8; color: #1967d2"
+                      >
+                        <span>FullTime</span>
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-12">
+                      <div
+                        class="
+                          border-radius
+                          px-2
+                          d-flex
+                          align-items-center
+                          justify-content-center
+                        "
+                        style="background-color: #fef2d9; color: #fbbb00"
+                      >
+                        <span>Urgent</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-12">
+            <div class="card p-2 border-radius JobListCardShadow  py-4">
+              <div class="container flex-row JobListCard">
+                <div class="JobListCardImage">
+                  <img
+                    src="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y2.jpg"
+                    alt=""
+                  />
+                </div>
+                <div class="row ms-2">
+                  <div class="row">
+                    <div class="col-sm-10 col-12 d-flex flex-row">
+                      <div class="row">
+                        <div class="col-lg-8 col-12">
+                          <h5><b>Junior Graphic Designer</b></h5>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                          <span class="green">Featured</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-2 col-12 d-flex flex-row">
+                      <i class="far fa-bookmark"></i>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div
+                      class="
+                        col-lg-4 col-md-6 col-12
+                        d-flex
+                        flex-row
+                        justify-content-center
+                        align-items-center
+                        grey
+                      "
+                    >
+                      <i class="fas fa-briefcase me-2"></i>
+                      <span>Design</span>
+                    </div>
+                    <div
+                      class="
+                        col-lg-4 col-md-6 col-12
+                        d-flex
+                        flex-row
+                        justify-content-center
+                        align-items-center
+                        grey
+                      "
+                    >
+                      <i class="fas fa-map-marker-alt me-2"></i>
+                      <span>New York</span>
+                    </div>
+                    <div
+                      class="
+                        col-lg-4 col-md-6 col-12
+                        d-flex
+                        flex-row
+                        justify-content-center
+                        align-items-center
+                        grey
+                      "
+                    >
+                      <i class="far fa-money-bill-alt me-2"></i>
+                      <span>$150-$180/month</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 col-12">
+                      <div
+                        class="
+                          border-radius
+                          px-2
+                          d-flex
+                          align-items-center
+                          justify-content-center
+                        "
+                        style="background-color: #dde8f8; color: #1967d2"
+                      >
+                        <span>FullTime</span>
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-12">
+                      <div
+                        class="
+                          border-radius
+                          px-2
+                          d-flex
+                          align-items-center
+                          justify-content-center
+                        "
+                        style="background-color: #fef2d9; color: #fbbb00"
+                      >
+                        <span>Urgent</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-12">
+            <div class="card p-2 border-radius JobListCardShadow  py-4">
+              <div class="container flex-row JobListCard">
+                <div class="JobListCardImage">
+                  <img
+                    src="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y2.jpg"
+                    alt=""
+                  />
+                </div>
+                <div class="row ms-2">
+                  <div class="row">
+                    <div class="col-sm-10 col-12 d-flex flex-row">
+                      <div class="row">
+                        <div class="col-lg-8 col-12">
+                          <h5><b>Junior Graphic Designer</b></h5>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                          <span class="green">Featured</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-2 col-12 d-flex flex-row">
+                      <i class="far fa-bookmark"></i>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div
+                      class="
+                        col-lg-4 col-md-6 col-12
+                        d-flex
+                        flex-row
+                        justify-content-center
+                        align-items-center
+                        grey
+                      "
+                    >
+                      <i class="fas fa-briefcase me-2"></i>
+                      <span>Design</span>
+                    </div>
+                    <div
+                      class="
+                        col-lg-4 col-md-6 col-12
+                        d-flex
+                        flex-row
+                        justify-content-center
+                        align-items-center
+                        grey
+                      "
+                    >
+                      <i class="fas fa-map-marker-alt me-2"></i>
+                      <span>New York</span>
+                    </div>
+                    <div
+                      class="
+                        col-lg-4 col-md-6 col-12
+                        d-flex
+                        flex-row
+                        justify-content-center
+                        align-items-center
+                        grey
+                      "
+                    >
+                      <i class="far fa-money-bill-alt me-2"></i>
+                      <span>$150-$180/month</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 col-12">
+                      <div
+                        class="
+                          border-radius
+                          px-2
+                          d-flex
+                          align-items-center
+                          justify-content-center
+                        "
+                        style="background-color: #dde8f8; color: #1967d2"
+                      >
+                        <span>FullTime</span>
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-12">
+                      <div
+                        class="
+                          border-radius
+                          px-2
+                          d-flex
+                          align-items-center
+                          justify-content-center
+                        "
+                        style="background-color: #fef2d9; color: #fbbb00"
+                      >
+                        <span>Urgent</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-12">
+            <div class="card p-2 border-radius JobListCardShadow  py-4">
+              <div class="container flex-row JobListCard">
+                <div class="JobListCardImage">
+                  <img
+                    src="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y2.jpg"
+                    alt=""
+                  />
+                </div>
+                <div class="row ms-2">
+                  <div class="row">
+                    <div class="col-sm-10 col-12 d-flex flex-row">
+                      <div class="row">
+                        <div class="col-lg-8 col-12">
+                          <h5><b>Junior Graphic Designer</b></h5>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                          <span class="green">Featured</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-2 col-12 d-flex flex-row">
+                      <i class="far fa-bookmark"></i>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div
+                      class="
+                        col-lg-4 col-md-6 col-12
+                        d-flex
+                        flex-row
+                        justify-content-center
+                        align-items-center
+                        grey
+                      "
+                    >
+                      <i class="fas fa-briefcase me-2"></i>
+                      <span>Design</span>
+                    </div>
+                    <div
+                      class="
+                        col-lg-4 col-md-6 col-12
+                        d-flex
+                        flex-row
+                        justify-content-center
+                        align-items-center
+                        grey
+                      "
+                    >
+                      <i class="fas fa-map-marker-alt me-2"></i>
+                      <span>New York</span>
+                    </div>
+                    <div
+                      class="
+                        col-lg-4 col-md-6 col-12
+                        d-flex
+                        flex-row
+                        justify-content-center
+                        align-items-center
+                        grey
+                      "
+                    >
+                      <i class="far fa-money-bill-alt me-2"></i>
+                      <span>$150-$180/month</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 col-12">
+                      <div
+                        class="
+                          border-radius
+                          px-2
+                          d-flex
+                          align-items-center
+                          justify-content-center
+                        "
+                        style="background-color: #dde8f8; color: #1967d2"
+                      >
+                        <span>FullTime</span>
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-12">
+                      <div
+                        class="
+                          border-radius
+                          px-2
+                          d-flex
+                          align-items-center
+                          justify-content-center
+                        "
+                        style="background-color: #fef2d9; color: #fbbb00"
+                      >
+                        <span>Urgent</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-12">
+            <div class="card p-2 border-radius JobListCardShadow  py-4">
+              <div class="container flex-row JobListCard">
+                <div class="JobListCardImage">
+                  <img
+                    src="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y2.jpg"
+                    alt=""
+                  />
+                </div>
+                <div class="row ms-2">
+                  <div class="row">
+                    <div class="col-sm-10 col-12 d-flex flex-row">
+                      <div class="row">
+                        <div class="col-lg-8 col-12">
+                          <h5><b>Junior Graphic Designer</b></h5>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                          <span class="green">Featured</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-2 col-12 d-flex flex-row">
+                      <i class="far fa-bookmark"></i>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div
+                      class="
+                        col-lg-4 col-md-6 col-12
+                        d-flex
+                        flex-row
+                        justify-content-center
+                        align-items-center
+                        grey
+                      "
+                    >
+                      <i class="fas fa-briefcase me-2"></i>
+                      <span>Design</span>
+                    </div>
+                    <div
+                      class="
+                        col-lg-4 col-md-6 col-12
+                        d-flex
+                        flex-row
+                        justify-content-center
+                        align-items-center
+                        grey
+                      "
+                    >
+                      <i class="fas fa-map-marker-alt me-2"></i>
+                      <span>New York</span>
+                    </div>
+                    <div
+                      class="
+                        col-lg-4 col-md-6 col-12
+                        d-flex
+                        flex-row
+                        justify-content-center
+                        align-items-center
+                        grey
+                      "
+                    >
+                      <i class="far fa-money-bill-alt me-2"></i>
+                      <span>$150-$180/month</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 col-12">
+                      <div
+                        class="
+                          border-radius
+                          px-2
+                          d-flex
+                          align-items-center
+                          justify-content-center
+                        "
+                        style="background-color: #dde8f8; color: #1967d2"
+                      >
+                        <span>FullTime</span>
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-12">
+                      <div
+                        class="
+                          border-radius
+                          px-2
+                          d-flex
+                          align-items-center
+                          justify-content-center
+                        "
+                        style="background-color: #fef2d9; color: #fbbb00"
+                      >
+                        <span>Urgent</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-12">
+            <div class="card p-2 border-radius JobListCardShadow  py-4">
+              <div class="container flex-row JobListCard">
+                <div class="JobListCardImage">
+                  <img
+                    src="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y2.jpg"
+                    alt=""
+                  />
+                </div>
+                <div class="row ms-2">
+                  <div class="row">
+                    <div class="col-sm-10 col-12 d-flex flex-row">
+                      <div class="row">
+                        <div class="col-lg-8 col-12">
+                          <h5><b>Junior Graphic Designer</b></h5>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                          <span class="green">Featured</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-2 col-12 d-flex flex-row">
+                      <i class="far fa-bookmark"></i>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div
+                      class="
+                        col-lg-4 col-md-6 col-12
+                        d-flex
+                        flex-row
+                        justify-content-center
+                        align-items-center
+                        grey
+                      "
+                    >
+                      <i class="fas fa-briefcase me-2"></i>
+                      <span>Design</span>
+                    </div>
+                    <div
+                      class="
+                        col-lg-4 col-md-6 col-12
+                        d-flex
+                        flex-row
+                        justify-content-center
+                        align-items-center
+                        grey
+                      "
+                    >
+                      <i class="fas fa-map-marker-alt me-2"></i>
+                      <span>New York</span>
+                    </div>
+                    <div
+                      class="
+                        col-lg-4 col-md-6 col-12
+                        d-flex
+                        flex-row
+                        justify-content-center
+                        align-items-center
+                        grey
+                      "
+                    >
+                      <i class="far fa-money-bill-alt me-2"></i>
+                      <span>$150-$180/month</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 col-12">
+                      <div
+                        class="
+                          border-radius
+                          px-2
+                          d-flex
+                          align-items-center
+                          justify-content-center
+                        "
+                        style="background-color: #dde8f8; color: #1967d2"
+                      >
+                        <span>FullTime</span>
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-12">
+                      <div
+                        class="
+                          border-radius
+                          px-2
+                          d-flex
+                          align-items-center
+                          justify-content-center
+                        "
+                        style="background-color: #fef2d9; color: #fbbb00"
+                      >
+                        <span>Urgent</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-12">
+            <div class="card p-2 border-radius JobListCardShadow  py-4">
+              <div class="container flex-row JobListCard">
+                <div class="JobListCardImage">
+                  <img
+                    src="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y2.jpg"
+                    alt=""
+                  />
+                </div>
+                <div class="row ms-2">
+                  <div class="row">
+                    <div class="col-sm-10 col-12 d-flex flex-row">
+                      <div class="row">
+                        <div class="col-lg-8 col-12">
+                          <h5><b>Junior Graphic Designer</b></h5>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                          <span class="green">Featured</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-2 col-12 d-flex flex-row">
+                      <i class="far fa-bookmark"></i>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div
+                      class="
+                        col-lg-4 col-md-6 col-12
+                        d-flex
+                        flex-row
+                        justify-content-center
+                        align-items-center
+                        grey
+                      "
+                    >
+                      <i class="fas fa-briefcase me-2"></i>
+                      <span>Design</span>
+                    </div>
+                    <div
+                      class="
+                        col-lg-4 col-md-6 col-12
+                        d-flex
+                        flex-row
+                        justify-content-center
+                        align-items-center
+                        grey
+                      "
+                    >
+                      <i class="fas fa-map-marker-alt me-2"></i>
+                      <span>New York</span>
+                    </div>
+                    <div
+                      class="
+                        col-lg-4 col-md-6 col-12
+                        d-flex
+                        flex-row
+                        justify-content-center
+                        align-items-center
+                        grey
+                      "
+                    >
+                      <i class="far fa-money-bill-alt me-2"></i>
+                      <span>$150-$180/month</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 col-12">
+                      <div
+                        class="
+                          border-radius
+                          px-2
+                          d-flex
+                          align-items-center
+                          justify-content-center
+                        "
+                        style="background-color: #dde8f8; color: #1967d2"
+                      >
+                        <span>FullTime</span>
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-12">
+                      <div
+                        class="
+                          border-radius
+                          px-2
+                          d-flex
+                          align-items-center
+                          justify-content-center
+                        "
+                        style="background-color: #fef2d9; color: #fbbb00"
+                      >
+                        <span>Urgent</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-12">
+            <div class="card p-2 border-radius JobListCardShadow  py-4">
+              <div class="container flex-row JobListCard">
+                <div class="JobListCardImage">
+                  <img
+                    src="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y2.jpg"
+                    alt=""
+                  />
+                </div>
+                <div class="row ms-2">
+                  <div class="row">
+                    <div class="col-sm-10 col-12 d-flex flex-row">
+                      <div class="row">
+                        <div class="col-lg-8 col-12">
+                          <h5><b>Junior Graphic Designer</b></h5>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                          <span class="green">Featured</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-2 col-12 d-flex flex-row">
+                      <i class="far fa-bookmark"></i>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div
+                      class="
+                        col-lg-4 col-md-6 col-12
+                        d-flex
+                        flex-row
+                        justify-content-center
+                        align-items-center
+                        grey
+                      "
+                    >
+                      <i class="fas fa-briefcase me-2"></i>
+                      <span>Design</span>
+                    </div>
+                    <div
+                      class="
+                        col-lg-4 col-md-6 col-12
+                        d-flex
+                        flex-row
+                        justify-content-center
+                        align-items-center
+                        grey
+                      "
+                    >
+                      <i class="fas fa-map-marker-alt me-2"></i>
+                      <span>New York</span>
+                    </div>
+                    <div
+                      class="
+                        col-lg-4 col-md-6 col-12
+                        d-flex
+                        flex-row
+                        justify-content-center
+                        align-items-center
+                        grey
+                      "
+                    >
+                      <i class="far fa-money-bill-alt me-2"></i>
+                      <span>$150-$180/month</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 col-12">
+                      <div
+                        class="
+                          border-radius
+                          px-2
+                          d-flex
+                          align-items-center
+                          justify-content-center
+                        "
+                        style="background-color: #dde8f8; color: #1967d2"
+                      >
+                        <span>FullTime</span>
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-12">
+                      <div
+                        class="
+                          border-radius
+                          px-2
+                          d-flex
+                          align-items-center
+                          justify-content-center
+                        "
+                        style="background-color: #fef2d9; color: #fbbb00"
+                      >
+                        <span>Urgent</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 col-12">
+            <div class="card p-2 border-radius JobListCardShadow  py-4">
+              <div class="container flex-row JobListCard">
+                <div class="JobListCardImage">
+                  <img
+                    src="https://apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y2.jpg"
+                    alt=""
+                  />
+                </div>
+                <div class="row ms-2">
+                  <div class="row">
+                    <div class="col-sm-10 col-12 d-flex flex-row">
+                      <div class="row">
+                        <div class="col-lg-8 col-12">
+                          <h5><b>Junior Graphic Designer</b></h5>
+                        </div>
+                        <div class="col-lg-4 col-12">
+                          <span class="green">Featured</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-2 col-12 d-flex flex-row">
+                      <i class="far fa-bookmark"></i>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div
+                      class="
+                        col-lg-4 col-md-6 col-12
+                        d-flex
+                        flex-row
+                        justify-content-center
+                        align-items-center
+                        grey
+                      "
+                    >
+                      <i class="fas fa-briefcase me-2"></i>
+                      <span>Design</span>
+                    </div>
+                    <div
+                      class="
+                        col-lg-4 col-md-6 col-12
+                        d-flex
+                        flex-row
+                        justify-content-center
+                        align-items-center
+                        grey
+                      "
+                    >
+                      <i class="fas fa-map-marker-alt me-2"></i>
+                      <span>New York</span>
+                    </div>
+                    <div
+                      class="
+                        col-lg-4 col-md-6 col-12
+                        d-flex
+                        flex-row
+                        justify-content-center
+                        align-items-center
+                        grey
+                      "
+                    >
+                      <i class="far fa-money-bill-alt me-2"></i>
+                      <span>$150-$180/month</span>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 col-12">
+                      <div
+                        class="
+                          border-radius
+                          px-2
+                          d-flex
+                          align-items-center
+                          justify-content-center
+                        "
+                        style="background-color: #dde8f8; color: #1967d2"
+                      >
+                        <span>FullTime</span>
+                      </div>
+                    </div>
+                    <div class="col-md-4 col-12">
+                      <div
+                        class="
+                          border-radius
+                          px-2
+                          d-flex
+                          align-items-center
+                          justify-content-center
+                        "
+                        style="background-color: #fef2d9; color: #fbbb00"
+                      >
+                        <span>Urgent</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer style="background-color: #302ea7">
+      <section class="py-5 container">
+        <div class="row g-1">
+          <div
+            class="col-lg-3 col-12 d-flex flex-column white"
+            style="width: 22%; max-width: 22%"
+          >
+            <div class="FooterLogo">
+              <img
+                src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/04/logo-white.png"
+                alt=""
+              />
+            </div>
+            <br />
+            <h5 class="CallUs d-flex flex-column">
+              <b>Call Us</b>
+              <span><b>123 456 78 90</b> </span>
+            </h5>
+            <p><b>328 Queensberry Street, North Melbourne VIC</b></p>
+            <p><b>3051, Australia.</b></p>
+            <p><b>support@superio.com</b></p>
+          </div>
+          <div class="col-lg-3 col-12">
+            <h5><b class="white">Find Jobs</b></h5>
+            <p class="d-flex flex-row align-items-center FooterMenuItem">
+              <span class="FooterMenuItemLeft"> </span>
+              <a href="" class="white text-decoration-none">Browse Jobs</a>
+            </p>
+            <p class="d-flex flex-row align-items-center FooterMenuItem">
+              <span class="FooterMenuItemLeft"> </span>
+              <a href="" class="white text-decoration-none"
+                >Browse Candidates</a
+              >
+            </p>
+            <p class="d-flex flex-row align-items-center FooterMenuItem">
+              <span class="FooterMenuItemLeft"> </span>
+              <a href="" class="white text-decoration-none"
+                >Candidate Dashboard</a
+              >
+            </p>
+            <p class="d-flex flex-row align-items-center FooterMenuItem">
+              <span class="FooterMenuItemLeft"></span>
+              <a href="" class="white text-decoration-none">Job Alerts</a>
+            </p>
+            <p class="d-flex flex-row align-items-center FooterMenuItem">
+              <span class="FooterMenuItemLeft"></span>
+              <a href="" class="white text-decoration-none">My Bookmarks</a>
+            </p>
+          </div>
+          <div class="col-lg-3 col-12">
+            <h5><b class="white">Frequently Asked Questions</b></h5>
+            <div class="Frequently">
+              <div class="col-lg-6 col-12">
+                <p class="d-flex flex-row align-items-center FooterMenuItem">
+                  <span class="FooterMenuItemLeft"> </span>
+                  <a href="" class="white text-decoration-none">Site Map</a>
+                </p>
+                <p class="d-flex flex-row align-items-center FooterMenuItem">
+                  <span class="FooterMenuItemLeft"> </span>
+                  <a href="" class="white text-decoration-none">Terms of Use</a>
+                </p>
+                <p class="d-flex flex-row align-items-center FooterMenuItem">
+                  <span class="FooterMenuItemLeft"></span>
+                  <a href="" class="white text-decoration-none"
+                    >Privacy Center</a
+                  >
+                </p>
+                <p class="d-flex flex-row align-items-center FooterMenuItem">
+                  <span class="FooterMenuItemLeft"> </span>
+                  <a href="" class="white text-decoration-none"
+                    >Security Center</a
+                  >
+                </p>
+                <p class="d-flex flex-row align-items-center FooterMenuItem">
+                  <span class="FooterMenuItemLeft"> </span>
+                  <a href="" class="white text-decoration-none"
+                    >Accessibility Center</a
+                  >
+                </p>
+              </div>
+              <div
+                class="col-md-6 col-12 d-flex flex-column justify-content-end"
+              >
+                <p class="d-flex flex-row align-items-center FooterMenuItem">
+                  <span class="FooterMenuItemLeft"> </span>
+                  <a href="" class="white text-decoration-none">Contact Us</a>
+                </p>
+                <p class="d-flex flex-row align-items-center FooterMenuItem">
+                  <span class="FooterMenuItemLeft"> </span>
+                  <a href="" class="white text-decoration-none">About Us</a>
+                </p>
+                <p class="d-flex flex-row align-items-center FooterMenuItem">
+                  <span class="FooterMenuItemLeft"></span>
+                  <a href="" class="white text-decoration-none">Terms</a>
+                </p>
+                <p class="d-flex flex-row align-items-center FooterMenuItem">
+                  <span class="FooterMenuItemLeft"> </span>
+                  <a href="" class="white text-decoration-none">Packages</a>
+                </p>
+                <p class="d-flex flex-row align-items-center FooterMenuItem">
+                  <span class="FooterMenuItemLeft"> </span>
+                  <a href="" class="white text-decoration-none">FAQ</a>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-12">
+            <h5><b class="white">Join Us On</b></h5>
+            <br />
+            <p class="white">We don’t send spam so don’t worry.</p>
+            <br />
+            <div class="bg-white px-3 d-flex flex-row py-2 border-radius">
+              <input
+                type="email"
+                placeholder="Your e-mail"
+                class="border-0 w-75"
+              />
+              <div
+                style="
+                  width: 50px;
+                  height: 50px;
+                  border-radius: 5px;
+                  background-color: chocolate;
+                  font-size: 29px;
+                "
+                class="d-flex justify-content-center align-items-center"
+              >
+                <i class="far fa-envelope white"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <hr class="white" />
+      <section class="d-flex align-items-center container py-3 HrBottom">
+        <div class="white col-sm-6 col-12">
+          © <b class="NowYear"></b> Superio. All Right Reserved.
+        </div>
+        <div class="d-flex justify-content-end col-sm-6">
+          <i class="fab fa-facebook-f white" style="float: left"></i>
+          <i class="fab fa-twitter white mx-3" style="float: left"></i>
+          <i class="fab fa-instagram white" style="float: left"></i>
+          <i class="fab fa-linkedin-in white ms-3" style="float: left"></i>
+        </div>
+      </section>
+    </footer>
+  </body>
+  <!-- JavaScript Bundle with Popper -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"
+  ></script>
+  <!-- Jquery -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <!-- Manual -->
+  <script src="./js/index.js"></script>
+</html>
