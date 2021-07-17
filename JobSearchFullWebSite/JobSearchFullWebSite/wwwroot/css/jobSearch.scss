@@ -1,0 +1,1054 @@
+.logo {
+  width: 150px;
+  height: 50px;
+}
+.white {
+  color: white;
+}
+a {
+  text-decoration: none;
+}
+.bg-unset {
+  background-color: unset;
+}
+.border-radius {
+  border-radius: 10px;
+}
+.duration {
+  transition-duration: 0.5s;
+}
+.duration:hover {
+  transition-duration: 0.5s;
+  background-color: white;
+  color: #302eaa;
+}
+
+.menu-item::after {
+  content: "";
+  display: block;
+  width: 0;
+  border-bottom: unset;
+  height: 0px !important;
+  background: unset;
+  transition: width 0.3s;
+}
+
+.menu-item:hover::after {
+  background: white;
+  width: 100%;
+  height: 2px;
+  border-bottom: 2px dotted white;
+}
+.background-yellow {
+  background-color: #f9ab00;
+}
+.button {
+  border-radius: 8px !important;
+  padding-left: 33px !important;
+  padding-right: 33px !important;
+  padding-top: 20px !important;
+  padding-bottom: 20px;
+}
+
+/* ------------------------------------HEADER----------------------------------- */
+body {
+  margin: 0 !important;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  width: 100%;
+  position: relative;
+  z-index: 30;
+  justify-content: space-between;
+}
+header {
+  background-color: white;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.topnav a {
+  float: right;
+  display: block;
+  color: #918a8a;
+  text-align: center;
+  // padding: 14px 16px;
+  text-decoration: none;
+  font-size: 12px;
+}
+.topnav .right:hover {
+  border-bottom: 1px solid white;
+  color: blue;
+  box-shadow: 0 5px 10px 5px white;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.topnav .icon {
+  display: none;
+}
+.fa-navicon:before,
+.fa-reorder:before,
+.fa-bars:before {
+  content: "\f0c9";
+  color: black;
+}
+.responsive-menu {
+  display: none !important;
+}
+.salam {
+  display: none !important;
+}
+@media (max-width: 1200px) {
+  .findJob {
+    width: 100%;
+    button {
+      width: 100%;
+    }
+  }
+  .CityIcon {
+    display: flex;
+    justify-content: end;
+  }
+  .Cities {
+    margin-right: 0px !important;
+    padding-right: 0px !important;
+    width: max-content !important;
+  }
+  .salam {
+    display: flex !important;
+  }
+  .logoImage {
+    display: none !important;
+  }
+  .topnav {
+    margin-top: 0px !important;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: white;
+    width: 100% !important;
+  }
+  .logo {
+    color: black !important;
+    z-index: 100 !important;
+  }
+
+  .responsive-menu {
+    float: right;
+    display: block !important;
+  }
+  .normal-menu {
+    display: none !important;
+  }
+  .topnav.responsive {
+    position: relative;
+  }
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: center;
+  }
+  .topnav .right:hover {
+    color: red;
+    box-shadow: 0 5px 5px white;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .topnav .right {
+    background-color: blue;
+    color: white;
+    box-shadow: 0 5px 5px white;
+    font-size: 20px;
+    font-weight: bold;
+  }
+}
+@media (max-width: 576px) {
+  .responsive-menu {
+    margin-right: 0px !important;
+  }
+  .topnav {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: space-around;
+  }
+}
+@media (max-width: 992px) {
+  .rightImage {
+    display: none;
+  }
+  .responsiveForm {
+    width: 100%;
+  }
+}
+@media (max-width: 524px) {
+  .inputSpan {
+    width: 100%;
+    border: unset;
+    margin-right: 0px !important;
+  }
+  .Cities {
+    padding-right: 50px !important;
+    padding-left: 50px !important;
+    margin-left: 0px !important;
+  }
+}
+.Cities {
+  border: unset;
+}
+@media (max-width: 390px) {
+  .Cities {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+    margin-left: 2% !important;
+  }
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.work-card-image img {
+  width: 100px;
+  height: 100px;
+}
+.work-card-content p {
+  height: 100px !important;
+  max-height: 100px !important;
+}
+.grey {
+  color: grey;
+}
+.WorkCard {
+  transition-duration: 0.5s;
+}
+.WorkCard:hover {
+  background-color: white;
+  box-shadow: 0 0 15px -3px;
+  transition-duration: 0.5s;
+}
+.FeaturedCard {
+  padding-left: 20px;
+  display: flex;
+  transition-duration: 0.3s;
+}
+.FeaturedCard:hover {
+  box-shadow: 0 0 15px -3px;
+}
+
+@media (max-width: 992px) {
+  .FeaturedCard {
+    padding-left: 10px !important;
+    display: block;
+  }
+  .CommonContent {
+    margin-top: 4%;
+  }
+}
+.JobCardRight {
+  display: flex;
+}
+.cardRightJobs {
+  flex-direction: column;
+}
+.cardRightJobsIcon {
+  justify-content: flex-end;
+}
+.FullTimeUrgent {
+  display: flex;
+}
+@media (max-width: 768px) {
+  .JobCardRight {
+    display: block !important;
+  }
+  .cardRightJobs {
+    flex-direction: row;
+    display: flex;
+  }
+  .cardRightJobsIcon {
+    justify-content: start;
+    align-items: center;
+    i {
+      font-size: 20px !important;
+      margin-right: 10px !important;
+    }
+  }
+  .FullTimeUrgent {
+    display: block;
+  }
+}
+.CitiesImage {
+  width: 100%;
+  height: 424px !important;
+  border-radius: 20px;
+}
+.RightImage {
+  height: 200px !important;
+}
+.CityImage {
+  position: relative;
+}
+.over {
+  position: absolute;
+  bottom: 20px;
+  left: 30px;
+  color: white;
+}
+
+.overH4::after {
+  content: "";
+  display: block;
+  width: 0;
+  border-bottom: unset;
+  height: 0px !important;
+  background: white;
+  transition: width 0.3s;
+}
+
+.overH4:hover::after {
+  width: 100%;
+  height: 2px;
+  border-bottom: 2px solid white;
+}
+@media (max-width: 992px) {
+  .CitiesImage {
+    height: 424px !important;
+  }
+}
+.Browse {
+  justify-content: flex-end;
+}
+@media (max-width: 768px) {
+  .Browse {
+    justify-content: flex-start !important;
+    margin-bottom: 20px;
+  }
+}
+.SearchJob {
+  color: #1864d4;
+  background-color: white;
+  border-color: white;
+  transition-duration: 0.5s;
+}
+.SearchJob:hover {
+  color: white;
+  background-color: unset;
+  transition-duration: 0.5s;
+}
+.ApplyJob {
+  color: white;
+  background-color: #f9ab00;
+  border-color: #f9ab00;
+  transition-duration: 0.5s;
+}
+.ApplyJob:hover {
+  transition-duration: 0.5s;
+  color: #f9ab00;
+  background-color: unset !important;
+}
+.buttons {
+  display: flex;
+}
+@media (max-width: 260px) {
+  .buttons {
+    display: block;
+    .ApplyJob {
+      margin-left: 0px !important;
+      margin-top: 2%;
+    }
+  }
+}
+.CandidateCardButton {
+  background-color: #eff4fc;
+  color: #1967d2;
+  transition-duration: 0.3s;
+}
+.CandidateCardBookMark i {
+  display: none !important;
+  width: 10px;
+  height: 10px !important;
+}
+.CandidateCardBookMark {
+  width: 10px;
+  height: 10px !important;
+  transition-duration: 0.5s;
+}
+.CandidateCard:hover .CandidateCardBookMark i {
+  display: flex !important;
+  transition-duration: 0.5s;
+}
+.CandidateCard:hover .CandidateCardButton {
+  background-color: blue;
+  color: white;
+  transition-duration: 0.3s;
+}
+.CityImage {
+  overflow: hidden;
+  border-radius: 20px;
+}
+.CityImage img:hover {
+  transition-duration: 0.5s;
+}
+.CityImage img:hover {
+  transform: scale(1.11);
+  transition-duration: 0.5s;
+}
+.ArticleCard:hover .ArticleCardImage img {
+  transform: scale(1.11);
+  transition-duration: 0.5s;
+}
+.ArticleCardImage img {
+  transition-duration: 0.5s;
+}
+.ArticleCardImage {
+  overflow: hidden;
+}
+.Frequently {
+  display: flex;
+  flex-direction: row;
+}
+.Frequently:nth-child(2) {
+  margin-left: 4%;
+}
+
+@media (max-width: 992px) {
+  .Frequently {
+    display: block !important;
+  }
+  .Frequently:nth-child(2) {
+    margin-left: 0px !important;
+  }
+}
+@media (max-width: 576px) {
+  .Frequently {
+    display: block !important;
+  }
+  .Frequently:nth-child(2) {
+    margin-left: 0px !important;
+  }
+}
+.HrBottom {
+  display: flex;
+  flex-direction: row;
+}
+@media (max-width: 576px) {
+  .HrBottom {
+    flex-direction: column !important;
+    justify-content: center !important;
+    text-align: center;
+  }
+}
+.FooterMenuItem:hover .FooterMenuItemLeft {
+  width: 10px;
+  transition-duration: 0.5s;
+}
+.FooterMenuItem a:hover {
+  color: white;
+}
+.FooterMenuItemLeft {
+  background-color: white !important;
+  height: 2px;
+  transition-duration: 0.5s;
+  width: 0px;
+}
+.RelatedFullUrgent {
+  display: flex;
+  flex-direction: row;
+}
+@media (max-width: 768px) {
+  .RelatedFullUrgent {
+    display: block;
+    flex-direction: column !important;
+  }
+  .FullTime {
+    max-width: 150px;
+  }
+  .Urgent {
+    max-width: 150px;
+    margin-left: 0px !important;
+    margin-top: 2%;
+  }
+}
+.FullTime {
+  background-color: #dde8f8;
+  color: #1967d4;
+}
+.Urgent {
+  background-color: #fef2d9;
+  color: #f9ab00;
+  margin-left: 3%;
+}
+.RelatedJobCard:hover {
+  box-shadow: 0 0 15px -3px;
+  transition-duration: 0.5s;
+}
+.RelatedJobCard {
+  transition-duration: 0.5s;
+}
+.bookmarkIcon:hover {
+  background-color: #1967d2 !important;
+  color: white !important;
+  transition-duration: 0.5s;
+  cursor: pointer;
+}
+.bookmarkIcon {
+  transition-duration: 0.5s;
+}
+button {
+  cursor: pointer;
+}
+a {
+  cursor: pointer;
+}
+.CompanyButtonA:hover .CompanyButton {
+  background-color: #1967d2;
+  color: white;
+  transition-duration: 0.5s;
+}
+.CompanyButton {
+  background-color: #e6edf9;
+  color: #1967d2;
+  transition-duration: 0.5s;
+}
+.backColorBlue {
+  background-color: #f4f7fc;
+}
+.forResponsive {
+  flex-direction: row;
+}
+.buttonBookmark {
+  flex-direction: row;
+}
+@media (max-width: 768px) {
+  .forResponsive {
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    img {
+      margin-bottom: 2%;
+    }
+  }
+  .buttonBookmark {
+    flex-direction: row-reverse !important;
+    justify-content: flex-end !important;
+    button {
+      margin-left: 3%;
+    }
+  }
+  .OpenJobs {
+    justify-content: center !important;
+    align-self: center !important;
+  }
+}
+
+.OpenJobs {
+  align-self: flex-start;
+}
+
+// -----------RATING---------
+.rate {
+  float: left;
+  height: 46px;
+  padding: 0 10px;
+}
+.rate:not(:checked) > input {
+  position: absolute;
+  top: -9999px;
+}
+.rate:not(:checked) > label {
+  float: right;
+  width: 1em;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 30px;
+  color: #ccc;
+}
+.rate:not(:checked) > label:before {
+  content: "★ ";
+}
+.rate > input:checked ~ label {
+  color: #ffc700;
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+  color: #deb217;
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+  color: #c59b08;
+}
+// -----------RATING---------END
+.checked {
+  color: orange;
+}
+.Review:focus {
+  background-color: white !important;
+  border: 2px solid blue !important;
+}
+.Review {
+  border: 0px;
+}
+.OpenJobsSpan:hover {
+  background-color: blue !important;
+  color: white !important ;
+  transition-duration: 0.5s;
+}
+.OpenJobsSpan {
+  transition-duration: 0.5s;
+}
+.Review:focus-visible {
+  outline: -webkit-focus-ring-color auto 0px !important;
+}
+.Skill:hover {
+  transition-duration: 0.5s;
+  background-color: black !important;
+  color: white !important;
+}
+.Skill {
+  transition-duration: 0.5s;
+}
+.blue {
+  color: blue;
+}
+.CV:hover {
+  background-color: blue !important;
+  transition-duration: 0.5s;
+  .CVIcon {
+    color: white !important;
+  }
+  .CVName {
+    color: white !important;
+  }
+  .CVExtension {
+    color: white !important;
+  }
+}
+.CV {
+  transition-duration: 0.5s;
+}
+.BlogCardImage img {
+  transition-duration: 0.5s;
+}
+.black {
+  color: black;
+}
+
+.readMoreBottomLine::after {
+  content: "";
+  display: block;
+  width: 0px;
+  border-bottom: 2px solid white;
+  height: 0px !important;
+  background: unset;
+}
+
+.BlogCard:hover {
+  .readMoreBottomLine::after {
+    background: blue;
+    width: 100%;
+    max-width: 80px;
+    height: 2px;
+    transition: width 1s;
+    border-bottom: 2px dotted blue;
+  }
+  img {
+    transform: scale(1.11);
+    transition-duration: 0.5s;
+  }
+  box-shadow: 0 6px 15px 0 rgb(64, 79, 10);
+  transition-duration: 0.5s;
+}
+.BlogCard {
+  transition-duration: 0.5s;
+}
+.DetailJob {
+  display: flex;
+}
+@media (max-width: 430px) {
+  .DetailJob {
+    display: block !important;
+  }
+}
+.MasonryImage1 {
+  height: 416px !important;
+  width: 100%;
+  background-color: red;
+}
+.MasonryImage5 {
+  height: 230px !important;
+  width: 100%;
+  background-color: red;
+}
+.MasonryImage6 {
+  height: 170px !important;
+  width: 100%;
+  background-color: red;
+}
+.MasonryImage4 {
+  height: 416px !important;
+  width: 100%;
+  background-color: red;
+}
+.MasonryImage2 {
+  height: 170px !important;
+  width: 100%;
+  background-color: red;
+}
+.MasonryImage3 {
+  height: 230px !important;
+  width: 100%;
+  background-color: red;
+}
+.sponsorItem:hover {
+  cursor: pointer;
+}
+.TestimonialCardBlueText {
+  color: #1967d2;
+}
+body {
+  margin: 0px !important;
+}
+
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+}
+
+.active,
+.accordion:hover {
+  background-color: #ccc;
+}
+
+.accordion:after {
+  content: "\002B";
+  color: #777;
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2212";
+}
+
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+.onclickBorderNone {
+  border: 0px solid white !important;
+}
+.onclickBorderNone:focus-visible {
+  outline: 0px !important;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 45px;
+  height: 26px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: white;
+  border: 1px solid grey;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 4px;
+  bottom: 4px;
+  background-color: grey;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+
+input:checked + .slider {
+  background-color: #2196f3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(16px);
+  -ms-transform: translateX(16px);
+  transform: translateX(16px);
+  background-color: white;
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+.DropdownOnclickAdvanced {
+  display: none;
+}
+.Advanced {
+  cursor: pointer;
+}
+.SortingBy,
+.All {
+  display: none;
+}
+.green {
+  color: green;
+}
+.JobListCard {
+  display: flex;
+}
+@media (max-width: 347px) {
+  .JobListCard {
+    display: block;
+  }
+}
+@media (max-width: 340px) {
+  .Width {
+    width: 150px !important;
+  }
+}
+.JobListCardShadow:hover {
+  box-shadow: 0 5px 10px -4px black;
+  transition-duration: 0.5s;
+}
+.JobListCardShadow {
+  transition-duration: 0.5s;
+}
+.FeaturedBookmarkIconI {
+  display: none;
+}
+.EmployerListCard {
+  transition-duration: 0.3s;
+}
+.EmployerListCard:hover {
+  position: relative;
+  box-shadow: 0 5px 10px -4px black;
+  transition-duration: 0.3s;
+  .FeaturedBookmarkIconI {
+    display: block !important;
+    color: grey;
+  }
+  .FeaturedBookmarkIcon {
+    position: absolute;
+    right: 20px !important;
+    background-color: rgba(25, 103, 210, 0.07);
+    display: flex;
+    align-items: center;
+    justify-content: center !important;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    transition-duration: 0.3s;
+  }
+}
+.FeaturedBookmarkIcon {
+  transition-duration: 0.3s;
+}
+.fontSize14 {
+  font-size: 14px;
+}
+.CandiddateInfo {
+  display: flex;
+  flex: row;
+  :nth-child(2) {
+    margin: 0 20px 0 20px;
+  }
+}
+@media (max-width: 258px) {
+  .CandiddateInfo {
+    display: block;
+    :nth-child(2) {
+      margin: 20px 0 20px 0;
+    }
+  }
+}
+.CandidateListCard {
+  transition-duration: 0.3s;
+}
+.CandidateListCard:hover {
+  position: relative;
+  box-shadow: 0 5px 10px -4px black;
+  transition-duration: 0.3s;
+  .FeaturedBookmarkIconI {
+    display: block !important;
+    color: grey;
+  }
+  .FeaturedBookmarkIcon {
+    position: absolute;
+    right: 20px !important;
+    background-color: rgba(25, 103, 210, 0.07);
+    display: flex;
+    align-items: center;
+    justify-content: center !important;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    transition-duration: 0.3s;
+  }
+  .CandidateViewProfile {
+    background-color: blue;
+    color: white;
+  }
+}
+.CandidateViewProfile {
+  color: blue;
+}
+/*******************************
+  * MODAL AS LEFT/RIGHT SIDEBAR
+  * Add "left" or "right" in modal parent div, after class="modal".
+  * Get free snippets on bootpen.com
+  *******************************/
+.modal.left .modal-dialog,
+.modal.right .modal-dialog {
+  position: fixed;
+  margin: auto;
+  width: 320px;
+  height: 100%;
+  /* -webkit-transform: translate3d(0%, 0, 0);
+      -ms-transform: translate3d(0%, 0, 0);
+      -o-transform: translate3d(0%, 0, 0);
+      transform: translate3d(0%, 0, 0); */
+}
+
+.modal.left .modal-content,
+.modal.right .modal-content {
+  height: 100%;
+  overflow-y: auto;
+}
+
+.modal.left .modal-body,
+.modal.right .modal-body {
+  padding: 15px 15px 80px;
+}
+
+/*Left*/
+.modal.left.fade .modal-dialog {
+  -webkit-transition: opacity 0.3s linear, left 0.3s ease-out;
+  -moz-transition: opacity 0.3s linear, left 0.3s ease-out;
+  -o-transition: opacity 0.3s linear, left 0.3s ease-out;
+  transition: opacity 0.3s linear, left 0.3s ease-out;
+}
+
+/* .modal.left.fade.in .modal-dialog {
+      left: 0;
+    } */
+
+/*Right*/
+.modal.right.fade .modal-dialog {
+  -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+  -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+  -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+  transition: opacity 0.3s linear, right 0.3s ease-out;
+}
+
+.modal.right.fade.in .modal-dialog {
+  right: 0;
+}
+
+/* ----- MODAL STYLE ----- */
+.modal-content {
+  border-radius: 0;
+  border: none;
+}
+
+.modal-header {
+  border-bottom-color: #eeeeee;
+  background-color: #fafafa;
+}
+
+/* ----- v CAN BE DELETED v ----- */
+
+.demo {
+  padding-top: 60px;
+  padding-bottom: 110px;
+}
+
+.btn-demo {
+  margin: 15px;
+  padding: 10px 15px;
+  border-radius: 0;
+  font-size: 16px;
+  background-color: #ffffff;
+}
+
+.btn-demo:focus {
+  outline: 0;
+}
+
+.demo-footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding: 15px;
+  background-color: #212121;
+  text-align: center;
+}
+
+.demo-footer > a {
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 16px;
+  color: #fff;
+}
+// <!-- ---ForSidebar--- End-->
+.AccountCreatingType {
+  background-color: #e1f2e5;
+  color: green;
+  transition-duration: 0.3s;
+}
+.AccountCreatingType:hover {
+  background-color: green;
+  color: white;
+  transition-duration: 0.3s;
+}
