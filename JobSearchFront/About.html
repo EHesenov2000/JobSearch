@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Search</title>
+    <!-- FontAwesome CSS only -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Bootstrap CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <!-- ---------------BOOTSTRAP ICON CDN-------------------- -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.min.css"
+      integrity="sha512-YBSrHBAMjFhWHodf0RF58XB/x9lmuwBtyJv1LWDHQa1nOaWNXfG3Etc/lEXfW+qBx8ne79JnzccDs59je/ccVA=="
+      crossorigin="anonymous"
+    />
+    <!-- Slick Slider CSS only -->
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css"
+      integrity="sha512-6lLUdeQ5uheMFbWm3CP271l14RsX1xtx+J5x2yeIDkkiBpeVTNhTqijME7GgRKKi6hCqovwCoBTlRBEC20M8Mg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
+      integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- ---------------Manual-------------------- -->
+    <link rel="stylesheet" href="./css/jobSearch.css" />
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header
+      style="
+        background-image: url('./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/04/bg-slider2.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+      "
+      class="d-flex justify-content-center align-items-center flex-column"
+    >
+      <div
+        class="
+          topnav
+          d-flex
+          align-items-center
+          justify-content-center justify-content-around
+          my-4
+        "
+        id="myTopnav"
+      >
+        <div class="logoImage d-flex align-items-center">
+          <img
+            class="logo"
+            src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/04/logo-white.png"
+            alt="Yuklenmedi"
+          />
+        </div>
+
+        <ul class="d-flex align-items-center justify-content-end normal-menu">
+          <li type="none">
+            <a href="" style="color: white" class="menu-item">Home</a>
+          </li>
+          <li type="none" class="mx-3">
+            <a href="" style="color: white" class="menu-item">Find Jobs</a>
+          </li>
+          <li type="none">
+            <a href="" style="color: white" class="menu-item">Employers</a>
+          </li>
+          <li type="none" class="mx-3">
+            <a href="" style="color: white" class="menu-item">Candidates</a>
+          </li>
+          <li type="none">
+            <a href="" style="color: white" class="menu-item">Blog</a>
+          </li>
+
+          <li class="dropdown" type="none">
+            <a
+              class="ms-3 dropdown-toggle noselect"
+              id="dropdownMenu2"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              style="text-decoration: none; color: white"
+            >
+              Pages
+            </a>
+            <ul class="dropdown-menu mt-4" aria-labelledby="dropdownMenu2">
+              <li>
+                <button class="dropdown-item" type="button">Action</button>
+              </li>
+              <li>
+                <button class="dropdown-item" type="button">
+                  Another action
+                </button>
+              </li>
+              <li>
+                <button class="dropdown-item" type="button">
+                  Something else here
+                </button>
+              </li>
+            </ul>
+          </li>
+
+          <a href="" class="mx-4">
+            <button
+              class="
+                bg-unset
+                white
+                border-radius border-light
+                py-2
+                px-4
+                duration
+              "
+            >
+              Login / Register
+            </button>
+          </a>
+          <a href="">
+            <button
+              class="bg-white border-light py-2 px-4 border-radius"
+              style="color: #302eaa"
+            >
+              Add Job
+            </button>
+          </a>
+        </ul>
+
+        <div class="salam d-flex align-items-center mx-3">
+          <img
+            class="logo"
+            src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/themes/superio/images/logo.svg"
+            alt="Yuklenmedi"
+          />
+        </div>
+        <div class="responsive-menu">
+          <ul
+            class="
+              d-flex
+              justify-content-center
+              align-items-center align-content-center
+            "
+          >
+            <li
+              type="none"
+              class="
+                d-flex
+                justify-content-center
+                align-items-center align-content-center
+              "
+            >
+              <a href="" class="">
+                <i class="fas fa-user fs-4" style="font-weight: 100"></i>
+              </a>
+            </li>
+            <li
+              type="none"
+              class="
+                d-flex
+                justify-content-center
+                align-items-center align-content-center
+              "
+            >
+              <i class="fas fa-bars ms-3 fs-4"></i>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div
+        class="
+          d-flex
+          flex-column
+          justify-content-center
+          align-items-center
+          backColorBlue
+          text-center
+          py-5
+        "
+      >
+        <h2><b>About</b></h2>
+        <div class="d-flex flex-row text-center">
+          <a href="" class="grey">Home / </a>
+          <span> &nbsp;About</span>
+        </div>
+      </div>
+      <br />
+      <br />
+      <br />
+      <div class="row g-3 grid mx-3" data-masonry='{"percentPosition": true }'>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-12 Masonry1 border-radius">
+          <div class="MasonryImage1 border-radius">
+            <img
+              src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/03/g1.jpg"
+              alt=""
+              style="width: 100%; height: 100%"
+            />
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-12 Masonry2">
+          <div class="MasonryImage2 border-radius">
+            <img
+              src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/03/g5.jpg"
+              alt=""
+              style="width: 100%; height: 100%"
+            />
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-12 Masonry3">
+          <div class="MasonryImage3 border-radius">
+            <img
+              src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/03/g4.jpg"
+              alt=""
+              style="width: 100%; height: 100%"
+            />
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-12 Masonry4">
+          <div class="MasonryImage4 border-radius">
+            <img
+              src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/03/g2.jpg"
+              alt=""
+              style="width: 100%; height: 100%"
+            />
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-12 Masonry5">
+          <div class="MasonryImage5 border-radius">
+            <img
+              src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/03/g3.jpg"
+              alt=""
+              style="width: 100%; height: 100%"
+            />
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-12 Masonry6">
+          <div class="MasonryImage6 border-radius">
+            <img
+              src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/03/g6.jpg"
+              alt=""
+              style="width: 100%; height: 100%"
+            />
+          </div>
+        </div>
+      </div>
+      <br />
+      <br />
+      <br />
+      <div class="container">
+        <div
+          class="d-flex flex-row justify-content-center align-items-center row"
+        >
+          <div class="d-flex flex-column text-center col-md-4 col-sm-6 col-12">
+            <h2 style="font-size: 40px"><b>4 M</b></h2>
+            <span class="grey">4 million daily active users </span>
+          </div>
+          <div class="d-flex flex-column text-center col-md-4 col-sm-6 col-12">
+            <h2 style="font-size: 40px"><b>12 K</b></h2>
+            <span class="grey">4 million daily active users </span>
+          </div>
+          <div class="d-flex flex-column text-center col-md-4 col-sm-6 col-12">
+            <h2 style="font-size: 40px"><b>20 M</b></h2>
+            <span class="grey">4 million daily active users </span>
+          </div>
+        </div>
+
+        <br />
+        <br />
+        <br />
+        <div class="AboutJobio">
+          <h4><b>About Jobio </b></h4>
+          <p class="grey">
+            Far much that one rank beheld bluebird after outside ignobly
+            allegedly more when oh arrogantly vehement irresistibly fussy
+            penguin insect additionally wow absolutely crud meretriciously
+            hastily dalmatian a glowered inset one echidna cassowary some parrot
+            and much as goodness some froze the sullen much connected bat
+            wonderfully on instantaneously eel valiantly petted this along
+            across highhandedly much.
+          </p>
+          <p class="grey">
+            Repeatedly dreamed alas opossum but dramatically despite
+            expeditiously that jeepers loosely yikes that as or eel underneath
+            kept and slept compactly far purred sure abidingly up above fitting
+            to strident wiped set waywardly far the and pangolin horse approving
+            paid chuckled cassowary oh above a much opposite far much
+            hypnotically more therefore wasp less that hey apart well like while
+            superbly orca and far hence one.Far much that one rank beheld
+            bluebird after outside ignobly allegedly more when oh arrogantly
+            vehement irresistibly fussy.
+          </p>
+        </div>
+
+        <br />
+        <br />
+        <br />
+      </div>
+
+      <!-- Your Dream Jobs Are Waiting -->
+      <section
+        class="
+          mt-5
+          d-flex
+          justify-content-center
+          align-items-center
+          flex-column
+          py-5
+        "
+        style="
+          background-image: url(./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/03/bg_shape.jpg);
+          width: 100%;
+        "
+      >
+        <div
+          class="
+            container
+            d-flex
+            justify-content-center
+            align-items-center
+            flex-column
+          "
+        >
+          <h2 class="white pt-5 mt-5">Your Dream Jobs Are Waiting</h2>
+          <div class="white">
+            Over 1 million interactions, 50,000 success stories Make yours now.
+          </div>
+          <div class="buttons mt-4 pb-5 mb-5">
+            <button class="border-radius px-3 py-2 SearchJob">
+              Search Job
+            </button>
+            <button class="border-radius px-3 ms-4 py-2 ApplyJob">
+              Apply Job Now
+            </button>
+          </div>
+        </div>
+      </section>
+      <!-- Testimonials From Our Customers -->
+      <section
+        class="py-5 my-5"
+        style="
+          width: 100%;
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-position: center center;
+          background-image: url(./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/03/bg-test2.png);
+        "
+      >
+        <div
+          class="
+            d-flex
+            flex-column
+            justify-content-center
+            align-items-center
+            text-center
+            py-5
+          "
+        >
+          <h2><b>Testimonials From Our Customers </b></h2>
+          <div class="d-flex flex-row text-center">
+            <span class="grey">
+              Lorem ipsum dolor sit amet elit, sed do eiusmod tempor
+            </span>
+          </div>
+        </div>
+        <div class="container">
+          <ul class="responsiveSlider row">
+            <li class="single-item me-4 d-flex justify-content-center">
+              <div
+                class="
+                  card
+                  bg-unset
+                  border-0
+                  w-50
+                  py-5
+                  px-3
+                  TestimonialCard
+                  d-flex
+                  flex-column
+                  align-items-center
+                  justify-content-center
+                  text-center
+                "
+              >
+                <div class="TestimonialCardImage shadow " style="width: 100px;height: 100px;border-radius: 50%; border: 10px solid white;"> <img class="w-100 h-100" src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/03/t4.jpg" alt="" /></div>
+                <div class="TestimonialCardBlueText mt-3"><b>Good Jobs!</b></div>
+                <p class="grey text-center mt-1"></p>
+                  Without JobHunt i’d be homeless, they found me a job and got
+                  me sorted out quickly with everything! Can’t quite… The Mitech
+                  team works really hard to ensure high level of quality
+                </p>
+                <p><b>Brooklyn Simmons</b></p>
+                <span class="grey">Web Developer</span>
+              </div>
+            </li>
+            <li class="single-item me-4 d-flex justify-content-center">
+              <div
+                class="
+                  card
+                  bg-unset
+                  border-0
+                  w-50
+                  py-5
+                  px-3
+                  TestimonialCard
+                  d-flex
+                  flex-column
+                  align-items-center
+                  justify-content-center
+                  text-center
+                "
+              >
+                <div class="TestimonialCardImage shadow " style="width: 100px;height: 100px;border-radius: 50%; border: 10px solid white;"> <img class="w-100 h-100" src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/03/t4.jpg" alt="" /></div>
+                <div class="TestimonialCardBlueText mt-3"><b>Good Jobs!</b></div>
+                <p class="grey text-center mt-1"></p>
+                  Without JobHunt i’d be homeless, they found me a job and got
+                  me sorted out quickly with everything! Can’t quite… The Mitech
+                  team works really hard to ensure high level of quality
+                </p>
+                <p><b>Brooklyn Simmons</b></p>
+                <span class="grey">Web Developer</span>
+              </div>
+            </li>
+            <li class="single-item me-4 d-flex justify-content-center">
+              <div
+                class="
+                  card
+                  bg-unset
+                  border-0
+                  w-50
+                  py-5
+                  px-3
+                  TestimonialCard
+                  d-flex
+                  flex-column
+                  align-items-center
+                  justify-content-center
+                  text-center
+                "
+              >
+                <div class="TestimonialCardImage shadow " style="width: 100px;height: 100px;border-radius: 50%; border: 10px solid white;"> <img class="w-100 h-100" src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/03/t4.jpg" alt="" /></div>
+                <div class="TestimonialCardBlueText mt-3"><b>Good Jobs!</b></div>
+                <p class="grey text-center mt-1"></p>
+                  Without JobHunt i’d be homeless, they found me a job and got
+                  me sorted out quickly with everything! Can’t quite… The Mitech
+                  team works really hard to ensure high level of quality
+                </p>
+                <p><b>Brooklyn Simmons</b></p>
+                <span class="grey">Web Developer</span>
+              </div>
+            </li>
+            <li class="single-item me-4 d-flex justify-content-center">
+              <div
+                class="
+                  card
+                  bg-unset
+                  border-0
+                  w-50
+                  py-5
+                  px-3
+                  TestimonialCard
+                  d-flex
+                  flex-column
+                  align-items-center
+                  justify-content-center
+                  text-center
+                "
+              >
+                <div class="TestimonialCardImage shadow " style="width: 100px;height: 100px;border-radius: 50%; border: 10px solid white;"> <img class="w-100 h-100" src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/03/t4.jpg" alt="" /></div>
+                <div class="TestimonialCardBlueText mt-3"><b>Good Jobs!</b></div>
+                <p class="grey text-center mt-1"></p>
+                  Without JobHunt i’d be homeless, they found me a job and got
+                  me sorted out quickly with everything! Can’t quite… The Mitech
+                  team works really hard to ensure high level of quality
+                </p>
+                <p><b>Brooklyn Simmons</b></p>
+                <span class="grey">Web Developer</span>
+              </div>
+            </li>
+            <li class="single-item me-4 d-flex justify-content-center">
+              <div
+                class="
+                  card
+                  bg-unset
+                  border-0
+                  w-50
+                  py-5
+                  px-3
+                  TestimonialCard
+                  d-flex
+                  flex-column
+                  align-items-center
+                  justify-content-center
+                  text-center
+                "
+              >
+                <div class="TestimonialCardImage shadow " style="width: 100px;height: 100px;border-radius: 50%; border: 10px solid white;"> <img class="w-100 h-100" src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/03/t4.jpg" alt="" /></div>
+                <div class="TestimonialCardBlueText mt-3"><b>Good Jobs!</b></div>
+                <p class="grey text-center mt-1"></p>
+                  Without JobHunt i’d be homeless, they found me a job and got
+                  me sorted out quickly with everything! Can’t quite… The Mitech
+                  team works really hard to ensure high level of quality
+                </p>
+                <p><b>Brooklyn Simmons</b></p>
+                <span class="grey">Web Developer</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <!-- How It Works -->
+      <br />
+      <br />
+      <br />
+      <section
+        class="
+          mt-5
+          d-flex
+          justify-content-center
+          align-content-center
+          flex-column
+          py-5
+          backColorBlue
+        "
+      >
+        <br />
+        <br />
+        <div class="container">
+          <div class="d-flex flex-column align-items-center">
+            <h2><b>How It Works?</b></h2>
+            <p class="grey">Job for anyone, anywhere</p>
+          </div>
+          <div class="row mt-5">
+            <div class="col-lg-4 col-md-6 col-12">
+              <div
+                class="
+                  WorkCard
+                  card
+                  border-0
+                  d-flex
+                  flex-column
+                  justify-content-center
+                  align-items-center
+                  text-center
+                  py-5
+                "
+              >
+                <div class="work-card-image">
+                  <img
+                    src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/03/f1.jpg"
+                    alt=""
+                  />
+                </div>
+                <div class="work-card-content">
+                  <br />
+                  <h5><b>Free Resume Assessments</b></h5>
+                  <p class="work-card-contentP grey">
+                    Employers on average spend 31 seconds scanning resumes to
+                    identify potential matches.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-12">
+              <div
+                class="
+                  WorkCard
+                  card
+                  border-0
+                  d-flex
+                  flex-column
+                  justify-content-center
+                  align-items-center
+                  text-center
+                  py-5
+                "
+              >
+                <div class="work-card-image">
+                  <img
+                    src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/03/f2.jpg"
+                    alt=""
+                  />
+                </div>
+                <div class="work-card-content">
+                  <br />
+                  <h5><b>Free Resume Assessments</b></h5>
+                  <p class="work-card-contentP grey">
+                    Employers on average spend 31 seconds scanning resumes to
+                    identify potential matches.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-12">
+              <div
+                class="
+                  WorkCard
+                  card
+                  border-0
+                  d-flex
+                  flex-column
+                  justify-content-center
+                  align-items-center
+                  text-center
+                  py-5
+                  px-2
+                "
+              >
+                <div class="work-card-image">
+                  <img
+                    src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/03/f3.png"
+                    alt=""
+                  />
+                </div>
+                <div class="work-card-content">
+                  <br />
+                  <h5><b>Free Resume Assessments</b></h5>
+                  <p class="work-card-contentP grey">
+                    Employers on average spend 31 seconds scanning resumes to
+                    identify potential matches. Employers on average spend 31
+                    seconds scanning resumes to identify potential matches.
+                    Employers on average spend 31 seconds scanning resumes to
+                    identify potential matches. Employers on average spend 31
+                    seconds scanning resumes to identify potential matches.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br />
+        <br />
+      </section>
+      <!-- --Sponsors-- -->
+      <section class="Sponsors container my-5">
+        <div class="row d-flex align-items-center">
+          <div
+            class="
+              col-lg-2 col-md-4 col-sm-6 col-12
+              d-flex
+              flex-row
+              align-items-center
+              justify-content-center
+            "
+          >
+            <img
+              src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/03/b7.jpg"
+              alt=""
+              style="width: 100px; height: 30px"
+              class="sponsorItem"
+            />
+          </div>
+          <div
+            class="
+              col-lg-2 col-md-4 col-sm-6 col-12
+              d-flex
+              flex-row
+              align-items-center
+              justify-content-center
+            "
+          >
+            <img
+              src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/03/b6.jpg"
+              alt=""
+              style="width: 100px; height: 30px"
+              class="sponsorItem"
+            />
+          </div>
+          <div
+            class="
+              col-lg-2 col-md-4 col-sm-6 col-12
+              d-flex
+              flex-row
+              align-items-center
+              justify-content-center
+            "
+          >
+            <img
+              src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/03/b5.jpg"
+              alt=""
+              style="width: 100px; height: 30px"
+              class="sponsorItem"
+            />
+          </div>
+          <div
+            class="
+              col-lg-2 col-md-4 col-sm-6 col-12
+              d-flex
+              flex-row
+              align-items-center
+              justify-content-center
+            "
+          >
+            <img
+              src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/03/b4.jpg"
+              alt=""
+              style="width: 100px; height: 30px"
+              class="sponsorItem"
+            />
+          </div>
+          <div
+            class="
+              col-lg-2 col-md-4 col-sm-6 col-12
+              d-flex
+              flex-row
+              align-items-center
+              justify-content-center
+            "
+          >
+            <img
+              src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/03/b3.jpg"
+              alt=""
+              style="width: 100px; height: 30px"
+              class="sponsorItem"
+            />
+          </div>
+          <div
+            class="
+              col-lg-2 col-md-4 col-sm-6 col-12
+              d-flex
+              flex-row
+              align-items-center
+              justify-content-center
+            "
+          >
+            <img
+              src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/03/b1.jpg"
+              alt=""
+              style="width: 100px; height: 30px"
+              class="sponsorItem"
+            />
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer style="background-color: #302ea7">
+      <section class="py-5 container">
+        <div class="row g-1">
+          <div
+            class="col-lg-3 col-12 d-flex flex-column white"
+            style="width: 22%; max-width: 22%"
+          >
+            <div class="FooterLogo">
+              <img
+                src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/04/logo-white.png"
+                alt=""
+              />
+            </div>
+            <br />
+            <h5 class="CallUs d-flex flex-column">
+              <b>Call Us</b>
+              <span><b>123 456 78 90</b> </span>
+            </h5>
+            <p><b>328 Queensberry Street, North Melbourne VIC</b></p>
+            <p><b>3051, Australia.</b></p>
+            <p><b>support@superio.com</b></p>
+          </div>
+          <div class="col-lg-3 col-12">
+            <h5><b class="white">Find Jobs</b></h5>
+            <p class="d-flex flex-row align-items-center FooterMenuItem">
+              <span class="FooterMenuItemLeft"> </span>
+              <a href="" class="white text-decoration-none">Browse Jobs</a>
+            </p>
+            <p class="d-flex flex-row align-items-center FooterMenuItem">
+              <span class="FooterMenuItemLeft"> </span>
+              <a href="" class="white text-decoration-none"
+                >Browse Candidates</a
+              >
+            </p>
+            <p class="d-flex flex-row align-items-center FooterMenuItem">
+              <span class="FooterMenuItemLeft"> </span>
+              <a href="" class="white text-decoration-none"
+                >Candidate Dashboard</a
+              >
+            </p>
+            <p class="d-flex flex-row align-items-center FooterMenuItem">
+              <span class="FooterMenuItemLeft"></span>
+              <a href="" class="white text-decoration-none">Job Alerts</a>
+            </p>
+            <p class="d-flex flex-row align-items-center FooterMenuItem">
+              <span class="FooterMenuItemLeft"></span>
+              <a href="" class="white text-decoration-none">My Bookmarks</a>
+            </p>
+          </div>
+          <div class="col-lg-3 col-12">
+            <h5><b class="white">Frequently Asked Questions</b></h5>
+            <div class="Frequently">
+              <div class="col-lg-6 col-12">
+                <p class="d-flex flex-row align-items-center FooterMenuItem">
+                  <span class="FooterMenuItemLeft"> </span>
+                  <a href="" class="white text-decoration-none">Site Map</a>
+                </p>
+                <p class="d-flex flex-row align-items-center FooterMenuItem">
+                  <span class="FooterMenuItemLeft"> </span>
+                  <a href="" class="white text-decoration-none">Terms of Use</a>
+                </p>
+                <p class="d-flex flex-row align-items-center FooterMenuItem">
+                  <span class="FooterMenuItemLeft"></span>
+                  <a href="" class="white text-decoration-none"
+                    >Privacy Center</a
+                  >
+                </p>
+                <p class="d-flex flex-row align-items-center FooterMenuItem">
+                  <span class="FooterMenuItemLeft"> </span>
+                  <a href="" class="white text-decoration-none"
+                    >Security Center</a
+                  >
+                </p>
+                <p class="d-flex flex-row align-items-center FooterMenuItem">
+                  <span class="FooterMenuItemLeft"> </span>
+                  <a href="" class="white text-decoration-none"
+                    >Accessibility Center</a
+                  >
+                </p>
+              </div>
+              <div
+                class="col-md-6 col-12 d-flex flex-column justify-content-end"
+              >
+                <p class="d-flex flex-row align-items-center FooterMenuItem">
+                  <span class="FooterMenuItemLeft"> </span>
+                  <a href="" class="white text-decoration-none">Contact Us</a>
+                </p>
+                <p class="d-flex flex-row align-items-center FooterMenuItem">
+                  <span class="FooterMenuItemLeft"> </span>
+                  <a href="" class="white text-decoration-none">About Us</a>
+                </p>
+                <p class="d-flex flex-row align-items-center FooterMenuItem">
+                  <span class="FooterMenuItemLeft"></span>
+                  <a href="" class="white text-decoration-none">Terms</a>
+                </p>
+                <p class="d-flex flex-row align-items-center FooterMenuItem">
+                  <span class="FooterMenuItemLeft"> </span>
+                  <a href="" class="white text-decoration-none">Packages</a>
+                </p>
+                <p class="d-flex flex-row align-items-center FooterMenuItem">
+                  <span class="FooterMenuItemLeft"> </span>
+                  <a href="" class="white text-decoration-none">FAQ</a>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-12">
+            <h5><b class="white">Join Us On</b></h5>
+            <br />
+            <p class="white">We don’t send spam so don’t worry.</p>
+            <br />
+            <div class="bg-white px-3 d-flex flex-row py-2 border-radius">
+              <input
+                type="email"
+                placeholder="Your e-mail"
+                class="border-0 w-75"
+              />
+              <div
+                style="
+                  width: 50px;
+                  height: 50px;
+                  border-radius: 5px;
+                  background-color: chocolate;
+                  font-size: 29px;
+                "
+                class="d-flex justify-content-center align-items-center"
+              >
+                <i class="far fa-envelope white"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <hr class="white" />
+      <section class="d-flex align-items-center container py-3 HrBottom">
+        <div class="white col-sm-6 col-12">
+          © <b class="NowYear"></b> Superio. All Right Reserved.
+        </div>
+        <div class="d-flex justify-content-end col-sm-6">
+          <i class="fab fa-facebook-f white" style="float: left"></i>
+          <i class="fab fa-twitter white mx-3" style="float: left"></i>
+          <i class="fab fa-instagram white" style="float: left"></i>
+          <i class="fab fa-linkedin-in white ms-3" style="float: left"></i>
+        </div>
+      </section>
+    </footer>
+  </body>
+  <!-- Jquery -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <!-- --BootStrap JS -->
+  <!-- JavaScript Bundle with Popper -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"
+  ></script>
+  <!-- Masonry -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"
+    integrity="sha384-GNFwBvfVxBkLMJpYMOABq3c+d3KnQxudP/mGPkzpZSTYykLBNsZEnG2D9G/X/+7D"
+    crossorigin="anonymous"
+    async
+  ></script>
+  <!-- SlickSlider -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"
+    integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <!-- Manual -->
+  <script src="./js/index.js"></script>
+</html>
