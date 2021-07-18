@@ -1,48 +1,390 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - JobSearchFullWebSite</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <title>JobSearch</title>
+    <!-- Slick Slider CSS only -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.css"
+          integrity="sha512-6lLUdeQ5uheMFbWm3CP271l14RsX1xtx+J5x2yeIDkkiBpeVTNhTqijME7GgRKKi6hCqovwCoBTlRBEC20M8Mg=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
+          integrity="sha512-yHknP1/AwR+yx26cB1y0cjvQUMvEa2PFzt1c9LlS4pRQ5NOTZFWbhBig+X9G9eYW/8m0/4OXNx8pxJ6z57x0dw=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
+    <!-- FontAwesome CSS only -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+          integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+          crossorigin="anonymous"
+          referrerpolicy="no-referrer" />
+    <!-- Bootstrap CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+          crossorigin="anonymous" />
+    <!-- ---------------BOOTSTRAP ICON CDN-------------------- -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.min.css"
+          integrity="sha512-YBSrHBAMjFhWHodf0RF58XB/x9lmuwBtyJv1LWDHQa1nOaWNXfG3Etc/lEXfW+qBx8ne79JnzccDs59je/ccVA=="
+          crossorigin="anonymous" />
+    <link rel="stylesheet" href="~/css/jobSearch.css" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">JobSearchFullWebSite</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+    <!-- HEADER -->
+    <header style="
+        background-image: url('@Html.Raw("/SiteImages/bg-slider2.jpg")');
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow: hidden !important;
+      "
+            class="d-flex justify-content-center align-items-center flex-column">
+        <div class="
+          topnav
+          d-flex
+          align-items-center
+          justify-content-center justify-content-around
+          my-4
+        "
+             id="myTopnav">
+            <div class="logoImage d-flex align-items-center">
+                <img class="logo"
+                     src="~/SiteImages/logo-white.png"
+                     alt="Yuklenmedi" />
+            </div>
+
+            <ul class="d-flex align-items-center justify-content-end normal-menu">
+                <li type="none">
+                    <a href="" style="color: white" class="menu-item">Home</a>
+                </li>
+                <li type="none" class="mx-3">
+                    <a href="" style="color: white" class="menu-item">Find Jobs</a>
+                </li>
+                <li type="none">
+                    <a href="" style="color: white" class="menu-item">Employers</a>
+                </li>
+                <li type="none" class="mx-3">
+                    <a href="" style="color: white" class="menu-item">Candidates</a>
+                </li>
+                <li type="none">
+                    <a href="" style="color: white" class="menu-item">Blog</a>
+                </li>
+
+                <li class="dropdown" type="none">
+                    <a class="ms-3 dropdown-toggle noselect"
+                       id="dropdownMenu2"
+                       data-bs-toggle="dropdown"
+                       aria-expanded="false"
+                       style="text-decoration: none; color: white">
+                        Pages
+                    </a>
+                    <ul class="dropdown-menu mt-4" aria-labelledby="dropdownMenu2">
+                        <li>
+                            <button class="dropdown-item" type="button">Action</button>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        <li>
+                            <button class="dropdown-item" type="button">
+                                Another action
+                            </button>
+                        </li>
+                        <li>
+                            <button class="dropdown-item" type="button">
+                                Something else here
+                            </button>
                         </li>
                     </ul>
+                </li>
+
+                <a href="" class="mx-4">
+                    <button class="
+                bg-unset
+                white
+                border-radius border-light
+                py-2
+                px-4
+                duration
+              ">
+                        Login / Register
+                    </button>
+                </a>
+                <a href="">
+                    <button class="bg-white border-light py-2 px-4 border-radius"
+                            style="color: #302eaa">
+                        Add Job
+                    </button>
+                </a>
+            </ul>
+
+            <div class="salam d-flex align-items-center mx-3">
+                <img class="logo"
+                     src="~/SiteImages/logo.svg"
+                     alt="Yuklenmedi" />
+            </div>
+            <div class="responsive-menu">
+                <ul class="
+              d-flex
+              justify-content-center
+              align-items-center align-content-center
+            ">
+                    <li type="none"
+                        class="
+                d-flex
+                justify-content-center
+                align-items-center align-content-center
+              ">
+                        <a href="" class="">
+                            <i class="fas fa-user fs-4" style="font-weight: 100"></i>
+                        </a>
+                    </li>
+                    <li type="none"
+                        class="
+                d-flex
+                justify-content-center
+                align-items-center align-content-center
+              ">
+                        <i class="fas fa-bars ms-3 fs-4"></i>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row mt-5 d-flex justify-content-sm-around container">
+            <div class="col-7 responsiveForm">
+                <div class="SearchForm white mt-5" style="width: fit-content">
+                    <h2 class="w-50">Find Your Perfect Job Match</h2>
+                    <p>Find Jobs, Employment & Career Opportunities</p>
+
+                    <form action="">
+                        <div class="input-group d-flex px-1 bg-white border-radius">
+                            <span class="
+                    input-group-text
+                    bg-white
+                    py-4
+                    border-start-0
+                    inputSpan
+                  ">
+                                <i class="fas fa-search"></i><input type="text"
+                                                                    class="form-control bg-white border-0"
+                                                                    placeholder="Job title..." />
+                            </span>
+                            <span class="input-group-text bg-white py-4 border-end-0 inputSpan">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <div class="ms-3 d-flex Cities">
+                                    <select name="Cities" id="" class="Cities">
+                                        <option value="" disabled selected>Şəhər seç</option>
+                                        <option value="">Baki</option>
+                                        <option value="">Zerdab</option>
+                                        <option value="">Sumqayit</option>
+                                    </select>
+                                </div>
+                            </span>
+
+                            <a href=""
+                               class="d-flex justify-content-end align-items-center findJob">
+                                <button type="submit"
+                                        class="background-yellow border-0 button white">
+                                    Find Jobs
+                                </button>
+                            </a>
+                        </div>
+                    </form>
+                    <br />
+                </div>
+                <span class="d-flex">
+                    <span class="white">Popular Searchers : &nbsp;&nbsp;</span>
+                    <span class="col-7 white">
+                        <a>salam,</a>
+                        &nbsp;
+                        <a>salam,</a>
+                        &nbsp;
+                        <a>salam,</a>
+                        &nbsp;
+                        <a>salam,</a>
+                        &nbsp;
+                        <a>salam,</a>
+                        &nbsp;
+                        <a>salam,</a>
+                        &nbsp;
+                        <a>salam,</a>
+                        &nbsp;
+                        <a>salam,</a>
+                        &nbsp;
+                        <a>salam,</a>
+                        &nbsp;
+                        <a>salam,</a>
+                        &nbsp;
+                        <a>salam,</a>
+                        &nbsp;
+                        <a>salam,</a>
+                        &nbsp;
+                        <a>salam,</a>
+                        &nbsp;
+                        <a>salam,</a>
+                        &nbsp;
+                        <a>salam,</a>
+                        &nbsp;
+                        <a>salam,</a>
+                        &nbsp;
+                        <a>salam</a>
+                    </span>
+                </span>
+            </div>
+            <div class="col-5">
+                <div class="rightImage">
+                    <img src="~/SiteImages/slider2.png"
+                         alt="" />
                 </div>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - JobSearchFullWebSite - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="d-flex ms-3">
+                <img src="~/SiteImages/slider21.png"
+                     alt=""
+                     class="ms-3 pb-5" />
+            </div>
         </div>
+    </header>
+
+    @RenderBody()
+    <!-- FOOTER -->
+    <footer style="background-color: #302ea7">
+        <section class="py-5 container">
+            <div class="row g-1">
+                <div class="col-lg-3 col-12 d-flex flex-column white"
+                     style="width: 22%; max-width: 22%">
+                    <div class="FooterLogo">
+                        <img src="~/SiteImages/logo-white.png"
+                             alt="" />
+                    </div>
+                    <br />
+                    <h5 class="CallUs d-flex flex-column">
+                        <b>Call Us</b>
+                        <span><b>123 456 78 90</b> </span>
+                    </h5>
+                    <p><b>328 Queensberry Street, North Melbourne VIC</b></p>
+                    <p><b>3051, Australia.</b></p>
+                    <p><b>support@superio.com</b></p>
+                </div>
+                <div class="col-lg-3 col-12">
+                    <h5><b class="white">Find Jobs</b></h5>
+                    <p class="d-flex flex-row align-items-center FooterMenuItem">
+                        <span class="FooterMenuItemLeft"> </span>
+                        <a href="" class="white text-decoration-none">Browse Jobs</a>
+                    </p>
+                    <p class="d-flex flex-row align-items-center FooterMenuItem">
+                        <span class="FooterMenuItemLeft"> </span>
+                        <a href="" class="white text-decoration-none">Browse Candidates</a>
+                    </p>
+                    <p class="d-flex flex-row align-items-center FooterMenuItem">
+                        <span class="FooterMenuItemLeft"> </span>
+                        <a href="" class="white text-decoration-none">Candidate Dashboard</a>
+                    </p>
+                    <p class="d-flex flex-row align-items-center FooterMenuItem">
+                        <span class="FooterMenuItemLeft"></span>
+                        <a href="" class="white text-decoration-none">Job Alerts</a>
+                    </p>
+                    <p class="d-flex flex-row align-items-center FooterMenuItem">
+                        <span class="FooterMenuItemLeft"></span>
+                        <a href="" class="white text-decoration-none">My Bookmarks</a>
+                    </p>
+                </div>
+                <div class="col-lg-3 col-12">
+                    <h5><b class="white">Frequently Asked Questions</b></h5>
+                    <div class="Frequently">
+                        <div class="col-lg-6 col-12">
+                            <p class="d-flex flex-row align-items-center FooterMenuItem">
+                                <span class="FooterMenuItemLeft"> </span>
+                                <a href="" class="white text-decoration-none">Site Map</a>
+                            </p>
+                            <p class="d-flex flex-row align-items-center FooterMenuItem">
+                                <span class="FooterMenuItemLeft"> </span>
+                                <a href="" class="white text-decoration-none">Terms of Use</a>
+                            </p>
+                            <p class="d-flex flex-row align-items-center FooterMenuItem">
+                                <span class="FooterMenuItemLeft"></span>
+                                <a href="" class="white text-decoration-none">Privacy Center</a>
+                            </p>
+                            <p class="d-flex flex-row align-items-center FooterMenuItem">
+                                <span class="FooterMenuItemLeft"> </span>
+                                <a href="" class="white text-decoration-none">Security Center</a>
+                            </p>
+                            <p class="d-flex flex-row align-items-center FooterMenuItem">
+                                <span class="FooterMenuItemLeft"> </span>
+                                <a href="" class="white text-decoration-none">Accessibility Center</a>
+                            </p>
+                        </div>
+                        <div class="col-md-6 col-12 d-flex flex-column justify-content-end">
+                            <p class="d-flex flex-row align-items-center FooterMenuItem">
+                                <span class="FooterMenuItemLeft"> </span>
+                                <a href="" class="white text-decoration-none">Contact Us</a>
+                            </p>
+                            <p class="d-flex flex-row align-items-center FooterMenuItem">
+                                <span class="FooterMenuItemLeft"> </span>
+                                <a href="" class="white text-decoration-none">About Us</a>
+                            </p>
+                            <p class="d-flex flex-row align-items-center FooterMenuItem">
+                                <span class="FooterMenuItemLeft"></span>
+                                <a href="" class="white text-decoration-none">Terms</a>
+                            </p>
+                            <p class="d-flex flex-row align-items-center FooterMenuItem">
+                                <span class="FooterMenuItemLeft"> </span>
+                                <a href="" class="white text-decoration-none">Packages</a>
+                            </p>
+                            <p class="d-flex flex-row align-items-center FooterMenuItem">
+                                <span class="FooterMenuItemLeft"> </span>
+                                <a href="" class="white text-decoration-none">FAQ</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-12">
+                    <h5><b class="white">Join Us On</b></h5>
+                    <br />
+                    <p class="white">We don’t send spam so don’t worry.</p>
+                    <br />
+                    <div class="bg-white px-3 d-flex flex-row py-2 border-radius">
+                        <input type="email"
+                               placeholder="Your e-mail"
+                               class="border-0 w-75" />
+                        <div style="
+                  width: 50px;
+                  height: 50px;
+                  border-radius: 5px;
+                  background-color: chocolate;
+                  font-size: 29px;
+                "
+                             class="d-flex justify-content-center align-items-center">
+                            <i class="far fa-envelope white"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <hr class="white" />
+        <section class="d-flex align-items-center container py-3 HrBottom">
+            <div class="white col-sm-6 col-12">
+                © <b class="NowYear"></b> Superio. All Right Reserved.
+            </div>
+            <div class="d-flex justify-content-end col-sm-6">
+                <i class="fab fa-facebook-f white" style="float: left"></i>
+                <i class="fab fa-twitter white mx-3" style="float: left"></i>
+                <i class="fab fa-instagram white" style="float: left"></i>
+                <i class="fab fa-linkedin-in white ms-3" style="float: left"></i>
+            </div>
+        </section>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
 </body>
+<!-- Jquery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+<!-- SlickSlider -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"
+        integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"></script>
+<script src="~/js/index.js"></script>
 </html>

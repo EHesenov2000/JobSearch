@@ -35,6 +35,11 @@ namespace JobSearchFullWebSite.DAL.AppDbContext
         public DbSet<CandidateImage> CandidateImages { get; set; }
         public DbSet<Candidate> Candidates { get; set; }
         public DbSet<CandidateContact> CandidateContacts { get; set; }
+        public DbSet<About> Abouts { get; set; }
+        public DbSet<AboutSponsor> AboutSponsors { get; set; }
+        public DbSet<AboutImage> AboutImages { get; set; }
+        public DbSet<BlogItem> BlogItems { get; set; }
+        public DbSet<Testimonial> Testimonials { get; set; }
 
 
     }

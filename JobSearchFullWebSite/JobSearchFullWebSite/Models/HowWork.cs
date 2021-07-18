@@ -12,8 +12,8 @@ namespace JobSearchFullWebSite.Models
     {
         public int Id { get; set; }
         [StringLength(maximumLength:150)]
-        public string Image { get; set; }
         [Required]
+        public string Image { get; set; }
         [NotMapped]
         public IFormFile File { get; set; }
         [StringLength(maximumLength: 50)]

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\elman\\Desktop\\JobSearchFullWebSite\\JobSearchFullWebSite\\JobSearchFullWebSite.csproj": {}
+    "C:\\Users\\elman\\Desktop\\JobSearch\\JobSearchFullWebSite\\JobSearchFullWebSite\\JobSearchFullWebSite.csproj": {}
   },
   "projects": {
-    "C:\\Users\\elman\\Desktop\\JobSearchFullWebSite\\JobSearchFullWebSite\\JobSearchFullWebSite.csproj": {
+    "C:\\Users\\elman\\Desktop\\JobSearch\\JobSearchFullWebSite\\JobSearchFullWebSite\\JobSearchFullWebSite.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\elman\\Desktop\\JobSearchFullWebSite\\JobSearchFullWebSite\\JobSearchFullWebSite.csproj",
+        "projectUniqueName": "C:\\Users\\elman\\Desktop\\JobSearch\\JobSearchFullWebSite\\JobSearchFullWebSite\\JobSearchFullWebSite.csproj",
         "projectName": "JobSearchFullWebSite",
-        "projectPath": "C:\\Users\\elman\\Desktop\\JobSearchFullWebSite\\JobSearchFullWebSite\\JobSearchFullWebSite.csproj",
+        "projectPath": "C:\\Users\\elman\\Desktop\\JobSearch\\JobSearchFullWebSite\\JobSearchFullWebSite\\JobSearchFullWebSite.csproj",
         "packagesPath": "C:\\Users\\elman\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\elman\\Desktop\\JobSearchFullWebSite\\JobSearchFullWebSite\\obj\\",
+        "outputPath": "C:\\Users\\elman\\Desktop\\JobSearch\\JobSearchFullWebSite\\JobSearchFullWebSite\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\elman\\AppData\\Roaming\\NuGet\\NuGet.Config",
