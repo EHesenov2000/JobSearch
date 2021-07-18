@@ -18,6 +18,11 @@ namespace JobSearchFullWebSite.Models
         [StringLength(maximumLength: 1000, ErrorMessage = "Maksimum uzunluq 1000-dir")]
         [Required]
         public string AboutContentTextEditor { get; set; }
+        [NotMapped]
+        public List<IFormFile> AboutTopImage { get; set; }
+        [NotMapped]
+        public List<int?> AboutTopImageId { get; set; }
+        public List<AboutImage> AboutImages { get; set; }
 
     }
 }

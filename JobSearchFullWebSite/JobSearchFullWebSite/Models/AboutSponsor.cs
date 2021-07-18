@@ -14,9 +14,5 @@ namespace JobSearchFullWebSite.Models
         [StringLength(maximumLength: 100, ErrorMessage = "Maksimum uzunluq 100-dur")]
         [Required]
         public string SponsorImage { get; set; }
-        [NotMapped]
-        public List<IFormFile> AboutSponsorImage { get; set; }
-        [NotMapped]
-        public List<int?> AboutSponsorImageId { get; set; }
     }
 }
