@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using JobSearchFullWebSite.DAL.AppDbContext;
+using JobSearchFullWebSite.ViewModels;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -10,16 +13,23 @@ namespace JobSearchFullWebSite.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly AppDbContext _context;
+        public HomeController(AppDbContext context)
         {
-            _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
         {
-            return View();
+            HomeViewModel HomeVm = new HomeViewModel
+            {
+                HowWorks = _context.HowWorks.ToList(),
+                Jobs = _context.Jobs.Include(x=>x.JobImages).Where(x => x.IsFeatured).ToList(),
+                Cities=_context.Cities.Include(x=>x.Jobs).OrderBy(x=>x.Jobs.Count).Take(5).ToList(),
+                Candidates=_context.Candidates.Where(x=>x.IsFeatured).ToList(),
+                BlogItems = _context.BlogItems.OrderBy(x=>x.CreatedAt).Take(3).ToList()
+            };
+            return View(HomeVm);
         }
             
     }

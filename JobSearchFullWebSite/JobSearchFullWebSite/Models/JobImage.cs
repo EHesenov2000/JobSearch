@@ -12,6 +12,7 @@ namespace JobSearchFullWebSite.Models
         [StringLength(maximumLength: 100,ErrorMessage ="Maksimum uzunluq 100-dur")]
         [Required]
         public string Image { get; set; }
+        public bool IsPoster { get; set; }
         public int JobId { get; set; }
         public Job Job { get; set; }
     }

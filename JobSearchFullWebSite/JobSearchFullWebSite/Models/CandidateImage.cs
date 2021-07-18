@@ -10,8 +10,8 @@ namespace JobSearchFullWebSite.Models
     {
         public int Id { get; set; }
         [StringLength(maximumLength: 100)]
-        [Required]
         public string Image { get; set; }
+        public bool IsPoster { get; set; }
         public int CandidateId { get; set; }
         public Candidate Candidate { get; set; }
     }

@@ -1,7 +1,11 @@
-﻿@{
+﻿
+@using JobSearchFullWebSite.ViewModels 
+@model HomeViewModel
+
+
+@{
     ViewData["Title"] = "Home Page";
 }
-
 <!-- MAIN -->
 <main>
     <!-- How It Works -->
@@ -22,8 +26,10 @@
             <p class="grey">Job for anyone, anywhere</p>
         </div>
         <div class="row mt-5">
-            <div class="col-lg-4 col-md-6 col-12">
-                <div class="
+            @foreach (var item in Model.HowWorks)
+            {
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="
                 WorkCard
                 card
                 border-0
@@ -34,77 +40,20 @@
                 text-center
                 py-5
               ">
-                    <div class="work-card-image">
-                        <img src="~/SiteImages/f1.jpg"
-                             alt="" />
-                    </div>
-                    <div class="work-card-content">
-                        <br />
-                        <h5><b>Free Resume Assessments</b></h5>
-                        <p class="work-card-contentP grey">
-                            Employers on average spend 31 seconds scanning resumes to
-                            identify potential matches.
-                        </p>
+                        <div class="work-card-image">
+                            <img src="~/SiteImages/@item.Image"
+                                 alt="" />
+                        </div>
+                        <div class="work-card-content">
+                            <br />
+                            <h5><b>@item.Title</b></h5>
+                            <p class="work-card-contentP grey">@item.Content</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-12">
-                <div class="
-                WorkCard
-                card
-                border-0
-                d-flex
-                flex-column
-                justify-content-center
-                align-items-center
-                text-center
-                py-5
-              ">
-                    <div class="work-card-image">
-                        <img src="~/SiteImages/f2.jpg"
-                             alt="" />
-                    </div>
-                    <div class="work-card-content">
-                        <br />
-                        <h5><b>Free Resume Assessments</b></h5>
-                        <p class="work-card-contentP grey">
-                            Employers on average spend 31 seconds scanning resumes to
-                            identify potential matches.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-12">
-                <div class="
-                WorkCard
-                card
-                border-0
-                d-flex
-                flex-column
-                justify-content-center
-                align-items-center
-                text-center
-                py-5
-                px-2
-              ">
-                    <div class="work-card-image">
-                        <img src="~/SiteImages/f3.png"
-                             alt="" />
-                    </div>
-                    <div class="work-card-content">
-                        <br />
-                        <h5><b>Free Resume Assessments</b></h5>
-                        <p class="work-card-contentP grey">
-                            Employers on average spend 31 seconds scanning resumes to
-                            identify potential matches. Employers on average spend 31
-                            seconds scanning resumes to identify potential matches.
-                            Employers on average spend 31 seconds scanning resumes to
-                            identify potential matches. Employers on average spend 31
-                            seconds scanning resumes to identify potential matches.
-                        </p>
-                    </div>
-                </div>
-            </div>
+            }
+
+
         </div>
     </section>
     <!-- Featured Jobs -->
@@ -125,23 +74,25 @@
             </p>
         </div>
         <div class="cards container mt-5">
-            <div class="
-              row
+            @foreach (var item in Model.Jobs)
+            {
+                <div class="
+
               d-flex
               flex-column
               align-content-center
               justify-content-center
             ">
-                <div class="col-12">
-                    <div class="card mb-5 flex-row py-4 border-radius FeaturedCard">
-                        <!-- <div class="col-1"> -->
-                        <img src="~/SiteImages/y2.jpg"
-                             alt=""
-                             style="height: 60px; width: 60px"
-                             class="CardImage" />
-                        <!-- </div> -->
+                    <div class="col-12">
+                        <div class="card mb-5 flex-row py-4 border-radius FeaturedCard">
+                            <!-- <div class="col-1"> -->
+                            <img src="~/SiteImages/@item.JobImages.FirstOrDefault(x=>x.IsPoster)"
+                                 alt=""
+                                 style="height: 60px; width: 60px"
+                                 class="CardImage" />
+                            <!-- </div> -->
 
-                        <div class="
+                            <div class="
                     col-lg-8 col-11
                     d-flex
                     flex-column
@@ -149,415 +100,81 @@
                     ms-3
                     CommonContent
                   ">
-                            <div class="col-12">
-                                <b>Junior Graphic Designer</b>
-                                &nbsp;
-                                <span style="font-size: 13px; color: green">Featured</span>
+                                <div class="col-12">
+                                    <b>@item.Name</b>
+                                    &nbsp;
+                                    <span style="font-size: 13px; color: green">@(item.IsFeatured?"Featured":"")</span>
+                                </div>
+                                <div class="col-12 d-flex flex-row row pt-2">
+                                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
+                                        <i class="bi bi-briefcase"></i>
+                                        <span>@item.Employer.Category.Name</span>
+                                    </div>
+                                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
+                                        <i class="bi bi-geo-alt"></i>
+                                        <span>Design</span>
+                                    </div>
+                                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
+                                        <i class="bi bi-clock"></i>
+                                        <span>Design</span>
+                                    </div>
+                                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
+                                        <i class="bi bi-cash-stack"></i>
+                                        <span>Design</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-12 d-flex flex-row row pt-2">
-                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
-                                    <i class="bi bi-briefcase"></i>
-                                    <span>Design</span>
-                                </div>
-                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
-                                    <i class="bi bi-geo-alt"></i>
-                                    <span>Design</span>
-                                </div>
-                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
-                                    <i class="bi bi-clock"></i>
-                                    <span>Design</span>
-                                </div>
-                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
-                                    <i class="bi bi-cash-stack"></i>
-                                    <span>Design</span>
-                                </div>
-                            </div>
-                        </div>
 
-                        <div class="
+                            <div class="
                     col-lg-2 col-11
                     flex-column
                     align-self-center
                     JobCardRight
                     ms-3
                   ">
-                            <div class="col-12 d-flex cardRightJobs">
-                                <div class="icon d-flex cardRightJobsIcon">
-                                    <i style="font-size: 13px"
-                                       class="bi bi-bookmark d-flex justify-content-end"></i>
-                                </div>
+                                <div class="col-12 d-flex cardRightJobs">
+                                    <div class="icon d-flex cardRightJobsIcon">
+                                        <i style="font-size: 13px"
+                                           class="bi bi-bookmark d-flex justify-content-end"></i>
+                                    </div>
 
-                                <div class="FullTimeUrgent justify-content-end pt-2">
-                                    <span class="px-3 d-flex align-items-center"
-                                          style="
+                                    <div class="FullTimeUrgent justify-content-end pt-2">
+                                        <span class="px-3 d-flex align-items-center"
+                                              style="
                           background-color: #dde8f8;
                           border-radius: 20px;
                           color: #7b64ac;
                           font-size: 12px;
                         ">FullTime</span>
-                                    &nbsp;&nbsp;&nbsp;
-                                    <span class="px-3 d-flex align-items-center"
-                                          style="
+                                        &nbsp;&nbsp;&nbsp;
+                                        <span class="px-3 d-flex align-items-center"
+                                              style="
                           background-color: #fef2d9;
                           border-radius: 20px;
                           color: #fcc546;
                           font-size: 12px;
                         ">Urgent</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="
-              row
-              d-flex
-              flex-column
-              align-content-center
-              justify-content-center
-            ">
-                <div class="col-12">
-                    <div class="card mb-5 flex-row py-4 border-radius FeaturedCard">
-                        <!-- <div class="col-1"> -->
-                        <img src="~/SiteImages/y2.jpg"
-                             alt=""
-                             style="height: 60px; width: 60px"
-                             class="CardImage" />
-                        <!-- </div> -->
 
-                        <div class="
-                    col-lg-8 col-11
-                    d-flex
-                    flex-column
-                    align-self-center
-                    ms-3
-                    CommonContent
-                  ">
-                            <div class="col-12">
-                                <b>Junior Graphic Designer</b>
-                                &nbsp;
-                                <span style="font-size: 13px; color: green">Featured</span>
-                            </div>
-                            <div class="col-12 d-flex flex-row row pt-2">
-                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
-                                    <i class="bi bi-briefcase"></i>
-                                    <span>Design</span>
-                                </div>
-                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
-                                    <i class="bi bi-geo-alt"></i>
-                                    <span>Design</span>
-                                </div>
-                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
-                                    <i class="bi bi-clock"></i>
-                                    <span>Design</span>
-                                </div>
-                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
-                                    <i class="bi bi-cash-stack"></i>
-                                    <span>Design</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="
-                    col-lg-2 col-11
-                    flex-column
-                    align-self-center
-                    JobCardRight
-                    ms-3
-                  ">
-                            <div class="col-12 d-flex cardRightJobs">
-                                <div class="icon d-flex cardRightJobsIcon">
-                                    <i style="font-size: 13px"
-                                       class="bi bi-bookmark d-flex justify-content-end"></i>
-                                </div>
-
-                                <div class="FullTimeUrgent justify-content-end pt-2">
-                                    <span class="px-3 d-flex align-items-center"
-                                          style="
-                          background-color: #dde8f8;
-                          border-radius: 20px;
-                          color: #7b64ac;
-                          font-size: 12px;
-                        ">FullTime</span>
-                                    &nbsp;&nbsp;&nbsp;
-                                    <span class="px-3 d-flex align-items-center"
-                                          style="
-                          background-color: #fef2d9;
-                          border-radius: 20px;
-                          color: #fcc546;
-                          font-size: 12px;
-                        ">Urgent</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="
-              row
-              d-flex
-              flex-column
-              align-content-center
-              justify-content-center
-            ">
-                <div class="col-12">
-                    <div class="card mb-5 flex-row py-4 border-radius FeaturedCard">
-                        <!-- <div class="col-1"> -->
-                        <img src="~/SiteImages/y2.jpg"
-                             alt=""
-                             style="height: 60px; width: 60px"
-                             class="CardImage" />
-                        <!-- </div> -->
-
-                        <div class="
-                    col-lg-8 col-11
-                    d-flex
-                    flex-column
-                    align-self-center
-                    ms-3
-                    CommonContent
-                  ">
-                            <div class="col-12">
-                                <b>Junior Graphic Designer</b>
-                                &nbsp;
-                                <span style="font-size: 13px; color: green">Featured</span>
-                            </div>
-                            <div class="col-12 d-flex flex-row row pt-2">
-                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
-                                    <i class="bi bi-briefcase"></i>
-                                    <span>Design</span>
-                                </div>
-                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
-                                    <i class="bi bi-geo-alt"></i>
-                                    <span>Design</span>
-                                </div>
-                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
-                                    <i class="bi bi-clock"></i>
-                                    <span>Design</span>
-                                </div>
-                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
-                                    <i class="bi bi-cash-stack"></i>
-                                    <span>Design</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="
-                    col-lg-2 col-11
-                    flex-column
-                    align-self-center
-                    JobCardRight
-                    ms-3
-                  ">
-                            <div class="col-12 d-flex cardRightJobs">
-                                <div class="icon d-flex cardRightJobsIcon">
-                                    <i style="font-size: 13px"
-                                       class="bi bi-bookmark d-flex justify-content-end"></i>
-                                </div>
-
-                                <div class="FullTimeUrgent justify-content-end pt-2">
-                                    <span class="px-3 d-flex align-items-center"
-                                          style="
-                          background-color: #dde8f8;
-                          border-radius: 20px;
-                          color: #7b64ac;
-                          font-size: 12px;
-                        ">FullTime</span>
-                                    &nbsp;&nbsp;&nbsp;
-                                    <span class="px-3 d-flex align-items-center"
-                                          style="
-                          background-color: #fef2d9;
-                          border-radius: 20px;
-                          color: #fcc546;
-                          font-size: 12px;
-                        ">Urgent</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="
-              row
-              d-flex
-              flex-column
-              align-content-center
-              justify-content-center
-            ">
-                <div class="col-12">
-                    <div class="card mb-5 flex-row py-4 border-radius FeaturedCard">
-                        <!-- <div class="col-1"> -->
-                        <img src="~/SiteImages/y2.jpg"
-                             alt=""
-                             style="height: 60px; width: 60px"
-                             class="CardImage" />
-                        <!-- </div> -->
-
-                        <div class="
-                    col-lg-8 col-11
-                    d-flex
-                    flex-column
-                    align-self-center
-                    ms-3
-                    CommonContent
-                  ">
-                            <div class="col-12">
-                                <b>Junior Graphic Designer</b>
-                                &nbsp;
-                                <span style="font-size: 13px; color: green">Featured</span>
-                            </div>
-                            <div class="col-12 d-flex flex-row row pt-2">
-                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
-                                    <i class="bi bi-briefcase"></i>
-                                    <span>Design</span>
-                                </div>
-                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
-                                    <i class="bi bi-geo-alt"></i>
-                                    <span>Design</span>
-                                </div>
-                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
-                                    <i class="bi bi-clock"></i>
-                                    <span>Design</span>
-                                </div>
-                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
-                                    <i class="bi bi-cash-stack"></i>
-                                    <span>Design</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="
-                    col-lg-2 col-11
-                    flex-column
-                    align-self-center
-                    JobCardRight
-                    ms-3
-                  ">
-                            <div class="col-12 d-flex cardRightJobs">
-                                <div class="icon d-flex cardRightJobsIcon">
-                                    <i style="font-size: 13px"
-                                       class="bi bi-bookmark d-flex justify-content-end"></i>
-                                </div>
-
-                                <div class="FullTimeUrgent justify-content-end pt-2">
-                                    <span class="px-3 d-flex align-items-center"
-                                          style="
-                          background-color: #dde8f8;
-                          border-radius: 20px;
-                          color: #7b64ac;
-                          font-size: 12px;
-                        ">FullTime</span>
-                                    &nbsp;&nbsp;&nbsp;
-                                    <span class="px-3 d-flex align-items-center"
-                                          style="
-                          background-color: #fef2d9;
-                          border-radius: 20px;
-                          color: #fcc546;
-                          font-size: 12px;
-                        ">Urgent</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="
-              row
-              d-flex
-              flex-column
-              align-content-center
-              justify-content-center
-            ">
-                <div class="col-12">
-                    <div class="card mb-5 flex-row py-4 border-radius FeaturedCard">
-                        <!-- <div class="col-1"> -->
-                        <img src="~/SiteImages/y2.jpg"
-                             alt=""
-                             style="height: 60px; width: 60px"
-                             class="CardImage" />
-                        <!-- </div> -->
-
-                        <div class="
-                    col-lg-8 col-11
-                    d-flex
-                    flex-column
-                    align-self-center
-                    ms-3
-                    CommonContent
-                  ">
-                            <div class="col-12">
-                                <b>Junior Graphic Designer</b>
-                                &nbsp;
-                                <span style="font-size: 13px; color: green">Featured</span>
-                            </div>
-                            <div class="col-12 d-flex flex-row row pt-2">
-                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
-                                    <i class="bi bi-briefcase"></i>
-                                    <span>Design</span>
-                                </div>
-                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
-                                    <i class="bi bi-geo-alt"></i>
-                                    <span>Design</span>
-                                </div>
-                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
-                                    <i class="bi bi-clock"></i>
-                                    <span>Design</span>
-                                </div>
-                                <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
-                                    <i class="bi bi-cash-stack"></i>
-                                    <span>Design</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="
-                    col-lg-2 col-11
-                    flex-column
-                    align-self-center
-                    JobCardRight
-                    ms-3
-                  ">
-                            <div class="col-12 d-flex cardRightJobs">
-                                <div class="icon d-flex cardRightJobsIcon">
-                                    <i style="font-size: 13px"
-                                       class="bi bi-bookmark d-flex justify-content-end"></i>
-                                </div>
-
-                                <div class="FullTimeUrgent justify-content-end pt-2">
-                                    <span class="px-3 d-flex align-items-center"
-                                          style="
-                          background-color: #dde8f8;
-                          border-radius: 20px;
-                          color: #7b64ac;
-                          font-size: 12px;
-                        ">FullTime</span>
-                                    &nbsp;&nbsp;&nbsp;
-                                    <span class="px-3 d-flex align-items-center"
-                                          style="
-                          background-color: #fef2d9;
-                          border-radius: 20px;
-                          color: #fcc546;
-                          font-size: 12px;
-                        ">Urgent</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            }
             <div class="d-flex justify-content-center w-100">
                 <button class="btn btn-primary px-4">Load More Listing</button>
             </div>
         </div>
     </section>
-   
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
     <!-- Featured Cities -->
     <br />
     <br />
@@ -673,14 +290,14 @@
             </div>
         </div>
     </section>
-  
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
     <!-- Featured Candidates -->
     <section class="container mt-5">
         <div class="row">

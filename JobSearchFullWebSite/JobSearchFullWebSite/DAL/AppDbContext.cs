@@ -42,8 +42,5 @@ namespace JobSearchFullWebSite.DAL.AppDbContext
         public DbSet<Testimonial> Testimonials { get; set; }
         public DbSet<BlogItemLearn> BlogItemLearns { get; set; }
         public DbSet<BlogItemRequirement> BlogItemRequirements { get; set; }
-
-
-
     }
 }
