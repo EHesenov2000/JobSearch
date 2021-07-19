@@ -12,5 +12,6 @@ namespace JobSearchFullWebSite.Models
         [StringLength(maximumLength:30,ErrorMessage ="Maksimum uzunluq 30-dur")]
         [Required(ErrorMessage ="Kateqoriya adı daxil etməlisiz")]
         public string Name { get; set; }
+        public List<Employer> Employers { get; set; }
     }
 }

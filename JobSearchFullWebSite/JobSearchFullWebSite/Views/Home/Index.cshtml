@@ -86,7 +86,7 @@
                     <div class="col-12">
                         <div class="card mb-5 flex-row py-4 border-radius FeaturedCard">
                             <!-- <div class="col-1"> -->
-                            <img src="~/SiteImages/@item.JobImages.FirstOrDefault(x=>x.IsPoster)"
+                            <img src="~/SiteImages/@item.JobImages.FirstOrDefault(x=>x.IsPoster==true).Image"
                                  alt=""
                                  style="height: 60px; width: 60px"
                                  class="CardImage" />
@@ -112,15 +112,15 @@
                                     </div>
                                     <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
                                         <i class="bi bi-geo-alt"></i>
-                                        <span>Design</span>
+                                        <span>@item.City.CityName</span>
                                     </div>
                                     <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
                                         <i class="bi bi-clock"></i>
-                                        <span>Design</span>
+                                        <span>@item.CreatedAt.ToString("dd.MM.yyyy")</span>
                                     </div>
                                     <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
                                         <i class="bi bi-cash-stack"></i>
-                                        <span>Design</span>
+                                        <span>@item.OfferedMinSalary - @item.OfferedMaxSalary</span>
                                     </div>
                                 </div>
                             </div>
@@ -139,14 +139,17 @@
                                     </div>
 
                                     <div class="FullTimeUrgent justify-content-end pt-2">
+
                                         <span class="px-3 d-flex align-items-center"
                                               style="
                           background-color: #dde8f8;
                           border-radius: 20px;
                           color: #7b64ac;
                           font-size: 12px;
-                        ">FullTime</span>
-                                        &nbsp;&nbsp;&nbsp;
+                        ">@item.JobType.ToString()</span>
+                                    &nbsp;&nbsp;&nbsp;
+                                    @if (item.IsUrgent)
+                                    {
                                         <span class="px-3 d-flex align-items-center"
                                               style="
                           background-color: #fef2d9;
@@ -154,6 +157,8 @@
                           color: #fcc546;
                           font-size: 12px;
                         ">Urgent</span>
+                                    }
+
                                     </div>
                                 </div>
                             </div>
@@ -203,53 +208,32 @@
         </div>
 
         <div class="row gy-4">
+
             <div class="col-lg-4 col-12 CityImage">
-                <img src="~/SiteImages/newyork.jpg"
+                <img src="~/Cities/@Model.Cities.First().Image"
                      alt=""
                      class="CitiesImage" />
                 <div class="over">
-                    <h4 class="overH4">New York</h4>
-                    <div>10 Jobs</div>
+                    <h4 class="overH4">@Model.Cities.First().CityName</h4>
+                    <div>@Model.Cities.First().Jobs.Count() Jobs</div>
                 </div>
             </div>
             <div class="col-lg-8 col-12">
                 <div class="row gx-4 gy-4">
-                    <div class="col-md-6 col-12 CityImage">
-                        <img src="~/SiteImages/newyork.jpg"
-                             alt=""
-                             class="RightImage CitiesImage" />
-                        <div class="over">
-                            <h4 class="overH4">New York</h4>
-                            <div>10 Jobs</div>
+                    @foreach (var item in Model.Cities.Skip(1).Take(4))
+                    {
+                        <div class="col-md-6 col-12 CityImage">
+                            <img src="~/Cities/@item.Image"
+                                 alt=""
+                                 class="RightImage CitiesImage" />
+                            <div class="over">
+                                <h4 class="overH4">@item.CityName</h4>
+                                <div>@item.Jobs.Count Jobs</div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 col-12 CityImage">
-                        <img src="~/SiteImages/newyork.jpg"
-                             alt=""
-                             class="RightImage CitiesImage" />
-                        <div class="over">
-                            <h4 class="overH4">New York</h4>
-                            <div>10 Jobs</div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-12 CityImage">
-                        <img src="~/SiteImages/newyork.jpg"
-                             alt=""
-                             class="RightImage CitiesImage" />
-                        <div class="over">
-                            <h4 class="overH4">New York</h4>
-                            <div>10 Jobs</div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-12 CityImage">
-                        <img src="~/SiteImages/newyork.jpg"
-                             alt=""
-                             class="RightImage CitiesImage" />
-                        <div class="over">
-                            <h4 class="overH4">New York</h4>
-                            <div>10 Jobs</div>
-                        </div>
-                    </div>
+                    }
+
+
                 </div>
             </div>
         </div>
@@ -322,326 +306,50 @@
             </div>
         </div>
         <ul class="responsive row container">
-            <li class="single-item me-4">
-                <div class="card py-5 px-3 CandidateCard">
-                    <div class="
+            @foreach (var item in Model.Candidates)
+            {
+                <li class="single-item me-4">
+                    <div class="card py-5 px-3 CandidateCard">
+                        <div class="
                   CandidateCardImage
                   d-flex
                   flex-column
                   justify-content-center
                   align-items-start
                 ">
-                        <div class="CandidateCardBookMark w-100 d-flex justify-content-end">
-                            <i class="fas fa-bookmark me-0"></i>
+                            <div class="CandidateCardBookMark w-100 d-flex justify-content-end">
+                                <i class="fas fa-bookmark me-0"></i>
+                            </div>
+                            <div class="CandidateCardImage d-flex justify-content-center w-100">
+                                <img src="~/SiteImages/@item.CandidateImages.FirstOrDefault(x=>x.IsPoster).Image"
+                                     alt=""
+                                     style="width: 80px; height: 80px; border-radius: 50%"
+                                     class="d-flex justify-content-center" />
+                            </div>
                         </div>
-                        <div class="CandidateCardImage d-flex justify-content-center w-100">
-                            <img src="~/SiteImages/member2.jpg"
-                                 alt=""
-                                 style="width: 80px; height: 80px; border-radius: 50%"
-                                 class="d-flex justify-content-center" />
-                        </div>
-                    </div>
-                    <div class="
+                        <div class="
                   CandidateCardContent
                   d-flex
                   flex-column
                   justify-content-center
                   align-items-center
                 ">
-                        <h6 class="CandidateCardName mt-3"><b>Dominikus Yuri</b></h6>
-                        <p class="CandidateCardPosition" style="color: blue">
-                            UI Designer
-                        </p>
-                        <p class="CandidateCardLocation">
-                            <i class="bi bi-geo-alt"></i>
-                            <span class="grey">New York</span>
-                        </p>
-                        <button class="btn CandidateCardButton px-4">
-                            View Profile
-                        </button>
-                    </div>
-                </div>
-            </li>
-            <li class="single-item me-4">
-                <div class="card py-5 px-3 CandidateCard">
-                    <div class="
-                  CandidateCardImage
-                  d-flex
-                  flex-column
-                  justify-content-center
-                  align-items-start
-                ">
-                        <div class="CandidateCardBookMark w-100 d-flex justify-content-end">
-                            <i class="fas fa-bookmark me-0"></i>
-                        </div>
-                        <div class="CandidateCardImage d-flex justify-content-center w-100">
-                            <img src="~/SiteImages/member2.jpg"
-                                 alt=""
-                                 style="width: 80px; height: 80px; border-radius: 50%"
-                                 class="d-flex justify-content-center" />
+                            <h6 class="CandidateCardName mt-3"><b>@item.FullName</b></h6>
+                            <p class="CandidateCardPosition" style="color: blue">
+                                @item.Position
+                            </p>
+                            <p class="CandidateCardLocation">
+                                <i class="bi bi-geo-alt"></i>
+                                <span class="grey">@item.City.CityName</span>
+                            </p>
+                            <button class="btn CandidateCardButton px-4">
+                                View Profile
+                            </button>
                         </div>
                     </div>
-                    <div class="
-                  CandidateCardContent
-                  d-flex
-                  flex-column
-                  justify-content-center
-                  align-items-center
-                ">
-                        <h6 class="CandidateCardName mt-3"><b>Dominikus Yuri</b></h6>
-                        <p class="CandidateCardPosition" style="color: blue">
-                            UI Designer
-                        </p>
-                        <p class="CandidateCardLocation">
-                            <i class="bi bi-geo-alt"></i>
-                            <span class="grey">New York</span>
-                        </p>
-                        <button class="btn CandidateCardButton px-4">
-                            View Profile
-                        </button>
-                    </div>
-                </div>
-            </li>
-            <li class="single-item me-4">
-                <div class="card py-5 px-3 CandidateCard">
-                    <div class="
-                  CandidateCardImage
-                  d-flex
-                  flex-column
-                  justify-content-center
-                  align-items-start
-                ">
-                        <div class="CandidateCardBookMark w-100 d-flex justify-content-end">
-                            <i class="fas fa-bookmark me-0"></i>
-                        </div>
-                        <div class="CandidateCardImage d-flex justify-content-center w-100">
-                            <img src="~/SiteImages/member2.jpg"
-                                 alt=""
-                                 style="width: 80px; height: 80px; border-radius: 50%"
-                                 class="d-flex justify-content-center" />
-                        </div>
-                    </div>
-                    <div class="
-                  CandidateCardContent
-                  d-flex
-                  flex-column
-                  justify-content-center
-                  align-items-center
-                ">
-                        <h6 class="CandidateCardName mt-3"><b>Dominikus Yuri</b></h6>
-                        <p class="CandidateCardPosition" style="color: blue">
-                            UI Designer
-                        </p>
-                        <p class="CandidateCardLocation">
-                            <i class="bi bi-geo-alt"></i>
-                            <span class="grey">New York</span>
-                        </p>
-                        <button class="btn CandidateCardButton px-4">
-                            View Profile
-                        </button>
-                    </div>
-                </div>
-            </li>
-            <li class="single-item me-4">
-                <div class="card py-5 px-3 CandidateCard">
-                    <div class="
-                  CandidateCardImage
-                  d-flex
-                  flex-column
-                  justify-content-center
-                  align-items-start
-                ">
-                        <div class="CandidateCardBookMark w-100 d-flex justify-content-end">
-                            <i class="fas fa-bookmark me-0"></i>
-                        </div>
-                        <div class="CandidateCardImage d-flex justify-content-center w-100">
-                            <img src="~/SiteImages/member2.jpg"
-                                 alt=""
-                                 style="width: 80px; height: 80px; border-radius: 50%"
-                                 class="d-flex justify-content-center" />
-                        </div>
-                    </div>
-                    <div class="
-                  CandidateCardContent
-                  d-flex
-                  flex-column
-                  justify-content-center
-                  align-items-center
-                ">
-                        <h6 class="CandidateCardName mt-3"><b>Dominikus Yuri</b></h6>
-                        <p class="CandidateCardPosition" style="color: blue">
-                            UI Designer
-                        </p>
-                        <p class="CandidateCardLocation">
-                            <i class="bi bi-geo-alt"></i>
-                            <span class="grey">New York</span>
-                        </p>
-                        <button class="btn CandidateCardButton px-4">
-                            View Profile
-                        </button>
-                    </div>
-                </div>
-            </li>
-            <li class="single-item me-4">
-                <div class="card py-5 px-3 CandidateCard">
-                    <div class="
-                  CandidateCardImage
-                  d-flex
-                  flex-column
-                  justify-content-center
-                  align-items-start
-                ">
-                        <div class="CandidateCardBookMark w-100 d-flex justify-content-end">
-                            <i class="fas fa-bookmark me-0"></i>
-                        </div>
-                        <div class="CandidateCardImage d-flex justify-content-center w-100">
-                            <img src="~/SiteImages/member2.jpg"
-                                 alt=""
-                                 style="width: 80px; height: 80px; border-radius: 50%"
-                                 class="d-flex justify-content-center" />
-                        </div>
-                    </div>
-                    <div class="
-                  CandidateCardContent
-                  d-flex
-                  flex-column
-                  justify-content-center
-                  align-items-center
-                ">
-                        <h6 class="CandidateCardName mt-3"><b>Dominikus Yuri</b></h6>
-                        <p class="CandidateCardPosition" style="color: blue">
-                            UI Designer
-                        </p>
-                        <p class="CandidateCardLocation">
-                            <i class="bi bi-geo-alt"></i>
-                            <span class="grey">New York</span>
-                        </p>
-                        <button class="btn CandidateCardButton px-4">
-                            View Profile
-                        </button>
-                    </div>
-                </div>
-            </li>
-            <li class="single-item me-4">
-                <div class="card py-5 px-3 CandidateCard">
-                    <div class="
-                  CandidateCardImage
-                  d-flex
-                  flex-column
-                  justify-content-center
-                  align-items-start
-                ">
-                        <div class="CandidateCardBookMark w-100 d-flex justify-content-end">
-                            <i class="fas fa-bookmark me-0"></i>
-                        </div>
-                        <div class="CandidateCardImage d-flex justify-content-center w-100">
-                            <img src="~/SiteImages/member2.jpg"
-                                 alt=""
-                                 style="width: 80px; height: 80px; border-radius: 50%"
-                                 class="d-flex justify-content-center" />
-                        </div>
-                    </div>
-                    <div class="
-                  CandidateCardContent
-                  d-flex
-                  flex-column
-                  justify-content-center
-                  align-items-center
-                ">
-                        <h6 class="CandidateCardName mt-3"><b>Dominikus Yuri</b></h6>
-                        <p class="CandidateCardPosition" style="color: blue">
-                            UI Designer
-                        </p>
-                        <p class="CandidateCardLocation">
-                            <i class="bi bi-geo-alt"></i>
-                            <span class="grey">New York</span>
-                        </p>
-                        <button class="btn CandidateCardButton px-4">
-                            View Profile
-                        </button>
-                    </div>
-                </div>
-            </li>
-            <li class="single-item me-4">
-                <div class="card py-5 px-3 CandidateCard">
-                    <div class="
-                  CandidateCardImage
-                  d-flex
-                  flex-column
-                  justify-content-center
-                  align-items-start
-                ">
-                        <div class="CandidateCardBookMark w-100 d-flex justify-content-end">
-                            <i class="fas fa-bookmark me-0"></i>
-                        </div>
-                        <div class="CandidateCardImage d-flex justify-content-center w-100">
-                            <img src="~/SiteImages/member2.jpg"
-                                 alt=""
-                                 style="width: 80px; height: 80px; border-radius: 50%"
-                                 class="d-flex justify-content-center" />
-                        </div>
-                    </div>
-                    <div class="
-                  CandidateCardContent
-                  d-flex
-                  flex-column
-                  justify-content-center
-                  align-items-center
-                ">
-                        <h6 class="CandidateCardName mt-3"><b>Dominikus Yuri</b></h6>
-                        <p class="CandidateCardPosition" style="color: blue">
-                            UI Designer
-                        </p>
-                        <p class="CandidateCardLocation">
-                            <i class="bi bi-geo-alt"></i>
-                            <span class="grey">New York</span>
-                        </p>
-                        <button class="btn CandidateCardButton px-4">
-                            View Profile
-                        </button>
-                    </div>
-                </div>
-            </li>
-            <li class="single-item me-4">
-                <div class="card py-5 px-3 CandidateCard">
-                    <div class="
-                  CandidateCardImage
-                  d-flex
-                  flex-column
-                  justify-content-center
-                  align-items-start
-                ">
-                        <div class="CandidateCardBookMark w-100 d-flex justify-content-end">
-                            <i class="fas fa-bookmark me-0"></i>
-                        </div>
-                        <div class="CandidateCardImage d-flex justify-content-center w-100">
-                            <img src="~/SiteImages/member2.jpg"
-                                 alt=""
-                                 style="width: 80px; height: 80px; border-radius: 50%"
-                                 class="d-flex justify-content-center" />
-                        </div>
-                    </div>
-                    <div class="
-                  CandidateCardContent
-                  d-flex
-                  flex-column
-                  justify-content-center
-                  align-items-center
-                ">
-                        <h6 class="CandidateCardName mt-3"><b>Dominikus Yuri</b></h6>
-                        <p class="CandidateCardPosition" style="color: blue">
-                            UI Designer
-                        </p>
-                        <p class="CandidateCardLocation">
-                            <i class="bi bi-geo-alt"></i>
-                            <span class="grey">New York</span>
-                        </p>
-                        <button class="btn CandidateCardButton px-4">
-                            View Profile
-                        </button>
-                    </div>
-                </div>
-            </li>
+                </li>
+            }
+
         </ul>
     </section>
     <!-- Recent News Articles -->
@@ -656,54 +364,26 @@
             </p>
         </div>
         <div class="row g-4">
+            @foreach (var item in Model.BlogItems)
+	{
             <div class="col-lg-4 col-md-6 col-12">
                 <div class="card border-0 ArticleCard">
                     <div class="ArticleCardImage w-100 border-radius">
-                        <img src="~/SiteImages/blog1.jpg"
+                        <img src="~/SiteImages/@item.ContainerImage"
                              alt=""
                              class="w-100 m-0 border-radius" />
                     </div>
                     <div class="ArticleCardContent mt-3">
                         <div class="d-flex flex-row">
-                            <span class="grey">May 12,2021</span>
+                            <span class="grey">@item.CreatedAt.ToString("dd.MM.yyyy")</span>
                             <li class="ms-1 grey">3 Comments</li>
                         </div>
-                        <div><a href="">5 Tips For Your Job Interviews</a></div>
+                        <div><a href="">@item.Title</a></div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 col-12">
-                <div class="card border-0 ArticleCard">
-                    <div class="ArticleCardImage w-100 border-radius">
-                        <img src="~/SiteImages/blog6.jpg"
-                             alt=""
-                             class="w-100 m-0 border-radius" />
-                    </div>
-                    <div class="ArticleCardContent mt-3">
-                        <div class="d-flex flex-row">
-                            <span class="grey">May 12,2021</span>
-                            <li class="ms-1 grey">3 Comments</li>
-                        </div>
-                        <div><a href="">5 Tips For Your Job Interviews</a></div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 col-12">
-                <div class="card border-0 ArticleCard">
-                    <div class="ArticleCardImage w-100 border-radius">
-                        <img src="~/SiteImages/blog2.jpg"
-                             alt=""
-                             class="w-100 m-0 border-radius" />
-                    </div>
-                    <div class="ArticleCardContent mt-3">
-                        <div class="d-flex flex-row">
-                            <span class="grey">May 12,2021</span>
-                            <li class="ms-1 grey">3 Comments</li>
-                        </div>
-                        <div><a href="">5 Tips For Your Job Interviews</a></div>
-                    </div>
-                </div>
-            </div>
+	}
+            
         </div>
     </section>
     <!-- Let employers find you -->

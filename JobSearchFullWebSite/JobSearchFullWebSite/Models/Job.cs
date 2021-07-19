@@ -12,6 +12,8 @@ namespace JobSearchFullWebSite.Models
     public class Job
     {
         public int Id { get; set; }
+        public int CityId { get; set; }
+
         [StringLength(maximumLength: 80, ErrorMessage = "Maksimum uzunluq 80-dir")]
         [Required(ErrorMessage = "İş adı daxil etməlisiz")]
         public string Name { get; set; }
@@ -41,9 +43,8 @@ namespace JobSearchFullWebSite.Models
         [NotMapped]
         public List<int?> PhotosId { get; set; }
         public List<JobImage> JobImages { get; set; }
-        public int CityId { get; set; }
         public City City { get; set; }
-        public int EmployerId { get; set; }
+        public int? EmployerId { get; set; }
         public Employer Employer { get; set; }
         public List<JobContact> Contacts { get; set; }
         public List<JobRequiredLanguage> RequiredLanguages { get; set; }

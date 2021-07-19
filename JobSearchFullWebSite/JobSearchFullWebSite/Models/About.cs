@@ -15,7 +15,7 @@ namespace JobSearchFullWebSite.Models
         public int ActiveUsers { get; set; }
         public int Positions { get; set; }
         public int Shared { get; set; }
-        [StringLength(maximumLength: 1000, ErrorMessage = "Maksimum uzunluq 1000-dir")]
+        [StringLength(maximumLength: 2000, ErrorMessage = "Maksimum uzunluq 2000-dir")]
         [Required]
         public string AboutContentTextEditor { get; set; }
         [NotMapped]

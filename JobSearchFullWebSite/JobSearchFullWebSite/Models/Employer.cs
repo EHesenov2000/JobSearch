@@ -19,6 +19,7 @@ namespace JobSearchFullWebSite.Models
         [Required]
         public string Name { get; set; }
         public int FoundedDate { get; set; }
+        public bool IsFeatured { get; set; }
         [NotMapped]
         public List<IFormFile> Images { get; set; }
         [NotMapped]

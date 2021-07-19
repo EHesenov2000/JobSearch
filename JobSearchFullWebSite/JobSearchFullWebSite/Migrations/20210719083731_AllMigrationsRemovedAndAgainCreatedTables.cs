@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace JobSearchFullWebSite.Migrations
 {
-    public partial class CreatedTablesAgainForSomeError : Migration
+    public partial class AllMigrationsRemovedAndAgainCreatedTables : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,7 +16,7 @@ namespace JobSearchFullWebSite.Migrations
                     ActiveUsers = table.Column<int>(nullable: false),
                     Positions = table.Column<int>(nullable: false),
                     Shared = table.Column<int>(nullable: false),
-                    AboutContentTextEditor = table.Column<string>(maxLength: 1000, nullable: false)
+                    AboutContentTextEditor = table.Column<string>(maxLength: 2000, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -198,7 +198,7 @@ namespace JobSearchFullWebSite.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Requirement = table.Column<string>(maxLength: 100, nullable: false),
+                    Requirement = table.Column<string>(maxLength: 200, nullable: false),
                     BlogItemId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -259,6 +259,7 @@ namespace JobSearchFullWebSite.Migrations
                     CityId = table.Column<int>(nullable: false),
                     Name = table.Column<string>(maxLength: 50, nullable: false),
                     FoundedDate = table.Column<int>(nullable: false),
+                    IsFeatured = table.Column<bool>(nullable: false),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     PhoneNumber = table.Column<string>(maxLength: 20, nullable: false),
                     Email = table.Column<string>(maxLength: 30, nullable: false),
@@ -380,7 +381,7 @@ namespace JobSearchFullWebSite.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Image = table.Column<string>(maxLength: 100, nullable: false),
+                    Image = table.Column<string>(maxLength: 100, nullable: true),
                     IsPoster = table.Column<bool>(nullable: false),
                     CandidateId = table.Column<int>(nullable: false)
                 },
@@ -509,6 +510,7 @@ namespace JobSearchFullWebSite.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    CityId = table.Column<int>(nullable: false),
                     Name = table.Column<string>(maxLength: 80, nullable: false),
                     CreatedAt = table.Column<DateTime>(nullable: false),
                     OfferedMaxSalary = table.Column<int>(nullable: false),
@@ -521,7 +523,6 @@ namespace JobSearchFullWebSite.Migrations
                     RequiredExperience = table.Column<int>(nullable: false),
                     CareerLevel = table.Column<int>(nullable: false),
                     JobContentTextEditor = table.Column<string>(maxLength: 2000, nullable: false),
-                    CityId = table.Column<int>(nullable: false),
                     EmployerId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>

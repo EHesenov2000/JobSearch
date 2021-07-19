@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JobSearchFullWebSite.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210718223744_CreatedTablesAgainForSomeError")]
-    partial class CreatedTablesAgainForSomeError
+    [Migration("20210719083731_AllMigrationsRemovedAndAgainCreatedTables")]
+    partial class AllMigrationsRemovedAndAgainCreatedTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,8 +30,8 @@ namespace JobSearchFullWebSite.Migrations
 
                     b.Property<string>("AboutContentTextEditor")
                         .IsRequired()
-                        .HasColumnType("nvarchar(1000)")
-                        .HasMaxLength(1000);
+                        .HasColumnType("nvarchar(2000)")
+                        .HasMaxLength(2000);
 
                     b.Property<int>("ActiveUsers")
                         .HasColumnType("int");
@@ -168,8 +168,8 @@ namespace JobSearchFullWebSite.Migrations
 
                     b.Property<string>("Requirement")
                         .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
+                        .HasColumnType("nvarchar(200)")
+                        .HasMaxLength(200);
 
                     b.HasKey("Id");
 
@@ -398,7 +398,6 @@ namespace JobSearchFullWebSite.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Image")
-                        .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
@@ -579,6 +578,9 @@ namespace JobSearchFullWebSite.Migrations
                     b.Property<string>("InstagramUrl")
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
+
+                    b.Property<bool>("IsFeatured")
+                        .HasColumnType("bit");
 
                     b.Property<string>("LinkedinUrl")
                         .HasColumnType("nvarchar(100)")

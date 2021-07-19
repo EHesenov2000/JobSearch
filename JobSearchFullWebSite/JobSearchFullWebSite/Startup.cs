@@ -1,4 +1,5 @@
 using JobSearchFullWebSite.DAL.AppDbContext;
+using JobSearchFullWebSite.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,6 +32,9 @@ namespace JobSearchFullWebSite
             {
                 options.UseSqlServer(Configuration.GetConnectionString("Default"));
             });
+            services.AddScoped<LayoutViewModelService>();
+            services.AddHttpContextAccessor();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

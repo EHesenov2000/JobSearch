@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using JobSearchFullWebSite.Services 
+@inject LayoutViewModelService service
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -54,7 +57,7 @@
              id="myTopnav">
             <div class="logoImage d-flex align-items-center">
                 <img class="logo"
-                     src="~/SiteImages/logo-white.png"
+                     src="~/SiteImages/@service.GetSetting().HeaderLogo"
                      alt="Yuklenmedi" />
             </div>
 
@@ -122,7 +125,7 @@
 
             <div class="salam d-flex align-items-center mx-3">
                 <img class="logo"
-                     src="~/SiteImages/logo.svg"
+                     src="~/SiteImages/@service.GetSetting().HeaderResponsiveLogo"
                      alt="Yuklenmedi" />
             </div>
             <div class="responsive-menu">
@@ -174,11 +177,13 @@
                             <span class="input-group-text bg-white py-4 border-end-0 inputSpan">
                                 <i class="fas fa-map-marker-alt"></i>
                                 <div class="ms-3 d-flex Cities">
-                                    <select name="Cities" id="" class="Cities">
+                                    <select name="Cities" id="" class="Cities" style="width:150px" >
                                         <option value="" disabled selected>Şəhər seç</option>
-                                        <option value="">Baki</option>
-                                        <option value="">Zerdab</option>
-                                        <option value="">Sumqayit</option>
+                                        @foreach (var item in service.GetCities())
+                                        {
+                                            <option value="">@item.CityName</option>
+
+                                        }
                                     </select>
                                 </div>
                             </span>
@@ -255,17 +260,16 @@
                 <div class="col-lg-3 col-12 d-flex flex-column white"
                      style="width: 22%; max-width: 22%">
                     <div class="FooterLogo">
-                        <img src="~/SiteImages/logo-white.png"
+                        <img src="~/SiteImages/@service.GetSetting().FooterLogo"
                              alt="" />
                     </div>
                     <br />
                     <h5 class="CallUs d-flex flex-column">
                         <b>Call Us</b>
-                        <span><b>123 456 78 90</b> </span>
+                        <span><b>@service.GetSetting().Phone</b> </span>
                     </h5>
-                    <p><b>328 Queensberry Street, North Melbourne VIC</b></p>
-                    <p><b>3051, Australia.</b></p>
-                    <p><b>support@superio.com</b></p>
+                    <p><b>@service.GetSetting().Location</b></p>
+                    <p><b>@service.GetSetting().Email</b></p>
                 </div>
                 <div class="col-lg-3 col-12">
                     <h5><b class="white">Find Jobs</b></h5>
@@ -368,10 +372,14 @@
                 © <b class="NowYear"></b> Superio. All Right Reserved.
             </div>
             <div class="d-flex justify-content-end col-sm-6">
-                <i class="fab fa-facebook-f white" style="float: left"></i>
-                <i class="fab fa-twitter white mx-3" style="float: left"></i>
-                <i class="fab fa-instagram white" style="float: left"></i>
-                <i class="fab fa-linkedin-in white ms-3" style="float: left"></i>
+                <a href="@service.GetSetting().FacebookUrl"> <i class="fab fa-facebook-f white" style="float: left"></i></a>
+                <a href="@service.GetSetting().TwitterUrl"><i class="fab fa-twitter white mx-3" style="float: left"></i></a>
+                <a href="@service.GetSetting().InstagramUrl"><i class="fab fa-instagram white" style="float: left"></i></a>
+                <a href="@service.GetSetting().LinkedinUrl"><i class="fab fa-linkedin-in white ms-3" style="float: left"></i></a>
+               
+                
+                
+                
             </div>
         </section>
     </footer>

@@ -10,7 +10,7 @@ namespace JobSearchFullWebSite.Models
     {
         public int Id { get; set; }
         [Required]
-        [StringLength(maximumLength:100,ErrorMessage ="Maksimum uzunluq 100-dur")]
+        [StringLength(maximumLength:200,ErrorMessage ="Maksimum uzunluq 200-dur")]
         public string Requirement { get; set; }
         public int BlogItemId { get; set; }
         public BlogItem BlogItem { get; set; }
