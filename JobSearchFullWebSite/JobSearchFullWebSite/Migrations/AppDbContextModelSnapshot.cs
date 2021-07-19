@@ -728,6 +728,9 @@ namespace JobSearchFullWebSite.Migrations
                     b.Property<bool>("IsUrgent")
                         .HasColumnType("bit");
 
+                    b.Property<int?>("JobCategoryId")
+                        .HasColumnType("int");
+
                     b.Property<string>("JobContentTextEditor")
                         .IsRequired()
                         .HasColumnType("nvarchar(2000)")
@@ -759,7 +762,26 @@ namespace JobSearchFullWebSite.Migrations
 
                     b.HasIndex("EmployerId");
 
+                    b.HasIndex("JobCategoryId");
+
                     b.ToTable("Jobs");
+                });
+
+            modelBuilder.Entity("JobSearchFullWebSite.Models.JobCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(30)")
+                        .HasMaxLength(30);
+
+                    b.HasKey("Id");
+
+                    b.ToTable("JobCategories");
                 });
 
             modelBuilder.Entity("JobSearchFullWebSite.Models.JobContact", b =>
@@ -1064,7 +1086,7 @@ namespace JobSearchFullWebSite.Migrations
             modelBuilder.Entity("JobSearchFullWebSite.Models.Employer", b =>
                 {
                     b.HasOne("JobSearchFullWebSite.Models.Category", "Category")
-                        .WithMany()
+                        .WithMany("Employers")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1105,6 +1127,10 @@ namespace JobSearchFullWebSite.Migrations
                     b.HasOne("JobSearchFullWebSite.Models.Employer", "Employer")
                         .WithMany("Jobs")
                         .HasForeignKey("EmployerId");
+
+                    b.HasOne("JobSearchFullWebSite.Models.JobCategory", "JobCategory")
+                        .WithMany("Jobs")
+                        .HasForeignKey("JobCategoryId");
                 });
 
             modelBuilder.Entity("JobSearchFullWebSite.Models.JobContact", b =>

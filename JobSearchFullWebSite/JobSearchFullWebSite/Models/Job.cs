@@ -13,6 +13,8 @@ namespace JobSearchFullWebSite.Models
     {
         public int Id { get; set; }
         public int CityId { get; set; }
+        public int JobCategoryId { get; set; }
+        public JobCategory JobCategory { get; set; }
 
         [StringLength(maximumLength: 80, ErrorMessage = "Maksimum uzunluq 80-dir")]
         [Required(ErrorMessage = "İş adı daxil etməlisiz")]

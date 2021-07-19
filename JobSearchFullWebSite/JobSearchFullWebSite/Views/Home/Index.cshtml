@@ -1,10 +1,14 @@
 ﻿
-@using JobSearchFullWebSite.ViewModels 
+@using JobSearchFullWebSite.ViewModels
 @model HomeViewModel
 
 
 @{
     ViewData["Title"] = "Home Page";
+}
+@{
+    int totalPage = (int)ViewBag.TotalPageCount;
+    int selectedPage = (int)ViewBag.SelectedPage;
 }
 <!-- MAIN -->
 <main>
@@ -147,28 +151,28 @@
                           color: #7b64ac;
                           font-size: 12px;
                         ">@item.JobType.ToString()</span>
-                                    &nbsp;&nbsp;&nbsp;
-                                    @if (item.IsUrgent)
-                                    {
-                                        <span class="px-3 d-flex align-items-center"
-                                              style="
+                        &nbsp;&nbsp;&nbsp;
+                        @if (item.IsUrgent)
+                        {
+                            <span class="px-3 d-flex align-items-center"
+                                  style="
                           background-color: #fef2d9;
                           border-radius: 20px;
                           color: #fcc546;
                           font-size: 12px;
                         ">Urgent</span>
-                                    }
+                        }
 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-            }
+}
             <div class="d-flex justify-content-center w-100">
-                <button class="btn btn-primary px-4">Load More Listing</button>
+                <a asp-action="index" asp-controller="home" asp-route-jobsPage="@(ViewBag.SelectedPage<ViewBag.TotalPageCount?ViewBag.SelectedPage+1:ViewBag.TotalPageCount)"><button class="btn btn-primary px-4">Load More Listing</button></a>
             </div>
         </div>
     </section>
@@ -365,25 +369,25 @@
         </div>
         <div class="row g-4">
             @foreach (var item in Model.BlogItems)
-	{
-            <div class="col-lg-4 col-md-6 col-12">
-                <div class="card border-0 ArticleCard">
-                    <div class="ArticleCardImage w-100 border-radius">
-                        <img src="~/SiteImages/@item.ContainerImage"
-                             alt=""
-                             class="w-100 m-0 border-radius" />
-                    </div>
-                    <div class="ArticleCardContent mt-3">
-                        <div class="d-flex flex-row">
-                            <span class="grey">@item.CreatedAt.ToString("dd.MM.yyyy")</span>
-                            <li class="ms-1 grey">3 Comments</li>
+            {
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="card border-0 ArticleCard">
+                        <div class="ArticleCardImage w-100 border-radius">
+                            <img src="~/SiteImages/@item.ContainerImage"
+                                 alt=""
+                                 class="w-100 m-0 border-radius" />
                         </div>
-                        <div><a href="">@item.Title</a></div>
+                        <div class="ArticleCardContent mt-3">
+                            <div class="d-flex flex-row">
+                                <span class="grey">@item.CreatedAt.ToString("dd.MM.yyyy")</span>
+                                <li class="ms-1 grey">3 Comments</li>
+                            </div>
+                            <div><a href="">@item.Title</a></div>
+                        </div>
                     </div>
                 </div>
-            </div>
-	}
-            
+            }
+
         </div>
     </section>
     <!-- Let employers find you -->

@@ -19,15 +19,17 @@ namespace JobSearchFullWebSite.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int jobsPage=1)
         {
+            ViewBag.SelectedPage = jobsPage;
+            ViewBag.TotalPageCount = Math.Ceiling(_context.Jobs.Include(x => x.JobImages).Include(x => x.Employer).ThenInclude(x => x.Category).Include(x => x.City).Where(x => x.IsFeatured).ToList().Count()/9m);
             HomeViewModel HomeVm = new HomeViewModel
             {
                 HowWorks = _context.HowWorks.ToList(),
-                Jobs = _context.Jobs.Include(x=>x.JobImages).Include(x=>x.Employer).ThenInclude(x=>x.Category).Include(x=>x.City).Where(x => x.IsFeatured).ToList(),
+                Jobs = _context.Jobs.Include(x=>x.JobImages).Include(x=>x.Employer).ThenInclude(x=>x.Category).Include(x=>x.City).Where(x => x.IsFeatured).Skip((jobsPage - 1) * 9).Take(9).ToList(),
                 Cities=_context.Cities.Include(x=>x.Jobs).Take(5).ToList(),
                 Candidates=_context.Candidates.Include(x=>x.CandidateImages).Include(x=>x.City).Where(x=>x.IsFeatured).ToList(),
-                BlogItems = _context.BlogItems.OrderBy(x=>x.CreatedAt).Take(3).ToList()
+                BlogItems = _context.BlogItems.OrderBy(x=>x.CreatedAt).Take(3).ToList(),
             };
             return View(HomeVm);
         }

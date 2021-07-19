@@ -27,10 +27,11 @@ namespace JobSearchFullWebSite.Services
         {
             return _context.Cities.ToList();
         }
-        //public List<Category> GetTopFiveCategories()
-        //{
-        //    _context.Categories.Include(x=>x.Employers).ThenInclude(x=>x.Jobs)
-        //}
+        public List<JobCategory> GetTopFiveCategories()
+        {
+            int skipValue=_context.JobCategories.Count() - 5;
+            return _context.JobCategories.Include(x=>x.Jobs).OrderBy(x=>x.Jobs.Count).Skip(skipValue).Take(5).ToList();
+        }
 
-}
+    }
 }
