@@ -1,4 +1,5 @@
-﻿
+﻿@using JobSearchFullWebSite.ViewModels
+@model JobDetailViewModel 
 @{
     ViewData["Title"] = "Detail";
 }
@@ -11,9 +12,11 @@
                     <section class="Genaral d-flex flex-column">
                         <div class="d-flex flex-row">
                             <h4 class="me-3">
-                                <b>General Ledger Accountant</b>
+                                <b>@Model.Job.Name</b>
                             </h4>
-                            <span style="
+                            @if (Model.Job.IsFeatured)
+                            {
+                                <span style="
                     width: 20px !important;
                     height: 20px !important;
                     border-radius: 50%;
@@ -23,25 +26,27 @@
                     justify-content: center;
                     align-items: center;
                   ">
-                                <i class="fas fa-check white" style="font-size: 10px"></i>
-                            </span>
+                                    <i class="fas fa-check white" style="font-size: 10px"></i>
+                                </span>
+                            }
+
                         </div>
                         <div class="col-12 d-flex flex-row row">
                             <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
                                 <i class="bi bi-briefcase"></i>
-                                <span>Design</span>
+                                <span>@Model.Job.JobCategory.Name</span>
                             </div>
                             <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
                                 <i class="bi bi-geo-alt"></i>
-                                <span>Design</span>
+                                <span>@Model.Job.City.CityName</span>
                             </div>
                             <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
                                 <i class="bi bi-clock"></i>
-                                <span>Design</span>
+                                <span>@Model.Job.CreatedAt.ToString("MMM dd, yyyy")</span>
                             </div>
                             <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
                                 <i class="bi bi-cash-stack"></i>
-                                <span>Design</span>
+                                <span>@Model.Job.OfferedMinSalary - @Model.Job.OfferedMaxSalary / @Model.Job.OfferedSalaryForTime</span>
                             </div>
                         </div>
                         <div class="FullTimeUrgent pt-2">
@@ -52,8 +57,10 @@
                     color: #7b64ac;
                     font-size: 12px;
                     max-width: 150px;
-                  ">FullTime</span>
-                            &nbsp;&nbsp;&nbsp;
+                  ">@Model.Job.JobType.ToString()</span>
+                        @if (Model.Job.IsUrgent)
+                        {
+                            @Html.Raw("&nbsp; &nbsp; &nbsp;");
                             <span class="px-3 d-flex align-items-center"
                                   style="
                     background-color: #fef2d9;
@@ -62,6 +69,8 @@
                     font-size: 12px;
                     max-width: 150px;
                   ">Urgent</span>
+                        }
+
                         </div>
                     </section>
                     <section class="Overview mt-5">
@@ -73,7 +82,7 @@
                                        style="font-size: 20px; color: #1967d2"></i>
                                     <div class="d-flex flex-column">
                                         <h6>Date Posted</h6>
-                                        <span class="grey">May 3, 2021</span>
+                                        <span class="grey">@Model.Job.CreatedAt.ToString("MMM dd,yyyy")</span>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-12 d-flex flex-row">
@@ -81,7 +90,7 @@
                                        style="font-size: 20px; color: #1967d2"></i>
                                     <div class="d-flex flex-column">
                                         <h6>Location</h6>
-                                        <span class="grey">New York</span>
+                                        <span class="grey">@Model.Job.City.CityName</span>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-12 d-flex flex-row">
@@ -89,7 +98,7 @@
                                        style="font-size: 20px; color: #1967d2"></i>
                                     <div class="d-flex flex-column">
                                         <h6>Offered Salary</h6>
-                                        <span class="grey">$50-$60/day</span>
+                                        <span class="grey">@Model.Job.OfferedMinSalary - @Model.Job.OfferedMaxSalary/@Model.Job.JobType</span>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-12 d-flex flex-row">
@@ -97,7 +106,7 @@
                                        style="font-size: 20px; color: #1967d2"></i>
                                     <div class="d-flex flex-column">
                                         <h6>Expiration Date</h6>
-                                        <span class="grey">May 3, 2021</span>
+                                        <span class="grey">@Model.Job.ExpirationDate.ToString("MMM dd, yyyy")</span>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-12 d-flex flex-row">
@@ -105,7 +114,7 @@
                                        style="font-size: 20px; color: #1967d2"></i>
                                     <div class="d-flex flex-column">
                                         <h6>Experience</h6>
-                                        <span class="grey">2 Year</span>
+                                        <span class="grey">@Model.Job.RequiredExperience.ToString()</span>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-12 d-flex flex-row">
@@ -113,7 +122,7 @@
                                        style="font-size: 20px; color: #1967d2"></i>
                                     <div class="d-flex flex-column">
                                         <h6>Gender</h6>
-                                        <span class="grey">Male</span>
+                                        <span class="grey">@Model.Job.RequiredGender.ToString()</span>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-12 d-flex flex-row">
@@ -121,22 +130,23 @@
                                        style="font-size: 20px; color: #1967d2"></i>
                                     <div class="d-flex flex-column">
                                         <h6>Qualification</h6>
-                                        <span class="grey">Cerificated</span>
+                                        <span class="grey">@Model.Job.RequiredQualificationr.ToString()</span>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-6 col-12 d-flex flex-row">
                                     <i class="fas fa-layer-group me-3"
                                        style="font-size: 20px; color: #1967d2"></i>
                                     <div class="d-flex flex-column">
-                                        <h6>Caereer Level</h6>
-                                        <span class="grey">Student</span>
+                                        <h6>Career Level</h6>
+                                        <span class="grey">@Model.Job.CareerLevel.ToString()</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </section>
                     <section class="AboutJob mt-5">
-                        <div>
+                        @Html.Raw(Model.Job.JobContentTextEditor);
+                        @*<div>
                             <h4><b>Job Description</b></h4>
                             <p class="grey">
                                 As a Product Designer, you will work within a Product Delivery
@@ -221,7 +231,7 @@
                                     You are familiar using Jira and Confluence in your workflow
                                 </li>
                             </ul>
-                        </div>
+                        </div>*@
                     </section>
                     <br /><br /><br />
                     <div class="d-flex flex-row align-items-center">
@@ -236,175 +246,81 @@
                     <div class="d-flex flex-column mt-5">
                         <h4><b>Photos</b></h4>
                         <div class="row g-3">
-                            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                <img src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/04/blog6-200x200.jpg"
-                                     alt=""
-                                     class="border-radius"
-                                     style="width: 150px; height: 150px" />
-                            </div>
-                            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                <img src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/04/blog5.jpg"
-                                     alt=""
-                                     class="border-radius"
-                                     style="width: 150px; height: 150px" />
-                            </div>
-                            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                <img src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/04/blog4.jpg"
-                                     alt=""
-                                     class="border-radius"
-                                     style="width: 150px; height: 150px" />
-                            </div>
-                            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                <img src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/04/blog3.jpg"
-                                     alt=""
-                                     class="border-radius"
-                                     style="width: 150px; height: 150px" />
-                            </div>
+                            @foreach (var item in Model.Job.JobImages)
+                            {
+                                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                                    <img src="~/SiteImages/@item.Image"
+                                         alt=""
+                                         class="border-radius"
+                                         style="width: 150px; height: 150px" />
+                                </div>
+                            }
+
                         </div>
                     </div>
                     <div class="d-flex flex-column my-5">
                         <h4><b>Related Jobs</b></h4>
                         <br />
-                        <div class="row">
+                        <div class="row mt-5">
                             <div class="col-12">
-                                <div class="card p-3 d-flex flex-row RelatedJobCard">
-                                    <div class="RelatedJobCardImage me-3">
-                                        <img src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y2.jpg"
-                                             alt=""
-                                             style="width: 60px; height: 60px" />
-                                    </div>
-                                    <div>
-                                        <div class="d-flex flex-row">
-                                            <div class="d-flex flex-row align-items-center">
-                                                <h5 class="d-flex align-items-center">
-                                                    <b>Junior Graphic Designer</b>
-                                                </h5>
-                                                &nbsp; &nbsp; &nbsp;
-                                                <span class="d-flex align-items-center"
-                                                      style="color: green; font-size: 14px">Featured</span>
-                                            </div>
-                                            <div class="d-flex flex-row justify-content-end">
-                                                <i class="fas fa-bookmark ms-5 grey"></i>
-                                            </div>
+                                @foreach (var item in Model.RelatedJobs.OrderBy(x=>x.CreatedAt).Take(5))
+                                {
+                                    <div class="card p-3 d-flex flex-row RelatedJobCard mb-3">
+                                        <div class="RelatedJobCardImage me-3">
+                                            <img src="~/SiteImages/@item.JobImages.FirstOrDefault(x=>x.IsPoster).Image"
+                                                 alt=""
+                                                 style="width: 60px; height: 60px" />
                                         </div>
-                                        <div class="row">
-                                            <div class="col-lg-4 col-md-6 col-12 grey d-flex flex-row">
-                                                <div class="JobIcon">
-                                                    <i class="fas fa-envelope"></i>
+                                        <div>
+                                            <div class="d-flex flex-row">
+                                                <div class="d-flex flex-row align-items-center">
+                                                    <h5 class="d-flex align-items-center">
+                                                        <b>@item.Name</b>
+                                                    </h5>
+                                                    @if (item.IsFeatured)
+                                                            {
+                                                                Html.Raw(" &nbsp; &nbsp; &nbsp;");
+                                                        <span class="d-flex align-items-center"
+                                                              style="color: green; font-size: 14px">Featured</span>
+                                                    }
+
                                                 </div>
-                                                <span class="ms-2">Design</span>
-                                            </div>
-                                            <div class="col-lg-4 col-md-6 col-12 grey d-flex flex-row">
-                                                <div class="JobIcon">
-                                                    <i class="fas fa-map-marker-alt"></i>
+                                                <div class="d-flex flex-row justify-content-end">
+                                                    <i class="fas fa-bookmark ms-5 grey"></i>
                                                 </div>
-                                                <span class="ms-2">New York</span>
                                             </div>
-                                            <div class="col-lg-4 col-md-6 col-12 grey d-flex flex-row">
-                                                <div class="JobIcon">
-                                                    <i class="fas fa-money-bill-alt"></i>
+                                            <div class="row">
+                                                <div class="col-lg-4 col-md-6 col-12 grey d-flex flex-row">
+                                                    <div class="JobIcon">
+                                                        <i class="fas fa-envelope"></i>
+                                                    </div>
+                                                    <span class="ms-2">@item.JobCategory.Name</span>
                                                 </div>
-                                                <span class="ms-2">$150-$180 / week</span>
-                                            </div>
-                                        </div>
-                                        <div class="RelatedFullUrgent">
-                                            <div class="FullTime border-radius px-3">FullTime</div>
-                                            <div class="Urgent border-radius px-3">Urgent</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card p-3 d-flex flex-row RelatedJobCard my-5">
-                                    <div class="RelatedJobCardImage me-3">
-                                        <img src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y2.jpg"
-                                             alt=""
-                                             style="width: 60px; height: 60px" />
-                                    </div>
-                                    <div>
-                                        <div class="d-flex flex-row">
-                                            <div class="d-flex flex-row align-items-center">
-                                                <h5 class="d-flex align-items-center">
-                                                    <b>Junior Graphic Designer</b>
-                                                </h5>
-                                                &nbsp; &nbsp; &nbsp;
-                                                <span class="d-flex align-items-center"
-                                                      style="color: green; font-size: 14px">Featured</span>
-                                            </div>
-                                            <div class="d-flex flex-row justify-content-end">
-                                                <i class="fas fa-bookmark ms-5 grey"></i>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-4 col-md-6 col-12 grey d-flex flex-row">
-                                                <div class="JobIcon">
-                                                    <i class="fas fa-envelope"></i>
+                                                <div class="col-lg-4 col-md-6 col-12 grey d-flex flex-row">
+                                                    <div class="JobIcon">
+                                                        <i class="fas fa-map-marker-alt"></i>
+                                                    </div>
+                                                    <span class="ms-2">@item.City.CityName</span>
                                                 </div>
-                                                <span class="ms-2">Design</span>
-                                            </div>
-                                            <div class="col-lg-4 col-md-6 col-12 grey d-flex flex-row">
-                                                <div class="JobIcon">
-                                                    <i class="fas fa-map-marker-alt"></i>
+                                                <div class="col-lg-4 col-md-6 col-12 grey d-flex flex-row">
+                                                    <div class="JobIcon">
+                                                        <i class="fas fa-money-bill-alt"></i>
+                                                    </div>
+                                                    <span class="ms-2">@item.OfferedMinSalary-@item.OfferedMaxSalary/@item.OfferedSalaryForTime</span>
                                                 </div>
-                                                <span class="ms-2">New York</span>
                                             </div>
-                                            <div class="col-lg-4 col-md-6 col-12 grey d-flex flex-row">
-                                                <div class="JobIcon">
-                                                    <i class="fas fa-money-bill-alt"></i>
-                                                </div>
-                                                <span class="ms-2">$150-$180 / week</span>
+                                            <div class="RelatedFullUrgent">
+                                                <div class="FullTime border-radius px-3">@item.JobType</div>
+                                                @if (item.IsUrgent)
+                                                {
+                                                    <div class="Urgent border-radius px-3">Urgent</div>
+                                                }
                                             </div>
-                                        </div>
-                                        <div class="RelatedFullUrgent">
-                                            <div class="FullTime border-radius px-3">FullTime</div>
-                                            <div class="Urgent border-radius px-3">Urgent</div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="card p-3 d-flex flex-row RelatedJobCard">
-                                    <div class="RelatedJobCardImage me-3">
-                                        <img src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y2.jpg"
-                                             alt=""
-                                             style="width: 60px; height: 60px" />
-                                    </div>
-                                    <div>
-                                        <div class="d-flex flex-row">
-                                            <div class="d-flex flex-row align-items-center">
-                                                <h5 class="d-flex align-items-center">
-                                                    <b>Junior Graphic Designer</b>
-                                                </h5>
-                                                &nbsp; &nbsp; &nbsp;
-                                                <span class="d-flex align-items-center"
-                                                      style="color: green; font-size: 14px">Featured</span>
-                                            </div>
-                                            <div class="d-flex flex-row justify-content-end">
-                                                <i class="fas fa-bookmark ms-5 grey"></i>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-4 col-md-6 col-12 grey d-flex flex-row">
-                                                <div class="JobIcon">
-                                                    <i class="fas fa-envelope"></i>
-                                                </div>
-                                                <span class="ms-2">Design</span>
-                                            </div>
-                                            <div class="col-lg-4 col-md-6 col-12 grey d-flex flex-row">
-                                                <div class="JobIcon">
-                                                    <i class="fas fa-map-marker-alt"></i>
-                                                </div>
-                                                <span class="ms-2">New York</span>
-                                            </div>
-                                            <div class="col-lg-4 col-md-6 col-12 grey d-flex flex-row">
-                                                <div class="JobIcon">
-                                                    <i class="fas fa-money-bill-alt"></i>
-                                                </div>
-                                                <span class="ms-2">$150-$180 / week</span>
-                                            </div>
-                                        </div>
-                                        <div class="RelatedFullUrgent">
-                                            <div class="FullTime border-radius px-3">FullTime</div>
-                                            <div class="Urgent border-radius px-3">Urgent</div>
-                                        </div>
-                                    </div>
-                                </div>
+                                }
+
+
                             </div>
                         </div>
                     </div>
@@ -413,7 +329,7 @@
                 <div class="col-lg-4 col-12">
                     <div class="d-flex justify-content-end">
                         <span>Application ends: </span>
-                        <span style="color: red">May 19, 2026</span>
+                        <span style="color: red">@Model.Job.ExpirationDate.ToString("MMM dd, yyyy")</span>
                     </div>
                     <br />
                     <div class="d-flex flex-row justify-content-around align-items-center">
@@ -441,11 +357,11 @@
                         <div class="card p-3 border-0 py-5"
                              style="background-color: #f5f7fc">
                             <div class="d-flex flex-row">
-                                <img src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/03/y9.jpg"
+                                <img src="~/SiteImages/@Model.EmployerImage.Image"
                                      alt=""
                                      style="width: 70px; height: 70px" />
                                 <div class="d-flex flex-column justify-content-center ms-3">
-                                    <b>Upwork</b>
+                                    <b>@Model.Job.Employer.Name</b>
                                     <a href="" style="text-decoration: none">
                                         View Company Profile
                                     </a>
@@ -454,39 +370,39 @@
                             <br />
                             <p class="d-flex flex-row">
                                 <b>Categories:</b>
-                                <span class="d-flex w-100 justify-content-end">Developer</span>
+                                <span class="d-flex w-100 justify-content-end">@Model.Job.Employer.Category.Name</span>
                             </p>
                             <p class="d-flex flex-row">
                                 <b>Founded Date:</b>
-                                <span class="d-flex w-100 justify-content-end align-items-center">1998</span>
+                                <span class="d-flex w-100 justify-content-end align-items-center">@Model.Job.Employer.FoundedDate</span>
                             </p>
                             <p class="d-flex flex-row">
                                 <b>Location:</b>
-                                <span class="d-flex w-100 justify-content-end">New York</span>
+                                <span class="d-flex w-100 justify-content-end">@Model.Job.Employer.City.CityName</span>
                             </p>
                             <p class="d-flex flex-row">
                                 <b>Phone Number:</b>
                                 <span class="d-flex w-100 justify-content-end align-items-center">
-                                    1234567890
+                                    @Model.Job.Employer.PhoneNumber
                                 </span>
                             </p>
                             <p class="d-flex flex-row">
                                 <b>Email:</b>
-                                <span class="d-flex w-100 justify-content-end">upwork@apus.com</span>
+                                <span class="d-flex w-100 justify-content-end">@Model.Job.Employer.Email</span>
                             </p>
                             <p class="d-flex flex-row">
                                 <b>Socials:</b>
                                 <span class="d-flex w-100 justify-content-end">
-                                    <a href="" style="text-decoration: none">
+                                    <a href="@Model.Job.Employer.FacebookUrl" style="text-decoration: none">
                                         <i class="fab fa-facebook-f"></i>
                                     </a>
-                                    <a href="" class="mx-3" style="text-decoration: none">
+                                    <a href="@Model.Job.Employer.TwitterUrl" class="mx-3" style="text-decoration: none">
                                         <i class="fab fa-twitter"></i>
                                     </a>
-                                    <a href="" style="text-decoration: none">
+                                    <a href="@Model.Job.Employer.LinkedinUrl" style="text-decoration: none">
                                         <i class="fab fa-linkedin-in"></i>
                                     </a>
-                                    <a href="" class="mx-3" style="text-decoration: none">
+                                    <a href="@Model.Job.Employer.InstagramUrl" class="mx-3" style="text-decoration: none">
                                         <i class="fab fa-instagram"></i>
                                     </a>
                                 </span>
@@ -494,7 +410,7 @@
                             <br />
                             <a href="" style="text-decoration: none" class="CompanyButtonA">
                                 <button class="border-0 border-radius w-100 py-3 CompanyButton">
-                                    envato.com
+                                    @Model.Job.Employer.Website
                                 </button>
                             </a>
                         </div>
@@ -503,26 +419,28 @@
                     <div>
                         <div class="card p-3 border-0 mb-5 py-5"
                              style="background-color: #f5f7fc">
-                            <h4><b>Contact Upwork</b></h4>
+                            <h4><b>Contact @Model.Job.Name</b></h4>
                             <br />
-                            <form action="" class="w-100">
-                                <input type="text"
+                            <form asp-action="getcontact" asp-controller="job" asp-route-id="@Model.Job.Id" method="post" class="w-100"  enctype="multipart/form-data">
+                                <input type="text" asp-for="@Model.JobContact.Subject"
                                        class="w-100 border-radius py-3 border-0 ps-3"
                                        placeholder="Subject" />
+                                <span asp-validation-for="@Model.JobContact.Subject" class="text-danger"></span>
                                 <br />
                                 <br />
-                                <input type="email"
+                                <input type="email" asp-for="@Model.JobContact.Email"
                                        class="w-100 border-radius py-3 border-0 ps-3"
                                        placeholder="Email" />
+                                <span asp-validation-for="@Model.JobContact.Email" class="text-danger"></span>
                                 <br />
                                 <br />
-                                <input type="text"
+                                <input type="text" asp-for="@Model.JobContact.PhoneNumber"
                                        class="w-100 border-radius py-3 border-0 ps-3"
                                        placeholder="Phone" />
+                                <span asp-validation-for="@Model.JobContact.PhoneNumber" class="text-danger"></span>
                                 <br />
                                 <br />
-                                <textarea class="border-0 border-radius ps-3 pt-3"
-                                          name=""
+                                <textarea class="border-0 border-radius ps-3 pt-3" asp-for="@Model.JobContact.Message"
                                           id=""
                                           rows="10"
                                           style="
@@ -532,10 +450,13 @@
                       width: 100%;
                     "
                                           placeholder="Message"></textarea>
+                                <span asp-validation-for="@Model.JobContact.Message" class="text-danger"></span>
                                 <br />
                                 <br />
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
                                 <button type="submit"
-                                        class="btn btn-primary w-100 border-radius py-3">
+                                        class="btn btn-primary w-100 border-radius py-3 JobContact">
                                     Send Message
                                 </button>
                             </form>

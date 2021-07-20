@@ -33,6 +33,10 @@ namespace JobSearchFullWebSite.Models
         public bool IsFeatured { get; set; }
         [Required(ErrorMessage = "Vakansiyanın bitmə tarixini qeyd etməlisiz")]
         public DateTime ExpirationDate { get; set; }
+        [Required(ErrorMessage = "Tələb edilən gender seçməlisiz")]
+        public Gender RequiredGender { get; set; }
+        [Required(ErrorMessage = "Tələb edilən qualification seçməlisiz")]
+        public Qualification RequiredQualificationr { get; set; }
         [Required(ErrorMessage = "Tələb edilən təcrübə aralığı seçməlisiz")]
         public RequiredExperience RequiredExperience { get; set; }
         [Required(ErrorMessage = "İşçi səviyyəsi seçməlisiz")]

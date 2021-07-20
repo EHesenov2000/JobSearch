@@ -4,14 +4,16 @@ using JobSearchFullWebSite.DAL.AppDbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JobSearchFullWebSite.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210720091237_RequiredGenderAddedToJob")]
+    partial class RequiredGenderAddedToJob
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -757,9 +759,6 @@ namespace JobSearchFullWebSite.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("RequiredGender")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RequiredQualificationr")
                         .HasColumnType("int");
 
                     b.HasKey("Id");

@@ -172,3 +172,5 @@ document.getElementsByClassName("AccountCreatingType")[1].onclick =
     document.getElementsByClassName("AccountCreatingType")[0].style.color =
       "green";
   };
+
+
