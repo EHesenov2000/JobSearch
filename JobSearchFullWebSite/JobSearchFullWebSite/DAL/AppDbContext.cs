@@ -43,5 +43,7 @@ namespace JobSearchFullWebSite.DAL.AppDbContext
         public DbSet<BlogItemLearn> BlogItemLearns { get; set; }
         public DbSet<BlogItemRequirement> BlogItemRequirements { get; set; }
         public DbSet<JobCategory> JobCategories { get; set; }
+        public DbSet<FAQ> FAQs { get; set; }
+        public DbSet<Term> Terms { get; set; }
     }
 }

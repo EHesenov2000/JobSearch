@@ -1,4 +1,5 @@
-﻿
+﻿@using JobSearchFullWebSite.Models
+@model List<FAQ>
 @{
     ViewData["Title"] = "FAQ";
 }
@@ -24,86 +25,18 @@
         <br />
         <div class="container mt-5 px-5">
             <h4><b>Payments</b></h4>
-            <button class="accordion mt-3 border-radius">Section 1</button>
-            <div class="panel mt-2">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat.
-                </p>
-            </div>
+            @foreach (var item in Model)
+            {
+                <button class="accordion mt-3 border-radius">@item.Title</button>
+                <div class="panel mt-2">
+                    <p>
+                       @item.Question
+                    </p>
+                </div>
 
-            <button class="accordion mt-3 border-radius">Section 2</button>
-            <div class="panel mt-2">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat.
-                </p>
-            </div>
-
-            <button class="accordion mt-3 border-radius">Section 3</button>
-            <div class="panel mt-2">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat.
-                </p>
-            </div>
-            <button class="accordion mt-3 border-radius">Section 3</button>
-            <div class="panel mt-2">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat.
-                </p>
-            </div>
+            }
         </div>
-        <div class="container my-5 px-5">
-            <h4><b>Suggestions</b></h4>
-            <button class="accordion mt-3 border-radius">Section 1</button>
-            <div class="panel mt-2">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat.
-                </p>
-            </div>
-
-            <button class="accordion mt-3 border-radius">Section 2</button>
-            <div class="panel mt-2">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat.
-                </p>
-            </div>
-
-            <button class="accordion mt-3 border-radius">Section 3</button>
-            <div class="panel mt-2">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat.
-                </p>
-            </div>
-            <button class="accordion mt-3 border-radius">Section 3</button>
-            <div class="panel mt-2">
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat.
-                </p>
-            </div>
-        </div>
+        
         <br />
         <br />
         <br />

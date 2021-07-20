@@ -236,3 +236,4 @@ C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\obj\D
 C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\obj\Debug\netcoreapp3.1\Razor\Views\About\Index.cshtml.g.cs
 C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\obj\Debug\netcoreapp3.1\Razor\Views\About\FAQ.cshtml.g.cs
 C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\obj\Debug\netcoreapp3.1\Razor\Views\About\Terms.cshtml.g.cs
+C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\obj\Debug\netcoreapp3.1\Razor\Views\Shared\BlogPartialView.cshtml.g.cs

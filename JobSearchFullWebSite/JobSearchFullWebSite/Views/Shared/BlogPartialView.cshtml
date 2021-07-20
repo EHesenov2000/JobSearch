@@ -1,0 +1,66 @@
+﻿@using JobSearchFullWebSite.Models
+@model List<BlogItem>
+
+@foreach (var item in Model)
+{
+    <div class="col-lg-4 col-md-6 col-12">
+        <div class="card p-3 BlogCard">
+            <div class="BlogCardImage border-radius overflow-hidden">
+                <img src="~/SiteImages/@item.ContainerImage"
+                     alt=""
+                     style="width: 100%; height: 200px" />
+            </div>
+            <div class="container mt-3">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-12 grey"
+                         style="font-size: 14px">
+                       @item.CreatedAt.ToString("MMM dd, yyyy")
+                    </div>
+                    <div class="
+                      col-lg-4 col-md-6 col-12
+                      grey
+                      d-flex
+                      flex-row
+                      align-items-center
+                    "
+                         style="font-size: 14px">
+                        <div class="border-radius"
+                             style="height: 5px; width: 5px; background-color: grey"></div>
+                        &nbsp;
+                        <span>@item.Subject</span>
+                    </div>
+                    <div class="
+                      col-lg-4 col-md-6 col-12
+                      grey
+                      d-flex
+                      flex-row
+                      align-items-center
+                    "
+                         style="font-size: 14px">
+                        <div class="border-radius"
+                             style="height: 5px; width: 5px; background-color: grey"></div>
+                        &nbsp;
+                        <span>3 Comments</span>
+                    </div>
+                </div>
+                <br />
+                <a href="" class="black">
+                    <h5><b>@item.Title</b></h5>
+                </a>
+                <p class="grey">
+                    @if (item.DescriptionTextEditor.Length > 50)
+                    {
+                        @item.DescriptionTextEditor.ToString().Substring(1,44)<span>...</span>
+                    }
+                    else
+                    {
+                        @item.DescriptionTextEditor
+                    }
+                </p>
+                <br />
+                <a class="readMoreBottomLine" href="">Read More ></a>
+            </div>
+        </div>
+    </div>
+
+}

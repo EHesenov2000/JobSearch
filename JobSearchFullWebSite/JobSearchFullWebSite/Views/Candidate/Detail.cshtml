@@ -1,4 +1,8 @@
-﻿
+﻿@using JobSearchFullWebSite.Models
+
+@model Candidate    
+
+
 @{
     ViewData["Title"] = "Detail";
 }
@@ -9,18 +13,22 @@
                 <div class="col-lg-8 col-12">
                     <div class="row">
                         <div class="d-flex forResponsive">
-                            <img src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y11.jpg"
+                            <img src="~/SiteImages/@Model.CandidateImages.FirstOrDefault(x=>x.IsPoster).Image"
                                  alt=""
                                  style="height: 100px; width: 100px; border-radius: 50%" />
                             <div class="Genaral d-flex flex-column ms-3 w-100 mb-4">
                                 <div class="d-flex flex-row">
                                     <h4 class="me-3">
-                                        <b>General Ledger Accountant</b>
+                                        <b>@Model.FullName</b>
                                     </h4>
-                                    <span class="d-flex align-items-center"
-                                          style="color: green">
-                                        Featured
-                                    </span>
+                                    @if (Model.IsFeatured)
+                                    {
+                                        <span class="d-flex align-items-center"
+                                              style="color: green">
+                                            Featured
+                                        </span>
+                                    }
+
                                 </div>
                                 <div class="col-12 row">
                                     <div class="
@@ -30,7 +38,7 @@
                         flex-row
                         align-items-center
                       ">
-                                        <span style="color: blue">Developer</span>
+                                        <span style="color: blue">@Model.Position</span>
                                     </div>
                                     <div class="
                         grey
@@ -40,7 +48,7 @@
                         align-items-center
                       ">
                                         <i class="bi bi-geo-alt"></i>
-                                        <span>New York</span>
+                                        <span>@Model.City.CityName</span>
                                     </div>
                                     <div class="
                         grey
@@ -50,7 +58,7 @@
                         align-items-center
                       ">
                                         <i class="far fa-money-bill-alt me-2"></i>
-                                        <span>$950/month</span>
+                                        <span>@Model.WaitingSalary/@Model.SalaryForTime</span>
                                     </div>
                                     <div class="
                         grey
@@ -60,52 +68,33 @@
                         align-items-center
                       ">
                                         <i class="far fa-clock ms-2"></i>
-                                        <span>May 5, 1987</span>
+                                        <span>@Model.CreatedAt.ToString("MMM dd, yyyy")</span>
                                     </div>
                                 </div>
                                 <div class="OpenJobs pt-2 mb-3 d-flex flex-row">
-                                    <a href="">
-                                        <span class="px-3 d-flex align-items-center me-2 OpenJobsSpan"
-                                              style="
+                                    @foreach (var item in Model.CandidateSkills)
+                                    {
+                                        <a href="">
+                                            <span class="px-3 d-flex align-items-center me-2 OpenJobsSpan"
+                                                  style="
                           background-color: #dde8f8;
                           border-radius: 20px;
                           color: #7b64ac;
                           font-size: 12px;
                           max-width: 150px;
                         ">
-                                            App
-                                        </span>
-                                    </a>
-                                    <a href="">
-                                        <span class="px-3 d-flex align-items-center me-2 OpenJobsSpan"
-                                              style="
-                          background-color: #dde8f8;
-                          border-radius: 20px;
-                          color: #7b64ac;
-                          font-size: 12px;
-                          max-width: 150px;
-                        ">
-                                            Developer
-                                        </span>
-                                    </a>
-                                    <a href="">
-                                        <span class="px-3 d-flex align-items-center OpenJobsSpan"
-                                              style="
-                          background-color: #dde8f8;
-                          border-radius: 20px;
-                          color: #7b64ac;
-                          font-size: 12px;
-                          max-width: 150px;
-                        ">
-                                            Jobs
-                                        </span>
-                                    </a>
+                                                @item.Name
+                                            </span>
+                                        </a>
+                                    }
+
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="AboutCandidates">
-                        <h4><b>About Candidates</b></h4>
+                        @Model.AboutCandidateTextEditor
+                        @*<h4><b>About Candidates</b></h4>
                         <p class="grey">
                             Hello my name is Nicole Wells and web developer from Portland.
                             In pharetra orci dignissim, blandit mi semper, ultricies diam.
@@ -122,114 +111,70 @@
                             molestie. Morbi ornare ipsum sed sem condimentum, et pulvinar
                             tortor luctus. Suspendisse condimentum lorem ut elementum
                             aliquam. Mauris nec erat ut libero vulputate pulvinar.
-                        </p>
+                        </p>*@
                     </div>
                     <br />
                     <br />
                     <div class="Education">
                         <h4><b>Education</b></h4>
                         <br />
-                        <div class="EducationItem d-flex flex-row">
-                            <div class="d-flex align-items-center mt-3 justify-content-center"
-                                 style="
+                        @foreach (var item in Model.CandidateEducationItems)
+                        {
+                            <div class="EducationItem d-flex flex-row">
+                                <div class="d-flex align-items-center mt-3 justify-content-center"
+                                     style="
                     background-color: #f9e0df;
                     color: red;
                     width: 40px;
                     height: 30px;
                     border-radius: 50%;
                   ">
-                                <span class="d-flex align-items-center justify-content-center"><b>B</b></span>
-                            </div>
-                            <div class="d-flex flex-column ms-3 my-3">
-                                <div class="d-flex flex-row">
-                                    <b>Bachlors in Fine Arts</b>
-                                    <span class="ms-2" style="color: red">2013-2015</span>
+                                    <span class="d-flex align-items-center justify-content-center"><b>@item.Title.ToString().Trim()[0]</b></span>
                                 </div>
-                                <div style="color: red">Modern College</div>
-                                <p class="grey">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Proin a ipsum tellus. Interdum et malesuada fames ac ante
-                                    ipsum primis in faucibus.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="EducationItem d-flex flex-row">
-                            <div class="d-flex align-items-center mt-3 justify-content-center"
-                                 style="
-                    background-color: #f9e0df;
-                    color: red;
-                    width: 40px;
-                    height: 30px;
-                    border-radius: 50%;
-                  ">
-                                <span class="d-flex align-items-center justify-content-center"><b>C</b></span>
-                            </div>
-                            <div class="d-flex flex-column ms-3 my-3">
-                                <div class="d-flex flex-row">
-                                    <b>Computer Science </b>
-                                    <span class="ms-2" style="color: red">2016-2018</span>
+                                <div class="d-flex flex-column ms-3 my-3">
+                                    <div class="d-flex flex-row">
+                                        <b>@item.Title</b>
+                                        <span class="ms-2" style="color: red">@item.Years</span>
+                                    </div>
+                                    <div style="color: red">@item.EducationPlace</div>
+                                    <p class="grey">
+                                       @item.Content
+                                    </p>
                                 </div>
-                                <div style="color: red">Harvard University</div>
-                                <p class="grey">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Proin a ipsum tellus. Interdum et malesuada fames ac ante
-                                    ipsum primis in faucibus.
-                                </p>
                             </div>
-                        </div>
+                        }
+
                     </div>
                     <br />
                     <br />
                     <div class="WorkExperience">
                         <h4><b>Work & Experience</b></h4>
-                        <div class="WorkExperienceItem d-flex flex-row">
-                            <div class="d-flex align-items-center mt-3 justify-content-center"
-                                 style="
+                        @foreach (var item in Model.CandidateWorkItems)
+                        {
+                            <div class="WorkExperienceItem d-flex flex-row">
+                                <div class="d-flex align-items-center mt-3 justify-content-center"
+                                     style="
                     background-color: #dde8f8;
                     color: blue;
                     width: 40px;
                     height: 30px;
                     border-radius: 50%;
                   ">
-                                <span class="d-flex align-items-center justify-content-center"><b>P</b></span>
-                            </div>
-                            <div class="d-flex flex-column ms-3 my-3">
-                                <div class="d-flex flex-row">
-                                    <b>Product Designer</b>
-                                    <span class="ms-2" style="color: blue">05/12/2018 - 05/05/2019</span>
+                                    <span class="d-flex align-items-center justify-content-center"><b>@item.Title.ToString().Trim()[0]</b></span>
                                 </div>
-                                <div style="color: blue">Spotify Inc.</div>
-                                <p class="grey">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Proin a ipsum tellus. Interdum et malesuada fames ac ante
-                                    ipsum primis in faucibus.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="WorkExperienceItem d-flex flex-row">
-                            <div class="d-flex align-items-center mt-3 justify-content-center"
-                                 style="
-                    background-color: #dde8f8;
-                    color: blue;
-                    width: 40px;
-                    height: 30px;
-                    border-radius: 50%;
-                  ">
-                                <span class="d-flex align-items-center justify-content-center"><b>C</b></span>
-                            </div>
-                            <div class="d-flex flex-column ms-3 my-3">
-                                <div class="d-flex flex-row">
-                                    <b>CEO Founder</b>
-                                    <span class="ms-2" style="color: blue">05/12/2018 - 05/05/2019</span>
+                                <div class="d-flex flex-column ms-3 my-3">
+                                    <div class="d-flex flex-row">
+                                        <b>@item.Title</b>
+                                        <span class="ms-2" style="color: blue">@item.StartDate.ToString("MM.dd.yyyy")-@item.EndDate.ToString("MM.dd.yyyy")</span>
+                                    </div>
+                                    <div style="color: blue">@item.WorkPlace</div>
+                                    <p class="grey">
+                                        @item.Content
+                                    </p>
                                 </div>
-                                <div style="color: blue">ACB Company</div>
-                                <p class="grey">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Proin a ipsum tellus. Interdum et malesuada fames ac ante
-                                    ipsum primis in faucibus.
-                                </p>
                             </div>
-                        </div>
+                        }
+
                     </div>
                     <br />
                     <br />
@@ -237,86 +182,45 @@
                     <div class="Portfolio my-5">
                         <h4><b>Portfolio</b></h4>
                         <div class="row mt-3 g-4">
-                            <div class="col-lg-4 col-sm-6 col-12">
-                                <img src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/04/blog6.jpg"
-                                     alt=""
-                                     style="width: 200px; height: 200px"
-                                     class="border-radius border-0" />
-                            </div>
-                            <div class="col-lg-4 col-sm-6 col-12">
-                                <img src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/04/blog6.jpg"
-                                     alt=""
-                                     style="width: 200px; height: 200px"
-                                     class="border-radius border-0" />
-                            </div>
-                            <div class="col-lg-4 col-sm-6 col-12">
-                                <img src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/04/blog6.jpg"
-                                     alt=""
-                                     style="width: 200px; height: 200px"
-                                     class="border-radius border-0" />
-                            </div>
-                            <div class="col-lg-4 col-sm-6 col-12">
-                                <img src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/04/blog6.jpg"
-                                     alt=""
-                                     style="width: 200px; height: 200px"
-                                     class="border-radius border-0" />
-                            </div>
-                            <div class="col-lg-4 col-sm-6 col-12">
-                                <img src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/04/blog6.jpg"
-                                     alt=""
-                                     style="width: 200px; height: 200px"
-                                     class="border-radius border-0" />
-                            </div>
+                            @foreach (var item in Model.CandidateImages)
+                            {
+                                <div class="col-lg-4 col-sm-6 col-12">
+                                    <img src="~/SiteImages/@item.Image"
+                                         alt=""
+                                         style="width: 200px; height: 200px"
+                                         class="border-radius border-0" />
+                                </div>
+                            }
+
                         </div>
                     </div>
                     <div class="Awards">
                         <h4><b>Awards</b></h4>
-                        <div class="AwardsItem d-flex flex-row">
-                            <div class="d-flex align-items-center mt-3 justify-content-center"
-                                 style="
+                        @foreach (var item in Model.CandidateAwardItems)
+                        {
+                            <div class="AwardsItem d-flex flex-row">
+                                <div class="d-flex align-items-center mt-3 justify-content-center"
+                                     style="
                     background-color: #fef2d9;
                     color: #f9ab00;
                     width: 40px;
                     height: 30px;
                     border-radius: 50%;
                   ">
-                                <span class="d-flex align-items-center justify-content-center"><b>P</b></span>
-                            </div>
-                            <div class="d-flex flex-column ms-3 my-3">
-                                <div class="d-flex flex-row">
-                                    <b>Perfect Attendance Programs</b>
-                                    <span class="ms-2" style="color: #f9ab00">2018-2019</span>
+                                    <span class="d-flex align-items-center justify-content-center"><b>@item.Title.ToString().Trim()[0]</b></span>
                                 </div>
-                                <p class="grey">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Proin a ipsum tellus. Interdum et malesuada fames ac ante
-                                    ipsum primis in faucibus.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="AwardsItem d-flex flex-row">
-                            <div class="d-flex align-items-center mt-3 justify-content-center"
-                                 style="
-                    background-color: #fef2d9;
-                    color: #f9ab00;
-                    width: 40px;
-                    height: 30px;
-                    border-radius: 50%;
-                  ">
-                                <span class="d-flex align-items-center justify-content-center"><b>T</b></span>
-                            </div>
-                            <div class="d-flex flex-column ms-3 my-3">
-                                <div class="d-flex flex-row">
-                                    <b>Top Performer Recognition</b>
-                                    <span class="ms-2" style="color: #f9ab00">2020 - 2021</span>
+                                <div class="d-flex flex-column ms-3 my-3">
+                                    <div class="d-flex flex-row">
+                                        <b>@item.Title</b>
+                                        <span class="ms-2" style="color: #f9ab00">@item.Years</span>
+                                    </div>
+                                    <p class="grey">
+                                        @item.Content
+                                    </p>
                                 </div>
-                                <p class="grey">
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                    Proin a ipsum tellus. Interdum et malesuada fames ac ante
-                                    ipsum primis in faucibus.
-                                </p>
                             </div>
-                        </div>
+                        }
+
                     </div>
                     <br />
                     <br />
@@ -456,7 +360,7 @@
                             </div>
                             <div class="d-flex flex-column ms-3">
                                 <div><b>Offered Salary</b></div>
-                                <div class="grey">$950/month</div>
+                                <div class="grey"> @Model.WaitingSalary/@Model.SalaryForTime.ToString()</div>
                             </div>
                         </div>
                         <br />
@@ -466,7 +370,7 @@
                             </div>
                             <div class="d-flex flex-column ms-3">
                                 <div><b>Experience Time</b></div>
-                                <div class="grey">4 Year</div>
+                                <div class="grey">@Model.Experience.ToString()</div>
                             </div>
                         </div>
                         <br />
@@ -476,7 +380,7 @@
                             </div>
                             <div class="d-flex flex-column ms-3">
                                 <div><b>Gender</b></div>
-                                <div class="grey">Male</div>
+                                <div class="grey">@Model.Gender.ToString()</div>
                             </div>
                         </div>
                         <br />
@@ -486,7 +390,7 @@
                             </div>
                             <div class="d-flex flex-column ms-3">
                                 <div><b>Age</b></div>
-                                <div class="grey">30-35</div>
+                                <div class="grey">@Model.Age</div>
                             </div>
                         </div>
                         <br />
@@ -497,7 +401,7 @@
                             </div>
                             <div class="d-flex flex-column ms-3">
                                 <div><b>Qualification</b></div>
-                                <div class="grey">Masters Degree</div>
+                                <div class="grey">@Model.Qualification.ToString()</div>
                             </div>
                         </div>
                         <br />
@@ -507,7 +411,20 @@
                             </div>
                             <div class="d-flex flex-column ms-3">
                                 <div><b>Languages</b></div>
-                                <div class="grey">Japanase</div>
+                                <div class="grey">
+                                    @for (int i = 0; i < Model.KnowingLanguages.Count; i++)
+                                    {
+                                        if (i == Model.KnowingLanguages.Count - 1)
+                                        {
+                                            <span>@Model.KnowingLanguages[i].Language</span>
+                                        }
+                                        else
+                                        {
+                                            <span>@Model.KnowingLanguages[i].Language,</span>
+                                        }
+
+                                    }
+                                </div>
                             </div>
                         </div>
                         <br />
@@ -517,7 +434,7 @@
                             </div>
                             <div class="d-flex flex-column ms-3">
                                 <div><b>Email</b></div>
-                                <div class="grey">esther@apus.com</div>
+                                <div class="grey">@Model.Email</div>
                             </div>
                         </div>
                         <br />
@@ -527,7 +444,7 @@
                             </div>
                             <div class="d-flex flex-column ms-3">
                                 <div><b>Phone Number</b></div>
-                                <div class="grey">0514160968</div>
+                                <div class="grey">@Model.PhoneNumber</div>
                             </div>
                         </div>
                     </div>
@@ -551,10 +468,18 @@
                   w-100
                   grey
                 ">
-                            <i class="fab fa-facebook"></i>
-                            <i class="fab fa-twitter mx-3"></i>
-                            <i class="fab fa-linkedin-in"></i>
-                            <i class="fab fa-instagram ms-3"></i>
+                            <a href="@Model.FacebookUrl">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                            <a href="@Model.TwitterUrl">
+                                <i class="fab fa-twitter mx-3"></i>
+                            </a>
+                            <a href="@Model.LinkedinUrl">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="@Model.InstagramUrl">
+                                <i class="fab fa-instagram ms-3"></i>
+                            </a>
                         </div>
                     </div>
                     <br />
@@ -563,31 +488,31 @@
                         <h6><b>Professional Skills</b></h6>
                         <br />
                         <div class="d-flex flex-row">
-                            <div class="border-radius grey px-3 Skill"
-                                 style="background-color: white">
-                                <span>App</span>
-                            </div>
-                            <div class="border-radius grey px-3 mx-3 Skill"
-                                 style="background-color: white">
-                                <span>Developer</span>
-                            </div>
-                            <div class="border-radius grey px-3 Skill"
-                                 style="background-color: white">
-                                <span>Jobs</span>
-                            </div>
+                            @foreach (var item in Model.CandidateSkills)
+                            {
+                                <div class="border-radius grey px-3 Skill me-3"
+                                     style="background-color: white">
+                                    <span>@item.Name</span>
+                                </div>
+                            }
+
                         </div>
                     </div>
                     <br />
                     <br />
                     <div class="d-flex backColorBlue border-radius p-4 flex-column">
                         <h6><b>CV</b></h6>
-                        <div class="p-3 d-flex flex-row border-radius CV"
-                             style="background-color: #d4e1f5">
-                            <div class="d-flex flex-column">
-                                <div class="CVName blue">cv_candidate</div>
-                                <div class="CVExtension blue">PDF</div>
-                            </div>
-                            <div class="
+                        @if (Model.CandidateCVs.Count>0)
+                        {
+                            foreach (var item in Model.CandidateCVs)
+                            {
+                                <div class="p-3 d-flex flex-row border-radius CV"
+                                     style="background-color: #d4e1f5">
+                                    <div class="d-flex flex-column">
+                                        <div class="CVName blue">@item.CVName</div>
+                                        <div class="CVExtension blue">PDF</div>
+                                    </div>
+                                    <div class="
                     CVIcon
                     blue
                     d-flex
@@ -596,54 +521,61 @@
                     align-items-center
                     w-100
                   ">
-                                <i class="far fa-file-alt" style="font-size: 30px"></i>
-                            </div>
-                        </div>
+                                        <i class="far fa-file-alt" style="font-size: 30px"></i>
+                                    </div>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div >Yoxdur</div>
+                                 }
+
                     </div>
-                    <br />
-                    <br />
-                    <div>
-                        <div class="card p-3 border-0 mb-5 py-5"
-                             style="background-color: #f5f7fc">
-                            <h4><b>Contact Esther Howard</b></h4>
                             <br />
-                            <form action="" class="w-100">
-                                <input type="text"
-                                       class="w-100 border-radius py-3 border-0 ps-3"
-                                       placeholder="Subject" />
-                                <br />
-                                <br />
-                                <input type="email"
-                                       class="w-100 border-radius py-3 border-0 ps-3"
-                                       placeholder="Email" />
-                                <br />
-                                <br />
-                                <input type="text"
-                                       class="w-100 border-radius py-3 border-0 ps-3"
-                                       placeholder="Phone" />
-                                <br />
-                                <br />
-                                <textarea class="border-0 border-radius ps-3 pt-3"
-                                          name=""
-                                          id=""
-                                          rows="10"
-                                          style="
+                            <br />
+                            <div>
+                                <div class="card p-3 border-0 mb-5 py-5"
+                                     style="background-color: #f5f7fc">
+                                    <h4><b>Contact @Model.FullName</b></h4>
+                                    <br />
+                                    <form action="" class="w-100">
+                                        <input type="text"
+                                               class="w-100 border-radius py-3 border-0 ps-3"
+                                               placeholder="Subject" />
+                                        <br />
+                                        <br />
+                                        <input type="email"
+                                               class="w-100 border-radius py-3 border-0 ps-3"
+                                               placeholder="Email" />
+                                        <br />
+                                        <br />
+                                        <input type="text"
+                                               class="w-100 border-radius py-3 border-0 ps-3"
+                                               placeholder="Phone" />
+                                        <br />
+                                        <br />
+                                        <textarea class="border-0 border-radius ps-3 pt-3"
+                                                  name=""
+                                                  id=""
+                                                  rows="10"
+                                                  style="
                       height: 150px !important;
                       max-height: 150px !important;
                       min-height: 150px !important;
                       width: 100%;
                     "
-                                          placeholder="Message"></textarea>
-                                <br />
-                                <br />
-                                <button type="submit"
-                                        class="btn btn-primary w-100 border-radius py-3">
-                                    Send Message
-                                </button>
-                            </form>
+                                                  placeholder="Message"></textarea>
+                                        <br />
+                                        <br />
+                                        <button type="submit"
+                                                class="btn btn-primary w-100 border-radius py-3">
+                                            Send Message
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
             </div>
         </div>
     </main>

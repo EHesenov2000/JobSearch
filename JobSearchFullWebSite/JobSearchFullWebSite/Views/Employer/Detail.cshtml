@@ -1,4 +1,5 @@
-﻿
+﻿@using JobSearchFullWebSite.ViewModels
+@model EmployerDetailViewModel
 @{
     ViewData["Title"] = "Detail";
 }
@@ -9,34 +10,38 @@
             <div class="container">
                 <div class="row backColorBlue border-radius py-5">
                     <div class="d-flex forResponsive col-lg-7 col-12">
-                        <img src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y11.jpg"
+                        <img src="~/SiteImages/@Model.Employer.EmployerImages.FirstOrDefault(x=>x.IsPoster).Image"
                              alt=""
                              style="height: 100px; width: 100px" />
                         <div class="Genaral d-flex flex-column ms-3">
                             <div class="d-flex flex-row">
                                 <h4 class="me-3">
-                                    <b>General Ledger Accountant</b>
+                                    <b>@Model.Employer.Name</b>
                                 </h4>
-                                <span class="d-flex align-items-center" style="color: green">
-                                    Featured
-                                </span>
+                                @if (Model.Employer.IsFeatured)
+                                {
+                                    <span class="d-flex align-items-center" style="color: green">
+                                        Featured
+                                    </span>
+                                }
+
                             </div>
                             <div class="col-12 row">
                                 <div class="grey col-lg-3 col-md-6 col-12 d-flex flex-row align-items-center">
                                     <i class="bi bi-briefcase me-2"></i>
-                                    <span>Application</span>
+                                    <span>@Model.Employer.Category.Name</span>
                                 </div>
                                 <div class="grey col-lg-3 col-md-6 col-12 d-flex flex-row align-items-center">
                                     <i class="bi bi-geo-alt me-2"></i>
-                                    <span>New York</span>
+                                    <span>@Model.Employer.City.CityName</span>
                                 </div>
                                 <div class="grey col-lg-3 col-md-6 col-12 d-flex flex-row align-items-center">
                                     <i class="fas fa-phone-alt me-2"></i>
-                                    <span>123 45 678 90</span>
+                                    <span>@Model.Employer.PhoneNumber</span>
                                 </div>
                                 <div class="grey col-lg-3 col-md-6 col-12 d-flex flex-row align-items-center">
                                     <i class="far fa-envelope me-2"></i>
-                                    <span>m@gmail.</span>
+                                    <span>@Model.Employer.Email</span>
                                 </div>
                             </div>
                             <div class="OpenJobs pt-2 mb-3">
@@ -48,7 +53,7 @@
                       font-size: 12px;
                       max-width: 150px;
                     ">
-                                    Open jobs- 3
+                                    Open jobs- @Model.Jobs.Count
                                 </span>
                             </div>
                         </div>
@@ -74,60 +79,63 @@
                 </div>
                 <div class="row mt-5">
                     <div class="col-lg-8 col-12">
-                        <h4>About Company</h4>
-                        <p class="grey">
-                        <p class="grey">
-                            Moody’s Corporation, often referred to as Moody’s, is an
-                            American business and financial services company. It is the
-                            holding company for Moody’s Investors Service (MIS), an American
-                            credit rating agency, and Moody’s Analytics (MA), an American
-                            provider.
-                        </p>
-                        <p class="grey">
-                            Moody’s was founded by John Moody in 1909 to produce manuals of
-                            statistics related to stocks and bonds and bond ratings. Moody’s
-                            was acquired by Dun & Bradstreet in 1962. In 2000, Dun &
-                            Bradstreet spun off Moody’s Corporation as a separate company
-                            that was listed on the NYSE under MCO. In 2007, Moody’s
-                            Corporation was split into two operating divisions, Moody’s
-                            Investors Service, the rating agency, and Moody’s Analytics,
-                            with all of its other products.
-                        </p>
-                        <p class="grey">
-                            Moody’s Corporation, often referred to as Moody’s, is an
-                            American business and financial services company. It is the
-                            holding company for Moody’s Investors Service (MIS), an American
-                            credit rating agency, and Moody’s Analytics (MA), an American
-                            provider of financial analysis software and services.
-                        </p>
-                        </p>
+                        @Model.Employer.CompanyContent
+                        @*<div>
+                            <h4>About Company</h4>
+                            <p class="grey">
+                            <p class="grey">
+                                Moody’s Corporation, often referred to as Moody’s, is an
+                                American business and financial services company. It is the
+                                holding company for Moody’s Investors Service (MIS), an American
+                                credit rating agency, and Moody’s Analytics (MA), an American
+                                provider.
+                            </p>
+                            <p class="grey">
+                                Moody’s was founded by John Moody in 1909 to produce manuals of
+                                statistics related to stocks and bonds and bond ratings. Moody’s
+                                was acquired by Dun & Bradstreet in 1962. In 2000, Dun &
+                                Bradstreet spun off Moody’s Corporation as a separate company
+                                that was listed on the NYSE under MCO. In 2007, Moody’s
+                                Corporation was split into two operating divisions, Moody’s
+                                Investors Service, the rating agency, and Moody’s Analytics,
+                                with all of its other products.
+                            </p>
+                            <p class="grey">
+                                Moody’s Corporation, often referred to as Moody’s, is an
+                                American business and financial services company. It is the
+                                holding company for Moody’s Investors Service (MIS), an American
+                                credit rating agency, and Moody’s Analytics (MA), an American
+                                provider of financial analysis software and services.
+                            </p>
+                            </p>
+                        </div>*@
+                       
                         <div class="mt-5  border-radius backColorBlue py-4 px-3">
                             <b>Social Profiles: </b>
                             <span>
-                                <i class="fab fa-facebook ms-3 grey"></i>
-                                <i class="fab fa-twitter mx-3 grey"></i>
-                                <i class="fab fa-linkedin-in grey"></i>
-                                <i class="fab fa-instagram ms-3 grey"></i>
+                                <a href="@Model.Employer.FacebookUrl"><i class="fab fa-facebook ms-3 grey"></i></a>
+                                <a href="@Model.Employer.TwitterUrl">
+                                    <i class="fab fa-twitter mx-3 grey"></i>
+                                </a>
+                                <a href="@Model.Employer.LinkedinUrl">
+                                    <i class="fab fa-linkedin-in grey"></i>
+                                </a>
+                                <a href="@Model.Employer.InstagramUrl">
+                                    <i class="fab fa-instagram ms-3 grey"></i>
+                                </a>
                             </span>
                         </div>
                         <div class="Portfolio my-5 ">
                             <h4><b>Portfolio</b></h4>
                             <div class="row mt-3 g-4">
+                                @foreach (var item in Model.Employer.EmployerImages)
+	                            {
                                 <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <img src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/04/blog6.jpg" alt="" style="width: 200px;height: 200px;" class="border-radius border-0">
+                                    <img src="~/SiteImages/@item.Image" alt="" style="width: 200px;height: 200px;" class="border-radius border-0">
                                 </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <img src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/04/blog6.jpg" alt="" style="width: 200px;height: 200px;" class="border-radius border-0">
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <img src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/04/blog6.jpg" alt="" style="width: 200px;height: 200px;" class="border-radius border-0">
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <img src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/04/blog6.jpg" alt="" style="width: 200px;height: 200px;" class="border-radius border-0">
-                                </div>
-                                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <img src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/04/blog6.jpg" alt="" style="width: 200px;height: 200px;" class="border-radius border-0">
-                                </div>
+	                            }
+                                
+  
                             </div>
                         </div>
                         <br>
@@ -141,9 +149,11 @@
                             </div>
                             <div class="row mt-3">
                                 <div class="col-12">
-                                    <div class="card p-3 d-flex flex-row RelatedJobCard">
+                                    @foreach (var item in Model.Jobs.OrderBy(x=>x.CreatedAt).Take(3).ToList())
+	                                {
+                                    <div class="card p-3 d-flex flex-row RelatedJobCard mb-5">
                                         <div class="RelatedJobCardImage me-3">
-                                            <img src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y2.jpg"
+                                            <img src="~/SiteImages/@item.JobImages.FirstOrDefault(x=>x.IsPoster).Image"
                                                  alt=""
                                                  style="width: 60px; height: 60px" />
                                         </div>
@@ -151,11 +161,15 @@
                                             <div class="d-flex flex-row">
                                                 <div class="d-flex flex-row align-items-center">
                                                     <h5 class="d-flex align-items-center">
-                                                        <b>Junior Graphic Designer</b>
+                                                        <b>@item.Name</b>
                                                     </h5>
-                                                    &nbsp; &nbsp; &nbsp;
-                                                    <span class="d-flex align-items-center"
-                                                          style="color: green; font-size: 14px">Featured</span>
+                                                    @if (item.IsFeatured)
+                                                            {
+                                                                @Html.Raw("&nbsp; &nbsp; &nbsp;");
+                                                        <span class="d-flex align-items-center"
+                                                              style="color: green; font-size: 14px">Featured</span>
+                                                    }
+
                                                 </div>
                                                 <div class="d-flex flex-row justify-content-end">
                                                     <i class="fas fa-bookmark ms-5 grey"></i>
@@ -166,119 +180,33 @@
                                                     <div class="JobIcon">
                                                         <i class="fas fa-envelope"></i>
                                                     </div>
-                                                    <span class="ms-2">Design</span>
+                                                    <span class="ms-2">@item.JobCategory.Name</span>
                                                 </div>
                                                 <div class="col-lg-4 col-md-6 col-12 grey d-flex flex-row">
                                                     <div class="JobIcon">
                                                         <i class="fas fa-map-marker-alt"></i>
                                                     </div>
-                                                    <span class="ms-2">New York</span>
+                                                    <span class="ms-2">@item.City.CityName</span>
                                                 </div>
                                                 <div class="col-lg-4 col-md-6 col-12 grey d-flex flex-row">
                                                     <div class="JobIcon">
                                                         <i class="fas fa-money-bill-alt"></i>
                                                     </div>
-                                                    <span class="ms-2">$150-$180 / week</span>
+                                                    <span class="ms-2">@item.OfferedMinSalary-@item.OfferedMaxSalary / @item.OfferedSalaryForTime.ToString()</span>
                                                 </div>
                                             </div>
                                             <div class="RelatedFullUrgent">
-                                                <div class="FullTime border-radius px-3">FullTime</div>
-                                                <div class="Urgent border-radius px-3">Urgent</div>
+                                                <div class="FullTime border-radius px-3">@item.JobType</div>
+                                                @if (item.IsUrgent)
+                                                {
+                                                    <div class="Urgent border-radius px-3">Urgent</div>
+
+                                                }
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="card p-3 d-flex flex-row RelatedJobCard my-5">
-                                        <div class="RelatedJobCardImage me-3">
-                                            <img src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y2.jpg"
-                                                 alt=""
-                                                 style="width: 60px; height: 60px" />
-                                        </div>
-                                        <div>
-                                            <div class="d-flex flex-row">
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <h5 class="d-flex align-items-center">
-                                                        <b>Junior Graphic Designer</b>
-                                                    </h5>
-                                                    &nbsp; &nbsp; &nbsp;
-                                                    <span class="d-flex align-items-center"
-                                                          style="color: green; font-size: 14px">Featured</span>
-                                                </div>
-                                                <div class="d-flex flex-row justify-content-end">
-                                                    <i class="fas fa-bookmark ms-5 grey"></i>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-lg-4 col-md-6 col-12 grey d-flex flex-row">
-                                                    <div class="JobIcon">
-                                                        <i class="fas fa-envelope"></i>
-                                                    </div>
-                                                    <span class="ms-2">Design</span>
-                                                </div>
-                                                <div class="col-lg-4 col-md-6 col-12 grey d-flex flex-row">
-                                                    <div class="JobIcon">
-                                                        <i class="fas fa-map-marker-alt"></i>
-                                                    </div>
-                                                    <span class="ms-2">New York</span>
-                                                </div>
-                                                <div class="col-lg-4 col-md-6 col-12 grey d-flex flex-row">
-                                                    <div class="JobIcon">
-                                                        <i class="fas fa-money-bill-alt"></i>
-                                                    </div>
-                                                    <span class="ms-2">$150-$180 / week</span>
-                                                </div>
-                                            </div>
-                                            <div class="RelatedFullUrgent">
-                                                <div class="FullTime border-radius px-3">FullTime</div>
-                                                <div class="Urgent border-radius px-3">Urgent</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card p-3 d-flex flex-row RelatedJobCard">
-                                        <div class="RelatedJobCardImage me-3">
-                                            <img src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y2.jpg"
-                                                 alt=""
-                                                 style="width: 60px; height: 60px" />
-                                        </div>
-                                        <div>
-                                            <div class="d-flex flex-row">
-                                                <div class="d-flex flex-row align-items-center">
-                                                    <h5 class="d-flex align-items-center">
-                                                        <b>Junior Graphic Designer</b>
-                                                    </h5>
-                                                    &nbsp; &nbsp; &nbsp;
-                                                    <span class="d-flex align-items-center"
-                                                          style="color: green; font-size: 14px">Featured</span>
-                                                </div>
-                                                <div class="d-flex flex-row justify-content-end">
-                                                    <i class="fas fa-bookmark ms-5 grey"></i>
-                                                </div>
-                                            </div>
-                                            <div class="row ">
-                                                <div class="col-lg-4 col-md-6 col-12 grey d-flex flex-row">
-                                                    <div class="JobIcon">
-                                                        <i class="fas fa-envelope"></i>
-                                                    </div>
-                                                    <span class="ms-2">Design</span>
-                                                </div>
-                                                <div class="col-lg-4 col-md-6 col-12 grey d-flex flex-row">
-                                                    <div class="JobIcon">
-                                                        <i class="fas fa-map-marker-alt"></i>
-                                                    </div>
-                                                    <span class="ms-2">New York</span>
-                                                </div>
-                                                <div class="col-lg-4 col-md-6 col-12 grey d-flex flex-row">
-                                                    <div class="JobIcon">
-                                                        <i class="fas fa-money-bill-alt"></i>
-                                                    </div>
-                                                    <span class="ms-2">$150-$180 / week</span>
-                                                </div>
-                                            </div>
-                                            <div class="RelatedFullUrgent">
-                                                <div class="FullTime border-radius px-3">FullTime</div>
-                                                <div class="Urgent border-radius px-3">Urgent</div>
-                                            </div>
-                                        </div>
-                                    </div>
+	                                }
+                                    
                                 </div>
                             </div>
                         </div>
@@ -362,39 +290,39 @@
                             <div class="card p-3 border-0 py-5" style="background-color: #f5f7fc">
                                 <p class="d-flex flex-row">
                                     <b>Categories:</b>
-                                    <span class="d-flex w-100 justify-content-end">Developer</span>
+                                    <span class="d-flex w-100 justify-content-end">@Model.Employer.Category.Name</span>
                                 </p>
                                 <p class="d-flex flex-row">
                                     <b>Founded Date:</b>
-                                    <span class="d-flex w-100 justify-content-end align-items-center">1998</span>
+                                    <span class="d-flex w-100 justify-content-end align-items-center">@Model.Employer.FoundedDate</span>
                                 </p>
                                 <p class="d-flex flex-row">
                                     <b>Location:</b>
-                                    <span class="d-flex w-100 justify-content-end">New York</span>
+                                    <span class="d-flex w-100 justify-content-end">@Model.Employer.City.CityName</span>
                                 </p>
                                 <p class="d-flex flex-row">
                                     <b>Phone Number:</b>
                                     <span class="d-flex w-100 justify-content-end align-items-center">
-                                        1234567890
+                                        @Model.Employer.PhoneNumber
                                     </span>
                                 </p>
                                 <p class="d-flex flex-row">
                                     <b>Email:</b>
-                                    <span class="d-flex w-100 justify-content-end">upwork@apus.com</span>
+                                    <span class="d-flex w-100 justify-content-end">@Model.Employer.Email</span>
                                 </p>
                                 <p class="d-flex flex-row">
                                     <b>Socials:</b>
                                     <span class="d-flex w-100 justify-content-end">
-                                        <a href="" style="text-decoration: none">
+                                        <a href="@Model.Employer.FacebookUrl" style="text-decoration: none">
                                             <i class="fab fa-facebook-f"></i>
                                         </a>
-                                        <a href="" class="mx-3" style="text-decoration: none">
+                                        <a href="@Model.Employer.TwitterUrl" class="mx-3" style="text-decoration: none">
                                             <i class="fab fa-twitter"></i>
                                         </a>
-                                        <a href="" style="text-decoration: none">
+                                        <a href="@Model.Employer.LinkedinUrl" style="text-decoration: none">
                                             <i class="fab fa-linkedin-in"></i>
                                         </a>
-                                        <a href="" class="mx-3" style="text-decoration: none">
+                                        <a href="@Model.Employer.InstagramUrl" class="mx-3" style="text-decoration: none">
                                             <i class="fab fa-instagram"></i>
                                         </a>
                                     </span>
@@ -402,7 +330,7 @@
                                 <br />
                                 <a href="" style="text-decoration: none" class="CompanyButtonA">
                                     <button class="border-0 border-radius w-100 py-3 CompanyButton">
-                                        envato.com
+                                        @Model.Employer.Website
                                     </button>
                                 </a>
                             </div>
@@ -411,10 +339,10 @@
                         <div>
                             <div class="card p-3 border-0 mb-5 py-5"
                                  style="background-color: #f5f7fc">
-                                <h4><b>Contact Medium(companyName)</b></h4>
+                                <h4><b>Contact @Model.Employer.Name</b></h4>
                                 <br />
                                 <form action="" class="w-100">
-                                    <input type="text"
+                                    <input type="text"  
                                            class="w-100 border-radius py-3 border-0 ps-3"
                                            placeholder="Subject" />
                                     <br />
