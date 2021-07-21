@@ -1,4 +1,5 @@
-﻿
+﻿@using JobSearchFullWebSite.Models
+@model SiteContact
 @{
     ViewData["Title"] = "Index";
 }
@@ -48,35 +49,38 @@
             <div class="card p-5">
                 <h4><b>Leave A Message</b></h4>
                 <br />
-                <form action="" class="d-flex flex-column">
+                <form  class="d-flex flex-column" asp-action="AddContactItem" asp-controller="contact">
                     <div class="row g-4">
                         <div class="col-md-6 col-12 d-flex flex-column">
                             <label for="" class="grey mb-2">Your Name</label>
                             <input type="text"
                                    class="border-0 backColorBlue p-3 border-radius"
-                                   placeholder="Name" />
+                                   placeholder="Name" asp-for="@Model.Name" />
+                            <span class="text-danger" asp-validation-for="@Model.Name"></span>
                         </div>
                         <div class="col-md-6 col-12 d-flex flex-column">
                             <label for="" class="grey mb-2">Your Email</label>
                             <input type="email"
                                    class="border-0 backColorBlue p-3 border-radius"
-                                   placeholder="Email" />
+                                   placeholder="Email" asp-for="@Model.Email" />
+                            <span class="text-danger" asp-validation-for="@Model.Email"></span>
                         </div>
                         <div class="col-12 d-flex flex-column">
                             <label for="" class="grey mb-2">Subject</label>
                             <input type="text"
                                    class="border-0 backColorBlue p-3 border-radius"
-                                   placeholder="Subject" />
+                                   placeholder="Subject" asp-for="@Model.Subject" />
+                            <span class="text-danger" asp-validation-for="@Model.Subject"></span>
                         </div>
                         <div class="col-12 d-flex flex-column">
                             <label for="" class="grey mb-2">Your Comment</label>
                             <textarea class="border-radius Review backColorBlue p-4"
                                       placeholder="Write comment"
-                                      name=""
                                       id=""
                                       cols="30"
                                       rows="10"
-                                      style="height: 200px; min-height: 200px; max-height: 200px"></textarea>
+                                      style="height: 200px; min-height: 200px; max-height: 200px" asp-for="@Model.Comment"></textarea>
+                            <span class="text-danger" asp-validation-for="@Model.Comment"></span>
                         </div>
                     </div>
 

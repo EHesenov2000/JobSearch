@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace JobSearchFullWebSite.Enums
 {
+
     public enum Qualification
     {
         [Description("Certificate")]
@@ -13,10 +15,11 @@ namespace JobSearchFullWebSite.Enums
         [Description("Associate")]
         Associate,
         [Description("Bachelor Degree")]
-        BachelorDegree,
+        Bachelor_Degree,
         [Description("Master Degree")]
-        MasterDegree,
+        Master_Degree,
         [Description("Doctorate Degree")]
-        DoctorateDegree
+        Doctorate_Degree
     }
+
 }

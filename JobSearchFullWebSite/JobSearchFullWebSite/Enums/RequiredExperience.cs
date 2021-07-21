@@ -11,13 +11,13 @@ namespace JobSearchFullWebSite.Enums
         [Description("Fresh")]
         Fresh,
         [Description("1 Year")]
-        Year1,
+        Year_1,
         [Description("2 Year")]
-        Year2,
+        Year_2,
         [Description("3 Year")]
-        Year3,
+        Year_3,
         [Description("4 Year")]
-        Year4,
+        Year_4,
         [Description("More")]
         More
 

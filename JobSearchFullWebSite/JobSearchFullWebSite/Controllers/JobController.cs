@@ -17,9 +17,40 @@ namespace JobSearchFullWebSite.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
+        public IActionResult Index(string search, Job job, int page = 1)
         {
-            return View();
+            ViewBag.SelectedPage = page;
+            ViewBag.TotalPageCount = Math.Ceiling(_context.Jobs.ToList().Count() / 9m);
+            JobIndexViewModel jobVM = new JobIndexViewModel
+            {
+                Jobs = _context.Jobs.Include(x => x.JobImages).Include(x => x.JobCategory).Include(X => X.City).ToList(),
+                Cities = _context.Cities.ToList(),
+                JobCategories = _context.JobCategories.ToList(),
+
+            };
+            if (search != null)
+            {
+                jobVM.Jobs = jobVM.Jobs.Where(x => x.Name.Contains(search)).ToList();
+            }
+
+            if (job.City != null)
+            {
+                if (job.City.Id != 0)
+                {
+                    City city = _context.Cities.FirstOrDefault(x => x.Id == job.City.Id);
+                    jobVM.Jobs = jobVM.Jobs.Where(x => x.City.CityName == city.CityName).ToList();
+                }
+            }
+            if (job.JobCategory != null)
+            {
+                if (job.JobCategory.Id != 0)
+                {
+                    JobCategory jobCategory = _context.JobCategories.FirstOrDefault(x => x.Id == job.JobCategory.Id);
+                    jobVM.Jobs = jobVM.Jobs.Where(x => x.JobCategory.Name == jobCategory.Name).ToList();
+                }
+            }
+            jobVM.Jobs = jobVM.Jobs.Skip((page - 1) * 9).Take(9).ToList();
+            return View(jobVM);
         }
         public IActionResult Detail(int id)
         
