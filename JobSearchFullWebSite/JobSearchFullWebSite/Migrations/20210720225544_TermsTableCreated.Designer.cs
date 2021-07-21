@@ -4,14 +4,16 @@ using JobSearchFullWebSite.DAL.AppDbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JobSearchFullWebSite.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210720225544_TermsTableCreated")]
+    partial class TermsTableCreated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -232,8 +234,10 @@ namespace JobSearchFullWebSite.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PositionId")
-                        .HasColumnType("int");
+                    b.Property<string>("Position")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
 
                     b.Property<int>("Qualification")
                         .HasColumnType("int");
@@ -246,14 +250,11 @@ namespace JobSearchFullWebSite.Migrations
                         .HasMaxLength(100);
 
                     b.Property<int>("WaitingSalary")
-                        .HasColumnType("int")
-                        .HasMaxLength(100);
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("CityId");
-
-                    b.HasIndex("PositionId");
 
                     b.ToTable("Candidates");
                 });
@@ -897,23 +898,6 @@ namespace JobSearchFullWebSite.Migrations
                     b.ToTable("JobRequiredLanguages");
                 });
 
-            modelBuilder.Entity("JobSearchFullWebSite.Models.Position", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("PositionName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Positions");
-                });
-
             modelBuilder.Entity("JobSearchFullWebSite.Models.Setting", b =>
                 {
                     b.Property<int>("Id")
@@ -1074,10 +1058,6 @@ namespace JobSearchFullWebSite.Migrations
                         .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("JobSearchFullWebSite.Models.Position", "Position")
-                        .WithMany("Candidates")
-                        .HasForeignKey("PositionId");
                 });
 
             modelBuilder.Entity("JobSearchFullWebSite.Models.CandidateAwardItem", b =>

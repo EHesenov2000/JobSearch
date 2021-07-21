@@ -16,9 +16,7 @@ namespace JobSearchFullWebSite.Models
         [Required]
         public string FullName { get; set; } 
         public bool IsFeatured { get; set; }
-        [StringLength(maximumLength: 100, ErrorMessage = "Maksimum uzunluq 100-dur")]
         [Required]
-        public string Position { get; set; }
         public int WaitingSalary { get; set; }
         public JobSalaryForTime SalaryForTime { get; set; }
         public DateTime BirthdayDate { get; set; }
@@ -51,6 +49,8 @@ namespace JobSearchFullWebSite.Models
         public List<int?> CandidateCVsId { get; set; }
         public int CityId { get; set; }
         public City City { get; set; }
+        public int PositionId { get; set; }
+        public Position Position { get; set; }
         public List<CandidateSkill> CandidateSkills { get; set; }
         public List<CandidateKnowingLanguage> KnowingLanguages { get; set; }
         public List<CandidateImage> CandidateImages { get; set; }

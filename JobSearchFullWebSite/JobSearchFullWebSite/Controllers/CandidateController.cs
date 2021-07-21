@@ -1,5 +1,6 @@
 ﻿using JobSearchFullWebSite.DAL.AppDbContext;
 using JobSearchFullWebSite.Models;
+using JobSearchFullWebSite.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -16,9 +17,40 @@ namespace JobSearchFullWebSite.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
+        public IActionResult Index(string search, Candidate candidate, int page = 1)
         {
-            return View();
+            ViewBag.SelectedPage = page;
+            ViewBag.TotalPageCount = Math.Ceiling(_context.Candidates.ToList().Count() / 9m);
+            CandidateIndexViewModel candidateVM = new CandidateIndexViewModel
+            {
+                Candidates = _context.Candidates.Include(x => x.CandidateImages).Include(x=>x.CandidateSkills).Include(X => X.City).Include(X => X.Position).ToList(),
+                Cities = _context.Cities.ToList(),
+                Positions = _context.Positions.ToList(),
+
+            };
+            if (search != null)
+            {
+                candidateVM.Candidates = candidateVM.Candidates.Where(x => x.FullName.Contains(search)).ToList();
+            }
+
+            if (candidate.City != null)
+            {
+                if (candidate.City.Id != 0)
+                {
+                    City city = _context.Cities.FirstOrDefault(x => x.Id == candidate.City.Id);
+                    candidateVM.Candidates = candidateVM.Candidates.Where(x => x.City.CityName == city.CityName).ToList();
+                }
+            }
+            if (candidate.Position != null)
+            {
+                if (candidate.Position.Id != 0)
+                {
+                    Position position = _context.Positions.FirstOrDefault(x => x.Id == candidate.Position.Id);
+                    candidateVM.Candidates = candidateVM.Candidates.Where(x => x.Position.PositionName == position.PositionName).ToList();
+                }
+            }
+            candidateVM.Candidates = candidateVM.Candidates.Skip((page - 1) * 9).Take(9).ToList();
+            return View(candidateVM);
         }
         public IActionResult Detail(int id)
         {
@@ -26,7 +58,7 @@ namespace JobSearchFullWebSite.Controllers
             {
                 return RedirectToAction("index", "home");
             }
-            Candidate candidate = _context.Candidates.Include(x => x.City).Include(x => x.CandidateSkills).Include(x => x.CandidateImages).Include(x => x.KnowingLanguages).Include(x => x.CandidateCVs).Include(x => x.CandidateAwardItems).Include(x => x.CandidateEducationItems).Include(x => x.CandidateWorkItems).FirstOrDefault(x=>x.Id==id);
+            Candidate candidate = _context.Candidates.Include(x=>x.Position).Include(x => x.City).Include(x => x.CandidateSkills).Include(x => x.CandidateImages).Include(x => x.KnowingLanguages).Include(x => x.CandidateCVs).Include(x => x.CandidateAwardItems).Include(x => x.CandidateEducationItems).Include(x => x.CandidateWorkItems).FirstOrDefault(x=>x.Id==id);
             return View(candidate);
         }
     }

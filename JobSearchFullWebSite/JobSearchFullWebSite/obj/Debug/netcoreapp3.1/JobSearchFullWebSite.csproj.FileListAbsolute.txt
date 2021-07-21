@@ -128,7 +128,6 @@ C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\bin\D
 C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\bin\Debug\netcoreapp3.1\runtimes\win\lib\netcoreapp2.0\System.Runtime.Caching.dll
 C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\obj\Debug\netcoreapp3.1\JobSearchFullWebSite.csprojAssemblyReference.cache
 C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\obj\Debug\netcoreapp3.1\JobSearchFullWebSite.AssemblyInfoInputs.cache
 C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\obj\Debug\netcoreapp3.1\JobSearchFullWebSite.AssemblyInfo.cs
 C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\obj\Debug\netcoreapp3.1\JobSearchFullWebSite.csproj.CoreCompileInputs.cache
@@ -237,3 +236,4 @@ C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\obj\D
 C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\obj\Debug\netcoreapp3.1\Razor\Views\About\FAQ.cshtml.g.cs
 C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\obj\Debug\netcoreapp3.1\Razor\Views\About\Terms.cshtml.g.cs
 C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\obj\Debug\netcoreapp3.1\Razor\Views\Shared\BlogPartialView.cshtml.g.cs
+C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\obj\Debug\netcoreapp3.1\JobSearchFullWebSite.csprojAssemblyReference.cache

@@ -1,11 +1,12 @@
-﻿
+﻿@using JobSearchFullWebSite.ViewModels
+@model CandidateIndexViewModel  
 @{
     ViewData["Title"] = "Index";
 }
     <main>
         <div class="backColorBlue py-5">
             <div class="container">
-                <form class="p-4" action="">
+                <form class="p-4"  method="get" enctype="multipart/form-data" asp-action="index" asp-controller="candidate">
                     <div class="bg-white d-flex flex-row row g-4 p-4 border-radius"
                          style="max-width: 100% !important">
                         <div class="
@@ -19,6 +20,7 @@
                             </div>
                             <div>
                                 <input type="text"
+                                       name="search"
                                        class="onclickBorderNone p-2 Width"
                                        placeholder="Candidate Title..." />
                             </div>
@@ -32,13 +34,13 @@
                             <div class="JobTitleIcon">
                                 <i class="fas fa-map-marker-alt" style="font-size: 20px"></i>
                             </div>
-                            <select name="" id="" class="ms-2 border-0 grey Width">
+                            <select  class="ms-2 border-0 grey Width"  asp-for="@Model.Candidate.City.Id" asp-items="@(new SelectList(Model.Cities,"Id","CityName"))">
                                 <option value="" selected disabled>City or Postcode</option>
-                                <option value="">London</option>
+                                @*<option value="">London</option>
                                 <option value="">Los Angeles</option>
                                 <option value="">Miami</option>
                                 <option value="">New York</option>
-                                <option value="">Paris</option>
+                                <option value="">Paris</option>*@
                             </select>
                         </div>
                         <div class="
@@ -50,12 +52,12 @@
                             <div class="JobTitleIcon">
                                 <i class="fas fa-briefcase" style="font-size: 20px"></i>
                             </div>
-                            <select name="" id="" class="ms-2 border-0 grey Width">
-                                <option value="">All Categories</option>
-                                <option value="">Automotive Jobs</option>
+                            <select class="ms-2 border-0 grey Width" asp-for="@Model.Candidate.Position.Id" asp-items="@(new SelectList(Model.Positions,"Id","PositionName"))">
+                                <option value="" selected disabled>All Positions</option>
+                                @*<option value="">Automotive Jobs</option>
                                 <option value="">Customer</option>
                                 <option value="">Design</option>
-                                <option value="">Development</option>
+                                <option value="">Development</option>*@
                             </select>
                         </div>
                         <div class="
@@ -69,171 +71,6 @@
                                 <button type="submit" class="btn btn-primary">
                                     Find Candidates
                                 </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="
-                bg-white
-                border-radius
-                flex-row
-                row
-                p-4
-                me-2
-                mt-2
-                DropdownOnclickAdvanced
-              ">
-                        <div class="row">
-                            <div class="col-lg-3 col-md-6 col-12 d-flex flex-column">
-                                <b>Type</b>
-                                <div class="mt-3 d-flex flex-row">
-                                    <label class="switch d-flex">
-                                        <input type="checkbox" />
-                                        <span class="slider round"></span>
-                                    </label>
-                                    <div class="SwitchItem ms-2 grey">Freelance</div>
-                                </div>
-                                <div class="mt-3 d-flex flex-row">
-                                    <label class="switch d-flex">
-                                        <input type="checkbox" />
-                                        <span class="slider round"></span>
-                                    </label>
-                                    <div class="SwitchItem ms-2 grey">Full Time</div>
-                                </div>
-                                <div class="mt-3 d-flex flex-row">
-                                    <label class="switch d-flex">
-                                        <input type="checkbox" />
-                                        <span class="slider round"></span>
-                                    </label>
-                                    <div class="SwitchItem ms-2 grey">Internship</div>
-                                </div>
-                                <div class="mt-3 d-flex flex-row">
-                                    <label class="switch d-flex">
-                                        <input type="checkbox" />
-                                        <span class="slider round"></span>
-                                    </label>
-                                    <div class="SwitchItem ms-2 grey">Part Time</div>
-                                </div>
-                                <div class="mt-3 d-flex flex-row">
-                                    <label class="switch d-flex">
-                                        <input type="checkbox" />
-                                        <span class="slider round"></span>
-                                    </label>
-                                    <div class="SwitchItem ms-2 grey">Temporary</div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-12 d-flex flex-column">
-                                <b>Experience</b>
-                                <div class="mt-3 d-flex flex-row">
-                                    <label class="switch d-flex">
-                                        <input type="checkbox" />
-                                        <span class="slider round"></span>
-                                    </label>
-                                    <div class="SwitchItem ms-2 grey">Fresh</div>
-                                </div>
-                                <div class="mt-3 d-flex flex-row">
-                                    <label class="switch d-flex">
-                                        <input type="checkbox" />
-                                        <span class="slider round"></span>
-                                    </label>
-                                    <div class="SwitchItem ms-2 grey">1 Year</div>
-                                </div>
-                                <div class="mt-3 d-flex flex-row">
-                                    <label class="switch d-flex">
-                                        <input type="checkbox" />
-                                        <span class="slider round"></span>
-                                    </label>
-                                    <div class="SwitchItem ms-2 grey">2 Year</div>
-                                </div>
-                                <div class="mt-3 d-flex flex-row">
-                                    <label class="switch d-flex">
-                                        <input type="checkbox" />
-                                        <span class="slider round"></span>
-                                    </label>
-                                    <div class="SwitchItem ms-2 grey">3 Year</div>
-                                </div>
-                                <div class="mt-3 d-flex flex-row">
-                                    <label class="switch d-flex">
-                                        <input type="checkbox" />
-                                        <span class="slider round"></span>
-                                    </label>
-                                    <div class="SwitchItem ms-2 grey">4 Year</div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-12 d-flex flex-column">
-                                <b>Career Level</b>
-                                <div class="mt-3 d-flex flex-row">
-                                    <label class="switch d-flex">
-                                        <input type="checkbox" />
-                                        <span class="slider round"></span>
-                                    </label>
-                                    <div class="SwitchItem ms-2 grey">Manager</div>
-                                </div>
-                                <div class="mt-3 d-flex flex-row">
-                                    <label class="switch d-flex">
-                                        <input type="checkbox" />
-                                        <span class="slider round"></span>
-                                    </label>
-                                    <div class="SwitchItem ms-2 grey">Officer</div>
-                                </div>
-                                <div class="mt-3 d-flex flex-row">
-                                    <label class="switch d-flex">
-                                        <input type="checkbox" />
-                                        <span class="slider round"></span>
-                                    </label>
-                                    <div class="SwitchItem ms-2 grey">Student</div>
-                                </div>
-                                <div class="mt-3 d-flex flex-row">
-                                    <label class="switch d-flex">
-                                        <input type="checkbox" />
-                                        <span class="slider round"></span>
-                                    </label>
-                                    <div class="SwitchItem ms-2 grey">Executive</div>
-                                </div>
-                                <div class="mt-3 d-flex flex-row">
-                                    <label class="switch d-flex">
-                                        <input type="checkbox" />
-                                        <span class="slider round"></span>
-                                    </label>
-                                    <div class="SwitchItem ms-2 grey">Others</div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-6 col-12 d-flex flex-column">
-                                <b>Qualification</b>
-                                <div class="mt-3 d-flex flex-row">
-                                    <label class="switch d-flex">
-                                        <input type="checkbox" />
-                                        <span class="slider round"></span>
-                                    </label>
-                                    <div class="SwitchItem ms-2 grey">Certificate</div>
-                                </div>
-                                <div class="mt-3 d-flex flex-row">
-                                    <label class="switch d-flex">
-                                        <input type="checkbox" />
-                                        <span class="slider round"></span>
-                                    </label>
-                                    <div class="SwitchItem ms-2 grey">Associate Degree</div>
-                                </div>
-                                <div class="mt-3 d-flex flex-row">
-                                    <label class="switch d-flex">
-                                        <input type="checkbox" />
-                                        <span class="slider round"></span>
-                                    </label>
-                                    <div class="SwitchItem ms-2 grey">Bachelor Degree</div>
-                                </div>
-                                <div class="mt-3 d-flex flex-row">
-                                    <label class="switch d-flex">
-                                        <input type="checkbox" />
-                                        <span class="slider round"></span>
-                                    </label>
-                                    <div class="SwitchItem ms-2 grey">Master's Degree</div>
-                                </div>
-                                <div class="mt-3 d-flex flex-row">
-                                    <label class="switch d-flex">
-                                        <input type="checkbox" />
-                                        <span class="slider round"></span>
-                                    </label>
-                                    <div class="SwitchItem ms-2 grey">Doctorate Degree</div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -274,573 +111,75 @@
                 </div>
             </div>
             <div class="row g-4">
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="card CandidateListCard py-3">
-                        <div class="container">
-                            <div class="FeaturedBookmark row">
-                                <div class="border-radius px-2 col-sm-4 col-12 w-auto"
-                                     style="background-color: #e1f2e5">
-                                    <span class="green">Featured</span>
-                                </div>
-                                <div class="
+                @foreach (var item in Model.Candidates)
+                {
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <div class="card CandidateListCard py-3">
+                            <div class="container">
+                                <div class="FeaturedBookmark row">
+                                    @if (item.IsFeatured)
+                                    {
+                                        <div class="border-radius px-2 col-sm-4 col-12 w-auto"
+                                             style="background-color: #e1f2e5">
+                                            <span class="green">Featured</span>
+                                        </div>
+                                    }
+
+                                    <div class="
                       col-sm-8 col-12
                       d-flex
                       justify-content-end
                       FeaturedBookmarkIcon
                     ">
-                                    <i class="far fa-bookmark FeaturedBookmarkIconI"></i>
+                                        <i class="far fa-bookmark FeaturedBookmarkIconI"></i>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="
+                                <div class="
                     CandidateListCardImageContent
                     d-flex
                     flex-column
                     align-items-center
                     justify-content-center
                   ">
-                                <div class="CandidateListCardImage">
-                                    <img src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y12.jpg"
-                                         alt=""
-                                         style="width: 70px; height: 70px; border-radius: 50%" />
-                                </div>
-                                <div class="d-flex flex-column mt-2">
-                                    <p><b>Ali Tufan</b></p>
-                                    <p class="blue">Developer</p>
-                                </div>
-                                <div class="row grey">
-                                    <div class="col-sm-6 col-12 d-flex flex-row align-items-center">
-                                        <i class="fas fa-map-marker-alt me-2 align-items-center"></i>
-                                        <span class="grey">New York</span>
+                                    <div class="CandidateListCardImage">
+                                        <img src="~/SiteImages/@item.CandidateImages.FirstOrDefault(x=>x.IsPoster).Image"
+                                             alt=""
+                                             style="width: 70px; height: 70px; border-radius: 50%" />
                                     </div>
-                                    <div class="col-sm-6 col-12 d-flex flex-row align-items-center">
-                                        <i class="far fa-money-bill-alt me-2"></i>
-                                        <span class="">$2000/Year</span>
+                                    <div class="d-flex flex-column mt-2">
+                                        <p><b>@item.FullName</b></p>
+                                        <p class="blue d-flex justify-content-center">@item.Position.PositionName</p>
                                     </div>
-                                </div>
-                                <div class="CandiddateInfo mt-3">
-                                    <div class="px-2 backColorBlue border-radius">
-                                        <span class="grey fontSize14">Adminstrative</span>
+                                    <div class="row grey">
+                                        <div class="col-sm-6 col-12 d-flex flex-row align-items-center">
+                                            <i class="fas fa-map-marker-alt me-2 align-items-center"></i>
+                                            <span class="grey">@item.City.CityName</span>
+                                        </div>
+                                        <div class="col-sm-6 col-12 d-flex flex-row align-items-center">
+                                            <i class="far fa-money-bill-alt me-2"></i>
+                                            <span class="">@item.WaitingSalary/@item.SalaryForTime</span>
+                                        </div>
                                     </div>
-                                    <div class="px-2 backColorBlue border-radius">
-                                        <span class="grey fontSize14">App</span>
-                                    </div>
-                                    <div class="px-2 backColorBlue border-radius">
-                                        <span class="grey fontSize14">Jobs</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-100 mt-3 border-radius">
-                                <button class="btn backColorBlue w-100 py-3 CandidateViewProfile">
-                                    <span class="">View Profile</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="card CandidateListCard py-3">
-                        <div class="container">
-                            <div class="FeaturedBookmark row">
-                                <div class="border-radius px-2 col-sm-4 col-12 w-auto"
-                                     style="background-color: #e1f2e5">
-                                    <span class="green">Featured</span>
-                                </div>
-                                <div class="
-                      col-sm-8 col-12
-                      d-flex
-                      justify-content-end
-                      FeaturedBookmarkIcon
-                    ">
-                                    <i class="far fa-bookmark FeaturedBookmarkIconI"></i>
-                                </div>
-                            </div>
-                            <div class="
-                    CandidateListCardImageContent
-                    d-flex
-                    flex-column
-                    align-items-center
-                    justify-content-center
-                  ">
-                                <div class="CandidateListCardImage">
-                                    <img src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y12.jpg"
-                                         alt=""
-                                         style="width: 70px; height: 70px; border-radius: 50%" />
-                                </div>
-                                <div class="d-flex flex-column mt-2">
-                                    <p><b>Ali Tufan</b></p>
-                                    <p class="blue">Developer</p>
-                                </div>
-                                <div class="row grey">
-                                    <div class="col-sm-6 col-12 d-flex flex-row align-items-center">
-                                        <i class="fas fa-map-marker-alt me-2 align-items-center"></i>
-                                        <span class="grey">New York</span>
-                                    </div>
-                                    <div class="col-sm-6 col-12 d-flex flex-row align-items-center">
-                                        <i class="far fa-money-bill-alt me-2"></i>
-                                        <span class="">$2000/Year</span>
+                                    <div class="CandiddateInfo mt-3">
+                                        @foreach (var item1 in item.CandidateSkills.Take(3))
+                                        {
+                                            <div class="px-2 backColorBlue border-radius">
+                                                <span class="grey fontSize14">@item1.Name</span>
+                                            </div>
+                                        }
+
                                     </div>
                                 </div>
-                                <div class="CandiddateInfo mt-3">
-                                    <div class="px-2 backColorBlue border-radius">
-                                        <span class="grey fontSize14">Adminstrative</span>
-                                    </div>
-                                    <div class="px-2 backColorBlue border-radius">
-                                        <span class="grey fontSize14">App</span>
-                                    </div>
-                                    <div class="px-2 backColorBlue border-radius">
-                                        <span class="grey fontSize14">Jobs</span>
-                                    </div>
+                                <div class="w-100 mt-3 border-radius">
+                                    <button class="btn backColorBlue w-100 py-3 CandidateViewProfile">
+                                        <span class="">View Profile</span>
+                                    </button>
                                 </div>
-                            </div>
-                            <div class="w-100 mt-3 border-radius">
-                                <button class="btn backColorBlue w-100 py-3 CandidateViewProfile">
-                                    <span class="">View Profile</span>
-                                </button>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="card CandidateListCard py-3">
-                        <div class="container">
-                            <div class="FeaturedBookmark row">
-                                <div class="border-radius px-2 col-sm-4 col-12 w-auto"
-                                     style="background-color: #e1f2e5">
-                                    <span class="green">Featured</span>
-                                </div>
-                                <div class="
-                      col-sm-8 col-12
-                      d-flex
-                      justify-content-end
-                      FeaturedBookmarkIcon
-                    ">
-                                    <i class="far fa-bookmark FeaturedBookmarkIconI"></i>
-                                </div>
-                            </div>
-                            <div class="
-                    CandidateListCardImageContent
-                    d-flex
-                    flex-column
-                    align-items-center
-                    justify-content-center
-                  ">
-                                <div class="CandidateListCardImage">
-                                    <img src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y12.jpg"
-                                         alt=""
-                                         style="width: 70px; height: 70px; border-radius: 50%" />
-                                </div>
-                                <div class="d-flex flex-column mt-2">
-                                    <p><b>Ali Tufan</b></p>
-                                    <p class="blue">Developer</p>
-                                </div>
-                                <div class="row grey">
-                                    <div class="col-sm-6 col-12 d-flex flex-row align-items-center">
-                                        <i class="fas fa-map-marker-alt me-2 align-items-center"></i>
-                                        <span class="grey">New York</span>
-                                    </div>
-                                    <div class="col-sm-6 col-12 d-flex flex-row align-items-center">
-                                        <i class="far fa-money-bill-alt me-2"></i>
-                                        <span class="">$2000/Year</span>
-                                    </div>
-                                </div>
-                                <div class="CandiddateInfo mt-3">
-                                    <div class="px-2 backColorBlue border-radius">
-                                        <span class="grey fontSize14">Adminstrative</span>
-                                    </div>
-                                    <div class="px-2 backColorBlue border-radius">
-                                        <span class="grey fontSize14">App</span>
-                                    </div>
-                                    <div class="px-2 backColorBlue border-radius">
-                                        <span class="grey fontSize14">Jobs</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-100 mt-3 border-radius">
-                                <button class="btn backColorBlue w-100 py-3 CandidateViewProfile">
-                                    <span class="">View Profile</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="card CandidateListCard py-3">
-                        <div class="container">
-                            <div class="FeaturedBookmark row">
-                                <div class="border-radius px-2 col-sm-4 col-12 w-auto"
-                                     style="background-color: #e1f2e5">
-                                    <span class="green">Featured</span>
-                                </div>
-                                <div class="
-                      col-sm-8 col-12
-                      d-flex
-                      justify-content-end
-                      FeaturedBookmarkIcon
-                    ">
-                                    <i class="far fa-bookmark FeaturedBookmarkIconI"></i>
-                                </div>
-                            </div>
-                            <div class="
-                    CandidateListCardImageContent
-                    d-flex
-                    flex-column
-                    align-items-center
-                    justify-content-center
-                  ">
-                                <div class="CandidateListCardImage">
-                                    <img src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y12.jpg"
-                                         alt=""
-                                         style="width: 70px; height: 70px; border-radius: 50%" />
-                                </div>
-                                <div class="d-flex flex-column mt-2">
-                                    <p><b>Ali Tufan</b></p>
-                                    <p class="blue">Developer</p>
-                                </div>
-                                <div class="row grey">
-                                    <div class="col-sm-6 col-12 d-flex flex-row align-items-center">
-                                        <i class="fas fa-map-marker-alt me-2 align-items-center"></i>
-                                        <span class="grey">New York</span>
-                                    </div>
-                                    <div class="col-sm-6 col-12 d-flex flex-row align-items-center">
-                                        <i class="far fa-money-bill-alt me-2"></i>
-                                        <span class="">$2000/Year</span>
-                                    </div>
-                                </div>
-                                <div class="CandiddateInfo mt-3">
-                                    <div class="px-2 backColorBlue border-radius">
-                                        <span class="grey fontSize14">Adminstrative</span>
-                                    </div>
-                                    <div class="px-2 backColorBlue border-radius">
-                                        <span class="grey fontSize14">App</span>
-                                    </div>
-                                    <div class="px-2 backColorBlue border-radius">
-                                        <span class="grey fontSize14">Jobs</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-100 mt-3 border-radius">
-                                <button class="btn backColorBlue w-100 py-3 CandidateViewProfile">
-                                    <span class="">View Profile</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="card CandidateListCard py-3">
-                        <div class="container">
-                            <div class="FeaturedBookmark row">
-                                <div class="border-radius px-2 col-sm-4 col-12 w-auto"
-                                     style="background-color: #e1f2e5">
-                                    <span class="green">Featured</span>
-                                </div>
-                                <div class="
-                      col-sm-8 col-12
-                      d-flex
-                      justify-content-end
-                      FeaturedBookmarkIcon
-                    ">
-                                    <i class="far fa-bookmark FeaturedBookmarkIconI"></i>
-                                </div>
-                            </div>
-                            <div class="
-                    CandidateListCardImageContent
-                    d-flex
-                    flex-column
-                    align-items-center
-                    justify-content-center
-                  ">
-                                <div class="CandidateListCardImage">
-                                    <img src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y12.jpg"
-                                         alt=""
-                                         style="width: 70px; height: 70px; border-radius: 50%" />
-                                </div>
-                                <div class="d-flex flex-column mt-2">
-                                    <p><b>Ali Tufan</b></p>
-                                    <p class="blue">Developer</p>
-                                </div>
-                                <div class="row grey">
-                                    <div class="col-sm-6 col-12 d-flex flex-row align-items-center">
-                                        <i class="fas fa-map-marker-alt me-2 align-items-center"></i>
-                                        <span class="grey">New York</span>
-                                    </div>
-                                    <div class="col-sm-6 col-12 d-flex flex-row align-items-center">
-                                        <i class="far fa-money-bill-alt me-2"></i>
-                                        <span class="">$2000/Year</span>
-                                    </div>
-                                </div>
-                                <div class="CandiddateInfo mt-3">
-                                    <div class="px-2 backColorBlue border-radius">
-                                        <span class="grey fontSize14">Adminstrative</span>
-                                    </div>
-                                    <div class="px-2 backColorBlue border-radius">
-                                        <span class="grey fontSize14">App</span>
-                                    </div>
-                                    <div class="px-2 backColorBlue border-radius">
-                                        <span class="grey fontSize14">Jobs</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-100 mt-3 border-radius">
-                                <button class="btn backColorBlue w-100 py-3 CandidateViewProfile">
-                                    <span class="">View Profile</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="card CandidateListCard py-3">
-                        <div class="container">
-                            <div class="FeaturedBookmark row">
-                                <div class="border-radius px-2 col-sm-4 col-12 w-auto"
-                                     style="background-color: #e1f2e5">
-                                    <span class="green">Featured</span>
-                                </div>
-                                <div class="
-                      col-sm-8 col-12
-                      d-flex
-                      justify-content-end
-                      FeaturedBookmarkIcon
-                    ">
-                                    <i class="far fa-bookmark FeaturedBookmarkIconI"></i>
-                                </div>
-                            </div>
-                            <div class="
-                    CandidateListCardImageContent
-                    d-flex
-                    flex-column
-                    align-items-center
-                    justify-content-center
-                  ">
-                                <div class="CandidateListCardImage">
-                                    <img src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y12.jpg"
-                                         alt=""
-                                         style="width: 70px; height: 70px; border-radius: 50%" />
-                                </div>
-                                <div class="d-flex flex-column mt-2">
-                                    <p><b>Ali Tufan</b></p>
-                                    <p class="blue">Developer</p>
-                                </div>
-                                <div class="row grey">
-                                    <div class="col-sm-6 col-12 d-flex flex-row align-items-center">
-                                        <i class="fas fa-map-marker-alt me-2 align-items-center"></i>
-                                        <span class="grey">New York</span>
-                                    </div>
-                                    <div class="col-sm-6 col-12 d-flex flex-row align-items-center">
-                                        <i class="far fa-money-bill-alt me-2"></i>
-                                        <span class="">$2000/Year</span>
-                                    </div>
-                                </div>
-                                <div class="CandiddateInfo mt-3">
-                                    <div class="px-2 backColorBlue border-radius">
-                                        <span class="grey fontSize14">Adminstrative</span>
-                                    </div>
-                                    <div class="px-2 backColorBlue border-radius">
-                                        <span class="grey fontSize14">App</span>
-                                    </div>
-                                    <div class="px-2 backColorBlue border-radius">
-                                        <span class="grey fontSize14">Jobs</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-100 mt-3 border-radius">
-                                <button class="btn backColorBlue w-100 py-3 CandidateViewProfile">
-                                    <span class="">View Profile</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="card CandidateListCard py-3">
-                        <div class="container">
-                            <div class="FeaturedBookmark row">
-                                <div class="border-radius px-2 col-sm-4 col-12 w-auto"
-                                     style="background-color: #e1f2e5">
-                                    <span class="green">Featured</span>
-                                </div>
-                                <div class="
-                      col-sm-8 col-12
-                      d-flex
-                      justify-content-end
-                      FeaturedBookmarkIcon
-                    ">
-                                    <i class="far fa-bookmark FeaturedBookmarkIconI"></i>
-                                </div>
-                            </div>
-                            <div class="
-                    CandidateListCardImageContent
-                    d-flex
-                    flex-column
-                    align-items-center
-                    justify-content-center
-                  ">
-                                <div class="CandidateListCardImage">
-                                    <img src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y12.jpg"
-                                         alt=""
-                                         style="width: 70px; height: 70px; border-radius: 50%" />
-                                </div>
-                                <div class="d-flex flex-column mt-2">
-                                    <p><b>Ali Tufan</b></p>
-                                    <p class="blue">Developer</p>
-                                </div>
-                                <div class="row grey">
-                                    <div class="col-sm-6 col-12 d-flex flex-row align-items-center">
-                                        <i class="fas fa-map-marker-alt me-2 align-items-center"></i>
-                                        <span class="grey">New York</span>
-                                    </div>
-                                    <div class="col-sm-6 col-12 d-flex flex-row align-items-center">
-                                        <i class="far fa-money-bill-alt me-2"></i>
-                                        <span class="">$2000/Year</span>
-                                    </div>
-                                </div>
-                                <div class="CandiddateInfo mt-3">
-                                    <div class="px-2 backColorBlue border-radius">
-                                        <span class="grey fontSize14">Adminstrative</span>
-                                    </div>
-                                    <div class="px-2 backColorBlue border-radius">
-                                        <span class="grey fontSize14">App</span>
-                                    </div>
-                                    <div class="px-2 backColorBlue border-radius">
-                                        <span class="grey fontSize14">Jobs</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-100 mt-3 border-radius">
-                                <button class="btn backColorBlue w-100 py-3 CandidateViewProfile">
-                                    <span class="">View Profile</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="card CandidateListCard py-3">
-                        <div class="container">
-                            <div class="FeaturedBookmark row">
-                                <div class="border-radius px-2 col-sm-4 col-12 w-auto"
-                                     style="background-color: #e1f2e5">
-                                    <span class="green">Featured</span>
-                                </div>
-                                <div class="
-                      col-sm-8 col-12
-                      d-flex
-                      justify-content-end
-                      FeaturedBookmarkIcon
-                    ">
-                                    <i class="far fa-bookmark FeaturedBookmarkIconI"></i>
-                                </div>
-                            </div>
-                            <div class="
-                    CandidateListCardImageContent
-                    d-flex
-                    flex-column
-                    align-items-center
-                    justify-content-center
-                  ">
-                                <div class="CandidateListCardImage">
-                                    <img src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y12.jpg"
-                                         alt=""
-                                         style="width: 70px; height: 70px; border-radius: 50%" />
-                                </div>
-                                <div class="d-flex flex-column mt-2">
-                                    <p><b>Ali Tufan</b></p>
-                                    <p class="blue">Developer</p>
-                                </div>
-                                <div class="row grey">
-                                    <div class="col-sm-6 col-12 d-flex flex-row align-items-center">
-                                        <i class="fas fa-map-marker-alt me-2 align-items-center"></i>
-                                        <span class="grey">New York</span>
-                                    </div>
-                                    <div class="col-sm-6 col-12 d-flex flex-row align-items-center">
-                                        <i class="far fa-money-bill-alt me-2"></i>
-                                        <span class="">$2000/Year</span>
-                                    </div>
-                                </div>
-                                <div class="CandiddateInfo mt-3">
-                                    <div class="px-2 backColorBlue border-radius">
-                                        <span class="grey fontSize14">Adminstrative</span>
-                                    </div>
-                                    <div class="px-2 backColorBlue border-radius">
-                                        <span class="grey fontSize14">App</span>
-                                    </div>
-                                    <div class="px-2 backColorBlue border-radius">
-                                        <span class="grey fontSize14">Jobs</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-100 mt-3 border-radius">
-                                <button class="btn backColorBlue w-100 py-3 CandidateViewProfile">
-                                    <span class="">View Profile</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <div class="card CandidateListCard py-3">
-                        <div class="container">
-                            <div class="FeaturedBookmark row">
-                                <div class="border-radius px-2 col-sm-4 col-12 w-auto"
-                                     style="background-color: #e1f2e5">
-                                    <span class="green">Featured</span>
-                                </div>
-                                <div class="
-                      col-sm-8 col-12
-                      d-flex
-                      justify-content-end
-                      FeaturedBookmarkIcon
-                    ">
-                                    <i class="far fa-bookmark FeaturedBookmarkIconI"></i>
-                                </div>
-                            </div>
-                            <div class="
-                    CandidateListCardImageContent
-                    d-flex
-                    flex-column
-                    align-items-center
-                    justify-content-center
-                  ">
-                                <div class="CandidateListCardImage">
-                                    <img src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/05/y12.jpg"
-                                         alt=""
-                                         style="width: 70px; height: 70px; border-radius: 50%" />
-                                </div>
-                                <div class="d-flex flex-column mt-2">
-                                    <p><b>Ali Tufan</b></p>
-                                    <p class="blue">Developer</p>
-                                </div>
-                                <div class="row grey">
-                                    <div class="col-sm-6 col-12 d-flex flex-row align-items-center">
-                                        <i class="fas fa-map-marker-alt me-2 align-items-center"></i>
-                                        <span class="grey">New York</span>
-                                    </div>
-                                    <div class="col-sm-6 col-12 d-flex flex-row align-items-center">
-                                        <i class="far fa-money-bill-alt me-2"></i>
-                                        <span class="">$2000/Year</span>
-                                    </div>
-                                </div>
-                                <div class="CandiddateInfo mt-3">
-                                    <div class="px-2 backColorBlue border-radius">
-                                        <span class="grey fontSize14">Adminstrative</span>
-                                    </div>
-                                    <div class="px-2 backColorBlue border-radius">
-                                        <span class="grey fontSize14">App</span>
-                                    </div>
-                                    <div class="px-2 backColorBlue border-radius">
-                                        <span class="grey fontSize14">Jobs</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="w-100 mt-3 border-radius">
-                                <button class="btn backColorBlue w-100 py-3 CandidateViewProfile">
-                                    <span class="">View Profile</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                }
+
             </div>
         </div>
     </main>

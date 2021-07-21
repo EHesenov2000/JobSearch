@@ -45,5 +45,6 @@ namespace JobSearchFullWebSite.DAL.AppDbContext
         public DbSet<JobCategory> JobCategories { get; set; }
         public DbSet<FAQ> FAQs { get; set; }
         public DbSet<Term> Terms { get; set; }
+        public DbSet<Position> Positions { get; set; }
     }
 }

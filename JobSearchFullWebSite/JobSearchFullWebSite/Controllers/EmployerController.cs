@@ -17,9 +17,40 @@ namespace JobSearchFullWebSite.Controllers
         {
             _context = context;
         }
-        public IActionResult Index()
+        public IActionResult Index(string search,Employer employer, int page = 1)
         {
-            return View();
+            ViewBag.SelectedPage = page;
+            ViewBag.TotalPageCount = Math.Ceiling(_context.Employers.ToList().Count() / 9m);
+            EmployerIndexViewModel employerVM = new EmployerIndexViewModel
+            {
+                Employers = _context.Employers.Include(x => x.EmployerImages).Include(X => X.City).Include(X => X.Category).Include(x => x.Jobs).ToList(),
+                Cities=_context.Cities.ToList(),
+                Categories=_context.Categories.ToList(),
+            };
+            if (search!=null)
+            {
+                employerVM.Employers = employerVM.Employers.Where(x => x.Name.Contains(search)).ToList();
+            }
+  
+            if (employer.City!=null)
+            {
+                if (employer.City.Id!=0)
+                {
+                    City city = _context.Cities.FirstOrDefault(x => x.Id == employer.City.Id);
+                    employerVM.Employers = employerVM.Employers.Where(x => x.City.CityName == city.CityName).ToList();
+                }
+            }
+            if (employer.Category!=null)
+            {
+                if (employer.Category.Id!=0)
+                {
+                    Category category = _context.Categories.FirstOrDefault(x => x.Id == employer.Category.Id);
+                    employerVM.Employers = employerVM.Employers.Where(x => x.Category.Name == category.Name).ToList();
+                }
+            }
+            employerVM.Employers = employerVM.Employers.Skip((page - 1) * 9).Take(9).ToList();
+
+            return View(employerVM);
         }
         public IActionResult Detail(int id)
         {
