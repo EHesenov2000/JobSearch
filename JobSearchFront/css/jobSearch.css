@@ -1155,4 +1155,42 @@ body,
 .sidebar {
   display: none;
 }
+
+.fontSize14 {
+  font-size: 14px;
+}
+
+.AplliedJobIcon:hover {
+  background-color: blue !important;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+}
+
+.AplliedJobIcon:hover a i {
+  color: white !important;
+}
+
+.AplliedJobIcon {
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+}
+
+.EmployerCardIcons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+@media (max-width: 495px) {
+  .EmployerCardIcons {
+    -webkit-box-orient: vertical !important;
+    -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+            flex-direction: column !important;
+  }
+}
 /*# sourceMappingURL=jobSearch.css.map */

@@ -884,3 +884,27 @@ body,
 .sidebar {
   display: none;
 }
+.fontSize14 {
+  font-size: 14px;
+}
+.AplliedJobIcon:hover {
+  background-color: blue !important;
+  transition-duration: 0.3s;
+  a {
+    i {
+      color: white !important;
+    }
+  }
+}
+.AplliedJobIcon {
+  transition-duration: 0.3s;
+}
+.EmployerCardIcons {
+  display: flex;
+  flex-direction: row;
+}
+@media (max-width: 495px) {
+  .EmployerCardIcons {
+    flex-direction: column !important;
+  }
+}

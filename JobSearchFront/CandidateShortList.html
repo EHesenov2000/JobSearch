@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Job Search</title>
+    <!-- FontAwesome CSS only -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Bootstrap CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <!-- ---------------BOOTSTRAP ICON CDN-------------------- -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.min.css"
+      integrity="sha512-YBSrHBAMjFhWHodf0RF58XB/x9lmuwBtyJv1LWDHQa1nOaWNXfG3Etc/lEXfW+qBx8ne79JnzccDs59je/ccVA=="
+      crossorigin="anonymous"
+    />
+    <!-- ---------------Manual-------------------- -->
+    <link rel="stylesheet" href="./css/jobSearch.css" />
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header
+      style="
+        background-image: url('./../SiteImages/bg-slider2.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+      "
+      class="d-flex justify-content-center align-items-center flex-column"
+    >
+      <div
+        class="
+          topnav
+          d-flex
+          align-items-center
+          justify-content-center justify-content-around
+          my-4
+        "
+        id="myTopnav"
+      >
+        <div class="logoImage d-flex align-items-center">
+          <img
+            class="logo"
+            src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/04/logo-white.png"
+            alt="Yuklenmedi"
+          />
+        </div>
+
+        <ul class="d-flex align-items-center justify-content-end normal-menu">
+          <li type="none">
+            <a href="" style="color: white" class="menu-item">Home</a>
+          </li>
+          <li type="none" class="mx-3">
+            <a href="" style="color: white" class="menu-item">Find Jobs</a>
+          </li>
+          <li type="none">
+            <a href="" style="color: white" class="menu-item">Employers</a>
+          </li>
+          <li type="none" class="mx-3">
+            <a href="" style="color: white" class="menu-item">Candidates</a>
+          </li>
+          <li type="none">
+            <a href="" style="color: white" class="menu-item">Blog</a>
+          </li>
+
+          <li class="dropdown" type="none">
+            <a
+              class="ms-3 dropdown-toggle noselect"
+              id="dropdownMenu2"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+              style="text-decoration: none; color: white"
+            >
+              Pages
+            </a>
+            <ul class="dropdown-menu mt-4" aria-labelledby="dropdownMenu2">
+              <li>
+                <button class="dropdown-item" type="button">Action</button>
+              </li>
+              <li>
+                <button class="dropdown-item" type="button">
+                  Another action
+                </button>
+              </li>
+              <li>
+                <button class="dropdown-item" type="button">
+                  Something else here
+                </button>
+              </li>
+            </ul>
+          </li>
+
+          <a href="" class="mx-4">
+            <button
+              class="
+                bg-unset
+                white
+                border-radius border-light
+                py-2
+                px-4
+                duration
+              "
+            >
+              Login / Register
+            </button>
+          </a>
+          <a href="">
+            <button
+              class="bg-white border-light py-2 px-4 border-radius"
+              style="color: #302eaa"
+            >
+              Add Job
+            </button>
+          </a>
+        </ul>
+
+        <div class="salam d-flex align-items-center mx-3">
+          <img
+            class="logo"
+            src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/themes/superio/images/logo.svg"
+            alt="Yuklenmedi"
+          />
+        </div>
+        <div class="responsive-menu">
+          <ul
+            class="
+              d-flex
+              justify-content-center
+              align-items-center align-content-center
+            "
+          >
+            <li
+              type="none"
+              class="
+                d-flex
+                justify-content-center
+                align-items-center align-content-center
+              "
+            >
+              <a href="" class="">
+                <i class="fas fa-user fs-4" style="font-weight: 100"></i>
+              </a>
+            </li>
+            <li
+              type="none"
+              class="
+                d-flex
+                justify-content-center
+                align-items-center align-content-center
+              "
+            >
+              <i class="fas fa-bars ms-3 fs-4"></i>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <main style="background-color: #f5f7fc">
+      <div class="mx-3">
+        <div class="row">
+          <div class="col-lg-3 bg-white py-5 px-3 sidebar">
+            <div class="">
+              <div class="d-flex flex-row">
+                <div class="UserImage d-flex align-items-center">
+                  <img
+                    src="./../SiteImages/member4.jpg"
+                    alt=""
+                    style="width: 60px; height: 60px; border-radius: 50%"
+                  />
+                </div>
+                <div
+                  class="
+                    d-flex
+                    flex-column
+                    ms-3
+                    align-items-center
+                    justify-content-center
+                  "
+                >
+                  <div class="UserName"><b>User Name</b></div>
+                  <div class="UserCity">User City</div>
+                  <div class="UserProfileButton">
+                    <a href=""
+                      ><button class="btn btn-primary" style="font-size: 10px">
+                        View Profile
+                      </button></a
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex flex-column">
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                  <div class="Icon"><i class="far fa-file-alt"></i></div>
+                  <div class="SectionName ms-2">User Dashboard</div>
+                </a>
+                <a
+                  href=""
+                  class="d-flex mt-2 UserProfileItem px-2 border-radius"
+                >
+                  <div class="Icon"><i class="far fa-user-circle"></i></div>
+                  <div class="SectionName ms-2">Profile</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                  <div class="Icon"><i class="fas fa-file-signature"></i></div>
+                  <div class="SectionName ms-2">My resume</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                  <div class="Icon"><i class="fas fa-volume-up"></i></div>
+                  <div class="SectionName ms-2">My applied</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                  <div class="Icon"><i class="far fa-bookmark"></i></div>
+                  <div class="SectionName ms-2">Shortlist Jobs</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                  <div class="Icon"><i class="far fa-user"></i></div>
+                  <div class="SectionName ms-2">Following Employers</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                  <div class="Icon"><i class="fas fa-volume-up"></i></div>
+                  <div class="SectionName ms-2">Alert Jobs</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                  <div class="Icon"><i class="fab fa-weixin"></i></div>
+                  <div class="SectionName ms-2">Messages</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                  <div class="Icon"><i class="fas fa-lock"></i></div>
+                  <div class="SectionName ms-2">Change Password</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                  <div class="Icon"><i class="far fa-trash-alt"></i></div>
+                  <div class="SectionName ms-2">Delete Profile</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                  <div class="Icon"><i class="fas fa-power-off"></i></div>
+                  <div class="SectionName ms-2">Logout</div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-9 col-12 py-5" s>
+            <div>
+              <button class="duyme1 btn btn-primary">SideBar</button>
+            </div>
+            <br />
+            <br />
+            <h4><b>Applied Jobs</b></h4>
+            <div class="card p-4">
+              <div class="d-flex flex-row">
+                <div
+                  class="
+                    SearchIcon
+                    d-flex
+                    flex-row
+                    backColorBlue
+                    border-radius
+                    py-2
+                    px-2
+                  "
+                >
+                  <i
+                    class="fas fa-search d-flex flex-row align-items-center"
+                  ></i>
+                  <input
+                    type="text"
+                    placeholder="Search"
+                    class="border-0 backColorBlue border-radius"
+                  />
+                </div>
+              </div>
+              <div class="table-responsive mt-4">
+                <table class="table">
+                  <thead>
+                    <tr class="bg-primary">
+                      <th scope="col" class="fontSize14">Job Title</th>
+                      <th scope="col" class="fontSize14">Data Applied</th>
+                      <th scope="col" class="fontSize14">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="">
+                      <td class="fontSize14">
+                        <div class="d-flex flex-row">
+                          <div>
+                            <img
+                              style="max-width: 50px; height: auto"
+                              src="./../SiteImages/y12.jpg"
+                              alt=""
+                            />
+                          </div>
+                          <div
+                            class="
+                              d-flex
+                              flex-column
+                              justify-content-center
+                              ms-3
+                            "
+                          >
+                            <div><b>Restaurant Team Member</b></div>
+                            <div class="d-flex flex-row">
+                              <div
+                                class="d-flex flex-row grey align-items-center"
+                              >
+                                <i class="fas fa-briefcase"></i
+                                ><span class="ms-1">Customer</span>
+                              </div>
+                              <div
+                                class="
+                                  d-flex
+                                  flex-row
+                                  grey
+                                  align-items-center
+                                  ms-2
+                                "
+                              >
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span class="ms-1">New York</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="fontSize14" style="vertical-align: middle">
+                        May 7, 2021
+                      </td>
+                      <td class="fontSize14" style="vertical-align: middle">
+                        <div class="d-flex flex-row">
+                          <div
+                            style="
+                              background-color: #eff4fc;
+                              width: 30px;
+                              height: 30px;
+                            "
+                            class="
+                              d-flex
+                              flex-row
+                              align-items-center
+                              justify-content-center
+                              border-radius
+                              AplliedJobIcon
+                            "
+                          >
+                            <a href="">
+                              <i class="fas fa-times blue"></i>
+                            </a>
+                          </div>
+                          <div
+                            style="
+                              background-color: #eff4fc;
+                              width: 30px;
+                              height: 30px;
+                            "
+                            class="
+                              d-flex
+                              flex-row
+                              align-items-center
+                              justify-content-center
+                              border-radius
+                              ms-2
+                              AplliedJobIcon
+                            "
+                          >
+                            <a href=""><i class="fas fa-eye blue"></i></a>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="">
+                      <td class="fontSize14">
+                        <div class="d-flex flex-row">
+                          <div>
+                            <img
+                              style="max-width: 50px; height: auto"
+                              src="./../SiteImages/y12.jpg"
+                              alt=""
+                            />
+                          </div>
+                          <div
+                            class="
+                              d-flex
+                              flex-column
+                              justify-content-center
+                              ms-3
+                            "
+                          >
+                            <div><b>Restaurant Team Member</b></div>
+                            <div class="d-flex flex-row">
+                              <div
+                                class="d-flex flex-row grey align-items-center"
+                              >
+                                <i class="fas fa-briefcase"></i
+                                ><span class="ms-1">Customer</span>
+                              </div>
+                              <div
+                                class="
+                                  d-flex
+                                  flex-row
+                                  grey
+                                  align-items-center
+                                  ms-2
+                                "
+                              >
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span class="ms-1">New York</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="fontSize14" style="vertical-align: middle">
+                        May 7, 2021
+                      </td>
+                      <td class="fontSize14" style="vertical-align: middle">
+                        <div class="d-flex flex-row">
+                          <div
+                            style="
+                              background-color: #eff4fc;
+                              width: 30px;
+                              height: 30px;
+                            "
+                            class="
+                              d-flex
+                              flex-row
+                              align-items-center
+                              justify-content-center
+                              border-radius
+                              AplliedJobIcon
+                            "
+                          >
+                            <a href="">
+                              <i class="fas fa-times blue"></i>
+                            </a>
+                          </div>
+                          <div
+                            style="
+                              background-color: #eff4fc;
+                              width: 30px;
+                              height: 30px;
+                            "
+                            class="
+                              d-flex
+                              flex-row
+                              align-items-center
+                              justify-content-center
+                              border-radius
+                              ms-2
+                              AplliedJobIcon
+                            "
+                          >
+                            <a href=""><i class="fas fa-eye blue"></i></a>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="">
+                      <td class="fontSize14">
+                        <div class="d-flex flex-row">
+                          <div>
+                            <img
+                              style="max-width: 50px; height: auto"
+                              src="./../SiteImages/y12.jpg"
+                              alt=""
+                            />
+                          </div>
+                          <div
+                            class="
+                              d-flex
+                              flex-column
+                              justify-content-center
+                              ms-3
+                            "
+                          >
+                            <div><b>Restaurant Team Member</b></div>
+                            <div class="d-flex flex-row">
+                              <div
+                                class="d-flex flex-row grey align-items-center"
+                              >
+                                <i class="fas fa-briefcase"></i
+                                ><span class="ms-1">Customer</span>
+                              </div>
+                              <div
+                                class="
+                                  d-flex
+                                  flex-row
+                                  grey
+                                  align-items-center
+                                  ms-2
+                                "
+                              >
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span class="ms-1">New York</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="fontSize14" style="vertical-align: middle">
+                        May 7, 2021
+                      </td>
+                      <td class="fontSize14" style="vertical-align: middle">
+                        <div class="d-flex flex-row">
+                          <div
+                            style="
+                              background-color: #eff4fc;
+                              width: 30px;
+                              height: 30px;
+                            "
+                            class="
+                              d-flex
+                              flex-row
+                              align-items-center
+                              justify-content-center
+                              border-radius
+                              AplliedJobIcon
+                            "
+                          >
+                            <a href="">
+                              <i class="fas fa-times blue"></i>
+                            </a>
+                          </div>
+                          <div
+                            style="
+                              background-color: #eff4fc;
+                              width: 30px;
+                              height: 30px;
+                            "
+                            class="
+                              d-flex
+                              flex-row
+                              align-items-center
+                              justify-content-center
+                              border-radius
+                              ms-2
+                              AplliedJobIcon
+                            "
+                          >
+                            <a href=""><i class="fas fa-eye blue"></i></a>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="">
+                      <td class="fontSize14">
+                        <div class="d-flex flex-row">
+                          <div>
+                            <img
+                              style="max-width: 50px; height: auto"
+                              src="./../SiteImages/y12.jpg"
+                              alt=""
+                            />
+                          </div>
+                          <div
+                            class="
+                              d-flex
+                              flex-column
+                              justify-content-center
+                              ms-3
+                            "
+                          >
+                            <div><b>Restaurant Team Member</b></div>
+                            <div class="d-flex flex-row">
+                              <div
+                                class="d-flex flex-row grey align-items-center"
+                              >
+                                <i class="fas fa-briefcase"></i
+                                ><span class="ms-1">Customer</span>
+                              </div>
+                              <div
+                                class="
+                                  d-flex
+                                  flex-row
+                                  grey
+                                  align-items-center
+                                  ms-2
+                                "
+                              >
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span class="ms-1">New York</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="fontSize14" style="vertical-align: middle">
+                        May 7, 2021
+                      </td>
+                      <td class="fontSize14" style="vertical-align: middle">
+                        <div class="d-flex flex-row">
+                          <div
+                            style="
+                              background-color: #eff4fc;
+                              width: 30px;
+                              height: 30px;
+                            "
+                            class="
+                              d-flex
+                              flex-row
+                              align-items-center
+                              justify-content-center
+                              border-radius
+                              AplliedJobIcon
+                            "
+                          >
+                            <a href="">
+                              <i class="fas fa-times blue"></i>
+                            </a>
+                          </div>
+                          <div
+                            style="
+                              background-color: #eff4fc;
+                              width: 30px;
+                              height: 30px;
+                            "
+                            class="
+                              d-flex
+                              flex-row
+                              align-items-center
+                              justify-content-center
+                              border-radius
+                              ms-2
+                              AplliedJobIcon
+                            "
+                          >
+                            <a href=""><i class="fas fa-eye blue"></i></a>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr class="">
+                      <td class="fontSize14">
+                        <div class="d-flex flex-row">
+                          <div>
+                            <img
+                              style="max-width: 50px; height: auto"
+                              src="./../SiteImages/y12.jpg"
+                              alt=""
+                            />
+                          </div>
+                          <div
+                            class="
+                              d-flex
+                              flex-column
+                              justify-content-center
+                              ms-3
+                            "
+                          >
+                            <div><b>Restaurant Team Member</b></div>
+                            <div class="d-flex flex-row">
+                              <div
+                                class="d-flex flex-row grey align-items-center"
+                              >
+                                <i class="fas fa-briefcase"></i
+                                ><span class="ms-1">Customer</span>
+                              </div>
+                              <div
+                                class="
+                                  d-flex
+                                  flex-row
+                                  grey
+                                  align-items-center
+                                  ms-2
+                                "
+                              >
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span class="ms-1">New York</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="fontSize14" style="vertical-align: middle">
+                        May 7, 2021
+                      </td>
+                      <td class="fontSize14" style="vertical-align: middle">
+                        <div class="d-flex flex-row">
+                          <div
+                            style="
+                              background-color: #eff4fc;
+                              width: 30px;
+                              height: 30px;
+                            "
+                            class="
+                              d-flex
+                              flex-row
+                              align-items-center
+                              justify-content-center
+                              border-radius
+                              AplliedJobIcon
+                            "
+                          >
+                            <a href="">
+                              <i class="fas fa-times blue"></i>
+                            </a>
+                          </div>
+                          <div
+                            style="
+                              background-color: #eff4fc;
+                              width: 30px;
+                              height: 30px;
+                            "
+                            class="
+                              d-flex
+                              flex-row
+                              align-items-center
+                              justify-content-center
+                              border-radius
+                              ms-2
+                              AplliedJobIcon
+                            "
+                          >
+                            <a href=""><i class="fas fa-eye blue"></i></a>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer style="background-color: #302ea7">
+      <section class="py-5 container">
+        <div class="row g-1">
+          <div
+            class="col-lg-3 col-12 d-flex flex-column white"
+            style="width: 22%; max-width: 22%"
+          >
+            <div class="FooterLogo">
+              <img
+                src="./../Layihe/layihem/apusthemes.com/wp-demo/superio/wp-content/uploads/2021/04/logo-white.png"
+                alt=""
+              />
+            </div>
+            <br />
+            <h5 class="CallUs d-flex flex-column">
+              <b>Call Us</b>
+              <span><b>123 456 78 90</b> </span>
+            </h5>
+            <p><b>328 Queensberry Street, North Melbourne VIC</b></p>
+            <p><b>3051, Australia.</b></p>
+            <p><b>support@superio.com</b></p>
+          </div>
+          <div class="col-lg-3 col-12">
+            <h5><b class="white">Find Jobs</b></h5>
+            <p class="d-flex flex-row align-items-center FooterMenuItem">
+              <span class="FooterMenuItemLeft"> </span>
+              <a href="" class="white text-decoration-none">Browse Jobs</a>
+            </p>
+            <p class="d-flex flex-row align-items-center FooterMenuItem">
+              <span class="FooterMenuItemLeft"> </span>
+              <a href="" class="white text-decoration-none"
+                >Browse Candidates</a
+              >
+            </p>
+            <p class="d-flex flex-row align-items-center FooterMenuItem">
+              <span class="FooterMenuItemLeft"> </span>
+              <a href="" class="white text-decoration-none"
+                >Candidate Dashboard</a
+              >
+            </p>
+            <p class="d-flex flex-row align-items-center FooterMenuItem">
+              <span class="FooterMenuItemLeft"></span>
+              <a href="" class="white text-decoration-none">Job Alerts</a>
+            </p>
+            <p class="d-flex flex-row align-items-center FooterMenuItem">
+              <span class="FooterMenuItemLeft"></span>
+              <a href="" class="white text-decoration-none">My Bookmarks</a>
+            </p>
+          </div>
+          <div class="col-lg-3 col-12">
+            <h5><b class="white">Frequently Asked Questions</b></h5>
+            <div class="Frequently">
+              <div class="col-lg-6 col-12">
+                <p class="d-flex flex-row align-items-center FooterMenuItem">
+                  <span class="FooterMenuItemLeft"> </span>
+                  <a href="" class="white text-decoration-none">Site Map</a>
+                </p>
+                <p class="d-flex flex-row align-items-center FooterMenuItem">
+                  <span class="FooterMenuItemLeft"> </span>
+                  <a href="" class="white text-decoration-none">Terms of Use</a>
+                </p>
+                <p class="d-flex flex-row align-items-center FooterMenuItem">
+                  <span class="FooterMenuItemLeft"></span>
+                  <a href="" class="white text-decoration-none"
+                    >Privacy Center</a
+                  >
+                </p>
+                <p class="d-flex flex-row align-items-center FooterMenuItem">
+                  <span class="FooterMenuItemLeft"> </span>
+                  <a href="" class="white text-decoration-none"
+                    >Security Center</a
+                  >
+                </p>
+                <p class="d-flex flex-row align-items-center FooterMenuItem">
+                  <span class="FooterMenuItemLeft"> </span>
+                  <a href="" class="white text-decoration-none"
+                    >Accessibility Center</a
+                  >
+                </p>
+              </div>
+              <div
+                class="col-md-6 col-12 d-flex flex-column justify-content-end"
+              >
+                <p class="d-flex flex-row align-items-center FooterMenuItem">
+                  <span class="FooterMenuItemLeft"> </span>
+                  <a href="" class="white text-decoration-none">Contact Us</a>
+                </p>
+                <p class="d-flex flex-row align-items-center FooterMenuItem">
+                  <span class="FooterMenuItemLeft"> </span>
+                  <a href="" class="white text-decoration-none">About Us</a>
+                </p>
+                <p class="d-flex flex-row align-items-center FooterMenuItem">
+                  <span class="FooterMenuItemLeft"></span>
+                  <a href="" class="white text-decoration-none">Terms</a>
+                </p>
+                <p class="d-flex flex-row align-items-center FooterMenuItem">
+                  <span class="FooterMenuItemLeft"> </span>
+                  <a href="" class="white text-decoration-none">Packages</a>
+                </p>
+                <p class="d-flex flex-row align-items-center FooterMenuItem">
+                  <span class="FooterMenuItemLeft"> </span>
+                  <a href="" class="white text-decoration-none">FAQ</a>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-3 col-12">
+            <h5><b class="white">Join Us On</b></h5>
+            <br />
+            <p class="white">We don’t send spam so don’t worry.</p>
+            <br />
+            <div class="bg-white px-3 d-flex flex-row py-2 border-radius">
+              <input
+                type="email"
+                placeholder="Your e-mail"
+                class="border-0 w-75"
+              />
+              <div
+                style="
+                  width: 50px;
+                  height: 50px;
+                  border-radius: 5px;
+                  background-color: chocolate;
+                  font-size: 29px;
+                "
+                class="d-flex justify-content-center align-items-center"
+              >
+                <i class="far fa-envelope white"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <hr class="white" />
+      <section class="d-flex align-items-center container py-3 HrBottom">
+        <div class="white col-sm-6 col-12">
+          © <b class="NowYear"></b> Superio. All Right Reserved.
+        </div>
+        <div class="d-flex justify-content-end col-sm-6">
+          <i class="fab fa-facebook-f white" style="float: left"></i>
+          <i class="fab fa-twitter white mx-3" style="float: left"></i>
+          <i class="fab fa-instagram white" style="float: left"></i>
+          <i class="fab fa-linkedin-in white ms-3" style="float: left"></i>
+        </div>
+      </section>
+    </footer>
+  </body>
+  <!-- Jquery -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+  <!-- --MAP --- -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSLSFRa0DyBj9VGzT7GM6SFbSMcG0YNBM"></script>
+  <script type="text/javascript">
+    google.maps.event.addDomListener(window, "load", init);
+    function init() {
+      var a = $(".cordinatlar").attr("data-id1");
+      var b = $(".cordinatlar").attr("data-id2");
+      var mapOptions = {
+        zoom: 11,
+        center: new google.maps.LatLng(40.4093, 49.8671), // New York
+        styles: [
+          {
+            featureType: "water",
+            elementType: "geometry",
+            stylers: [{ color: "#e9e9e9" }, { lightness: 17 }],
+          },
+          {
+            featureType: "landscape",
+            elementType: "geometry",
+            stylers: [{ color: "#f5f5f5" }, { lightness: 20 }],
+          },
+          {
+            featureType: "road.highway",
+            elementType: "geometry.fill",
+            stylers: [{ color: "#ffffff" }, { lightness: 17 }],
+          },
+          {
+            featureType: "road.highway",
+            elementType: "geometry.stroke",
+            stylers: [{ color: "#ffffff" }, { lightness: 29 }, { weight: 0.2 }],
+          },
+          {
+            featureType: "road.arterial",
+            elementType: "geometry",
+            stylers: [{ color: "#ffffff" }, { lightness: 18 }],
+          },
+          {
+            featureType: "road.local",
+            elementType: "geometry",
+            stylers: [{ color: "#ffffff" }, { lightness: 16 }],
+          },
+          {
+            featureType: "poi",
+            elementType: "geometry",
+            stylers: [{ color: "#f5f5f5" }, { lightness: 21 }],
+          },
+          {
+            featureType: "poi.park",
+            elementType: "geometry",
+            stylers: [{ color: "#dedede" }, { lightness: 21 }],
+          },
+          {
+            elementType: "labels.text.stroke",
+            stylers: [
+              { visibility: "on" },
+              { color: "#ffffff" },
+              { lightness: 16 },
+            ],
+          },
+          {
+            elementType: "labels.text.fill",
+            stylers: [
+              { saturation: 36 },
+              { color: "#333333" },
+              { lightness: 40 },
+            ],
+          },
+          { elementType: "labels.icon", stylers: [{ visibility: "off" }] },
+          {
+            featureType: "transit",
+            elementType: "geometry",
+            stylers: [{ color: "#f2f2f2" }, { lightness: 19 }],
+          },
+          {
+            featureType: "administrative",
+            elementType: "geometry.fill",
+            stylers: [{ color: "#fefefe" }, { lightness: 20 }],
+          },
+          {
+            featureType: "administrative",
+            elementType: "geometry.stroke",
+            stylers: [{ color: "#fefefe" }, { lightness: 17 }, { weight: 1.2 }],
+          },
+        ],
+      };
+      var mapElement = document.getElementById("googleMap");
+      var map = new google.maps.Map(mapElement, mapOptions);
+      var marker = new google.maps.Marker({
+        position: map.getCenter(),
+        animation: google.maps.Animation.BOUNCE,
+        icon: "img/map-marker.png",
+        map: map,
+      });
+    }
+  </script>
+  <!-- Manual -->
+  <script src="./js/index.js"></script>
+</html>
