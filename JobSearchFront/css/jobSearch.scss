@@ -865,3 +865,22 @@ input:checked + .slider:before {
 .JobListCardShadow {
   transition-duration: 0.5s;
 }
+.UserProfileItem {
+  color: grey;
+}
+.UserProfileItem:hover {
+  background-color: #e8f0fa;
+  color: blue;
+  max-width: fit-content;
+}
+html,
+body,
+#container {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.sidebar {
+  display: none;
+}

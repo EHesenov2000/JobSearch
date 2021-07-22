@@ -1130,4 +1130,29 @@ input:checked + .slider:before {
   -webkit-transition-duration: 0.5s;
           transition-duration: 0.5s;
 }
+
+.UserProfileItem {
+  color: grey;
+}
+
+.UserProfileItem:hover {
+  background-color: #e8f0fa;
+  color: blue;
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+}
+
+html,
+body,
+#container {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar {
+  display: none;
+}
 /*# sourceMappingURL=jobSearch.css.map */

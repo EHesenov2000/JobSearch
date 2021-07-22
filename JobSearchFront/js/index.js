@@ -151,3 +151,110 @@ $(document).ready(function () {
     $(".All").fadeToggle("slow");
   });
 });
+
+// for (
+//   let index = 0;
+//   index < document.getElementsByClassName("UserProfileItem").length;
+//   index++
+// ) {
+//   console.log(index);
+
+//   document.getElementsByClassName("UserProfileItem")[index].onclick =
+//     function () {
+//       document.getElementsByClassName("UserProfileItem")[
+//         index
+//       ].style.backgroundColor = "#E8F0FA ";
+//       document.getElementsByClassName("UserProfileItem")[index].style.color =
+//         "blue ";
+//       for (
+//         let i = 0;
+//         i < document.getElementsByClassName("UserProfileItem").length;
+//         i++
+//       ) {
+//         if (i != index) {
+//           document.getElementsByClassName("UserProfileItem")[
+//             i
+//           ].style.backgroundColor = "white ";
+//           document.getElementsByClassName("UserProfileItem")[i].style.color =
+//             "grey ";
+//         }
+//       }
+//     };
+// }
+// anychart.onDocumentReady(function () {
+//   // set the data
+//   var data = {
+//     header: ["Year", "Interest Expense on the Debt, USD bln."],
+//     rows: [
+//       [2007, 420],
+//       [2008, 451],
+//       [2009, 430],
+//       [2010, 413],
+//       [2011, 454],
+//       [2012, 359],
+//       [2013, 415],
+//       [2014, 430],
+//       [2015, 402],
+//       [2016, 432],
+//     ],
+//   };
+
+//   // create the chart
+//   var chart = anychart.area();
+
+//   // add the data
+//   chart.data(data);
+
+//   chart.container("container");
+//   chart.draw();
+// });
+window.onload = function () {
+  var chart = new CanvasJS.Chart("chartContainer", {
+    animationEnabled: true,
+    title: {
+      text: "Elman Hasanov Map",
+    },
+    axisY: {
+      title: "Xerite",
+      valueFormatString: "#0,,.",
+      suffix: "mn",
+      stripLines: [
+        {
+          value: 3366500,
+          label: "Ortalama",
+        },
+      ],
+    },
+    data: [
+      {
+        yValueFormatString: "#,### Units",
+        xValueFormatString: "YYYY",
+        type: "spline",
+        dataPoints: [
+          { x: new Date(2002, 0), y: 0 },
+          { x: new Date(2003, 0), y: 2798000 },
+          { x: new Date(2004, 0), y: 3386000 },
+          { x: new Date(2005, 0), y: 6944000 },
+          { x: new Date(2006, 0), y: 6026000 },
+          { x: new Date(2007, 0), y: 2394000 },
+          { x: new Date(2008, 0), y: 1872000 },
+          { x: new Date(2009, 0), y: 2140000 },
+          { x: new Date(2010, 0), y: 7289000 },
+          { x: new Date(2011, 0), y: 4830000 },
+          { x: new Date(2012, 0), y: 2009000 },
+          { x: new Date(2013, 0), y: 2840000 },
+          { x: new Date(2014, 0), y: 2396000 },
+          { x: new Date(2015, 0), y: 1613000 },
+          { x: new Date(2016, 0), y: 2821000 },
+          { x: new Date(2017, 0), y: 2000000 },
+        ],
+      },
+    ],
+  });
+  chart.render();
+};
+
+$(".duyme1").click(function () {
+  $(".leftSection").attr("class", "col-lg-9 py-5 leftSection");
+  $(".sidebar").fadeToggle();
+});
