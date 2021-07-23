@@ -1193,4 +1193,170 @@ body,
             flex-direction: column !important;
   }
 }
+
+[type="file"] {
+  height: 0;
+  overflow: hidden;
+  width: 0;
+}
+
+[type="file"] + label {
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Rubik", sans-serif;
+  font-size: inherit;
+  margin-bottom: 1rem;
+  outline: none;
+  padding: 5px 20px;
+  position: relative;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  vertical-align: middle;
+}
+
+[type="file"] + label:hover {
+  background-color: #0000cc;
+}
+
+[type="file"] + label:hover span {
+  color: white !important;
+}
+
+[type="file"] + label.btn-1 {
+  background-color: #f79159;
+  -webkit-box-shadow: 0 6px #f57128;
+          box-shadow: 0 6px #f57128;
+  -webkit-transition: none;
+  transition: none;
+}
+
+[type="file"] + label.btn-1:hover {
+  -webkit-box-shadow: 0 4px #f57128;
+          box-shadow: 0 4px #f57128;
+  top: 2px;
+}
+
+[type="file"] + label.btn-2 {
+  background-color: #99c793;
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+[type="file"] + label.btn-2::before {
+  color: #fff;
+  content: "\f382";
+  font-family: "Font Awesome 5 Pro";
+  right: 130%;
+  line-height: 3.3;
+  position: absolute;
+  top: 0px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+[type="file"] + label.btn-2:hover {
+  background-color: #497f42;
+}
+
+[type="file"] + label.btn-2:hover::before {
+  right: 75%;
+}
+
+[type="file"] + label.btn-3 {
+  background-color: #ee6d9e;
+  border-radius: 0;
+  overflow: hidden;
+}
+
+[type="file"] + label.btn-3 span {
+  display: inline-block;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+[type="file"] + label.btn-3::before {
+  color: #fff;
+  content: "\f382";
+  font-family: "Font Awesome 5 Pro";
+  font-size: 130%;
+  height: 100%;
+  left: 0;
+  line-height: 2.6;
+  position: absolute;
+  top: -180%;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  width: 100%;
+}
+
+[type="file"] + label.btn-3:hover {
+  background-color: #ae144f;
+}
+
+[type="file"] + label.btn-3:hover span {
+  -webkit-transform: translateY(300%);
+          transform: translateY(300%);
+}
+
+[type="file"] + label.btn-3:hover::before {
+  top: 0;
+}
+
+.ImageAndUpload {
+  position: relative;
+}
+
+.ImageXIcon {
+  position: absolute;
+  top: 0px;
+}
+
+.ImageXIcon:hover {
+  background-color: blue;
+}
+
+.ImageXIcon:hover i {
+  color: white !important;
+}
+
+.CvXIcon:hover {
+  background-color: blue;
+}
+
+.CvXIcon:hover i {
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+  color: white !important;
+}
+
+.CvXIcon {
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+}
+
+.PositionRelativeForIcon {
+  position: relative;
+}
+
+.PortfolioXIcon {
+  position: absolute;
+  top: 0px;
+}
+
+.PortfolioXIcon:hover {
+  background-color: blue;
+}
+
+.PortfolioXIcon:hover i {
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+  color: white !important;
+}
+
+.PortfolioXIcon {
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+}
 /*# sourceMappingURL=jobSearch.css.map */
