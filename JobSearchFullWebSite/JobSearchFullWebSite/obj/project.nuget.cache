@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "8PFMyaaG/DVTc5/x85aT253NAluvbkx4o0YnfTuGhtxdYOCGVkIDYJiWE0N4pMMEsXtjUt8O7O5lWNNwA+KikQ==",
+  "dgSpecHash": "xnJybaIQ6Zn5uji6/nVVC4ptDFVYtRm/GAfHGTx8YqEqiE0xEYCJkF7ieVXCTwsUFS2TSJBoY7is8EVDyTWI6A==",
   "success": true,
   "projectFilePath": "C:\\Users\\elman\\Desktop\\JobSearch\\JobSearchFullWebSite\\JobSearchFullWebSite\\JobSearchFullWebSite.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\elman\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\3.1.16\\microsoft.aspnetcore.cryptography.internal.3.1.16.nupkg.sha512",
+    "C:\\Users\\elman\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\3.1.16\\microsoft.aspnetcore.cryptography.keyderivation.3.1.16.nupkg.sha512",
     "C:\\Users\\elman\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
+    "C:\\Users\\elman\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\3.1.16\\microsoft.aspnetcore.identity.entityframeworkcore.3.1.16.nupkg.sha512",
     "C:\\Users\\elman\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\3.1.16\\microsoft.aspnetcore.jsonpatch.3.1.16.nupkg.sha512",
     "C:\\Users\\elman\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\3.1.16\\microsoft.aspnetcore.mvc.newtonsoftjson.3.1.16.nupkg.sha512",
     "C:\\Users\\elman\\.nuget\\packages\\microsoft.aspnetcore.razor\\2.2.0\\microsoft.aspnetcore.razor.2.2.0.nupkg.sha512",
@@ -34,6 +37,8 @@
     "C:\\Users\\elman\\.nuget\\packages\\microsoft.extensions.configuration.binder\\3.1.16\\microsoft.extensions.configuration.binder.3.1.16.nupkg.sha512",
     "C:\\Users\\elman\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\3.1.16\\microsoft.extensions.dependencyinjection.3.1.16.nupkg.sha512",
     "C:\\Users\\elman\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\3.1.16\\microsoft.extensions.dependencyinjection.abstractions.3.1.16.nupkg.sha512",
+    "C:\\Users\\elman\\.nuget\\packages\\microsoft.extensions.identity.core\\3.1.16\\microsoft.extensions.identity.core.3.1.16.nupkg.sha512",
+    "C:\\Users\\elman\\.nuget\\packages\\microsoft.extensions.identity.stores\\3.1.16\\microsoft.extensions.identity.stores.3.1.16.nupkg.sha512",
     "C:\\Users\\elman\\.nuget\\packages\\microsoft.extensions.logging\\3.1.16\\microsoft.extensions.logging.3.1.16.nupkg.sha512",
     "C:\\Users\\elman\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\3.1.16\\microsoft.extensions.logging.abstractions.3.1.16.nupkg.sha512",
     "C:\\Users\\elman\\.nuget\\packages\\microsoft.extensions.options\\3.1.16\\microsoft.extensions.options.3.1.16.nupkg.sha512",

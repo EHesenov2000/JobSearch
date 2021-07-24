@@ -47,6 +47,8 @@ namespace JobSearchFullWebSite.Models
         public List<IFormFile> CandidateCVS { get; set; }
         [NotMapped]
         public List<int?> CandidateCVsId { get; set; }
+        public string AppUserId { get; set; }
+        public AppUser AppUser { get; set; }
         public int CityId { get; set; }
         public City City { get; set; }
         public int PositionId { get; set; }

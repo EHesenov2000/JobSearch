@@ -1131,131 +1131,339 @@ input:checked + .slider:before {
           transition-duration: 0.5s;
 }
 
-.FeaturedBookmarkIconI {
-  display: none;
-}
-
-.EmployerListCard {
-  -webkit-transition-duration: 0.3s;
-          transition-duration: 0.3s;
-}
-
-.EmployerListCard:hover {
-  position: relative;
-  -webkit-box-shadow: 0 5px 10px -4px black;
-          box-shadow: 0 5px 10px -4px black;
-  -webkit-transition-duration: 0.3s;
-          transition-duration: 0.3s;
-}
-
-.EmployerListCard:hover .FeaturedBookmarkIconI {
-  display: block !important;
+.UserProfileItem {
   color: grey;
 }
 
-.EmployerListCard:hover .FeaturedBookmarkIcon {
-  position: absolute;
-  right: 20px !important;
-  background-color: rgba(25, 103, 210, 0.07);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center !important;
-      -ms-flex-pack: center !important;
-          justify-content: center !important;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  -webkit-transition-duration: 0.3s;
-          transition-duration: 0.3s;
+.UserProfileItem:hover {
+  background-color: #e8f0fa;
+  color: blue;
+  max-width: -webkit-fit-content;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
 }
 
-.FeaturedBookmarkIcon {
-  -webkit-transition-duration: 0.3s;
-          transition-duration: 0.3s;
+html,
+body,
+#container {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar {
+  display: none;
 }
 
 .fontSize14 {
   font-size: 14px;
 }
 
-.CandiddateInfo {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-flex: row;
-      -ms-flex: row;
-          flex: row;
-}
-
-.CandiddateInfo :nth-child(2) {
-  margin: 0 20px 0 20px;
-}
-
-@media (max-width: 258px) {
-  .CandiddateInfo {
-    display: block;
-  }
-  .CandiddateInfo :nth-child(2) {
-    margin: 20px 0 20px 0;
-  }
-}
-
-.CandidateListCard {
+.AplliedJobIcon:hover {
+  background-color: blue !important;
   -webkit-transition-duration: 0.3s;
           transition-duration: 0.3s;
 }
 
-.CandidateListCard:hover {
+.AplliedJobIcon:hover a i {
+  color: white !important;
+}
+
+.AplliedJobIcon {
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+}
+
+.EmployerCardIcons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+@media (max-width: 495px) {
+  .EmployerCardIcons {
+    -webkit-box-orient: vertical !important;
+    -webkit-box-direction: normal !important;
+        -ms-flex-direction: column !important;
+            flex-direction: column !important;
+  }
+}
+
+[type="file"] {
+  height: 0;
+  overflow: hidden;
+  width: 0;
+}
+
+[type="file"] + label {
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: inline-block;
+  font-family: "Rubik", sans-serif;
+  font-size: inherit;
+  margin-bottom: 1rem;
+  outline: none;
+  padding: 5px 20px;
   position: relative;
-  -webkit-box-shadow: 0 5px 10px -4px black;
-          box-shadow: 0 5px 10px -4px black;
-  -webkit-transition-duration: 0.3s;
-          transition-duration: 0.3s;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  vertical-align: middle;
 }
 
-.CandidateListCard:hover .FeaturedBookmarkIconI {
-  display: block !important;
-  color: grey;
+[type="file"] + label:hover {
+  background-color: #0000cc;
 }
 
-.CandidateListCard:hover .FeaturedBookmarkIcon {
+[type="file"] + label:hover span {
+  color: white !important;
+}
+
+[type="file"] + label.btn-1 {
+  background-color: #f79159;
+  -webkit-box-shadow: 0 6px #f57128;
+          box-shadow: 0 6px #f57128;
+  -webkit-transition: none;
+  transition: none;
+}
+
+[type="file"] + label.btn-1:hover {
+  -webkit-box-shadow: 0 4px #f57128;
+          box-shadow: 0 4px #f57128;
+  top: 2px;
+}
+
+[type="file"] + label.btn-2 {
+  background-color: #99c793;
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+[type="file"] + label.btn-2::before {
+  color: #fff;
+  content: "\f382";
+  font-family: "Font Awesome 5 Pro";
+  right: 130%;
+  line-height: 3.3;
   position: absolute;
-  right: 20px !important;
-  background-color: rgba(25, 103, 210, 0.07);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center !important;
-      -ms-flex-pack: center !important;
-          justify-content: center !important;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
+  top: 0px;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+[type="file"] + label.btn-2:hover {
+  background-color: #497f42;
+}
+
+[type="file"] + label.btn-2:hover::before {
+  right: 75%;
+}
+
+[type="file"] + label.btn-3 {
+  background-color: #ee6d9e;
+  border-radius: 0;
+  overflow: hidden;
+}
+
+[type="file"] + label.btn-3 span {
+  display: inline-block;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+[type="file"] + label.btn-3::before {
+  color: #fff;
+  content: "\f382";
+  font-family: "Font Awesome 5 Pro";
+  font-size: 130%;
+  height: 100%;
+  left: 0;
+  line-height: 2.6;
+  position: absolute;
+  top: -180%;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  width: 100%;
+}
+
+[type="file"] + label.btn-3:hover {
+  background-color: #ae144f;
+}
+
+[type="file"] + label.btn-3:hover span {
+  -webkit-transform: translateY(300%);
+          transform: translateY(300%);
+}
+
+[type="file"] + label.btn-3:hover::before {
+  top: 0;
+}
+
+.ImageAndUpload {
+  position: relative;
+}
+
+.ImageXIcon {
+  position: absolute;
+  top: 0px;
+}
+
+.ImageXIcon:hover {
+  background-color: blue;
+}
+
+.ImageXIcon:hover i {
+  color: white !important;
+}
+
+.CvXIcon:hover {
+  background-color: blue;
+}
+
+.CvXIcon:hover i {
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+  color: white !important;
+}
+
+.CvXIcon {
   -webkit-transition-duration: 0.3s;
           transition-duration: 0.3s;
 }
 
-.CandidateListCard:hover .CandidateViewProfile {
-  background-color: blue;
-  color: white;
+.PositionRelativeForIcon {
+  position: relative;
 }
 
-.CandidateViewProfile {
+.PortfolioXIcon {
+  position: absolute;
+  top: 0px;
+}
+
+.PortfolioXIcon:hover {
+  background-color: blue;
+}
+
+.PortfolioXIcon:hover i {
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+  color: white !important;
+}
+
+.PortfolioXIcon {
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+}
+
+.ButtonJob {
+  background-color: white !important;
+  border: 2px solid white !important;
   color: blue;
 }
 
-/*******************************
-  * MODAL AS LEFT/RIGHT SIDEBAR
-  * Add "left" or "right" in modal parent div, after class="modal".
-  * Get free snippets on bootpen.com
-  *******************************/
+.ButtonJobOnHover {
+  background-color: unset;
+  border: 2px solid white;
+  color: white;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+}
+
+.ButtonJobOnHover:hover {
+  background-color: white;
+  color: blue;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+}
+
+.ResponsiveMenu {
+  display: none !important;
+}
+
+@media (max-width: 832px) {
+  .NormalMenu {
+    display: none !important;
+  }
+  .ResponsiveMenu {
+    display: block !important;
+  }
+}
+
+.fa-navicon:before,
+.fa-reorder:before,
+.fa-bars:before {
+  content: "\f0c9";
+  color: white;
+}
+
+@media (max-width: 510px) {
+  .container {
+    max-width: 96%;
+  }
+}
+
+header {
+  background-color: #2f2ea6ff;
+  position: fixed;
+}
+
+header.stivky {
+  background: white;
+  height: 50px;
+  line-height: 50px;
+  color: black;
+  -webkit-box-shadow: 0px 2px 10px #000;
+          box-shadow: 0px 2px 10px #000;
+}
+
+header.stivky nav a {
+  color: black;
+}
+
+header.stivky .ButtonJob {
+  background-color: blue !important;
+  border: 2px solid white !important;
+  color: white;
+}
+
+header.stivky .ButtonJobOnHover {
+  background-color: white;
+  border: 2px solid blue;
+  color: blue;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+}
+
+header.stivky .ButtonJobOnHover:hover {
+  background-color: blue;
+  color: white;
+  -webkit-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+}
+
+header.stivky .fa-navicon:before,
+header.stivky .fa-reorder:before,
+header.stivky .fa-bars:before {
+  content: "\f0c9";
+  color: black;
+}
+
+.wrapper {
+  min-height: 80px !important;
+}
+
+.fa-navicon:before,
+.fa-reorder:before,
+.fa-bars:before {
+  content: "\f0c9";
+  color: white;
+}
+
 .modal.left .modal-dialog,
 .modal.right .modal-dialog {
   position: fixed;
@@ -1263,9 +1471,9 @@ input:checked + .slider:before {
   width: 320px;
   height: 100%;
   /* -webkit-transform: translate3d(0%, 0, 0);
-      -ms-transform: translate3d(0%, 0, 0);
-      -o-transform: translate3d(0%, 0, 0);
-      transform: translate3d(0%, 0, 0); */
+  -ms-transform: translate3d(0%, 0, 0);
+  -o-transform: translate3d(0%, 0, 0);
+  transform: translate3d(0%, 0, 0); */
 }
 
 .modal.left .modal-content,
@@ -1286,10 +1494,11 @@ input:checked + .slider:before {
 }
 
 /* .modal.left.fade.in .modal-dialog {
-      left: 0;
-    } */
+  left: 0;
+} */
 /*Right*/
 .modal.right.fade .modal-dialog {
+  right: -320px;
   -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
   transition: opacity 0.3s linear, right 0.3s ease-out;
 }
@@ -1343,17 +1552,15 @@ input:checked + .slider:before {
   color: #fff;
 }
 
-.AccountCreatingType {
-  background-color: #e1f2e5;
-  color: green;
-  -webkit-transition-duration: 0.3s;
-          transition-duration: 0.3s;
+nav a {
+  color: #fff;
+  text-decoration: none !important;
+  font-size: 15px !important;
+  margin: 0 7px !important;
 }
 
-.AccountCreatingType:hover {
-  background-color: green;
-  color: white;
-  -webkit-transition-duration: 0.3s;
-          transition-duration: 0.3s;
+.modal.left .modal-dialog,
+.modal.right .modal-dialog {
+  width: 250px !important;
 }
 /*# sourceMappingURL=jobSearch.css.map */

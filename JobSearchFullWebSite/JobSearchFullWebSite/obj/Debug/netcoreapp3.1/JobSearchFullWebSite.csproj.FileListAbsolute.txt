@@ -237,3 +237,8 @@ C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\obj\D
 C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\obj\Debug\netcoreapp3.1\Razor\Views\About\Terms.cshtml.g.cs
 C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\obj\Debug\netcoreapp3.1\Razor\Views\Shared\BlogPartialView.cshtml.g.cs
 C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\obj\Debug\netcoreapp3.1\JobSearchFullWebSite.csprojAssemblyReference.cache
+C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
+C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll

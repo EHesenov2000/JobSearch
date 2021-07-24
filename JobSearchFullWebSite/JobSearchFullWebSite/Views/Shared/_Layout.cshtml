@@ -8,19 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JobSearch</title>
-    <!-- ---ForSidebar--- -->
-    <link rel="stylesheet"
-          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-    <link rel="stylesheet"
-          href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" />
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+
     <!-- Slick Slider CSS only -->
 
     <link rel="stylesheet"
@@ -49,265 +37,74 @@
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.min.css"
           integrity="sha512-YBSrHBAMjFhWHodf0RF58XB/x9lmuwBtyJv1LWDHQa1nOaWNXfG3Etc/lEXfW+qBx8ne79JnzccDs59je/ccVA=="
           crossorigin="anonymous" />
+    <link rel="stylesheet" href="~/Navbar2/bootstrap3min.css">
+    <link rel="stylesheet" href="~/Navbar2/index.css">
+    <!-- ---ForSidebar--- -->
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+    <link rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css" />
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
     <link rel="stylesheet" href="~/css/jobSearch.css" />
 </head>
 <body>
-    <!-- HEADER -->
-    <header style="
-        background-image: url('@Html.Raw("/SiteImages/bg-slider2.jpg")');
-        background-repeat: no-repeat;
-        background-size: cover;
-        overflow: hidden !important;
-      "
-            class="d-flex justify-content-center align-items-center flex-column">
-        <div class="
-          topnav
-          d-flex
-          align-items-center
-          justify-content-center justify-content-around
-          my-4
-        "
-             id="myTopnav">
-            <div class="logoImage d-flex align-items-center">
-                <img class="logo"
-                     src="~/SiteImages/@service.GetSetting().HeaderLogo"
-                     alt="Yuklenmedi" />
-            </div>
-
-            <ul class="d-flex align-items-center justify-content-end normal-menu">
-                <li type="none">
-                    <a asp-action="index" asp-controller="home" style="color: white" class="menu-item">Home</a>
-                </li>
-                <li type="none" class="mx-3">
-                    <a asp-action="index" asp-controller="job" style="color: white" class="menu-item">Find Jobs</a>
-                </li>
-                <li type="none">
-                    <a asp-action="index" asp-controller="employer" style="color: white" class="menu-item">Employers</a>
-                </li>
-                <li type="none" class="mx-3">
-                    <a asp-action="index" asp-controller="candidate" style="color: white" class="menu-item">Candidates</a>
-                </li>
-                <li type="none">
-                    <a asp-action="index" asp-controller="blog" style="color: white" class="menu-item">Blog</a>
-                </li>
-
-                <li class="dropdown" type="none">
-                    <a class="ms-3 dropdown-toggle noselect"
-                       id="dropdownMenu2"
-                       data-bs-toggle="dropdown"
-                       aria-expanded="false"
-                       style="text-decoration: none; color: white">
-                        Pages
-                    </a>
-                    <ul class="dropdown-menu mt-4  " aria-labelledby="dropdownMenu2">
-                        <li class="d-flex flex-row align-items-center justify-content-start">
-                            <a asp-action="index" asp-controller="about" class="dropdown-item" style="text-align-last:justify">
-                                <button class="bg-unset border-0 w-100" type="button">About</button>
-
-                            </a>
+    <div class="wrapper">
+        <header style="z-index: 1;">
+            <div class="mx-3">
+                <div id="logo">Job Search</div>
+                <nav class="d-flex flex-row NormalMenu">
+                    <a asp-action="index" asp-controller="home">Home</a>
+                    <a asp-action="index" asp-controller="job">Jobs</a>
+                    <a asp-action="index" asp-controller="employer">Employers</a>
+                    <a asp-action="index" asp-controller="candidate">Candidates</a>
+                    <a asp-action="index" asp-controller="blog">Blog</a>
+                    <ul class="dropdown  " style="display: inline-flex !important;align-items: center;">
+                        <li type="none" href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size:15px">
+                            Pages
                         </li>
-                        <li class="d-flex flex-row align-items-center justify-content-start">
-                            <a asp-action="index" asp-controller="contact" class="dropdown-item" style="text-align-last:justify">
-                                <button type="button" class="bg-unset border-0 w-100">
-                                    Contact
-                                </button>
-                            </a>
-
-                        </li>
-                        <li class="d-flex flex-row align-items-center justify-content-start">
-                            <a asp-action="faq" asp-controller="about" class="dropdown-item " style="text-align-last:justify">
-                                <button type="button" class="bg-unset border-0 w-100">
-                                    FAQ
-                                </button>
-                            </a>
-
-                        </li>
-                        <li class="d-flex flex-row align-items-center justify-content-start">
-                            <a asp-action="terms" asp-controller="about" class="dropdown-item" style="text-align-last:justify">
-                                <button type="button" class="bg-unset border-0 w-100">
-                                    Terms
-                                </button>
-                            </a>
-
-                        </li>
+                        <ul class="dropdown-menu">
+                            <li class=""><a asp-action="index" asp-controller="about">About</a></li>
+                            <li><a asp-action="faq" asp-controller="about">FAQ</a></li>
+                            <li><a asp-action="terms" asp-controller="about">Terms</a></li>
+                            <li class="divider"></li>
+                            <li><a asp-action="index" asp-controller="contact">Contact</a></li>
+                            <li class="divider"></li>
+                            @*<li><a asp-action="index" asp-controller="home">One more separated link</a></li>*@
+                        </ul>
                     </ul>
-                </li>
-
-                <a href="" class="mx-4">
-                    <button class="
-                bg-unset
-                white
-                border-radius border-light
-                py-2
-                px-4
-                duration
-              ">
-                        Login / Register
-                    </button>
-                </a>
-                <a href="">
-                    <button class="bg-white border-light py-2 px-4 border-radius"
-                            style="color: #302eaa">
-                        Add Job
-                    </button>
-                </a>
-            </ul>
-
-            <div class="salam d-flex align-items-center mx-3">
-                <img class="logo"
-                     src="~/SiteImages/@service.GetSetting().HeaderResponsiveLogo"
-                     alt="Yuklenmedi" />
+                    <a href="" style="margin-left: 10px; text-decoration: none;" class="d-flex flex-row align-items-center"><button class="ButtonJobOnHover border-radius px-2 py-2 " style="line-height: normal;"><span>Login / Register</span></button></a>
+                    <a href="" style="margin-left: 7px; text-decoration: none;" class="d-flex flex-row align-items-center"><button class="ButtonJob border-radius px-2 py-2 " style="line-height: normal;"><span>Add Job</span></button></a>
+                </nav>
+                <nav class="d-flex flex-row ResponsiveMenu">
+                    <a href=""><i class="far fa-user UserOnScroll"></i></a>
+                    <a class="">
+                        <i class="fas fa-bars " data-toggle="modal"
+                           data-target="#myModal2"> </i>
+                    </a>
+                </nav>
             </div>
-            <div class="responsive-menu">
-                <ul class="
-              d-flex
-              justify-content-center
-              align-items-center align-content-center
-            ">
-                    <li type="none"
-                        class="
-                d-flex
-                justify-content-center
-                align-items-center align-content-center
-              ">
-                        <a href="" class="">
-                            <i class="fas fa-user fs-4" style="font-weight: 100"></i>
-                        </a>
-                    </li>
-                    <li type="none"
-                        class="
-                d-flex
-                justify-content-center
-                align-items-center align-content-center
-              ">
-                        <i class="fas fa-bars ms-3 fs-4" data-toggle="modal"
-                           data-target="#myModal2"></i>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="row mt-5 d-flex justify-content-sm-around container">
-            <div class="col-7 responsiveForm">
-                <div class="SearchForm white mt-5" style="width: fit-content">
-                    <h2 class="w-50">Find Your Perfect Job Match</h2>
-                    <p>Find Jobs, Employment & Career Opportunities</p>
+        </header>
 
-                    <form action="">
-                        <div class="input-group d-flex px-1 bg-white border-radius">
-                            <span class="
-                    input-group-text
-                    bg-white
-                    py-4
-                    border-start-0
-                    inputSpan
-                  ">
-                                <i class="fas fa-search"></i><input type="text"
-                                                                    class="form-control bg-white border-0"
-                                                                    placeholder="Job title..." />
-                            </span>
-                            <span class="input-group-text bg-white py-4 border-end-0 inputSpan">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <div class="ms-3 d-flex Cities">
-                                    <select name="Cities" id="" class="Cities" style="width:150px">
-                                        <option value="" disabled selected>Şəhər seç</option>
-                                        @foreach (var item in service.GetCities())
-                                        {
-                                            <option value="">@item.CityName</option>
+        <a id="scrollToTop" class="hide" href="#" style="z-index: 1;">
+            <i class="fa fa-arrow-circle-up"></i>
+        </a>
+    </div>
 
-                                        }
-                                    </select>
-                                </div>
-                            </span>
-
-                            <a href=""
-                               class="d-flex justify-content-end align-items-center findJob">
-                                <button type="submit"
-                                        class="background-yellow border-0 button white">
-                                    Find Jobs
-                                </button>
-                            </a>
-                        </div>
-                    </form>
-                    <br />
-                </div>
-                <span class="d-flex">
-                    <span class="white">Popular Searchers : &nbsp;&nbsp;</span>
-                    <span class="col-7 white">
-                        @for (int i = 0; i < service.GetTopFiveCategories().Count; i++)
-                        {
-                            if (i == service.GetTopFiveCategories().Count - 1)
-                            {
-                                <a>@service.GetTopFiveCategories()[i].Name</a>
-                            }
-                            else
-                            {
-                                <a>@service.GetTopFiveCategories()[i].Name,</a>
-                                Html.Raw("&nbsp;");
-                            }
-                        }
-
-
-
-                    </span>
-                </span>
-            </div>
-            <div class="col-5">
-                <div class="rightImage">
-                    <img src="~/SiteImages/slider2.png"
-                         alt="" />
-                </div>
-            </div>
-            <div class="d-flex ms-3">
-                <img src="~/SiteImages/slider21.png"
-                     alt=""
-                     class="ms-3 pb-5" />
-            </div>
-        </div>
-    </header>
 
     @RenderBody()
 
     <div class="container demo">
         <!-- Modal -->
-        <div class="modal left fade"
-             id="myModal"
-             tabindex="-1"
-             role="dialog"
-             aria-labelledby="myModalLabel">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button"
-                                class="close"
-                                data-dismiss="modal"
-                                aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">Left Sidebar</h4>
-                    </div>
-
-                    <div class="modal-body">
-                        <p>
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life
-                            accusamus terry richardson ad squid. 3 wolf moon officia aute,
-                            non cupidatat skateboard dolor brunch. Food truck quinoa
-                            nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua
-                            put a bird on it squid single-origin coffee nulla assumenda
-                            shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore
-                            wes anderson cred nesciunt sapiente ea proident. Ad vegan
-                            excepteur butcher vice lomo. Leggings occaecat craft beer
-                            farm-to-table, raw denim aesthetic synth nesciunt you probably
-                            haven't heard of them accusamus labore sustainable VHS.
-                        </p>
-                    </div>
-                </div>
-                <!-- modal-content -->
-            </div>
-            <!-- modal-dialog -->
-        </div>
         <!-- modal -->
         <!-- Modal -->
-        <div class="modal right fade"
+        <div class="modal right "
              id="myModal2"
              tabindex="-1"
              role="dialog"
@@ -476,29 +273,9 @@
         </section>
     </footer>
 </body>
-<!-- Jquery -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-     
-        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-        crossorigin="anonymous"
-        referrerpolicy="no-referrer"></script>
 
-
-<!-- ---ForSidebar--- -->
-<!-- -- -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0/jquery.counterup.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mixitup/3.3.1/mixitup.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 </html>
+
 <!-- --MAP --- -->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSLSFRa0DyBj9VGzT7GM6SFbSMcG0YNBM"></script>
 <script type="text/javascript">
@@ -594,9 +371,28 @@
         });
     }
 </script>
+
+<script src="~/Navbar2/bootstrap3min.js"></script>
+<script src="~/Navbar2/jquery1.js"></script>
+<script src="~/Navbar2/index.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0/jquery.counterup.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mixitup/3.3.1/mixitup.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/parallax/3.1.0/parallax.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/4.2.2/masonry.pkgd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script src="~/js/index.js"></script>
+<!-- ---ForSidebar--- -->
+<!-- Jquery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <!-- SlickSlider -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"
         integrity="sha512-XtmMtDEcNz2j7ekrtHvOVR4iwwaD6o/FUJe6+Zq+HgcCsk3kj4uSQQR8weQ2QVj1o0Pk6PwYLohm206ZzNfubg=="
         crossorigin="anonymous"
         referrerpolicy="no-referrer"></script>
-<script src="~/js/index.js"></script>

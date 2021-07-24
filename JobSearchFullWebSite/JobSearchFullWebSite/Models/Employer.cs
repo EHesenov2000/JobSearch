@@ -45,6 +45,8 @@ namespace JobSearchFullWebSite.Models
         public string CompanyContent { get; set; }
         [StringLength(maximumLength: 100,ErrorMessage ="Maksimum uzunluq 100-dur")]
         public string Website { get; set; }
+        public string AppUserId { get; set; }
+        public AppUser AppUser { get; set; }
         public List<EmployerContact> EmployerContacts { get; set; }
         public List<EmployerImage> EmployerImages { get; set; }
         public List<Job> Jobs { get; set; }
