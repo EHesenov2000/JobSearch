@@ -247,3 +247,4 @@ C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\obj\D
 C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
 C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\obj\Debug\netcoreapp3.1\Razor\Views\Account\CandidateEdit.cshtml.g.cs
 C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\obj\Debug\netcoreapp3.1\Razor\Views\Account\EmployerEdit.cshtml.g.cs
+C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\obj\Debug\netcoreapp3.1\Razor\Views\Candidate\CandidateDashboard.cshtml.g.cs

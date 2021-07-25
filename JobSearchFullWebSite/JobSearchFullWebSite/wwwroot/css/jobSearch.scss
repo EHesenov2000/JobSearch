@@ -2,6 +2,15 @@
   width: 150px;
   height: 50px;
 }
+@media(max-width:750px) {
+    .ImageAndUserName {
+        display: block !important;
+    }
+
+    .UserImage {
+        justify-content: center !important;
+    }
+}
 .white {
   color: white;
 }
@@ -869,8 +878,8 @@ input:checked + .slider:before {
   color: grey;
 }
 .UserProfileItem:hover {
-  background-color: #e8f0fa;
-  color: blue;
+  background-color: white;
+  color: blue !important;
   max-width: fit-content;
 }
 html,

@@ -1,0 +1,489 @@
+﻿
+@{
+    ViewData["Title"] = "CandidateDashboard";
+}
+
+    @*<main style="background-color: #e8f0fa" class="">
+        <div class="mx-3">
+            <div class="row centerOnClick">
+                <div class="col-lg-3 bg-white py-5 px-3 sidebar">
+                    <div class="">
+                        <div class="d-flex flex-row">
+                            <div class="UserImage d-flex align-items-center">
+                                <img src="./../SiteImages/member4.jpg"
+                                     alt=""
+                                     style="width: 60px; height: 60px; border-radius: 50%" />
+                            </div>
+                            <div class="
+                    d-flex
+                    flex-column
+                    ms-3
+                    align-items-center
+                    justify-content-center
+                  ">
+                                <div class="UserName"><b>User Name</b></div>
+                                <div class="UserCity">User City</div>
+                                <div class="UserProfileButton">
+                                    <a href="">
+                                        <button class="btn btn-primary" style="font-size: 10px">
+                                            View Profile
+                                        </button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex flex-column">
+                            <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                                <div class="Icon"><i class="far fa-file-alt"></i></div>
+                                <div class="SectionName ms-2">User Dashboard</div>
+                            </a>
+                            <a href=""
+                               class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                                <div class="Icon"><i class="far fa-user-circle"></i></div>
+                                <div class="SectionName ms-2">Profile</div>
+                            </a>
+                            <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                                <div class="Icon"><i class="fas fa-file-signature"></i></div>
+                                <div class="SectionName ms-2">My resume</div>
+                            </a>
+                            <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                                <div class="Icon"><i class="fas fa-volume-up"></i></div>
+                                <div class="SectionName ms-2">My applied</div>
+                            </a>
+                            <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                                <div class="Icon"><i class="far fa-bookmark"></i></div>
+                                <div class="SectionName ms-2">Shortlist Jobs</div>
+                            </a>
+                            <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                                <div class="Icon"><i class="far fa-user"></i></div>
+                                <div class="SectionName ms-2">Following Employers</div>
+                            </a>
+                            <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                                <div class="Icon"><i class="fas fa-volume-up"></i></div>
+                                <div class="SectionName ms-2">Alert Jobs</div>
+                            </a>
+                            <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                                <div class="Icon"><i class="fab fa-weixin"></i></div>
+                                <div class="SectionName ms-2">Messages</div>
+                            </a>
+                            <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                                <div class="Icon"><i class="fas fa-lock"></i></div>
+                                <div class="SectionName ms-2">Change Password</div>
+                            </a>
+                            <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                                <div class="Icon"><i class="far fa-trash-alt"></i></div>
+                                <div class="SectionName ms-2">Delete Profile</div>
+                            </a>
+                            <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                                <div class="Icon"><i class="fas fa-power-off"></i></div>
+                                <div class="SectionName ms-2">Logout</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9 py-5 leftSection">
+                    <div class="d-flex flex-column">
+                        <div>
+                            <button class="duyme1 btn btn-primary">SideBar</button>
+                        </div>
+                        <h4 class="mt-4"><b>Applications statistics</b></h4>
+                        <br />
+                        <div class="row g-3">
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                                <div class="
+                      card
+                      p-3
+                      d-flex
+                      flex-row
+                      border-radius
+                      justify-content-center
+                      align-items-center
+                    ">
+                                    <div class="
+                        DashboardIcon
+                        d-flex
+                        flex-row
+                        align-items-center
+                        justify-content-center
+                        border-radius
+                      "
+                                         style="
+                        background-color: #e8f0fa;
+                        width: 40px;
+                        height: 40px;
+                      ">
+                                        <i class="fas fa-briefcase blue"></i>
+                                    </div>
+                                    <div class="d-flex flex-column ms-3">
+                                        <b class="blue d-flex justify-content-end">4</b>
+                                        <span class="grey">Applied Jobs</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                                <div class="
+                      card
+                      p-3
+                      d-flex
+                      flex-row
+                      border-radius
+                      justify-content-center
+                      align-items-center
+                    ">
+                                    <div class="
+                        DashboardIcon
+                        d-flex
+                        flex-row
+                        align-items-center
+                        justify-content-center
+                        border-radius
+                      "
+                                         style="
+                        background-color: #fef6e5;
+                        width: 40px;
+                        height: 40px;
+                        color: #f7aa00;
+                      ">
+                                        <i class="far fa-comments"></i>
+                                    </div>
+                                    <div class="d-flex flex-column ms-3">
+                                        <b class="d-flex justify-content-end"
+                                           style="color: #f7aa00">4</b>
+                                        <span class="grey">Applied Jobs</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                                <div class="
+                      card
+                      p-3
+                      d-flex
+                      flex-row
+                      border-radius
+                      justify-content-center
+                      align-items-center
+                    ">
+                                    <div class="
+                        DashboardIcon
+                        d-flex
+                        flex-row
+                        align-items-center
+                        justify-content-center
+                        border-radius
+                      "
+                                         style="
+                        background-color: #fbeae9;
+                        width: 40px;
+                        height: 40px;
+                        color: #d93025;
+                      ">
+                                        <i class="far fa-eye"></i>
+                                    </div>
+                                    <div class="d-flex flex-column ms-3">
+                                        <b class="d-flex justify-content-end"
+                                           style="color: #d93025">4</b>
+                                        <span class="grey">Applied Jobs</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                                <div class="
+                      card
+                      p-3
+                      d-flex
+                      flex-row
+                      border-radius
+                      justify-content-center
+                      align-items-center
+                    ">
+                                    <div class="
+                        DashboardIcon
+                        d-flex
+                        flex-row
+                        align-items-center
+                        justify-content-center
+                        border-radius
+                      "
+                                         style="
+                        background-color: #eaf6ed;
+                        width: 40px;
+                        height: 40px;
+                        color: #69a853;
+                      ">
+                                        <i class="far fa-bookmark"></i>
+                                    </div>
+                                    <div class="d-flex flex-column ms-3">
+                                        <b class="d-flex justify-content-end"
+                                           style="color: #69a853">4</b>
+                                        <span class="grey">Applied Jobs</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div id="container"></div> 
+                    <div id="chartContainer"
+                         style="height: 300px; width: 100%"
+                         class="mt-5"></div>
+                </div>
+            </div>
+        </div>
+    </main>*@
+  
+
+<div class="cont">
+    <div class="main px-4">
+
+        <div class="d-flex flex-column">
+            <h4 class="mt-4"><b>Applications statistics</b></h4>
+            <br />
+            <div class="row g-3 " style="max-width:100%;">
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="
+                      card
+                      p-3
+                      d-flex
+                      flex-row
+                      border-radius
+                      justify-content-center
+                      align-items-center
+                    ">
+                        <div class="
+                        DashboardIcon
+                        d-flex
+                        flex-row
+                        align-items-center
+                        justify-content-center
+                        border-radius
+                      "
+                             style="
+                        background-color: #e8f0fa;
+                        width: 40px;
+                        height: 40px;
+                      ">
+                            <i class="fas fa-briefcase blue"></i>
+                        </div>
+                        <div class="d-flex flex-column ms-3">
+                            <b class="blue d-flex justify-content-end">4</b>
+                            <span class="grey">Applied Jobs</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="
+                      card
+                      p-3
+                      d-flex
+                      flex-row
+                      border-radius
+                      justify-content-center
+                      align-items-center
+                    ">
+                        <div class="
+                        DashboardIcon
+                        d-flex
+                        flex-row
+                        align-items-center
+                        justify-content-center
+                        border-radius
+                      "
+                             style="
+                        background-color: #fef6e5;
+                        width: 40px;
+                        height: 40px;
+                        color: #f7aa00;
+                      ">
+                            <i class="far fa-comments"></i>
+                        </div>
+                        <div class="d-flex flex-column ms-3">
+                            <b class="d-flex justify-content-end"
+                               style="color: #f7aa00">4</b>
+                            <span class="grey">Applied Jobs</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="
+                      card
+                      p-3
+                      d-flex
+                      flex-row
+                      border-radius
+                      justify-content-center
+                      align-items-center
+                    ">
+                        <div class="
+                        DashboardIcon
+                        d-flex
+                        flex-row
+                        align-items-center
+                        justify-content-center
+                        border-radius
+                      "
+                             style="
+                        background-color: #fbeae9;
+                        width: 40px;
+                        height: 40px;
+                        color: #d93025;
+                      ">
+                            <i class="far fa-eye"></i>
+                        </div>
+                        <div class="d-flex flex-column ms-3">
+                            <b class="d-flex justify-content-end"
+                               style="color: #d93025">4</b>
+                            <span class="grey">Applied Jobs</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                    <div class="
+                      card
+                      p-3
+                      d-flex
+                      flex-row
+                      border-radius
+                      justify-content-center
+                      align-items-center
+                    ">
+                        <div class="
+                        DashboardIcon
+                        d-flex
+                        flex-row
+                        align-items-center
+                        justify-content-center
+                        border-radius
+                      "
+                             style="
+                        background-color: #eaf6ed;
+                        width: 40px;
+                        height: 40px;
+                        color: #69a853;
+                      ">
+                            <i class="far fa-bookmark"></i>
+                        </div>
+                        <div class="d-flex flex-column ms-3">
+                            <b class="d-flex justify-content-end"
+                               style="color: #69a853">4</b>
+                            <span class="grey">Applied Jobs</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="container"></div>
+        <div id="chartContainer"
+             style="height: 300px; width: 100%"
+             class="mt-5"></div>
+    </div>
+    <div class="sidebar ps-3">
+        <div class="">
+            <div class="ImageAndUserName flex-row">
+                <div class="UserImage d-flex align-items-center">
+                    <img src="./../SiteImages/member4.jpg"
+                         alt=""
+                         style="width: 60px; height: 60px; border-radius: 50%" />
+                </div>
+                <div class="
+                    d-flex
+                    flex-column
+                    ms-3
+                    align-items-center
+                    justify-content-center
+                  ">
+                    <div class="UserName"><b>User Name</b></div>
+                    <div class="UserCity">User City</div>
+                    <div class="UserProfileButton">
+                        <a href="">
+                            <button class="btn btn-primary" style="font-size: 10px">
+                                View Profile
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-column">
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="far fa-file-alt"></i></div>
+                    <div class="SectionName ms-2">User Dashboard</div>
+                </a>
+                <a 
+                   class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="far fa-user-circle"></i></div>
+                    <div class="SectionName ms-2">Profile</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="fas fa-file-signature"></i></div>
+                    <div class="SectionName ms-2">My resume</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="fas fa-volume-up"></i></div>
+                    <div class="SectionName ms-2">My applied</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="far fa-bookmark"></i></div>
+                    <div class="SectionName ms-2">Shortlist Jobs</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="far fa-user"></i></div>
+                    <div class="SectionName ms-2">Following Employers</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="fas fa-volume-up"></i></div>
+                    <div class="SectionName ms-2">Alert Jobs</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="fab fa-weixin"></i></div>
+                    <div class="SectionName ms-2">Messages</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="fas fa-lock"></i></div>
+                    <div class="SectionName ms-2">Change Password</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="far fa-trash-alt"></i></div>
+                    <div class="SectionName ms-2">Delete Profile</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="fas fa-power-off"></i></div>
+                    <div class="SectionName ms-2">Logout</div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    body{
+        font-size:15px !important;
+    }
+    .sidebar {
+        background: black;
+        color: white;
+        position: fixed;
+        width: 20%;
+        height: 100%;
+        left: 0;
+        overflow: auto;
+        display: block;
+        margin-top: -30px !important;
+        padding-top:40px !important;
+    }
+
+    .main {
+        background: silver;
+        color: black;
+        width: 80%;
+        float: right;
+    }
+
+        .main p {
+            margin-bottom: 50px;
+        }
+
+    footer {
+        display: none;
+    }
+    .ImageAndUserName{display:flex;}
+
+</style>

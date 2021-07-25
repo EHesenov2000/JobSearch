@@ -1,9 +1,17 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 .logo {
   width: 150px;
   height: 50px;
 }
-
+@media(max-width:750px) {
+    .ImageAndUserName {
+        display: block !important;
+    
+    }
+    .UserImage {
+        justify-content:center !important;
+    }
+}
 .white {
   color: white;
 }
@@ -1136,12 +1144,10 @@ input:checked + .slider:before {
 }
 
 .UserProfileItem:hover {
-  background-color: #e8f0fa;
-  color: blue;
-  max-width: -webkit-fit-content;
-  max-width: -moz-fit-content;
-  max-width: fit-content;
-}
+        background-color: white;
+        color: blue !important;
+        max-width: fit-content;
+ }
 
 html,
 body,
