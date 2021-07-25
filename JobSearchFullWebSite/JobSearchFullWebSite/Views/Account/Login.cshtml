@@ -1,0 +1,30 @@
+﻿@using JobSearchFullWebSite.ViewModels
+@model CandidateAndEmployerLoginModel
+@{
+    ViewData["Title"] = "Login";
+}
+
+    <main>
+        <div class="container mt-5">
+            <div class="d-flex flex-column align-items-center justify-content-center">
+                <h4><b>Login</b></h4>
+                <form   class="d-flex flex-column w-50" asp-action="login" asp-controller="account">
+                    <label asp-for="@Model.UserName">Username or email</label>
+                    <input type="text"  asp-for="@Model.UserName"
+                           class="backColorBlue border-radius border-0 p-3"
+                           placeholder="Username or email" />
+                    <br />
+                    <br />
+                    <label  asp-for="@Model.Password">Password</label>
+                    <input type="password" asp-for="@Model.Password"
+                           class="backColorBlue border-radius border-0 p-3"
+                           placeholder="Password" />
+                    <button class="btn btn-primary mt-3 w-25 py-2" type="submit">Login</button>
+                </form>
+                <br />
+                <div class="mt-3"> <span class="grey">Hesabiniz Yoxdur?</span><a asp-action="candidateregister">Register</a></div>
+            </div>
+        </div>
+    </main>
+    
+

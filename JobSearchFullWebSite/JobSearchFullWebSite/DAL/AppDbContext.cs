@@ -48,5 +48,6 @@ namespace JobSearchFullWebSite.DAL.AppDbContext
         public DbSet<Term> Terms { get; set; }
         public DbSet<Position> Positions { get; set; }
         public DbSet<SiteContact> SiteContacts { get; set; }
+        public DbSet<Admin> Admins { get; set; }
     }
 }

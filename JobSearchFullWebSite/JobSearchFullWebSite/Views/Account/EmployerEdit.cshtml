@@ -1,0 +1,48 @@
+﻿@using JobSearchFullWebSite.ViewModels
+@model EmployerEditModel
+@{
+    ViewData["Title"] = "EmployerEdit";
+}
+
+
+<main>
+    <div class="container mt-5">
+        <div class="d-flex flex-column align-items-center justify-content-center">
+            <h4><b>Employer Edit</b></h4>
+            <form class="d-flex flex-column w-50" asp-action="employeredit" asp-controller="account" method="post">
+
+                <label asp-for="@Model.UserName">Username or email</label>
+                <input asp-for="@Model.UserName"
+                       class="backColorBlue border-radius border-0 p-3"
+                       placeholder="Username or email" />
+                <span class="text-danger" asp-validation-for="@Model.UserName"></span>
+                <br />
+                <label asp-for="@Model.CurrentPassword">Current Password</label>
+                <input type="password" asp-for="@Model.CurrentPassword"
+                       class="backColorBlue border-radius border-0 p-3"
+                       placeholder="CurrentPassword" />
+                <span class="text-danger" asp-validation-for="@Model.CurrentPassword"></span>
+                <br />
+                <label asp-for="@Model.Password">New Password</label>
+                <input type="password" asp-for="@Model.Password"
+                       class="backColorBlue border-radius border-0 p-3"
+                       placeholder="Password" />
+                <span class="text-danger" asp-validation-for="@Model.Password"></span>
+                <br />
+                <br />
+                <label asp-for="@Model.ConfirmedPassword"> Confirm New Password</label>
+                <input type="password" asp-for="@Model.ConfirmedPassword"
+                       class="backColorBlue border-radius border-0 p-3"
+                       placeholder="ConfirmedPassword" />
+                <span class="text-danger" asp-validation-for="@Model.ConfirmedPassword"></span>
+                <br />
+
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <button class="btn btn-primary mt-3 w-50 py-2" type="submit">Edit profile</button>
+            </form>
+        </div>
+    </div>
+</main>
+
+
+

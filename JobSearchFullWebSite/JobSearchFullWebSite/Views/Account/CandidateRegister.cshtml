@@ -1,0 +1,79 @@
+﻿@using JobSearchFullWebSite.ViewModels
+@model CandidateRegisterModel 
+@{
+    ViewData["Title"] = "CandidateRegister";
+}
+
+
+<main>
+    <div class="container mt-5">
+        <div class="d-flex flex-column align-items-center justify-content-center">
+            <h4><b>Candidate Register</b></h4>
+            <form class="d-flex flex-column w-50" asp-action="candidateregister" asp-controller="account" method="post">
+                <div class="row d-flex flex-row justify-content-center">
+
+                    <div class="
+                  col-md-6 col-12
+                  AccountCreatingType
+                  border-radius
+                  py-2
+                  d-flex
+                  flex-row
+                  align-items-center
+                  justify-content-center
+                  w-25
+                ">
+                        <a asp-action="candidateregister" asp-controller="account" >
+                            <i class="far fa-user"></i>
+                            <span class="ms-2">Candidate</span>
+                        </a>
+
+                    </div>
+                    <div class="
+                  col-md-6 col-12
+                  AccountCreatingType
+                  border-radius
+                  py-2
+                  d-flex
+                  flex-row
+                  align-items-center
+                  justify-content-center
+                  w-25
+                  ms-2
+                ">
+                        <a asp-action="employerregister" asp-controller="account" >
+                            <i class="fas fa-briefcase"></i>
+                            <span class="ms-2">Employer</span>
+                        </a>
+
+                    </div>
+                </div>
+
+                <label asp-for="@Model.UserName">Username or email</label>
+                <input asp-for="@Model.UserName"
+                       class="backColorBlue border-radius border-0 p-3"
+                       placeholder="Username or email" />
+                <span class="text-danger" asp-validation-for="@Model.UserName"></span>
+                <br />
+                <br />
+                <label asp-for="@Model.Password">Password</label>
+                <input type="password" asp-for="@Model.Password"
+                       class="backColorBlue border-radius border-0 p-3"
+                       placeholder="Password" />
+                <span class="text-danger" asp-validation-for="@Model.Password"></span>
+                <br />
+                <br />
+                <label asp-for="@Model.ConfirmedPassword">Confirm Password</label>
+                <input type="password" asp-for="@Model.ConfirmedPassword"
+                       class="backColorBlue border-radius border-0 p-3"
+                       placeholder="ConfirmedPassword" />
+                <span class="text-danger" asp-validation-for="@Model.ConfirmedPassword"></span>
+                <br />
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <button class="btn btn-primary mt-3 w-50 py-2" type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+</main>
+
+

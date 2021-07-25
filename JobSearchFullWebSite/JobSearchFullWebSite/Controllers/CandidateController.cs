@@ -61,5 +61,18 @@ namespace JobSearchFullWebSite.Controllers
             Candidate candidate = _context.Candidates.Include(x=>x.Position).Include(x => x.City).Include(x => x.CandidateSkills).Include(x => x.CandidateImages).Include(x => x.KnowingLanguages).Include(x => x.CandidateCVs).Include(x => x.CandidateAwardItems).Include(x => x.CandidateEducationItems).Include(x => x.CandidateWorkItems).FirstOrDefault(x=>x.Id==id);
             return View(candidate);
         }
+        public IActionResult CandidateCabinet()
+        {
+            AppUser user = _context.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
+            if (_context.Candidates.Any(x=>x.AppUserId==user.Id))
+            {
+                //bura edit sehifesidi
+            }
+            else
+            {
+                //bura create sehifesidi
+            }
+            return null;
+        }
     }
 }

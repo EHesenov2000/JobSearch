@@ -1,6 +1,6 @@
 ﻿@using JobSearchFullWebSite.Services
 @inject LayoutViewModelService service
-
+@using JobSearchFullWebSite.Models 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,8 +79,19 @@
                             @*<li><a asp-action="index" asp-controller="home">One more separated link</a></li>*@
                         </ul>
                     </ul>
-                    <a href="" style="margin-left: 10px; text-decoration: none;" class="d-flex flex-row align-items-center"><button class="ButtonJobOnHover border-radius px-2 py-2 " style="line-height: normal;"><span>Login / Register</span></button></a>
-                    <a href="" style="margin-left: 7px; text-decoration: none;" class="d-flex flex-row align-items-center"><button class="ButtonJob border-radius px-2 py-2 " style="line-height: normal;"><span>Add Job</span></button></a>
+                    @if (User.Identity.Name != null)
+                    {
+                        Candidate candidate = service.GetLoginnedCandidate(User.Identity.Name.ToString());
+                        Employer employer = service.GetLoginnedEmployer(User.Identity.Name.ToString());
+                        <a href="#" style="margin-left: 10px; text-decoration: none;" class="d-flex flex-row ">@User.Identity.Name</a>
+                    }
+                    else
+                    {
+                        <a asp-action="login" asp-controller="account" style="margin-left: 10px; text-decoration: none;" class="d-flex flex-row align-items-center"><button class="ButtonJobOnHover border-radius px-2 py-2 " style="line-height: normal;"><span>Login / Register</span></button></a>
+                        <a style="margin-left: 7px; text-decoration: none;" class="d-flex flex-row align-items-center"><button class="ButtonJob border-radius px-2 py-2 " style="line-height: normal;"><span>Add Job</span></button></a>
+                    }
+
+
                 </nav>
                 <nav class="d-flex flex-row ResponsiveMenu">
                     <a href=""><i class="far fa-user UserOnScroll"></i></a>
@@ -93,10 +104,14 @@
         </header>
 
         <a id="scrollToTop" class="hide" href="#" style="z-index: 1;">
-            <i class="fa fa-arrow-circle-up"></i>
+            <i class="fa fa-arrow-circle-up ScrollDownIcon" style="background-color:red;border-radius:50%;"></i>
         </a>
     </div>
-
+    <style>
+        .ScrollDownIcon:hover{
+            background-color:white !important;
+        }
+    </style>
 
     @RenderBody()
 
