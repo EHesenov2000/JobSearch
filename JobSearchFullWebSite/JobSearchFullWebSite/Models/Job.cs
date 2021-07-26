@@ -54,6 +54,7 @@ namespace JobSearchFullWebSite.Models
         public Employer Employer { get; set; }
         public List<JobContact> Contacts { get; set; }
         public List<JobRequiredLanguage> RequiredLanguages { get; set; }
-
+        public List<JobComment> JobComments { get; set; }
+        public List<Apply> Applies { get; set; }
     }
 }

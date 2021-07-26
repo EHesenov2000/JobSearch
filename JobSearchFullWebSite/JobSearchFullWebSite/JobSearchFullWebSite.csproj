@@ -13,12 +13,17 @@
     <Compile Remove="Migrations\20210721172838_PositionTableAddedToDatabase.Designer.cs" />
     <Compile Remove="Migrations\20210724140806_AppUserCreaed.cs" />
     <Compile Remove="Migrations\20210724140806_AppUserCreaed.Designer.cs" />
+    <Compile Remove="Migrations\20210726094059_LanugagesChangedtoManyToMany.cs" />
+    <Compile Remove="Migrations\20210726094059_LanugagesChangedtoManyToMany.Designer.cs" />
+    <Compile Remove="Migrations\20210726101717_newtablecreatedagainagain.cs" />
+    <Compile Remove="Migrations\20210726101717_newtablecreatedagainagain.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="wwwroot\images\jobImage\" />
     <Folder Include="wwwroot\images\employerImage\" />
     <Folder Include="wwwroot\images\cityImage\" />
+    <Folder Include="wwwroot\images\candidateImage\" />
   </ItemGroup>
 
   <ItemGroup>

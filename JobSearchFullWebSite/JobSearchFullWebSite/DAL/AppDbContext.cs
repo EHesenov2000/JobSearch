@@ -30,7 +30,6 @@ namespace JobSearchFullWebSite.DAL.AppDbContext
         public DbSet<CandidateWorkItem> CandidateWorkItems { get; set; }
         public DbSet<CandidateKnowingLanguage> CandidateKnowingLanguages { get; set; }
         public DbSet<JobRequiredLanguage> JobRequiredLanguages { get; set; }
-        //public DbSet<JobComment> JobComments { get; set; }
         public DbSet<CandidateSkill> CandidateSkills { get; set; }
         public DbSet<CandidateCV> CandidateCVs { get; set; }
         public DbSet<CandidateImage> CandidateImages { get; set; }
@@ -49,5 +48,8 @@ namespace JobSearchFullWebSite.DAL.AppDbContext
         public DbSet<Position> Positions { get; set; }
         public DbSet<SiteContact> SiteContacts { get; set; }
         public DbSet<Admin> Admins { get; set; }
+        public DbSet<Language> Languages { get; set; }
+        public DbSet<JobComment> JobComments { get; set; }
+        public DbSet<Apply> Applies { get; set; }
     }
 }

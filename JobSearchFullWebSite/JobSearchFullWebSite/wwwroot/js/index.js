@@ -256,7 +256,7 @@ window.onload = function () {
   chart.render();
 };
 
-$(".duyme1").click(function () {
-  $(".leftSection").attr("class", "col-lg-9 py-5 leftSection");
-  $(".sidebar").fadeToggle();
-});
+//$(".duyme1").click(function () {
+//  $(".leftSection").attr("class", "col-lg-9 py-5 leftSection");
+//  $(".sidebar").fadeToggle();
+//});

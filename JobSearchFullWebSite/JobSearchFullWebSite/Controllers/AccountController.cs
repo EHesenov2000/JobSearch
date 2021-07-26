@@ -66,7 +66,7 @@ namespace JobSearchFullWebSite.Controllers
                 UserName = candidateModel.UserName,
                 UserStatus=Enums.UserStatus.Candidate
             };
-            
+
             var result = await _userManager.CreateAsync(newUser, candidateModel.Password);
 
             if (!result.Succeeded)
@@ -89,10 +89,14 @@ namespace JobSearchFullWebSite.Controllers
                 }
                 return View();
             }
-
+            Candidate candidate = new Candidate
+            {
+                AppUserId = newUser.Id
+            };
+            _context.Candidates.Add(candidate);
             await _userManager.AddToRoleAsync(newUser, "Candidate");
             await _signInManager.SignInAsync(newUser, true);
-
+            _context.SaveChanges();
             return RedirectToAction("index", "home");
         }
         public IActionResult EmployerRegister()
@@ -145,9 +149,14 @@ namespace JobSearchFullWebSite.Controllers
                 }
                 return View();
             }
-
+            Employer employer = new Employer
+            {
+                AppUserId = newUser.Id
+            };
+            _context.Employers.Add(employer);
             await _userManager.AddToRoleAsync(newUser, "Employer");
             await _signInManager.SignInAsync(newUser, true);
+            _context.SaveChanges();
 
             return RedirectToAction("index", "home");
         }

@@ -1,0 +1,313 @@
+﻿@using JobSearchFullWebSite.DTOs
+@using JobSearchFullWebSite.Enums
+@model CandidateEditDto
+@{
+    ViewData["Title"] = "CandidateProfileEdit";
+}
+
+<div class="cont">
+    <div class="main px-4">
+        <form asp-action="CandidateProfileEdit" asp-controller="candidate">
+            <br />
+            <br />
+            <h4><b>Following Employers </b></h4>
+            <div class="card p-4 mt-4">
+                <b>My Profile</b>
+                <div class="row mt-3">
+                    <div class="col-lg-6 col-12">
+                        <div class="row">
+                            <div class="col-md-2 col-12 d-flex flex-row align-items-center ImageAndUpload">
+                                <img src="./../SiteImages/member4.jpg"
+                                     alt=""
+                                     style="height: 60px; width: 60px"
+                                     class="border-radius" />
+                                <div class="ImageXIcon backColorBlue  border-radius p-2 d-flex align-items-center justify-content-center" style="width: 20px;height: 20px;"><i class="fas fa-times blue"></i></div>
+                            </div>
+                            <dv class="col-md-4 col-12 d-flex flex-row align-items-center mt-2">
+                                <input type="file" id="file" asp-for="@Model.Image" />
+                                <label asp-for="@Model.Image" class=" backColorBlue"><span class="blue">Browse</span> </label>
+                        </div>
+                        <div class="d-flex flex-column mt-4">
+                            <label asp-for="@Model.FullName">FullName</label>
+                            <input type="text" class="border-0 backColorBlue border-radius py-2 px-2" placeholder="Candidate" asp-for="@Model.FullName">
+                            <br>
+                            <label asp-for="@Model.Gender">Gender</label>
+                            <select class="border-radius border-0 backColorBlue py-2 px-2" asp-for="@Model.Gender" asp-items="Html.GetEnumSelectList<Gender>()">
+                            </select>
+                            <br>
+                            <label asp-for="@Model.PhoneNumber">Phone Number</label>
+                            <input type="text" class="border-0 backColorBlue border-radius py-2 px-2" placeholder="Phone Number" asp-for="@Model.PhoneNumber">
+                            <br>
+                            <label asp-for="@Model.Qualification">Qualification</label>
+                            <select class="border-radius border-0 backColorBlue py-2 px-2" asp-for="@Model.Qualification" asp-items="Html.GetEnumSelectList<Qualification>()">
+                            </select>
+                            <br>
+                            <label asp-for="@Model.KnowingLanguageIds">Language</label>
+                            <select class="form-control" asp-for="@Model.KnowingLanguageIds" asp-items="@(new SelectList(ViewBag.Languages,"Id","Name"))">
+                            </select>
+                            <br>
+                            <label asp-for="@Model.WaitingSalary">Salary</label>
+                            <input type="number" class="border-0 backColorBlue border-radius py-2 px-2" placeholder="Phone Number" asp-for="@Model.WaitingSalary">
+                            <br>
+                            <label asp-for="@Model.PositionId">Position</label>
+                            <select class="border-radius border-0 backColorBlue py-2 px-2" asp-for="@Model.PositionId" asp-items="@(new SelectList(ViewBag.Positions,"Id","PositionName"))">
+                                <option class="" selected disabled>Vezife sec</option>
+                            </select>
+                            <br>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-6 col-12">
+                        <div class="d-flex flex-column">
+                            <label asp-for="@Model.BirthdayDate">Birthday date</label>
+                            <input type="date" class="border-0 backColorBlue border-radius py-2 px-2" asp-for="@Model.BirthdayDate">
+                            <br>
+                            <label asp-for="@Model.Age">Age</label>
+                            <input type="number" class="border-0 backColorBlue border-radius py-2 px-2" placeholder="Age" asp-for="@Model.Age">
+                            <br>
+                            <label asp-for="@Model.Email">Email</label>
+                            <input type="email" class="border-0 backColorBlue border-radius py-2 px-2" placeholder="Email" asp-for="@Model.Email">
+                            <br>
+                            <label asp-for="@Model.Experience">Experience</label>
+                            <select class="border-radius border-0 backColorBlue py-2 px-2" class="border-0 backColorBlue border-radius py-2 px-2" placeholder="Experience" asp-for="@Model.Experience" asp-items="Html.GetEnumSelectList<RequiredExperience>()">
+                            </select>
+                            <br>
+                            <label asp-for="@Model.SalaryForTime"> Salary For Time</label>
+                            <select class="border-radius border-0 backColorBlue py-2 px-2" class="border-0 backColorBlue border-radius py-2 px-2" placeholder="Salary for time" asp-for="@Model.SalaryForTime" asp-items="Html.GetEnumSelectList<JobSalaryForTime>()">
+                                >
+
+                            </select>
+                            <br>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="d-flex flex-column">
+                            <label>Description</label>
+                            <div id="editor">
+                                @*@Html.TextBoxFor(x => x.AboutCandidateTextEditor)
+
+                                @Html.TextBoxFor(x => x.AboutCandidateTextEditor, new { @class = "editor" })*@
+
+                                <p>Hello World!</p>
+                                <p>Some initial <strong>bold</strong> text</p>
+                                <p><br></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card p-4 mt-4">
+                <b>Social Network</b>
+                <div class="d-flex flex-column mt-4">
+                    <label asp-for="@Model.FacebookUrl">Facebook Url</label>
+                    <input type="text" class="border-0 backColorBlue border-radius py-2 px-2" placeholder="Facebook" asp-for="@Model.FacebookUrl">
+                    <br>
+                    <label asp-for="@Model.TwitterUrl">Twitter Url</label>
+                    <input type="text" class="border-0 backColorBlue border-radius py-2 px-2" placeholder="Twitter" asp-for="@Model.TwitterUrl">
+                    <br>
+                    <label asp-for="@Model.LinkedinUrl">Linkedin Url</label>
+                    <input type="text" class="border-0 backColorBlue border-radius py-2 px-2" placeholder="Linkedin" asp-for="@Model.LinkedinUrl">
+                    <br>
+                    <label asp-for="@Model.InstagramUrl">Instagram Url</label>
+                    <input type="text" class="border-0 backColorBlue border-radius py-2 px-2" placeholder="Instagram" asp-for="@Model.InstagramUrl">
+                    <br>
+                </div>
+            </div>
+            <div class="card p-4 mt-4">
+                <b>Contact Information</b>
+                <div class="d-flex flex-column mt-4">
+                    <label asp-for="@Model.CityId">Location</label>
+                    <select class="border-radius border-0 backColorBlue py-2 px-2" asp-for="@Model.CityId" asp-items="@(new SelectList(ViewBag.Cities,"Id","CityName"))">
+                        <option class="" selected disabled>Seher sec</option>
+                    </select>
+                    <br>
+                </div>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Save Profile</button>
+        </form>
+    </div>
+    <div class="sidebar ps-3">
+        <div class="">
+            <div class="ImageAndUserName flex-row">
+                <div class="UserImage d-flex align-items-center">
+                    <img src="./../SiteImages/member4.jpg"
+                         alt=""
+                         style="width: 60px; height: 60px; border-radius: 50%" />
+                </div>
+                <div class="
+                    d-flex
+                    flex-column
+                    ms-3
+                    align-items-center
+                    justify-content-center
+                  ">
+                    <div class="UserName"><b>User Name</b></div>
+                    <div class="UserCity">User City</div>
+                    <div class="UserProfileButton">
+                        <a href="">
+                            <button class="btn btn-primary" style="font-size: 10px">
+                                View Profile
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-column">
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="far fa-file-alt"></i></div>
+                    <div class="SectionName ms-2">User Dashboard</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="far fa-user-circle"></i></div>
+                    <div class="SectionName ms-2">Profile</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="fas fa-file-signature"></i></div>
+                    <div class="SectionName ms-2">My resume</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="fas fa-volume-up"></i></div>
+                    <div class="SectionName ms-2">My applied</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="far fa-bookmark"></i></div>
+                    <div class="SectionName ms-2">Shortlist Jobs</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="far fa-user"></i></div>
+                    <div class="SectionName ms-2">Following Employers</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="fas fa-volume-up"></i></div>
+                    <div class="SectionName ms-2">Alert Jobs</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="fab fa-weixin"></i></div>
+                    <div class="SectionName ms-2">Messages</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="fas fa-lock"></i></div>
+                    <div class="SectionName ms-2">Change Password</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="far fa-trash-alt"></i></div>
+                    <div class="SectionName ms-2">Delete Profile</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="fas fa-power-off"></i></div>
+                    <div class="SectionName ms-2">Logout</div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    body {
+        font-size: 15px !important;
+    }
+
+    .sidebar {
+        background: black;
+        color: white;
+        position: fixed;
+        width: 20%;
+        height: 100%;
+        left: 0;
+        overflow: auto;
+        display: block;
+        margin-top: -30px !important;
+        padding-top: 40px !important;
+    }
+
+    .main {
+        background: silver;
+        color: black;
+        width: 80%;
+        float: right;
+    }
+
+        .main p {
+            margin-bottom: 50px;
+        }
+
+    footer {
+        display: none;
+    }
+
+    .ImageAndUserName {
+        display: flex;
+    }
+</style>
+
+
+
+
+@*@section Scripts{
+        <script>
+            $(document).ready(function () {
+                $(document).on("click", ".add-skill", function (e) {
+                    e.preventDefault();
+
+                    var nextIndex = $(this).attr("data-nextIndex");
+
+                    var inputGroup = ` <div class="form-group col-12" data-index="0">
+                        <label for="skillName">Skill name</label>
+                        <input name="Skills[`+ nextIndex + `].Name" type="text" class="silecem"/>
+                        <span class="text-danger"></span>
+
+                        <label for="skillPercent"> Skill percent</label>
+                        <input name="Skills[`+ nextIndex + `].Percent" type="text" class="silecem"/>
+                        <span class="text-danger"></span>
+                        <span><i class="fas fa-minus delete-skill"> </i></span>
+                    </div>`
+
+                    $("#skills").append($(inputGroup))
+
+                    nextIndex = +nextIndex + 1;
+                    console.log(nextIndex)
+
+                    $(this).attr("data-nextIndex", nextIndex)
+                })
+
+                //$(document).on("click", ".delete-skill", function (e) {
+                //    e.preventDefault();
+                //    console.log("test");
+                //    $(".silecem").attr("name", "sagol");
+                //    //$(this).parents(".form-group").empty();
+                //})
+            })
+            for (var i = 0; i < document.getElementsByClassName("delete-skill").length; i++) {
+
+                document.getElementsByClassName("delete-skill")[i].onclick = function (e) {
+                    e.preventDefault();
+                    this.parentElement.parentElement.innerHTML = null;
+                    console.log("salam qaqa");
+                    for (var z = 0; z < document.getElementsByClassName("silecem").length; z += 2) {
+                        var count = 0;
+                        for (var t = 0;t < 2; t++) {
+                            var name = "Skills[" + (z/2) + "].Name";
+                            var percent = "Skills[" + (z/2) + "].Percent";
+                            document.getElementsByClassName("silecem")[z].setAttribute("name", name);
+                            document.getElementsByClassName("silecem")[z + 1].setAttribute("name", percent);
+                            count++;
+
+                        }
+
+
+
+                    }
+                    var nextIndex = +$(".add-skill").attr("data-nextIndex");
+                    $(".add-skill").attr("data-nextIndex", nextIndex - 1);
+
+                    //$(this).attr("data-nextIndex", count)
+
+
+
+                }
+
+            }
+
+
+        </script>
+    }*@

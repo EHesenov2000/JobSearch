@@ -13,20 +13,18 @@ namespace JobSearchFullWebSite.Models
     {
         public int Id { get; set; }
         [StringLength(maximumLength: 50, ErrorMessage = "Maksimum uzunluq 50-dir")]
-        [Required]
         public string FullName { get; set; } 
         public bool IsFeatured { get; set; }
-        [Required]
-        public int WaitingSalary { get; set; }
-        public JobSalaryForTime SalaryForTime { get; set; }
-        public DateTime BirthdayDate { get; set; }
+        public int? WaitingSalary { get; set; }
+        public JobSalaryForTime? SalaryForTime { get; set; }
+        public DateTime? BirthdayDate { get; set; }
         public DateTime CreatedAt { get; set; }
         [StringLength(maximumLength: 1000, ErrorMessage = "Maksimum uzunluq 1000-dur")]
         public string AboutCandidateTextEditor { get; set; }
-        public RequiredExperience Experience { get; set; }
-        public Gender Gender { get; set; }
-        public int Age { get; set; }
-        public Qualification Qualification { get; set; }
+        public RequiredExperience? Experience { get; set; }
+        public Gender? Gender { get; set; }
+        public int? Age { get; set; }
+        public Qualification? Qualification { get; set; }
         [StringLength(maximumLength: 30, ErrorMessage = "Maksimum uzunluq 30-dur")]
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
@@ -49,9 +47,9 @@ namespace JobSearchFullWebSite.Models
         public List<int?> CandidateCVsId { get; set; }
         public string AppUserId { get; set; }
         public AppUser AppUser { get; set; }
-        public int CityId { get; set; }
+        public int? CityId { get; set; }
         public City City { get; set; }
-        public int PositionId { get; set; }
+        public int? PositionId { get; set; }
         public Position Position { get; set; }
         public List<CandidateSkill> CandidateSkills { get; set; }
         public List<CandidateKnowingLanguage> KnowingLanguages { get; set; }

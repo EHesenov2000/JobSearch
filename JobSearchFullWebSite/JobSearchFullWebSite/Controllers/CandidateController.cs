@@ -1,10 +1,14 @@
 ﻿using JobSearchFullWebSite.DAL.AppDbContext;
+using JobSearchFullWebSite.DTOs;
+using JobSearchFullWebSite.Enums;
 using JobSearchFullWebSite.Models;
 using JobSearchFullWebSite.ViewModels;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -12,10 +16,12 @@ namespace JobSearchFullWebSite.Controllers
 {
     public class CandidateController : Controller
     {
+        private readonly IWebHostEnvironment _env;
         private readonly AppDbContext _context;
-        public CandidateController(AppDbContext context)
+        public CandidateController(AppDbContext context, IWebHostEnvironment env)
         {
             _context = context;
+            _env = env;
         }
         public IActionResult Index(string search, Candidate candidate, int page = 1)
         {
@@ -81,17 +87,110 @@ namespace JobSearchFullWebSite.Controllers
         //{
         //    return View();
         //}
-        public IActionResult CandidateCabinet()
+        public IActionResult CandidateProfileEdit(int id)
         {
-            AppUser user = _context.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
-            if (_context.Candidates.Any(x=>x.AppUserId==user.Id))
+            ViewBag.Languages =_context.Languages.ToList(); 
+            ViewBag.Positions = _context.Positions.ToList();
+            ViewBag.Cities = _context.Cities.ToList();
+            //Candidate candidate = _context.Candidates.Include(x=>x.KnowingLanguages).FirstOrDefault(x => x.Id == id);
+            //if (candidate == null)
+            //{
+            //    return RedirectToAction("index");
+            //}
+            //candidate
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CandidateProfileEdit(int id,CandidateEditDto candidateEditDto)
+        {
+            ViewBag.Languages = _context.Languages.ToList();
+            ViewBag.Positions = _context.Positions.ToList();
+            ViewBag.Cities = _context.Cities.ToList();
+            Candidate existCandidate = _context.Candidates.Include(x=>x.CandidateImages).Include(x => x.KnowingLanguages).FirstOrDefault(x => x.Id == id);
+            if (!_context.Cities.Any(x => x.Id == candidateEditDto.CityId)) return RedirectToAction("index");
+            if (!_context.Positions.Any(x => x.Id == candidateEditDto.PositionId)) return RedirectToAction("index");
+            if (existCandidate == null) return RedirectToAction("index");
+            if (candidateEditDto.Image != null)
             {
-                //bura edit sehifesidi
+                if (candidateEditDto.Image.ContentType != "image/png" && candidateEditDto.Image.ContentType != "image/jpeg")
+                {
+                    ModelState.AddModelError("Image", "Jpeg ve ya png formatinda file daxil edilmelidir");
+                    return View();
+                }
+                if (candidateEditDto.Image.Length > (1024 * 1024) * 5)
+                {
+                    ModelState.AddModelError("Image", "File olcusu 5mb-dan cox olmaz!");
+                    return View();
+                }
+                string rootPath = _env.WebRootPath;
+                var fileName = Guid.NewGuid().ToString() + candidateEditDto.Image.FileName;
+                var path = Path.Combine(rootPath, "images/candidateImage", fileName);
+                using (FileStream stream = new FileStream(path, FileMode.Create))
+                {
+                    candidateEditDto.Image.CopyTo(stream);
+                }
+                if (existCandidate.CandidateImages.FirstOrDefault(x=>x.IsPoster).Image != null)
+                {
+                    string existPath = Path.Combine(_env.WebRootPath, "images/candidateImage", existCandidate.CandidateImages.FirstOrDefault(x => x.IsPoster).Image);
+                    if (System.IO.File.Exists(existPath))
+                    {
+                        System.IO.File.Delete(existPath);
+                    }
+                }
+                existCandidate.CandidateImages.FirstOrDefault(x => x.IsPoster).Image = fileName;
             }
-            else
+
+            if (!ModelState.IsValid)
             {
-                //bura create sehifesidi
+                return View();
             }
+
+            existCandidate.FullName = candidateEditDto.FullName;
+            existCandidate.IsFeatured = false;
+            existCandidate.WaitingSalary = candidateEditDto.WaitingSalary;
+            existCandidate.SalaryForTime = candidateEditDto.SalaryForTime;
+            existCandidate.BirthdayDate = candidateEditDto.BirthdayDate;
+            existCandidate.CreatedAt = DateTime.UtcNow.AddHours(4);
+            existCandidate.AboutCandidateTextEditor = candidateEditDto.AboutCandidateTextEditor;
+            existCandidate.Experience = candidateEditDto.Experience;
+            existCandidate.Gender = candidateEditDto.Gender;
+            existCandidate.Age = candidateEditDto.Age;
+            existCandidate.Qualification = candidateEditDto.Qualification;
+            existCandidate.Email = candidateEditDto.Email;
+            existCandidate.PhoneNumber = candidateEditDto.PhoneNumber;
+            existCandidate.FacebookUrl = candidateEditDto.FacebookUrl;
+            existCandidate.TwitterUrl = candidateEditDto.TwitterUrl;
+            existCandidate.LinkedinUrl = candidateEditDto.LinkedinUrl;
+            existCandidate.InstagramUrl = candidateEditDto.InstagramUrl;
+            existCandidate.InstagramUrl = candidateEditDto.InstagramUrl;
+            existCandidate.CityId = candidateEditDto.CityId;
+            existCandidate.PositionId = candidateEditDto.PositionId;
+
+            var existLanguages = _context.CandidateKnowingLanguages.Where(x => x.CandidateId == id).ToList();
+            if (candidateEditDto.KnowingLanguageIds!=null)
+            {
+                foreach (var item in candidateEditDto.KnowingLanguageIds)
+                {
+                    var existLanguage = existLanguages.FirstOrDefault(x => x.Id == item);
+                    if (existLanguage == null)
+                    {
+                        CandidateKnowingLanguage knowingLanguage = new CandidateKnowingLanguage
+                        {
+                            CandidateId = id,
+                            LanguageId = item
+                        };
+                        _context.CandidateKnowingLanguages.Add(knowingLanguage);
+                    }
+                    else
+                    {
+                        existLanguages.Remove(existLanguage);
+                    }   
+                }
+            }
+            _context.CandidateKnowingLanguages.RemoveRange(existLanguages);
+
+            _context.SaveChanges(); 
             return View();
         }
     }

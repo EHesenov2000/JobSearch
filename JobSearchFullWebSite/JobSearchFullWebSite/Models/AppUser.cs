@@ -26,5 +26,7 @@ namespace JobSearchFullWebSite.Models
         [DataType(DataType.Password)]
         public string CurrentPassword { get; set; }
         public UserStatus UserStatus { get; set; }
+        public List<JobComment> JobComments { get; set; }
+        public List<Apply> Applies { get; set; }
     }
 }

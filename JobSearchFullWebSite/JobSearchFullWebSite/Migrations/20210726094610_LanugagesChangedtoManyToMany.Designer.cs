@@ -4,14 +4,16 @@ using JobSearchFullWebSite.DAL.AppDbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JobSearchFullWebSite.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210726094610_LanugagesChangedtoManyToMany")]
+    partial class LanugagesChangedtoManyToMany
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -172,47 +174,6 @@ namespace JobSearchFullWebSite.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("JobSearchFullWebSite.Models.Apply", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("AppUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("ApplyStatus")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ContactPhone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(20)")
-                        .HasMaxLength(20);
-
-                    b.Property<string>("FullName")
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.Property<int>("JobId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("RequestDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("UserName")
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AppUserId");
-
-                    b.HasIndex("JobId");
-
-                    b.ToTable("Applies");
-                });
-
             modelBuilder.Entity("JobSearchFullWebSite.Models.BlogItem", b =>
                 {
                     b.Property<int>("Id")
@@ -316,16 +277,16 @@ namespace JobSearchFullWebSite.Migrations
                         .HasColumnType("nvarchar(1000)")
                         .HasMaxLength(1000);
 
-                    b.Property<int?>("Age")
+                    b.Property<int>("Age")
                         .HasColumnType("int");
 
                     b.Property<string>("AppUserId")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<DateTime?>("BirthdayDate")
+                    b.Property<DateTime>("BirthdayDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("CityId")
+                    b.Property<int>("CityId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedAt")
@@ -335,7 +296,7 @@ namespace JobSearchFullWebSite.Migrations
                         .HasColumnType("nvarchar(30)")
                         .HasMaxLength(30);
 
-                    b.Property<int?>("Experience")
+                    b.Property<int>("Experience")
                         .HasColumnType("int");
 
                     b.Property<string>("FacebookUrl")
@@ -343,10 +304,11 @@ namespace JobSearchFullWebSite.Migrations
                         .HasMaxLength(100);
 
                     b.Property<string>("FullName")
+                        .IsRequired()
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.Property<int?>("Gender")
+                    b.Property<int>("Gender")
                         .HasColumnType("int");
 
                     b.Property<string>("InstagramUrl")
@@ -363,20 +325,20 @@ namespace JobSearchFullWebSite.Migrations
                     b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PositionId")
+                    b.Property<int>("PositionId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("Qualification")
+                    b.Property<int>("Qualification")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SalaryForTime")
+                    b.Property<int>("SalaryForTime")
                         .HasColumnType("int");
 
                     b.Property<string>("TwitterUrl")
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
-                    b.Property<int?>("WaitingSalary")
+                    b.Property<int>("WaitingSalary")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -549,13 +511,13 @@ namespace JobSearchFullWebSite.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CandidateId")
+                    b.Property<int?>("CandidateId")
                         .HasColumnType("int");
 
                     b.Property<int?>("CandidateKnowingLanguageId")
                         .HasColumnType("int");
 
-                    b.Property<int>("LanguageId")
+                    b.Property<int?>("LanguageId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -953,39 +915,6 @@ namespace JobSearchFullWebSite.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("JobCategories");
-                });
-
-            modelBuilder.Entity("JobSearchFullWebSite.Models.JobComment", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("AppUserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Comment")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("JobId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Rate")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("AppUserId");
-
-                    b.HasIndex("JobId");
-
-                    b.ToTable("JobComments");
                 });
 
             modelBuilder.Entity("JobSearchFullWebSite.Models.JobContact", b =>
@@ -1411,19 +1340,6 @@ namespace JobSearchFullWebSite.Migrations
                         .HasForeignKey("AppUserId");
                 });
 
-            modelBuilder.Entity("JobSearchFullWebSite.Models.Apply", b =>
-                {
-                    b.HasOne("JobSearchFullWebSite.Models.AppUser", "AppUser")
-                        .WithMany("Applies")
-                        .HasForeignKey("AppUserId");
-
-                    b.HasOne("JobSearchFullWebSite.Models.Job", "Job")
-                        .WithMany("Applies")
-                        .HasForeignKey("JobId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("JobSearchFullWebSite.Models.BlogItemLearn", b =>
                 {
                     b.HasOne("JobSearchFullWebSite.Models.BlogItem", "BlogItem")
@@ -1450,11 +1366,15 @@ namespace JobSearchFullWebSite.Migrations
 
                     b.HasOne("JobSearchFullWebSite.Models.City", "City")
                         .WithMany()
-                        .HasForeignKey("CityId");
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("JobSearchFullWebSite.Models.Position", "Position")
                         .WithMany("Candidates")
-                        .HasForeignKey("PositionId");
+                        .HasForeignKey("PositionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("JobSearchFullWebSite.Models.CandidateAwardItem", b =>
@@ -1506,9 +1426,7 @@ namespace JobSearchFullWebSite.Migrations
                 {
                     b.HasOne("JobSearchFullWebSite.Models.Candidate", "Candidate")
                         .WithMany("KnowingLanguages")
-                        .HasForeignKey("CandidateId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CandidateId");
 
                     b.HasOne("JobSearchFullWebSite.Models.CandidateKnowingLanguage", null)
                         .WithMany("KnowingLanguages")
@@ -1516,9 +1434,7 @@ namespace JobSearchFullWebSite.Migrations
 
                     b.HasOne("JobSearchFullWebSite.Models.Language", "Language")
                         .WithMany()
-                        .HasForeignKey("LanguageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LanguageId");
                 });
 
             modelBuilder.Entity("JobSearchFullWebSite.Models.CandidateSkill", b =>
@@ -1589,19 +1505,6 @@ namespace JobSearchFullWebSite.Migrations
                     b.HasOne("JobSearchFullWebSite.Models.JobCategory", "JobCategory")
                         .WithMany("Jobs")
                         .HasForeignKey("JobCategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("JobSearchFullWebSite.Models.JobComment", b =>
-                {
-                    b.HasOne("JobSearchFullWebSite.Models.AppUser", "AppUser")
-                        .WithMany("JobComments")
-                        .HasForeignKey("AppUserId");
-
-                    b.HasOne("JobSearchFullWebSite.Models.Job", "Job")
-                        .WithMany("JobComments")
-                        .HasForeignKey("JobId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -8,7 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JobSearch</title>
-
+    <!-- -TextEditor- -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <!-- Slick Slider CSS only -->
 
     <link rel="stylesheet"
@@ -385,6 +386,13 @@
             map: map,
         });
     }
+</script>
+<!-- --TextEditor-- -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+<script>
+    var quill = new Quill('#editor', {
+        theme: 'snow'
+    });
 </script>
 <!-- <script src="https://cdn.anychart.com/releases/8.0.1/js/anychart-base.min.js"></script> -->
 <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
