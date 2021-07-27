@@ -7,7 +7,7 @@
 
 <div class="cont">
     <div class="main px-4">
-        <form asp-action="CandidateProfileEdit" asp-controller="candidate">
+        <form method="post" enctype="multipart/form-data">
             <br />
             <br />
             <h4><b>Following Employers </b></h4>
@@ -17,42 +17,82 @@
                     <div class="col-lg-6 col-12">
                         <div class="row">
                             <div class="col-md-2 col-12 d-flex flex-row align-items-center ImageAndUpload">
-                                <img src="./../SiteImages/member4.jpg"
+                                <img src="~/images/candidateImage/@(Model!=null?Model.Image:"")"
                                      alt=""
                                      style="height: 60px; width: 60px"
                                      class="border-radius" />
                                 <div class="ImageXIcon backColorBlue  border-radius p-2 d-flex align-items-center justify-content-center" style="width: 20px;height: 20px;"><i class="fas fa-times blue"></i></div>
                             </div>
                             <dv class="col-md-4 col-12 d-flex flex-row align-items-center mt-2">
-                                <input type="file" id="file" asp-for="@Model.Image" />
-                                <label asp-for="@Model.Image" class=" backColorBlue"><span class="blue">Browse</span> </label>
+                                @*<input type="file" id="file" asp-for="@Model.File "/>
+                            <label for="file" asp-for="@Model.File " class=" backColorBlue"><span class="blue">Browse</span> </label>*@
+                                <input class="form-control col-md-2 " id="file" type="file" asp-for="@Model.File" style="display:contents;">
+                                <label for="file" class=" backColorBlue"><span class="blue">Browse</span></label>
                         </div>
                         <div class="d-flex flex-column mt-4">
                             <label asp-for="@Model.FullName">FullName</label>
                             <input type="text" class="border-0 backColorBlue border-radius py-2 px-2" placeholder="Candidate" asp-for="@Model.FullName">
+                            <span asp-validation-for="@Model.FullName" class="text-danger"></span>
                             <br>
                             <label asp-for="@Model.Gender">Gender</label>
                             <select class="border-radius border-0 backColorBlue py-2 px-2" asp-for="@Model.Gender" asp-items="Html.GetEnumSelectList<Gender>()">
                             </select>
+                            <span asp-validation-for="@Model.Gender" class="text-danger"></span>
                             <br>
                             <label asp-for="@Model.PhoneNumber">Phone Number</label>
                             <input type="text" class="border-0 backColorBlue border-radius py-2 px-2" placeholder="Phone Number" asp-for="@Model.PhoneNumber">
+                            <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
                             <br>
                             <label asp-for="@Model.Qualification">Qualification</label>
                             <select class="border-radius border-0 backColorBlue py-2 px-2" asp-for="@Model.Qualification" asp-items="Html.GetEnumSelectList<Qualification>()">
                             </select>
+                            <span asp-validation-for="@Model.Qualification " class="text-danger"></span>
                             <br>
                             <label asp-for="@Model.KnowingLanguageIds">Language</label>
-                            <select class="form-control" asp-for="@Model.KnowingLanguageIds" asp-items="@(new SelectList(ViewBag.Languages,"Id","Name"))">
-                            </select>
+                            @*<select class="form-control" asp-for="@Model.KnowingLanguageIds" asp-items="@(new SelectList(ViewBag.Languages,"Id","Name"))">
+        </select>*@
+                        <select class="form-control" asp-for="@Model.KnowingLanguageIds">
+                            @if (Model != null)
+                            {
+                                @if (ViewBag.Languages != null)
+                                {
+                                    @foreach (var item in ViewBag.Languages)
+                                    {
+                                        if (Model.KnowingLanguages.Any(x => x.LanguageId == item.Id))
+                                        {
+                                            <option selected value="@item.Id">@item.Name</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@item.Id">@item.Name</option>
+                                        }
+                                    }
+                                }
+
+                            }
+                            else
+                            {
+                                @if (ViewBag.Languages != null)
+                                {
+                                    @foreach (var item in ViewBag.Languages)
+                                    {
+                                            <option value="@item.Id">@item.Name</option>
+                                    }
+                                }
+                            }
+
+                        </select>
+                            <span asp-validation-for="@Model.KnowingLanguageIds" class="text-danger"></span>
                             <br>
                             <label asp-for="@Model.WaitingSalary">Salary</label>
                             <input type="number" class="border-0 backColorBlue border-radius py-2 px-2" placeholder="Phone Number" asp-for="@Model.WaitingSalary">
+                            <span asp-validation-for="@Model.WaitingSalary" class="text-danger"></span>
                             <br>
                             <label asp-for="@Model.PositionId">Position</label>
                             <select class="border-radius border-0 backColorBlue py-2 px-2" asp-for="@Model.PositionId" asp-items="@(new SelectList(ViewBag.Positions,"Id","PositionName"))">
                                 <option class="" selected disabled>Vezife sec</option>
                             </select>
+                            <span asp-validation-for="@Model.PositionId" class="text-danger"></span>
                             <br>
                         </div>
 
@@ -61,33 +101,37 @@
                         <div class="d-flex flex-column">
                             <label asp-for="@Model.BirthdayDate">Birthday date</label>
                             <input type="date" class="border-0 backColorBlue border-radius py-2 px-2" asp-for="@Model.BirthdayDate">
+                            <span asp-validation-for="@Model.BirthdayDate" class="text-danger"></span>
                             <br>
                             <label asp-for="@Model.Age">Age</label>
                             <input type="number" class="border-0 backColorBlue border-radius py-2 px-2" placeholder="Age" asp-for="@Model.Age">
+                            <span asp-validation-for="@Model.Age" class="text-danger"></span>
                             <br>
                             <label asp-for="@Model.Email">Email</label>
                             <input type="email" class="border-0 backColorBlue border-radius py-2 px-2" placeholder="Email" asp-for="@Model.Email">
+                            <span asp-validation-for="@Model.Email" class="text-danger"></span>
                             <br>
                             <label asp-for="@Model.Experience">Experience</label>
                             <select class="border-radius border-0 backColorBlue py-2 px-2" class="border-0 backColorBlue border-radius py-2 px-2" placeholder="Experience" asp-for="@Model.Experience" asp-items="Html.GetEnumSelectList<RequiredExperience>()">
                             </select>
+                            <span asp-validation-for="@Model.Experience" class="text-danger"></span>
                             <br>
                             <label asp-for="@Model.SalaryForTime"> Salary For Time</label>
                             <select class="border-radius border-0 backColorBlue py-2 px-2" class="border-0 backColorBlue border-radius py-2 px-2" placeholder="Salary for time" asp-for="@Model.SalaryForTime" asp-items="Html.GetEnumSelectList<JobSalaryForTime>()">
-                                >
+                            
 
                             </select>
+                            <span asp-validation-for="@Model.SalaryForTime" class="text-danger"></span>
                             <br>
                         </div>
                     </div>
+                    @*@Html.TextBoxFor(x => x.AboutCandidateTextEditor)
+
+                @Html.TextBoxFor(x => x.AboutCandidateTextEditor, new { @class = "editor" })*@
                     <div class="col-12">
                         <div class="d-flex flex-column">
                             <label>Description</label>
                             <div id="editor">
-                                @*@Html.TextBoxFor(x => x.AboutCandidateTextEditor)
-
-                                @Html.TextBoxFor(x => x.AboutCandidateTextEditor, new { @class = "editor" })*@
-
                                 <p>Hello World!</p>
                                 <p>Some initial <strong>bold</strong> text</p>
                                 <p><br></p>
@@ -101,15 +145,19 @@
                 <div class="d-flex flex-column mt-4">
                     <label asp-for="@Model.FacebookUrl">Facebook Url</label>
                     <input type="text" class="border-0 backColorBlue border-radius py-2 px-2" placeholder="Facebook" asp-for="@Model.FacebookUrl">
+                    <span asp-validation-for="@Model.FacebookUrl" class="text-danger"></span>
                     <br>
                     <label asp-for="@Model.TwitterUrl">Twitter Url</label>
                     <input type="text" class="border-0 backColorBlue border-radius py-2 px-2" placeholder="Twitter" asp-for="@Model.TwitterUrl">
+                    <span asp-validation-for="@Model.TwitterUrl" class="text-danger"></span>
                     <br>
                     <label asp-for="@Model.LinkedinUrl">Linkedin Url</label>
                     <input type="text" class="border-0 backColorBlue border-radius py-2 px-2" placeholder="Linkedin" asp-for="@Model.LinkedinUrl">
+                    <span asp-validation-for="@Model.LinkedinUrl" class="text-danger"></span>
                     <br>
                     <label asp-for="@Model.InstagramUrl">Instagram Url</label>
                     <input type="text" class="border-0 backColorBlue border-radius py-2 px-2" placeholder="Instagram" asp-for="@Model.InstagramUrl">
+                    <span asp-validation-for="@Model.InstagramUrl" class="text-danger"></span>
                     <br>
                 </div>
             </div>
@@ -118,11 +166,14 @@
                 <div class="d-flex flex-column mt-4">
                     <label asp-for="@Model.CityId">Location</label>
                     <select class="border-radius border-0 backColorBlue py-2 px-2" asp-for="@Model.CityId" asp-items="@(new SelectList(ViewBag.Cities,"Id","CityName"))">
-                        <option class="" selected disabled>Seher sec</option>
+                        <option class="" selected disabled value="">Seher sec</option>
                     </select>
-                    <br>
+                    <span asp-validation-for="@Model.CityId" class="text-danger"></span>
                 </div>
+                <br>
             </div>
+            <br />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <br>
             <button type="submit" class="btn btn-primary">Save Profile</button>
         </form>

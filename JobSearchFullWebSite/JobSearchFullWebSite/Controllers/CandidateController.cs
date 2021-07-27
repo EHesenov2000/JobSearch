@@ -92,67 +92,137 @@ namespace JobSearchFullWebSite.Controllers
             ViewBag.Languages =_context.Languages.ToList(); 
             ViewBag.Positions = _context.Positions.ToList();
             ViewBag.Cities = _context.Cities.ToList();
-            //Candidate candidate = _context.Candidates.Include(x=>x.KnowingLanguages).FirstOrDefault(x => x.Id == id);
-            //if (candidate == null)
-            //{
-            //    return RedirectToAction("index");
-            //}
-            //candidate
-            return View();
+            Candidate candidate = _context.Candidates.Include(x=>x.CandidateImages).Include(x => x.KnowingLanguages).FirstOrDefault(x => x.Id == id);
+            if (candidate == null)
+            {
+                return RedirectToAction("index");
+            }
+            CandidateEditDto candidateEditDto = new CandidateEditDto();
+
+            candidateEditDto.Id = candidate.Id;
+            candidateEditDto.FullName = candidate.FullName;
+            candidateEditDto.WaitingSalary = candidate.WaitingSalary;
+            candidateEditDto.SalaryForTime = candidate.SalaryForTime;
+            candidateEditDto.BirthdayDate = candidate.BirthdayDate;
+            //AboutCandidateTextEditor=candidate.AboutCandidateTextEditor,
+            candidateEditDto.Experience = candidate.Experience;
+            candidateEditDto.Gender = candidate.Gender;
+            candidateEditDto.Age = candidate.Age;
+            candidateEditDto.Qualification = candidate.Qualification;
+            candidateEditDto.Email = candidate.Email;
+            candidateEditDto.PhoneNumber = candidate.PhoneNumber ;
+            candidateEditDto.FacebookUrl = candidate.FacebookUrl;
+            candidateEditDto.TwitterUrl = candidate.TwitterUrl ;
+            candidateEditDto.LinkedinUrl = candidate.LinkedinUrl;
+            candidateEditDto.InstagramUrl = candidate.InstagramUrl;
+            if (candidate.Position != null)
+            {
+                candidateEditDto.PositionId = candidate.Position.Id;
+            }
+            else
+            {
+                candidateEditDto.PositionId = 0;
+            }
+            if (candidate.City != null)
+            {
+                candidateEditDto.CityId = candidate.City.Id;
+            }
+            else
+            {
+                candidateEditDto.CityId = 0;
+            }
+            candidateEditDto.KnowingLanguages = candidate.KnowingLanguages;
+            if(candidate.CandidateImages.Count != 0){
+                candidateEditDto.Image = candidate.CandidateImages.FirstOrDefault(x => x.IsPoster).Image ;
+            }
+            else
+            {
+                candidateEditDto.Image = "";
+            }
+            return View(candidateEditDto);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult CandidateProfileEdit(int id,CandidateEditDto candidateEditDto)
         {
+            //candidateEditDto.AboutCandidateTextEditor = "text burdadi";
             ViewBag.Languages = _context.Languages.ToList();
             ViewBag.Positions = _context.Positions.ToList();
             ViewBag.Cities = _context.Cities.ToList();
             Candidate existCandidate = _context.Candidates.Include(x=>x.CandidateImages).Include(x => x.KnowingLanguages).FirstOrDefault(x => x.Id == id);
-            if (!_context.Cities.Any(x => x.Id == candidateEditDto.CityId)) return RedirectToAction("index");
-            if (!_context.Positions.Any(x => x.Id == candidateEditDto.PositionId)) return RedirectToAction("index");
             if (existCandidate == null) return RedirectToAction("index");
-            if (candidateEditDto.Image != null)
+            if (candidateEditDto.CityId != 0)
             {
-                if (candidateEditDto.Image.ContentType != "image/png" && candidateEditDto.Image.ContentType != "image/jpeg")
+                if (!_context.Cities.Any(x => x.Id == candidateEditDto.CityId)) return RedirectToAction("index");
+            }
+            if (candidateEditDto.PositionId != 0)
+            {
+                if (!_context.Positions.Any(x => x.Id == candidateEditDto.PositionId)) return RedirectToAction("index");
+            }
+            if (candidateEditDto.File != null)
+            {
+                if (candidateEditDto.File.ContentType != "image/png" && candidateEditDto.File.ContentType != "image/jpeg")
                 {
                     ModelState.AddModelError("Image", "Jpeg ve ya png formatinda file daxil edilmelidir");
                     return View();
                 }
-                if (candidateEditDto.Image.Length > (1024 * 1024) * 5)
+                if (candidateEditDto.File.Length > (1024 * 1024) * 5)
                 {
                     ModelState.AddModelError("Image", "File olcusu 5mb-dan cox olmaz!");
                     return View();
                 }
                 string rootPath = _env.WebRootPath;
-                var fileName = Guid.NewGuid().ToString() + candidateEditDto.Image.FileName;
+                var fileName = Guid.NewGuid().ToString() + candidateEditDto.File.FileName;
                 var path = Path.Combine(rootPath, "images/candidateImage", fileName);
                 using (FileStream stream = new FileStream(path, FileMode.Create))
                 {
-                    candidateEditDto.Image.CopyTo(stream);
+                    candidateEditDto.File.CopyTo(stream);
                 }
-                if (existCandidate.CandidateImages.FirstOrDefault(x=>x.IsPoster).Image != null)
+                if (existCandidate.CandidateImages.Count != 0)
                 {
-                    string existPath = Path.Combine(_env.WebRootPath, "images/candidateImage", existCandidate.CandidateImages.FirstOrDefault(x => x.IsPoster).Image);
-                    if (System.IO.File.Exists(existPath))
+                    if (existCandidate.CandidateImages.FirstOrDefault(x => x.IsPoster).Image != null)
                     {
-                        System.IO.File.Delete(existPath);
+                        string existPath = Path.Combine(_env.WebRootPath, "images/candidateImage", existCandidate.CandidateImages.FirstOrDefault(x => x.IsPoster).Image);
+                        if (System.IO.File.Exists(existPath))
+                        {
+                            System.IO.File.Delete(existPath);
+                        }
                     }
                 }
-                existCandidate.CandidateImages.FirstOrDefault(x => x.IsPoster).Image = fileName;
+         
+                if(existCandidate.CandidateImages.FirstOrDefault(x => x.IsPoster) != null)
+                {
+                    existCandidate.CandidateImages.FirstOrDefault(x => x.IsPoster).Image = fileName;
+                }
+                else
+                {
+                    CandidateImage candidateImage = new CandidateImage()
+                    {
+                        CandidateId=existCandidate.Id,
+                        IsPoster=true,
+                        Image=fileName,
+                    };
+                    _context.CandidateImages.Add(candidateImage);
+                candidateEditDto.Image = fileName;
+                }
             }
-
+            if (candidateEditDto.Image == null)
+            {
+                candidateEditDto.Image = "";
+            }
+            candidateEditDto.Id = id;
             if (!ModelState.IsValid)
             {
                 return View();
             }
-
+            
             existCandidate.FullName = candidateEditDto.FullName;
             existCandidate.IsFeatured = false;
             existCandidate.WaitingSalary = candidateEditDto.WaitingSalary;
             existCandidate.SalaryForTime = candidateEditDto.SalaryForTime;
             existCandidate.BirthdayDate = candidateEditDto.BirthdayDate;
             existCandidate.CreatedAt = DateTime.UtcNow.AddHours(4);
-            existCandidate.AboutCandidateTextEditor = candidateEditDto.AboutCandidateTextEditor;
+            //existCandidate.AboutCandidateTextEditor = candidateEditDto.AboutCandidateTextEditor;
             existCandidate.Experience = candidateEditDto.Experience;
             existCandidate.Gender = candidateEditDto.Gender;
             existCandidate.Age = candidateEditDto.Age;
@@ -166,7 +236,7 @@ namespace JobSearchFullWebSite.Controllers
             existCandidate.InstagramUrl = candidateEditDto.InstagramUrl;
             existCandidate.CityId = candidateEditDto.CityId;
             existCandidate.PositionId = candidateEditDto.PositionId;
-
+ 
             var existLanguages = _context.CandidateKnowingLanguages.Where(x => x.CandidateId == id).ToList();
             if (candidateEditDto.KnowingLanguageIds!=null)
             {
@@ -190,8 +260,9 @@ namespace JobSearchFullWebSite.Controllers
             }
             _context.CandidateKnowingLanguages.RemoveRange(existLanguages);
 
-            _context.SaveChanges(); 
-            return View();
+            _context.SaveChanges();
+            //return View(candidateEditDto);
+            return RedirectToAction("index");
         }
     }
 }

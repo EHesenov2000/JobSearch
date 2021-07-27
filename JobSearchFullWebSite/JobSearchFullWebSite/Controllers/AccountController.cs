@@ -262,6 +262,7 @@ namespace JobSearchFullWebSite.Controllers
                 UserName = user.UserName,
                 AppUser = user,
             };
+
             return View(candidate);
         }
         [Authorize(Roles = "Employer")]
