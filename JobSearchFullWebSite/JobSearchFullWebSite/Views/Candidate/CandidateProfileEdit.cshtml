@@ -5,6 +5,11 @@
     ViewData["Title"] = "CandidateProfileEdit";
 }
 
+<style>
+    p {
+        margin-bottom: 5px !important;
+    }
+</style>
 <div class="cont">
     <div class="main px-4">
         <form method="post" enctype="multipart/form-data">
@@ -17,11 +22,22 @@
                     <div class="col-lg-6 col-12">
                         <div class="row">
                             <div class="col-md-2 col-12 d-flex flex-row align-items-center ImageAndUpload">
-                                <img src="~/images/candidateImage/@(Model!=null?Model.Image:"")"
-                                     alt=""
-                                     style="height: 60px; width: 60px"
-                                     class="border-radius" />
-                                <div class="ImageXIcon backColorBlue  border-radius p-2 d-flex align-items-center justify-content-center" style="width: 20px;height: 20px;"><i class="fas fa-times blue"></i></div>
+                                @if (Model != null && Model.Image!="")
+                                {
+                                    <img src="~/images/candidateImage/@Model.Image"
+                                         alt=""
+                                         style="height: 60px; width: 60px"
+                                         class="border-radius" />
+                                    <input type="hidden" value="@Model.Image" name="Image" class="HiddenInputImage" />
+                                    <div class="ImageXIcon backColorBlue  border-radius p-2  align-items-center justify-content-center" style="width: 20px;height: 20px;"><i class="fas fa-times blue"></i></div>
+
+                                }
+                                else
+                                {
+                                    <div>Sekil yukle</div>
+                                }
+
+
                             </div>
                             <dv class="col-md-4 col-12 d-flex flex-row align-items-center mt-2">
                                 @*<input type="file" id="file" asp-for="@Model.File "/>
@@ -128,13 +144,19 @@
                     @*@Html.TextBoxFor(x => x.AboutCandidateTextEditor)
 
                 @Html.TextBoxFor(x => x.AboutCandidateTextEditor, new { @class = "editor" })*@
+                <style>                    
+
+                    .main p {
+                        /*margin-bottom: 0px !important;*/
+                    }
+
+                </style>
                     <div class="col-12">
                         <div class="d-flex flex-column">
                             <label>Description</label>
                             <div id="editor">
-                                <p>Hello World!</p>
+                                <p >Hello World!</p>
                                 <p>Some initial <strong>bold</strong> text</p>
-                                <p><br></p>
                             </div>
                         </div>
                     </div>

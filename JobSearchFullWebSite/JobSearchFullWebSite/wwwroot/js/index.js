@@ -1,4 +1,14 @@
 $(document).ready(function () {
+    $(".ImageXIcon ").css("display", "flex ");
+
+        $(".ImageXIcon").click(function (e) {
+            e.preventDefault();
+            console.log("A.Y.E");
+            $(".HiddenInputImage").css("display", "none ");
+            $(".HiddenInputImage").attr("value", "");
+            $(".ImageAndUpload img").css("display", "none ");
+            $(".ImageXIcon ").css("display", "none ");
+        });
   $("#dropdownMenu2").click(function () {
     $(".dropdown-menu").slideToggle();
   });

@@ -159,6 +159,10 @@ namespace JobSearchFullWebSite.Controllers
             {
                 if (!_context.Positions.Any(x => x.Id == candidateEditDto.PositionId)) return RedirectToAction("index");
             }
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             if (candidateEditDto.File != null)
             {
                 if (candidateEditDto.File.ContentType != "image/png" && candidateEditDto.File.ContentType != "image/jpeg")
@@ -174,6 +178,10 @@ namespace JobSearchFullWebSite.Controllers
                 string rootPath = _env.WebRootPath;
                 var fileName = Guid.NewGuid().ToString() + candidateEditDto.File.FileName;
                 var path = Path.Combine(rootPath, "images/candidateImage", fileName);
+
+
+
+
                 using (FileStream stream = new FileStream(path, FileMode.Create))
                 {
                     candidateEditDto.File.CopyTo(stream);
@@ -208,13 +216,23 @@ namespace JobSearchFullWebSite.Controllers
             }
             if (candidateEditDto.Image == null)
             {
-                candidateEditDto.Image = "";
+                //candidateEditDto.Image = "";
+                if (existCandidate.CandidateImages.Any(x => x.IsPoster))
+                {
+                    string rootPath = _env.WebRootPath;
+                    var fileName = existCandidate.CandidateImages.FirstOrDefault(x => x.IsPoster).Image; ;
+                    var path = Path.Combine(rootPath, "images/candidateImage", fileName);
+                    if (System.IO.File.Exists(path))
+                    {
+                        System.IO.File.Delete(path);
+                        _context.CandidateImages.Remove(_context.CandidateImages.FirstOrDefault(x => x.CandidateId == existCandidate.Id && x.IsPoster));
+
+                    }
+                }
+
             }
             candidateEditDto.Id = id;
-            if (!ModelState.IsValid)
-            {
-                return View();
-            }
+
             
             existCandidate.FullName = candidateEditDto.FullName;
             existCandidate.IsFeatured = false;
