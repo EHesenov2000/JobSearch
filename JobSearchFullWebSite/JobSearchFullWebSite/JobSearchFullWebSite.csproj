@@ -24,6 +24,7 @@
     <Folder Include="wwwroot\images\employerImage\" />
     <Folder Include="wwwroot\images\cityImage\" />
     <Folder Include="wwwroot\images\candidateImage\" />
+    <Folder Include="wwwroot\CVs\" />
   </ItemGroup>
 
   <ItemGroup>

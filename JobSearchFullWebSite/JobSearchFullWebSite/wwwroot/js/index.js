@@ -1,4 +1,47 @@
 $(document).ready(function () {
+
+//    document.getElementsByClassName("AddEducationItem")[0].onclick = function () {
+//        var a = document.createElement("div");
+//        var education =
+//            ` 
+
+//                            <div class="accordion mt-3 border-radius">@item.Title</div>
+//                            <div class="panel mt-2">
+//@{CandidateEducationItems[3].Id=1;}
+//                                <p>
+//                                    <div class="row ">
+//                                        <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Title</span></div>
+//                                        <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="BEducation Title" name="CandidateEducationItems[3].Title"  ></div>
+//                                    </div>
+//                                    <br>
+//                                    <div class="row ">
+//                                        <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Academy</span></div>
+//                                        <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Education Academy" name="CandidateEducationItems[3].EducationPlace" ></div>
+//                                    </div>
+//                                    <br>
+//                                    <div class="row ">
+//                                        <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Years</span></div>
+//                                        <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Years" name="CandidateEducationItems[3].Years" ></div>
+//                                    </div>
+//                                    <br>
+//                                    <div class="row ">
+//                                        <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Description</span></div>
+//                                        <div class="col-lg-9"><input style="min-height: 150px;max-height: 150px;" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Description" name="CandidateEducationItems[3].Content"></div>
+//                                    </div>
+//                                    <div class="row">
+//                                        <div class="d-flex flex-row justify-content-end RemoveItem"><div class="btn backColorBlue py-2 px-2"><span class="blue">Remove</span></div></div>
+//                                    </div>
+//                                </p>
+//                            </div>
+//                            <br>
+//            `;
+//        a.innerHTML = education;
+
+//        document.getElementsByClassName("EducationItems")[0].appendChild(a);
+//    }
+
+
+
     $(".ImageXIcon ").css("display", "flex ");
 
         $(".ImageXIcon").click(function (e) {
@@ -270,3 +313,48 @@ window.onload = function () {
 //  $(".leftSection").attr("class", "col-lg-9 py-5 leftSection");
 //  $(".sidebar").fadeToggle();
 //});
+for (var i = 0; i < document.getElementsByClassName("RemoveItem").length; i++) {
+    document.getElementsByClassName("RemoveItem")[i].addEventListener("click", function () {
+        this.parentElement.parentElement.parentElement.style.display = "none";
+    });
+}
+
+
+//for (var i = 0; i < document.getElementsByClassName("RemoveImageItem").length; i++) {
+
+//    document.getElementsByClassName("RemoveImageItem")[i].addEventListener("click", function () {
+//        this.parentElement.style.display = "none ";
+//    });
+//}
+for (var i = 0; i < document.getElementsByClassName("RemoveCVItem").length; i++) {
+
+    document.getElementsByClassName("RemoveCVItem")[i].parentElement.style.display = "flex ";
+    document.getElementsByClassName("RemoveCVItem")[i].parentElement.parentElement.style.display = "flex ";
+}
+
+
+
+
+//for (var i = 0; i < document.getElementsByClassName("accordion").length; i++) {
+//    document.getElementsByClassName("accordion")[i].onclick = function () {
+//        this.nextElementSibling.slideToggle();
+//    }
+//}
+
+$(document).ready(function () {
+
+    $(document).on("click", ".PortfolioXIcon", function (e) {
+        e.preventDefault();
+        console.log("salam");
+        //$(this).parents(".img-box").attr("style", "background-color:unset");
+        $(this).parents(".PositionRelativeForIcon").empty();
+    })
+})
+$(document).ready(function () {
+
+    $(document).on("click", ".RemoveCVItem", function (e) {
+        e.preventDefault();
+        //$(this).parents(".img-box").attr("style", "background-color:unset");
+        $(this).parents(".RemoveCVItems").empty();
+    })
+})

@@ -1,0 +1,337 @@
+﻿@using JobSearchFullWebSite.DTOs
+@model CandidateResumeEditDto
+@{
+    ViewData["Title"] = "CandidateResumeEdit";
+}
+
+<div class="cont">
+    <div class="main px-4">
+        <div class="mx-3">
+            <form method="post" asp-action="candidateresumeedit" asp-controller="candidate" enctype="multipart/form-data">
+                <br />
+                <br />
+                <h4><b>Edit Resume </b></h4>
+                <div class="card p-4 mt-4">
+                    <b>My Resume</b>
+                    <br>
+                    <span>CV Attachment</span>
+                    @if (Model.CandidateCVs!=null)
+                    {
+                        @foreach (var item in Model.CandidateCVs)
+                        {
+                <div class=" flex-row align-items-center mt-2 RemoveCVItems">
+                    <div class="backColorBlue border-radius px-2">
+                        <span class="blue">@item.CVName</span>
+                    </div>
+                    <div>
+                        <div class="p-2 backColorBlue  CvXIcon d-flex align-items-center flex-row justify-content-center border-radius ms-2 RemoveCVItem">
+                            <i class="fas fa-times " style="color:red"></i>
+                        </div>
+                    </div>
+
+                    <input type="hidden" name="CandidateCVsId[]" value="@item.Id" />
+
+                </div>
+
+                        }
+                    }
+
+
+                    <div class="col-md-4 col-12 d-flex flex-row align-items-center mt-2">
+                        <input class="form-control  " asp-for="@Model.CandidateCV" style="display:block !important; width:auto !important;height:auto !important;">
+                        <span asp-validation-for="@Model.CandidateCV" class="text-danger"></span>
+                    </div>
+                    <div><span class="grey">Upload file .pdf .docx</span></div>
+                </div>
+                <br>
+
+                <div class="card p-4 mt-4">
+                    <b>Education</b>
+                    <br>
+
+                    <div class="EducationItems">
+                        @{ int count = 0;
+                            @foreach (var item in Model.CandidateEducationItems)
+                            {
+                                <div>
+                                    <input type="hidden" name="CandidateEducationItemsId[]" value="@item.Id" />
+
+                                    <div class="accordion mt-3 border-radius">@item.Title</div>
+                                    <div class="panel mt-2">
+                                        <p>
+                                            <div class="row ">
+                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Title</span></div>
+                                                <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="BEducation Title" name="CandidateEducationItems[@count].Title" value="@item.Title"></div>
+                                            </div>
+                                            <br>
+                                            <div class="row ">
+                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Academy</span></div>
+                                                <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Education Academy" name="CandidateEducationItems[@count].EducationPlace" value="@item.EducationPlace"></div>
+                                            </div>
+                                            <br>
+                                            <div class="row ">
+                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Years</span></div>
+                                                <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Years" name="CandidateEducationItems[@count].Years" value="@item.Years"></div>
+                                            </div>
+                                            <br>
+                                            <div class="row ">
+                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Description</span></div>
+                                                <div class="col-lg-9"><input style="min-height: 150px;max-height: 150px;" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Description" name="CandidateEducationItems[@count].Content" value="@item.Content"></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="d-flex flex-row justify-content-end RemoveItem"><div class="btn backColorBlue py-2 px-2"><span class="blue">Remove</span></div></div>
+                                            </div>
+                                        </p>
+                                    </div>
+                                </div>
+                                <br>
+                                count++;
+                            }}
+                    </div>
+                    <div>
+                        <div class="btn backColorBlue py-2 px-4 d-inline-block AddEducationItem"><span class="blue">Add Item</span></div>
+
+                    </div>
+                </div>
+                <br>
+                <div class="card p-4 mt-4">
+                    <b>Experience</b>
+                    <br>
+                    @foreach (var item in Model.CandidateWorkItems)
+                    {
+                <div>
+                    <input type="hidden" name="CandidateWorkItemsId[]" value="@item.Id" />
+
+                    <div class="accordion mt-3 border-radius">@item.Title</div>
+                    <div class="panel mt-2">
+                        <p>
+                            <div class="row ">
+                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Title</span></div>
+                                <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Title" asp-for="@item.Title"></div>
+                            </div>
+                            <br>
+                            <div class="row ">
+                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Start Date</span></div>
+                                <div class="col-lg-9"><input type="date" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Start Date" asp-for="@item.StartDate"></div>
+                            </div>
+                            <br>
+                            <div class="row ">
+                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">End Date</span></div>
+                                <div class="col-lg-9"><input type="date" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="End Date" asp-for="@item.EndDate"></div>
+                            </div>
+                            <br>
+                            <div class="row ">
+                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Company</span></div>
+                                <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Work Place" asp-for="@item.WorkPlace"></div>
+                            </div>
+                            <br>
+                            <div class="row ">
+                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Description</span></div>
+                                <div class="col-lg-9"><textarea style="min-height: 150px;max-height: 150px;" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Description" asp-for="@item.Content"></textarea></div>
+                            </div>
+                            <div class="row">
+                                <div class="d-flex flex-row justify-content-end RemoveItem"><div class="btn backColorBlue py-2 px-2"><span class="blue">Remove</span></div></div>
+                            </div>
+                        </p>
+                    </div>
+                </div>
+
+                        <br>
+                    }
+
+                    <div>
+                        <div class="btn backColorBlue py-2 px-4 d-inline-block"><span class="blue">Add Item</span></div>
+
+                    </div>
+                </div>
+                <br>
+                <div class="card p-4 mt-4">
+                    <b>Adward</b>
+                    <br>
+                    @foreach (var item in Model.CandidateAwardItems)
+                    {
+                <div>
+                    <input type="hidden" name="CandidateAwardItemsId[]" value="@item.Id" />
+
+                    <div class="accordion mt-3 border-radius">@item.Title</div>
+                    <div class="panel mt-2">
+                        <p>
+                            <div class="row ">
+                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Title</span></div>
+                                <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Title" asp-for="@item.Title"></div>
+                            </div>
+                            <br>
+                            <div class="row ">
+                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Years</span></div>
+                                <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Years" asp-for="@item.Years"></div>
+                            </div>
+                            <br>
+                            <div class="row ">
+                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Description</span></div>
+                                <div class="col-lg-9"><textarea style="min-height: 150px;max-height: 150px;" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Description" asp-for="@item.Content"></textarea></div>
+                            </div>
+                            <div class="row">
+                                <div class="d-flex flex-row justify-content-end RemoveItem"><div class="btn backColorBlue py-2 px-2"><span class="blue">Remove</span></div></div>
+                            </div>
+                        </p>
+                    </div>
+
+                </div>
+
+                        <br>
+                    }
+
+
+                    <div>
+                        <div class="btn backColorBlue py-2 px-4 d-inline-block"><span class="blue">Add Item</span></div>
+
+                    </div>
+                </div>
+                <br>
+                <div class="card p-4 mt-4">
+                    <b>Portfolio</b>
+                    <br>
+                    <div class="row g-4">
+                        @foreach (var item in Model.CandidateImages.Where(x => !x.IsPoster))
+                        {
+                            <div class="col-lg-3 col-md-6 col-12 PositionRelativeForIcon">
+                                <img src="./../SiteImages/@item.Image" alt="" class="border-radius" style="width: 200px;height: 200px;">
+                                <div class="PortfolioXIcon backColorBlue  border-radius p-2 d-flex align-items-center justify-content-center RemoveImageItem" style="width: 20px;height: 20px;"><i class="fas fa-times blue"></i></div>
+                                <input type="hidden" name="ImagesId[]" value="@item.Id" />
+                            </div>
+                        }
+                    <div>
+                        <input class="form-control col-md-2 "   asp-for="@Model.Images" style="display:block !important; width:auto !important;height:auto !important;">
+                        <span asp-validation-for="@Model.Images" class="text-danger"></span>
+
+                    </div>
+
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Save Profile</button>
+            </form>
+
+            <br>
+            <br>
+            <br>
+
+
+        </div>
+    </div>
+    <div class="sidebar ps-3">
+        <div class="">
+            <div class="ImageAndUserName flex-row">
+                <div class="UserImage d-flex align-items-center">
+                    <img src="./../SiteImages/member4.jpg"
+                         alt=""
+                         style="width: 60px; height: 60px; border-radius: 50%" />
+                </div>
+                <div class="
+                    d-flex
+                    flex-column
+                    ms-3
+                    align-items-center
+                    justify-content-center
+                  ">
+                    <div class="UserName"><b>User Name</b></div>
+                    <div class="UserCity">User City</div>
+                    <div class="UserProfileButton">
+                        <a href="">
+                            <button class="btn btn-primary" style="font-size: 10px">
+                                View Profile
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-column">
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="far fa-file-alt"></i></div>
+                    <div class="SectionName ms-2">User Dashboard</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="far fa-user-circle"></i></div>
+                    <div class="SectionName ms-2">Profile</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="fas fa-file-signature"></i></div>
+                    <div class="SectionName ms-2">My resume</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="fas fa-volume-up"></i></div>
+                    <div class="SectionName ms-2">My applied</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="far fa-bookmark"></i></div>
+                    <div class="SectionName ms-2">Shortlist Jobs</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="far fa-user"></i></div>
+                    <div class="SectionName ms-2">Following Employers</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="fas fa-volume-up"></i></div>
+                    <div class="SectionName ms-2">Alert Jobs</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="fab fa-weixin"></i></div>
+                    <div class="SectionName ms-2">Messages</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="fas fa-lock"></i></div>
+                    <div class="SectionName ms-2">Change Password</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="far fa-trash-alt"></i></div>
+                    <div class="SectionName ms-2">Delete Profile</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="fas fa-power-off"></i></div>
+                    <div class="SectionName ms-2">Logout</div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+     
+<style>
+    body {
+        font-size: 15px !important;
+    }
+
+    .sidebar {
+        background: black;
+        color: white;
+        position: fixed;
+        width: 20%;
+        height: 100%;
+        left: 0;
+        overflow: auto;
+        display: block;
+        margin-top: -30px !important;
+        padding-top: 40px !important;
+    }
+
+    .main {
+        background: silver;
+        color: black;
+        width: 80%;
+        float: right;
+    }
+
+        .main p {
+            margin-bottom: 50px;
+        }
+
+    footer {
+        display: none;
+    }
+
+    .ImageAndUserName {
+        display: flex;
+    }
+</style>
+
+
+

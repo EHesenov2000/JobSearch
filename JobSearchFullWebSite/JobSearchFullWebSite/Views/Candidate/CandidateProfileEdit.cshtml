@@ -155,8 +155,16 @@
                         <div class="d-flex flex-column">
                             <label>Description</label>
                             <div id="editor">
-                                <p >Hello World!</p>
-                                <p>Some initial <strong>bold</strong> text</p>
+                                @*@Html.TextAreaFor(m => m.AboutCandidateTextEditor, new
+                                {
+        rows = "20",
+                                    style = "resize:none;width:400px;",
+                                    placeholder = Html.DisplayNameFor(m => m.AboutCandidateTextEditor),
+                                    @class = "form-control input-lg textarea-editor"
+    })*@        
+                                @*@Html.LabelFor(m => m.AboutCandidateTextEditor)<br />
+                                @Html.TextAreaFor(m => m.AboutCandidateTextEditor)
+                                @Html.ValidationMessageFor(m => m.AboutCandidateTextEditor, "", new { @class = "error" })*@
                             </div>
                         </div>
                     </div>

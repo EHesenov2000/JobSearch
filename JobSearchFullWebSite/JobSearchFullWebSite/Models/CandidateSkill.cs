@@ -12,5 +12,7 @@ namespace JobSearchFullWebSite.Models
         [StringLength(maximumLength: 30, ErrorMessage = "Maksimum uzunluq 30-dur")]
         [Required]
         public string Name { get; set; }
+        public int CandidateId { get; set; }
+        public Candidate Candidate { get; set; }
     }
 }

@@ -282,5 +282,31 @@ namespace JobSearchFullWebSite.Controllers
             //return View(candidateEditDto);
             return RedirectToAction("index");
         }
+        public IActionResult CandidateResumeEdit(int id) 
+        
+        {
+
+           Candidate candidate= _context.Candidates.Include(x=>x.CandidateCVs).Include(x=>x.CandidateSkills).Include(x=>x.CandidateImages).Include(x=>x.CandidateWorkItems).Include(x=>x.CandidateEducationItems).Include(x=>x.CandidateAwardItems).FirstOrDefault(x => x.Id == id);
+
+           CandidateResumeEditDto candidateResume = new CandidateResumeEditDto();
+            candidateResume.CandidateImages = candidate.CandidateImages;
+            candidateResume.CandidateSkills = candidate.CandidateSkills;
+            candidateResume.CandidateImages = candidate.CandidateImages;
+            candidateResume.CandidateEducationItems = candidate.CandidateEducationItems;
+            candidateResume.CandidateAwardItems = candidate.CandidateAwardItems;
+            candidateResume.CandidateWorkItems = candidate.CandidateWorkItems;
+            candidateResume.CandidateCVs = candidate.CandidateCVs; 
+            candidateResume.Id = id;
+
+            return View(candidateResume); 
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult CandidateResumeEdit(int id,CandidateResumeEditDto resumeEditDto) 
+        { 
+            return View(); 
+        
+        }
+
     }
 }

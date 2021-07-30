@@ -13,29 +13,29 @@ namespace JobSearchFullWebSite.Models
     {
         public int Id { get; set; }
         [StringLength(maximumLength: 50, ErrorMessage = "Maksimum uzunluq 50-dir")]
-        public string FullName { get; set; } 
-        public bool IsFeatured { get; set; }
-        public int? WaitingSalary { get; set; }
-        public JobSalaryForTime? SalaryForTime { get; set; }
-        public DateTime? BirthdayDate { get; set; }
-        public DateTime CreatedAt { get; set; }
+        public string FullName { get; set; } //
+        public bool IsFeatured { get; set; }//
+        public int? WaitingSalary { get; set; }//
+        public JobSalaryForTime? SalaryForTime { get; set; }//
+        public DateTime? BirthdayDate { get; set; }//
+        public DateTime CreatedAt { get; set; }//
         [StringLength(maximumLength: 1000, ErrorMessage = "Maksimum uzunluq 1000-dur")]
-        public string AboutCandidateTextEditor { get; set; }
-        public RequiredExperience? Experience { get; set; }
-        public Gender? Gender { get; set; }
-        public int? Age { get; set; }
-        public Qualification? Qualification { get; set; }
+        public string AboutCandidateTextEditor { get; set; }//
+        public RequiredExperience? Experience { get; set; }//
+        public Gender? Gender { get; set; }//
+        public int? Age { get; set; }//
+        public Qualification? Qualification { get; set; }//
         [StringLength(maximumLength: 30, ErrorMessage = "Maksimum uzunluq 30-dur")]
-        public string Email { get; set; }
-        public string PhoneNumber { get; set; }
+        public string Email { get; set; }//
+        public string PhoneNumber { get; set; }//
         [StringLength(maximumLength: 100, ErrorMessage = "Maksimum uzunluq 100-dur")]
-        public string FacebookUrl { get; set; }
+        public string FacebookUrl { get; set; }//
         [StringLength(maximumLength: 100, ErrorMessage = "Maksimum uzunluq 100-dur")]
-        public string TwitterUrl { get; set; }
+        public string TwitterUrl { get; set; }//
         [StringLength(maximumLength: 100, ErrorMessage = "Maksimum uzunluq 100-dur")]
-        public string LinkedinUrl { get; set; }
+        public string LinkedinUrl { get; set; }//
         [StringLength(maximumLength: 100, ErrorMessage = "Maksimum uzunluq 100-dur")]
-        public string InstagramUrl { get; set; }
+        public string InstagramUrl { get; set; }//
         [NotMapped]
         public List<IFormFile> Images { get; set; }
         [NotMapped]
