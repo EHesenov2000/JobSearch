@@ -4,14 +4,16 @@ using JobSearchFullWebSite.DAL.AppDbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JobSearchFullWebSite.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210801115339_ShortListTableCreated")]
+    partial class ShortListTableCreated
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -838,28 +840,6 @@ namespace JobSearchFullWebSite.Migrations
                     b.ToTable("FAQs");
                 });
 
-            modelBuilder.Entity("JobSearchFullWebSite.Models.Follower", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CandidateId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("EmployerId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CandidateId");
-
-                    b.HasIndex("EmployerId");
-
-                    b.ToTable("Follower");
-                });
-
             modelBuilder.Entity("JobSearchFullWebSite.Models.HowWork", b =>
                 {
                     b.Property<int>("Id")
@@ -1615,21 +1595,6 @@ namespace JobSearchFullWebSite.Migrations
                 {
                     b.HasOne("JobSearchFullWebSite.Models.Employer", "Employer")
                         .WithMany("EmployerImages")
-                        .HasForeignKey("EmployerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("JobSearchFullWebSite.Models.Follower", b =>
-                {
-                    b.HasOne("JobSearchFullWebSite.Models.Candidate", "Candidate")
-                        .WithMany("Followers")
-                        .HasForeignKey("CandidateId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("JobSearchFullWebSite.Models.Employer", "Employer")
-                        .WithMany("Followers")
                         .HasForeignKey("EmployerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

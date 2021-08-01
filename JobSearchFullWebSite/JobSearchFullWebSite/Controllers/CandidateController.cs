@@ -67,21 +67,27 @@ namespace JobSearchFullWebSite.Controllers
             Candidate candidate = _context.Candidates.Include(x=>x.Position).Include(x => x.City).Include(x => x.CandidateSkills).Include(x => x.CandidateImages).Include(x => x.KnowingLanguages).Include(x => x.CandidateCVs).Include(x => x.CandidateAwardItems).Include(x => x.CandidateEducationItems).Include(x => x.CandidateWorkItems).FirstOrDefault(x=>x.Id==id);
             return View(candidate);
         }
-        public IActionResult CandidateDashboard()
+        public IActionResult CandidateDashboard(int id)
         {
-            return View();
+            Candidate candidate = _context.Candidates.Include(x=>x.AppUser).ThenInclude(x=>x.Applies).Include(x=>x.ShortLists).Include(x=>x.Followers).FirstOrDefault(x => x.Id == id);
+            return View(candidate);
         }
-        public IActionResult CandidateApplieds()
+        public IActionResult CandidateApplieds(int id)
         {
-            return View();
+            Candidate candidate = _context.Candidates.Include(x=>x.AppUser).ThenInclude(x=>x.Applies).ThenInclude(x=>x.Job).ThenInclude(x=>x.JobCategory).Include(x=>x.City).FirstOrDefault(x => x.Id == id);
+            return View(candidate);
         }
-        public IActionResult CandidateShortList()
+        public IActionResult CandidateShortList(int id)
         {
-            return View();
+            Candidate candidate = _context.Candidates.FirstOrDefault(x => x.Id==id);
+            List<Job> jobs = _context.Jobs.Include(x=>x.City).Include(x=>x.JobCategory).Where(x => x.Id == candidate.Id).ToList();
+            return View(jobs);
         }
-        public IActionResult CandidateFollowings()
+        public IActionResult CandidateFollowings(int id)
         {
-            return View();
+            Candidate candidate = _context.Candidates.FirstOrDefault(x =>x.Id == id);
+            List<Follower> followers = _context.Followers.Include(x=>x.Employer).ThenInclude(x=>x.City).Where(x => x.CandidateId == candidate.Id).ToList();
+            return View(followers);
         }
         //public IActionResult CandidateAlerts()
         //{

@@ -1,4 +1,5 @@
-﻿
+﻿@using JobSearchFullWebSite.Models
+@model List<Follower>
 @{
     ViewData["Title"] = "CandidateFollowings";
 }
@@ -26,41 +27,46 @@
                            class="border-0 backColorBlue border-radius" />
                 </div>
             </div>
-            <div class="card mt-4 p-3">
-                <div class="d-flex flex-row justify-content-end">
-                    <i class="far fa-bookmark"></i>
-                </div>
-                <div class="d-flex flex-row row">
-                    <div class="col-sm-8 col-12 d-flex">
-                        <div class="EmployerImage">
-                            <img src="./../SiteImages/y12.jpg"
-                                 alt=""
-                                 style="width: 50px; height: auto; border-radius: 50%" />
-                        </div>
-                        <div class="d-flex flex-column ms-2">
-                            <div class=""><b>Udemy</b></div>
-                            <div class="EmployerCardIcons">
-                                <div class="EmployerCardIcons grey">
-                                    <div class="EmployerCardImage">
-                                        <i class="fas fa-map-marker-alt"></i>
-                                        <span class="ms-1">New York</span>
-                                    </div>
-                                    <div class="EmployerCardImage ms-2">
-                                        <i class="fas fa-briefcase"></i><span class="ms-1">Customer</span>
+            @foreach (var item in Model)
+            {
+                <div class="card mt-4 p-3">
+                    <div class="d-flex flex-row justify-content-end">
+                        <i class="far fa-bookmark"></i>
+                    </div>
+                    <div class="d-flex flex-row row">
+                        <div class="col-sm-8 col-12 d-flex">
+                            <div class="EmployerImage">
+                                <img src="./../SiteImages/@item.Employer.EmployerImages.FirstOrDefault(x=>x.IsPoster).Image"
+                                     alt=""
+                                     style="width: 50px; height: auto; border-radius: 50%" />
+                            </div>
+                            <div class="d-flex flex-column ms-2">
+                                <div class=""><b>Udemy</b></div>
+                                <div class="EmployerCardIcons">
+                                    <div class="EmployerCardIcons grey">
+                                        <div class="EmployerCardImage">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                            <span class="ms-1">@item.Employer.City.CityName</span>
+                                        </div>
+                                        <div class="EmployerCardImage ms-2">
+                                            <i class="fas fa-briefcase"></i><span class="ms-1">@item.Employer.Category.Name</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="
+                        <div class="
                       col-sm-4 col-12
                       d-flex
                       justify-content-end
                       align-items-center
                     ">
-                        <div style="max-width: fit-content; height: fit-content"
-                             class="
+
+                            @if (item.Employer.IsFeatured)
+                            {
+                                <div style="max-width: fit-content; height: fit-content"
+                                     class="
                         backColorBlue
                         px-2
                         border-radius
@@ -68,199 +74,16 @@
                         flex-row
                         justify-content-end
                       ">
-                            <span>Featured</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card mt-4 p-3">
-                <div class="d-flex flex-row justify-content-end">
-                    <i class="far fa-bookmark"></i>
-                </div>
-                <div class="d-flex flex-row row">
-                    <div class="col-sm-8 col-12 d-flex">
-                        <div class="EmployerImage">
-                            <img src="./../SiteImages/y12.jpg"
-                                 alt=""
-                                 style="width: 50px; height: auto; border-radius: 50%" />
-                        </div>
-                        <div class="d-flex flex-column ms-2">
-                            <div class=""><b>Udemy</b></div>
-                            <div class="EmployerCardIcons">
-                                <div class="EmployerCardIcons grey">
-                                    <div class="EmployerCardImage">
-                                        <i class="fas fa-map-marker-alt"></i>
-                                        <span class="ms-1">New York</span>
-                                    </div>
-                                    <div class="EmployerCardImage ms-2">
-                                        <i class="fas fa-briefcase"></i><span class="ms-1">Customer</span>
-                                    </div>
+                                    <span>Featured</span>
                                 </div>
-                            </div>
+                            }
+                            <div>@*Open Jobs - @item.Employer.Jobs.Count()*@</div>
                         </div>
                     </div>
+                </div>
+            }
 
-                    <div class="
-                      col-sm-4 col-12
-                      d-flex
-                      justify-content-end
-                      align-items-center
-                    ">
-                        <div style="max-width: fit-content; height: fit-content"
-                             class="
-                        backColorBlue
-                        px-2
-                        border-radius
-                        d-flex
-                        flex-row
-                        justify-content-end
-                      ">
-                            <span>Featured</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card mt-4 p-3">
-                <div class="d-flex flex-row justify-content-end">
-                    <i class="far fa-bookmark"></i>
-                </div>
-                <div class="d-flex flex-row row">
-                    <div class="col-sm-8 col-12 d-flex">
-                        <div class="EmployerImage">
-                            <img src="./../SiteImages/y12.jpg"
-                                 alt=""
-                                 style="width: 50px; height: auto; border-radius: 50%" />
-                        </div>
-                        <div class="d-flex flex-column ms-2">
-                            <div class=""><b>Udemy</b></div>
-                            <div class="EmployerCardIcons">
-                                <div class="EmployerCardIcons grey">
-                                    <div class="EmployerCardImage">
-                                        <i class="fas fa-map-marker-alt"></i>
-                                        <span class="ms-1">New York</span>
-                                    </div>
-                                    <div class="EmployerCardImage ms-2">
-                                        <i class="fas fa-briefcase"></i><span class="ms-1">Customer</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="
-                      col-sm-4 col-12
-                      d-flex
-                      justify-content-end
-                      align-items-center
-                    ">
-                        <div style="max-width: fit-content; height: fit-content"
-                             class="
-                        backColorBlue
-                        px-2
-                        border-radius
-                        d-flex
-                        flex-row
-                        justify-content-end
-                      ">
-                            <span>Featured</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card mt-4 p-3">
-                <div class="d-flex flex-row justify-content-end">
-                    <i class="far fa-bookmark"></i>
-                </div>
-                <div class="d-flex flex-row row">
-                    <div class="col-sm-8 col-12 d-flex">
-                        <div class="EmployerImage">
-                            <img src="./../SiteImages/y12.jpg"
-                                 alt=""
-                                 style="width: 50px; height: auto; border-radius: 50%" />
-                        </div>
-                        <div class="d-flex flex-column ms-2">
-                            <div class=""><b>Udemy</b></div>
-                            <div class="EmployerCardIcons">
-                                <div class="EmployerCardIcons grey">
-                                    <div class="EmployerCardImage">
-                                        <i class="fas fa-map-marker-alt"></i>
-                                        <span class="ms-1">New York</span>
-                                    </div>
-                                    <div class="EmployerCardImage ms-2">
-                                        <i class="fas fa-briefcase"></i><span class="ms-1">Customer</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="
-                      col-sm-4 col-12
-                      d-flex
-                      justify-content-end
-                      align-items-center
-                    ">
-                        <div style="max-width: fit-content; height: fit-content"
-                             class="
-                        backColorBlue
-                        px-2
-                        border-radius
-                        d-flex
-                        flex-row
-                        justify-content-end
-                      ">
-                            <span>Featured</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card mt-4 p-3">
-                <div class="d-flex flex-row justify-content-end">
-                    <i class="far fa-bookmark"></i>
-                </div>
-                <div class="d-flex flex-row row">
-                    <div class="col-sm-8 col-12 d-flex">
-                        <div class="EmployerImage">
-                            <img src="./../SiteImages/y12.jpg"
-                                 alt=""
-                                 style="width: 50px; height: auto; border-radius: 50%" />
-                        </div>
-                        <div class="d-flex flex-column ms-2">
-                            <div class=""><b>Udemy</b></div>
-                            <div class="EmployerCardIcons">
-                                <div class="EmployerCardIcons grey">
-                                    <div class="EmployerCardImage">
-                                        <i class="fas fa-map-marker-alt"></i>
-                                        <span class="ms-1">New York</span>
-                                    </div>
-                                    <div class="EmployerCardImage ms-2">
-                                        <i class="fas fa-briefcase"></i><span class="ms-1">Customer</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="
-                      col-sm-4 col-12
-                      d-flex
-                      justify-content-end
-                      align-items-center
-                    ">
-                        <div style="max-width: fit-content; height: fit-content"
-                             class="
-                        backColorBlue
-                        px-2
-                        border-radius
-                        d-flex
-                        flex-row
-                        justify-content-end
-                      ">
-                            <span>Featured</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
     <div class="sidebar ps-3">

@@ -56,5 +56,7 @@ namespace JobSearchFullWebSite.Models
         public List<JobRequiredLanguage> RequiredLanguages { get; set; }
         public List<JobComment> JobComments { get; set; }
         public List<Apply> Applies { get; set; }
+        public List<ShortList> ShortLists { get; set; }
+
     }
 }

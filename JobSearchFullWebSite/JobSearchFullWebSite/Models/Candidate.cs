@@ -59,6 +59,8 @@ namespace JobSearchFullWebSite.Models
         public List<CandidateEducationItem> CandidateEducationItems { get; set; }
         public List<CandidateWorkItem> CandidateWorkItems { get; set; }
         public List<CandidateAwardItem> CandidateAwardItems { get; set; }
+        public List<ShortList> ShortLists { get; set; }
+        public List<Follower> Followers { get; set; }
 
 
     }

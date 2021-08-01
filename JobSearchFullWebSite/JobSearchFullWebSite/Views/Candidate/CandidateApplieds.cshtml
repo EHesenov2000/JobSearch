@@ -1,4 +1,5 @@
-﻿
+﻿@using JobSearchFullWebSite.Models
+@model Candidate
 @{
     ViewData["Title"] = "CandidateApplieds";
 }
@@ -39,53 +40,55 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr class="">
-                                                <td class="fontSize14">
-                                                    <div class="d-flex flex-row">
-                                                        <div>
-                                                            <img style="max-width: 50px; height: auto"
-                                                                 src="./../SiteImages/y12.jpg"
-                                                                 alt="" />
-                                                        </div>
-                                                        <div class="
+                                            @foreach (var item in Model.AppUser.Applies)
+                                            {
+                                                <tr class="">
+                                                    <td class="fontSize14">
+                                                        <div class="d-flex flex-row">
+                                                            <div>
+                                                                <img style="max-width: 50px; height: auto"
+                                                                     src="./../SiteImages/@item.Job.JobImages.FirstOrDefault(x=>x.IsPoster).Image"
+                                                                     alt="" />
+                                                            </div>
+                                                            <div class="
                               d-flex
                               flex-column
                               justify-content-center
                               ms-3
                             ">
-                                                            <div><b>Restaurant Team Member</b></div>
-                                                            <div class="d-flex flex-row">
-                                                                <div class="d-flex flex-row grey align-items-center">
-                                                                    <i class="fas fa-briefcase"></i><span class="ms-1">Customer</span>
-                                                                </div>
-                                                                <div class="
+                                                                <div><b>@item.Job.Name</b></div>
+                                                                <div class="d-flex flex-row">
+                                                                    <div class="d-flex flex-row grey align-items-center">
+                                                                        <i class="fas fa-briefcase"></i><span class="ms-1">@item.Job.JobCategory.Name</span>
+                                                                    </div>
+                                                                    <div class="
                                   d-flex
                                   flex-row
                                   grey
                                   align-items-center
                                   ms-2
                                 ">
-                                                                    <i class="fas fa-map-marker-alt"></i>
-                                                                    <span class="ms-1">New York</span>
+                                                                        <i class="fas fa-map-marker-alt"></i>
+                                                                        <span class="ms-1">@item.Job.City.CityName</span>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                                <td class="fontSize14" style="vertical-align: middle">
-                                                    May 7, 2021
-                                                </td>
-                                                <td class="fontSize14" style="vertical-align: middle">
-                                                    Approved
-                                                </td>
-                                                <td class="fontSize14" style="vertical-align: middle">
-                                                    <div class="d-flex flex-row">
-                                                        <div style="
+                                                    </td>
+                                                    <td class="fontSize14" style="vertical-align: middle">
+                                                        @item.Job.CreatedAt.ToString("MMM dd,yyyy")
+                                                    </td>
+                                                    <td class="fontSize14" style="vertical-align: middle">
+                                                        @item.ApplyStatus
+                                                    </td>
+                                                    <td class="fontSize14" style="vertical-align: middle">
+                                                        <div class="d-flex flex-row">
+                                                            <div style="
                               background-color: #eff4fc;
                               width: 30px;
                               height: 30px;
                             "
-                                                             class="
+                                                                 class="
                               d-flex
                               flex-row
                               align-items-center
@@ -93,16 +96,16 @@
                               border-radius
                               AplliedJobIcon
                             ">
-                                                            <a href="">
-                                                                <i class="fas fa-times blue"></i>
-                                                            </a>
-                                                        </div>
-                                                        <div style="
+                                                                <a href="">
+                                                                    <i class="fas fa-times blue"></i>
+                                                                </a>
+                                                            </div>
+                                                            <div style="
                               background-color: #eff4fc;
                               width: 30px;
                               height: 30px;
                             "
-                                                             class="
+                                                                 class="
                               d-flex
                               flex-row
                               align-items-center
@@ -111,319 +114,13 @@
                               ms-2
                               AplliedJobIcon
                             ">
-                                                            <a href=""><i class="fas fa-eye blue"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="">
-                                                <td class="fontSize14">
-                                                    <div class="d-flex flex-row">
-                                                        <div>
-                                                            <img style="max-width: 50px; height: auto"
-                                                                 src="./../SiteImages/y12.jpg"
-                                                                 alt="" />
-                                                        </div>
-                                                        <div class="
-                              d-flex
-                              flex-column
-                              justify-content-center
-                              ms-3
-                            ">
-                                                            <div><b>Restaurant Team Member</b></div>
-                                                            <div class="d-flex flex-row">
-                                                                <div class="d-flex flex-row grey align-items-center">
-                                                                    <i class="fas fa-briefcase"></i><span class="ms-1">Customer</span>
-                                                                </div>
-                                                                <div class="
-                                  d-flex
-                                  flex-row
-                                  grey
-                                  align-items-center
-                                  ms-2
-                                ">
-                                                                    <i class="fas fa-map-marker-alt"></i>
-                                                                    <span class="ms-1">New York</span>
-                                                                </div>
+                                                                <a href=""><i class="fas fa-eye blue"></i></a>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                                <td class="fontSize14" style="vertical-align: middle">
-                                                    May 7, 2021
-                                                </td>
-                                                <td class="fontSize14" style="vertical-align: middle">
-                                                    Approved
-                                                </td>
-                                                <td class="fontSize14" style="vertical-align: middle">
-                                                    <div class="d-flex flex-row">
-                                                        <div style="
-                              background-color: #eff4fc;
-                              width: 30px;
-                              height: 30px;
-                            "
-                                                             class="
-                              d-flex
-                              flex-row
-                              align-items-center
-                              justify-content-center
-                              border-radius
-                              AplliedJobIcon
-                            ">
-                                                            <a href="">
-                                                                <i class="fas fa-times blue"></i>
-                                                            </a>
-                                                        </div>
-                                                        <div style="
-                              background-color: #eff4fc;
-                              width: 30px;
-                              height: 30px;
-                            "
-                                                             class="
-                              d-flex
-                              flex-row
-                              align-items-center
-                              justify-content-center
-                              border-radius
-                              ms-2
-                              AplliedJobIcon
-                            ">
-                                                            <a href=""><i class="fas fa-eye blue"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="">
-                                                <td class="fontSize14">
-                                                    <div class="d-flex flex-row">
-                                                        <div>
-                                                            <img style="max-width: 50px; height: auto"
-                                                                 src="./../SiteImages/y12.jpg"
-                                                                 alt="" />
-                                                        </div>
-                                                        <div class="
-                              d-flex
-                              flex-column
-                              justify-content-center
-                              ms-3
-                            ">
-                                                            <div><b>Restaurant Team Member</b></div>
-                                                            <div class="d-flex flex-row">
-                                                                <div class="d-flex flex-row grey align-items-center">
-                                                                    <i class="fas fa-briefcase"></i><span class="ms-1">Customer</span>
-                                                                </div>
-                                                                <div class="
-                                  d-flex
-                                  flex-row
-                                  grey
-                                  align-items-center
-                                  ms-2
-                                ">
-                                                                    <i class="fas fa-map-marker-alt"></i>
-                                                                    <span class="ms-1">New York</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="fontSize14" style="vertical-align: middle">
-                                                    May 7, 2021
-                                                </td>
-                                                <td class="fontSize14" style="vertical-align: middle">
-                                                    Approved
-                                                </td>
-                                                <td class="fontSize14" style="vertical-align: middle">
-                                                    <div class="d-flex flex-row">
-                                                        <div style="
-                              background-color: #eff4fc;
-                              width: 30px;
-                              height: 30px;
-                            "
-                                                             class="
-                              d-flex
-                              flex-row
-                              align-items-center
-                              justify-content-center
-                              border-radius
-                              AplliedJobIcon
-                            ">
-                                                            <a href="">
-                                                                <i class="fas fa-times blue"></i>
-                                                            </a>
-                                                        </div>
-                                                        <div style="
-                              background-color: #eff4fc;
-                              width: 30px;
-                              height: 30px;
-                            "
-                                                             class="
-                              d-flex
-                              flex-row
-                              align-items-center
-                              justify-content-center
-                              border-radius
-                              ms-2
-                              AplliedJobIcon
-                            ">
-                                                            <a href=""><i class="fas fa-eye blue"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="">
-                                                <td class="fontSize14">
-                                                    <div class="d-flex flex-row">
-                                                        <div>
-                                                            <img style="max-width: 50px; height: auto"
-                                                                 src="./../SiteImages/y12.jpg"
-                                                                 alt="" />
-                                                        </div>
-                                                        <div class="
-                              d-flex
-                              flex-column
-                              justify-content-center
-                              ms-3
-                            ">
-                                                            <div><b>Restaurant Team Member</b></div>
-                                                            <div class="d-flex flex-row">
-                                                                <div class="d-flex flex-row grey align-items-center">
-                                                                    <i class="fas fa-briefcase"></i><span class="ms-1">Customer</span>
-                                                                </div>
-                                                                <div class="
-                                  d-flex
-                                  flex-row
-                                  grey
-                                  align-items-center
-                                  ms-2
-                                ">
-                                                                    <i class="fas fa-map-marker-alt"></i>
-                                                                    <span class="ms-1">New York</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="fontSize14" style="vertical-align: middle">
-                                                    May 7, 2021
-                                                </td>
-                                                <td class="fontSize14" style="vertical-align: middle">
-                                                    Approved
-                                                </td>
-                                                <td class="fontSize14" style="vertical-align: middle">
-                                                    <div class="d-flex flex-row">
-                                                        <div style="
-                              background-color: #eff4fc;
-                              width: 30px;
-                              height: 30px;
-                            "
-                                                             class="
-                              d-flex
-                              flex-row
-                              align-items-center
-                              justify-content-center
-                              border-radius
-                              AplliedJobIcon
-                            ">
-                                                            <a href="">
-                                                                <i class="fas fa-times blue"></i>
-                                                            </a>
-                                                        </div>
-                                                        <div style="
-                              background-color: #eff4fc;
-                              width: 30px;
-                              height: 30px;
-                            "
-                                                             class="
-                              d-flex
-                              flex-row
-                              align-items-center
-                              justify-content-center
-                              border-radius
-                              ms-2
-                              AplliedJobIcon
-                            ">
-                                                            <a href=""><i class="fas fa-eye blue"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr class="">
-                                                <td class="fontSize14">
-                                                    <div class="d-flex flex-row">
-                                                        <div>
-                                                            <img style="max-width: 50px; height: auto"
-                                                                 src="./../SiteImages/y12.jpg"
-                                                                 alt="" />
-                                                        </div>
-                                                        <div class="
-                              d-flex
-                              flex-column
-                              justify-content-center
-                              ms-3
-                            ">
-                                                            <div><b>Restaurant Team Member</b></div>
-                                                            <div class="d-flex flex-row">
-                                                                <div class="d-flex flex-row grey align-items-center">
-                                                                    <i class="fas fa-briefcase"></i><span class="ms-1">Customer</span>
-                                                                </div>
-                                                                <div class="
-                                  d-flex
-                                  flex-row
-                                  grey
-                                  align-items-center
-                                  ms-2
-                                ">
-                                                                    <i class="fas fa-map-marker-alt"></i>
-                                                                    <span class="ms-1">New York</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td class="fontSize14" style="vertical-align: middle">
-                                                    May 7, 2021
-                                                </td>
-                                                <td class="fontSize14" style="vertical-align: middle">
-                                                    Approved
-                                                </td>
-                                                <td class="fontSize14" style="vertical-align: middle">
-                                                    <div class="d-flex flex-row">
-                                                        <div style="
-                              background-color: #eff4fc;
-                              width: 30px;
-                              height: 30px;
-                            "
-                                                             class="
-                              d-flex
-                              flex-row
-                              align-items-center
-                              justify-content-center
-                              border-radius
-                              AplliedJobIcon
-                            ">
-                                                            <a href="">
-                                                                <i class="fas fa-times blue"></i>
-                                                            </a>
-                                                        </div>
-                                                        <div style="
-                              background-color: #eff4fc;
-                              width: 30px;
-                              height: 30px;
-                            "
-                                                             class="
-                              d-flex
-                              flex-row
-                              align-items-center
-                              justify-content-center
-                              border-radius
-                              ms-2
-                              AplliedJobIcon
-                            ">
-                                                            <a href=""><i class="fas fa-eye blue"></i></a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                                    </td>
+                                                </tr>
+                                            }
+
                                         </tbody>
                                     </table>
                                 </div>

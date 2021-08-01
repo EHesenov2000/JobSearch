@@ -51,5 +51,7 @@ namespace JobSearchFullWebSite.DAL.AppDbContext
         public DbSet<Language> Languages { get; set; }
         public DbSet<JobComment> JobComments { get; set; }
         public DbSet<Apply> Applies { get; set; }
+        public DbSet<ShortList> ShortLists { get; set; }
+        public DbSet<Follower> Followers { get; set; }
     }
 }

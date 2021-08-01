@@ -50,6 +50,7 @@ namespace JobSearchFullWebSite.Models
         public List<EmployerContact> EmployerContacts { get; set; }
         public List<EmployerImage> EmployerImages { get; set; }
         public List<Job> Jobs { get; set; }
+        public List<Follower> Followers { get; set; }
 
     }
 }
