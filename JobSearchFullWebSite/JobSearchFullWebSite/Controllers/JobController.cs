@@ -86,5 +86,32 @@ namespace JobSearchFullWebSite.Controllers
             _context.SaveChanges();
             return RedirectToAction("index","job");
         }
+
+        public IActionResult AddJobToShortlist(int jobId,int candidateId)
+        {
+            Candidate candidate = _context.Candidates.FirstOrDefault(x => x.Id == candidateId);
+            Job job = _context.Jobs.FirstOrDefault(x => x.Id == jobId);
+            if (job == null || candidate == null) return RedirectToAction("index");
+            ShortList shortList = new ShortList
+            {
+                CandidateId = candidateId,
+                JobId = jobId
+            };
+            _context.ShortLists.Add(shortList);
+            _context.SaveChanges();
+            return RedirectToAction();
+        }
+        public IActionResult RemoveJobFromShortlist(int id)
+        {
+            ShortList shortList = _context.ShortLists.FirstOrDefault(x => x.Id == id);
+            if (shortList==null)
+            {
+                return RedirectToAction("index");
+            }
+            _context.ShortLists.Remove(shortList);
+            _context.SaveChanges();
+            return RedirectToAction();
+        }
+
     }
 }

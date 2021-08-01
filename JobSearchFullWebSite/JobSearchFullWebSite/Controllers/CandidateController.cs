@@ -313,6 +313,69 @@ namespace JobSearchFullWebSite.Controllers
             return View(); 
         
         }
+        public IActionResult ApplyForJob(Apply apply)
+        {
+            Job job = _context.Jobs.FirstOrDefault(x => x.Id == apply.JobId);
+            if (job == null) return RedirectToAction("index");
+            AppUser user = null;
+            if (User.Identity.IsAuthenticated)
+            {
+                user = _context.Users.FirstOrDefault(x => x.UserName == User.Identity.Name && x.UserStatus==Enums.UserStatus.Candidate);
+            }
+            else
+            {
+                return RedirectToAction("index");
+            }
+            if (_context.Applies.Any(x => x.AppUserId == user.Id && x.JobId == apply.JobId)) return RedirectToAction("index");// artiq var
+            Candidate candidate = _context.Candidates.FirstOrDefault(x => x.AppUserId == user.Id);
+            if (candidate.Gender == null) return RedirectToAction("CandidateProfileEdit");  //melumatlar doldurulmalidir
+            apply.FullName = candidate.FullName;
+            apply.UserName = user.UserName;
+            apply.ContactPhone = candidate.PhoneNumber;
+            apply.RequestDate = DateTime.UtcNow.AddHours(4);
+            apply.ApplyStatus = Enums.ApplyStatus.Pending;
+            if (!ModelState.IsValid) return RedirectToAction("index");
+            _context.Applies.Add(apply);
+            _context.SaveChanges();
 
+            return RedirectToAction();
+        }
+        public IActionResult RemoveApply(int id)
+        {
+            Apply apply = _context.Applies.FirstOrDefault(x => x.Id == id);
+            if (apply == null) return RedirectToAction();
+            _context.Applies.Remove(apply);
+            _context.SaveChanges();
+            return RedirectToAction();
+        }
+
+        public IActionResult Following(int employerId)
+        {
+            AppUser user = null;
+            if (User.Identity.IsAuthenticated)
+            {
+                user=_context.Users.FirstOrDefault(x => x.Id == User.Identity.Name);
+            }
+            else { return RedirectToAction("index"); }
+            Candidate candidate = _context.Candidates.FirstOrDefault(x => x.AppUserId == user.Id && user.UserStatus==Enums.UserStatus.Candidate);
+            if (candidate == null) { return RedirectToAction("index"); }
+            Follower follower = new Follower
+            {
+                CandidateId = candidate.Id,
+                EmployerId = employerId
+            };
+            _context.Followers.Add(follower);
+            _context.SaveChanges();
+
+            return RedirectToAction();
+        }
+        public IActionResult RemoveFollow(int id)
+        {
+            Follower follower = _context.Followers.FirstOrDefault(x => x.Id == id);
+            if (follower == null) return RedirectToAction();
+            _context.Followers.Remove(follower);
+            _context.SaveChanges();
+            return RedirectToAction();
+        }
     }
 }
