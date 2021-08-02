@@ -2,9 +2,10 @@
 @using JobSearchFullWebSite.Models
 @model About
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
     Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
 }
+
 
 <div class="container-fluid">
     <form method="post" enctype="multipart/form-data">
@@ -41,6 +42,20 @@
             </div>
         </div>
         <br />
+        <div class="row">
+            @if (Model.AboutImages.Count() != 0)
+            {
+                @foreach (var item in Model.AboutImages)
+                {
+                    <div class="img-box col-md-4" style="position:relative;max-width:200px;width:200px;height:200px;max-height:200px;">
+                        <img class="d-block" src="~/uploads/@item.Image" style="max-width:180px;width:180px;height:180px;max-height:180px;margin-left:10px;padding-top:20px" />
+                        <i class="fas fa-times remove-img-box" style="color:red;position:absolute;cursor:pointer;right:4px;top:2px;font-size:17px"></i>
+                        <input type="hidden" name="AboutTopImageId[]" value="@item.Id" />
+                    </div>
+                }
+            }
+
+        </div>
         <br />
         <div class="form-row">
             <button type="submit" class="btn btn-primary">Submit</button>
@@ -48,3 +63,15 @@
     </form>
 
 </div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+
+            $(document).on("click", ".remove-img-box", function (e) {
+                $(this).parents(".img-box").attr("style", "background-color:unset");
+                $(this).parents(".img-box").empty();
+            })
+        })
+    </script>
+}

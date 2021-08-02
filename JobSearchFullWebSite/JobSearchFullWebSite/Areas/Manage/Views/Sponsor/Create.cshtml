@@ -1,0 +1,29 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using JobSearchFullWebSite.Models
+@model AboutSponsor
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-fluid">
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-row">
+            <div class="form-group col-md-12 d-flex flex-column">
+                <label asp-for="@Model.AboutSponsorImage">Sponsor Image</label>
+                <input asp-for="@Model.AboutSponsorImage" />
+                <span asp-validation-for="@Model.AboutSponsorImage" class="text-danger"></span>
+            </div>
+        </div>
+        <br />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <br />
+        <div class="form-row">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+
+</div>
+

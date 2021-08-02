@@ -12,9 +12,9 @@ namespace JobSearchFullWebSite.Models
     {
         public int Id { get; set; }
         [StringLength(maximumLength: 100, ErrorMessage = "Maksimum uzunluq 100-dur")]
-        [Required]
+        [Required(ErrorMessage ="Sekil daxil edilmelidir")]
         public string SponsorImage { get; set; }
         [NotMapped]
-        public List<IFormFile> AboutSponsorImage { get; set; }
+        public IFormFile AboutSponsorImage { get; set; }
     }
 }

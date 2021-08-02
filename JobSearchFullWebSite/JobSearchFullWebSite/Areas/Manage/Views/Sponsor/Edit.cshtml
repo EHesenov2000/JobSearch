@@ -1,0 +1,51 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using JobSearchFullWebSite.Models
+@model AboutSponsor
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-fluid">
+    <form method="post" enctype="multipart/form-data">
+        <br />
+        <div class="form-row">
+            <div class="form-group col-md-12 d-flex flex-column">
+                <label asp-for="@Model.AboutSponsorImage">Sponsor Image</label>
+                <input asp-for="@Model.AboutSponsorImage" />
+                <span asp-validation-for="@Model.AboutSponsorImage" class="text-danger"></span>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            @if (Model!= null)
+            {
+                    <div class="img-box col-md-4" style="position:relative;max-width:200px;width:200px;height:200px;max-height:200px;">
+                        <img class="d-block" src="~/uploads/@Model.SponsorImage" style="max-width:180px;width:180px;height:180px;max-height:180px;margin-left:10px;padding-top:20px" />
+                        <i class="fas fa-times remove-img-box" style="color:red;position:absolute;cursor:pointer;right:4px;top:2px;font-size:17px"></i>
+                        <input type="hidden" name="AboutTopImageId[]" value="@Model.Id" />
+                    </div>
+            }
+        </div>
+        <br />
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <br />
+        <div class="form-row">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+
+            $(document).on("click", ".remove-img-box", function (e) {
+                $(this).parents(".img-box").attr("style", "background-color:unset");
+                $(this).parents(".img-box").empty();
+            })
+        })
+    </script>
+}
