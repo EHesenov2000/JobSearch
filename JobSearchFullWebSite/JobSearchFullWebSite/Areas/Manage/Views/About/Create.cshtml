@@ -1,0 +1,50 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using JobSearchFullWebSite.Models
+@model About
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label asp-for="@Model.ActiveUsers">ActiveUsers</label>
+                <input asp-for="@Model.ActiveUsers" class="form-control" id="ActiveUsers" placeholder="ActiveUsers">
+                <span asp-validation-for="@Model.ActiveUsers" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="@Model.Positions">Positions</label>
+                <input asp-for="@Model.Positions" class="form-control" id="Positions" placeholder="Positions">
+                <span asp-validation-for="@Model.Positions" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="@Model.Shared">Shared</label>
+                <input asp-for="@Model.Shared" class="form-control" id="Shared" placeholder="Shared">
+                <span asp-validation-for="@Model.Shared" class="text-danger"></span>
+            </div>
+            @*<div class="form-group col-md-3">
+                <label asp-for="@Model.AboutContentTextEditor">AboutContentTextEditor</label>
+                <input asp-for="@Model.AboutContentTextEditor" class="form-control" id="AboutContentTextEditor" placeholder="AboutContentTextEditor">
+                <span asp-validation-for="@Model.AboutContentTextEditor" class="text-danger"></span>
+            </div>*@
+
+        </div>
+        <br />
+        <br />
+        <div class="form-row">
+            <div class="form-group col-md-12 d-flex flex-column">
+                <label asp-for="@Model.AboutTopImage">About Images</label>
+                <input asp-for="@Model.AboutTopImage" />
+                <span asp-validation-for="@Model.AboutTopImage" class="text-danger"></span>
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="form-row">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+
+</div>
