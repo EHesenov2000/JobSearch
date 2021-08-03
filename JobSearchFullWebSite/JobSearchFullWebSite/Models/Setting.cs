@@ -13,17 +13,16 @@ namespace JobSearchFullWebSite.Models
         public int Id { get; set; }
         [StringLength(maximumLength:150)]
         public string HeaderLogo { get; set; }
+        [Required]
         [StringLength(maximumLength: 150)]
         public string HeaderResponsiveLogo { get; set; }
-        [Required]
         [NotMapped]
         public IFormFile HeaderResponsiveLogoFile { get; set; }
-        [Required]
         [NotMapped]
         public IFormFile HeaderLogoFile { get; set; }
+        [Required]
         [StringLength(maximumLength:150)]
         public string FooterLogo { get; set; }
-        [Required]
         [NotMapped]
         public IFormFile FooterLogoFile { get; set; }
         [StringLength(maximumLength:20)]

@@ -282,3 +282,12 @@ C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\obj\D
 C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Subscribe\Index.cshtml.g.cs
 C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Subscribe\Create.cshtml.g.cs
 C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Subscribe\Edit.cshtml.g.cs
+C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\HowWork\Index.cshtml.g.cs
+C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\HowWork\Create.cshtml.g.cs
+C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\HowWork\Edit.cshtml.g.cs
+C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\SiteContact\Index.cshtml.g.cs
+C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\SiteContact\Create.cshtml.g.cs
+C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\SiteContact\Edit.cshtml.g.cs
+C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Setting\Index.cshtml.g.cs
+C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Setting\Create.cshtml.g.cs
+C:\Users\elman\Desktop\JobSearch\JobSearchFullWebSite\JobSearchFullWebSite\obj\Debug\netcoreapp3.1\Razor\Areas\Manage\Views\Setting\Edit.cshtml.g.cs

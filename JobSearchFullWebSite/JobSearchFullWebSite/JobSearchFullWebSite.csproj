@@ -28,6 +28,8 @@
     <Folder Include="wwwroot\images\candidateImage\" />
     <Folder Include="wwwroot\CVs\" />
     <Folder Include="wwwroot\images\aboutImage\" />
+    <Folder Include="wwwroot\images\howworkImage\" />
+    <Folder Include="wwwroot\images\settingImage\" />
     <Folder Include="wwwroot\images\sponsorImage\" />
   </ItemGroup>
 

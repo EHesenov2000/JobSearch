@@ -1,0 +1,86 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using JobSearchFullWebSite.Models
+@model Setting
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-fluid">
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label asp-for="@Model.Location">Location</label>
+                <input asp-for="@Model.Location" class="form-control" id="Location" placeholder="Location">
+                <span asp-validation-for="@Model.Location" class="text-danger"></span>
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label asp-for="@Model.Phone">Phone</label>
+                <input asp-for="@Model.Phone" class="form-control" id="Phone" placeholder="Phone">
+                <span asp-validation-for="@Model.Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="@Model.Email">Email</label>
+                <input asp-for="@Model.Email" class="form-control" id="Email" placeholder="Email">
+                <span asp-validation-for="@Model.Email" class="text-danger"></span>
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label asp-for="@Model.FacebookUrl">Facebook Url</label>
+                <input asp-for="@Model.FacebookUrl" class="form-control" id="FacebookUrl" placeholder="FacebookUrl">
+                <span asp-validation-for="@Model.FacebookUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="@Model.TwitterUrl">Twitter Url</label>
+                <input asp-for="@Model.TwitterUrl" class="form-control" id="TwitterUrl" placeholder="TwitterUrl">
+                <span asp-validation-for="@Model.TwitterUrl" class="text-danger"></span>
+            </div>
+
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label asp-for="@Model.InstagramUrl">Instagram Url</label>
+                <input asp-for="@Model.InstagramUrl" class="form-control" id="InstagramUrl" placeholder="InstagramUrl">
+                <span asp-validation-for="@Model.InstagramUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="@Model.LinkedinUrl">Linkedin Url</label>
+                <input asp-for="@Model.LinkedinUrl" class="form-control" id="LinkedinUrl" placeholder="LinkedinUrl">
+                <span asp-validation-for="@Model.LinkedinUrl" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label asp-for="@Model.HeaderLogoFile">Header Logo</label>
+                <input asp-for="@Model.HeaderLogoFile" class="form-control" id="HeaderLogoFile" placeholder="HeaderLogoFile">
+                <span asp-validation-for="@Model.HeaderLogoFile" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="@Model.FooterLogoFile">Footer Logo</label>
+                <input asp-for="@Model.FooterLogoFile" class="form-control" id="FooterLogoFile" placeholder="FooterLogoFile">
+                <span asp-validation-for="@Model.FooterLogoFile" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label asp-for="@Model.HeaderResponsiveLogoFile">Responsive Logo</label>
+                <input asp-for="@Model.HeaderResponsiveLogoFile" class="form-control" id="HeaderResponsiveLogoFile" placeholder="HeaderResponsiveLogoFile">
+                <span asp-validation-for="@Model.HeaderResponsiveLogoFile" class="text-danger"></span>
+            </div>
+
+        </div>
+        <br />
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <br />
+        <div class="form-row">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+
+</div>
