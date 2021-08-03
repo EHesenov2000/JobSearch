@@ -7,6 +7,7 @@
         console.log("testing")
 
         var url = $(this).attr("href")
+        console.log(url);
 
         Swal.fire({
             title: 'Are you sure?',
@@ -19,7 +20,7 @@
         }).then((result) => {
 
             if (result.isConfirmed) {
-                console.log(url)
+                console.log(url);
                 fetch(url)
                     .then(response => response.json())
                     .then(data => console.log(data));

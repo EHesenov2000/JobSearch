@@ -12,7 +12,7 @@ namespace JobSearchFullWebSite.Models
     {
         public int Id { get; set; }
         [StringLength(maximumLength: 30, ErrorMessage = "Maksimum uzunluq 30-dur")]
-        [Required(ErrorMessage = "Kateqoriya adı daxil etməlisiz")]
+        [Required(ErrorMessage = "Seher adı daxil etməlisiz")]
         public string CityName { get; set; }
         [Required(ErrorMessage = "Image daxil etməlisiz")]
         [StringLength(maximumLength: 100)]

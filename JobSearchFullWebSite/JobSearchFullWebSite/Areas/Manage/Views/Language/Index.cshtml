@@ -1,0 +1,51 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using JobSearchFullWebSite.Models
+@model List<Language>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-fluid">
+    <div class="row d-flex  mb-2">
+        <div class="col-md-1 m-3">
+            <a asp-action="create" asp-controller="language" class="d-flex m-3" style="text-decoration:none;">
+                <button class="backendButton  mr--30" style=" border-radius: 20px; color: white; background-image: linear-gradient(to right,blue,red); font: bold; ">CREATE</button>
+            </a>
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr class="row">
+                <th class="col-md-1">#</th>
+                <th class="col-md-8">Language</th>
+                <th class="col-md-3"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{ int count = 0;
+                @foreach (var item in Model)
+                {
+                    count++;
+                    <tr class="row">
+                        <td class="col-md-1">@count</td>
+                        <td class="col-md-8">@item.Name</td>
+                        <td class="col-md-3 d-flex flex-row justify-content-center">
+                            <a class="btn btn-warning" asp-action="edit" asp-route-id="@item.Id">Edit</a>
+                            &nbsp;
+                            <a class="btn btn-info delete-btn" asp-action="delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+
+        </tbody>
+    </table>
+</div>
+<style>
+    .backendButton:hover {
+        background-image: linear-gradient(to right,red,blue) !important;
+    }
+</style>
+

@@ -1,0 +1,32 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using JobSearchFullWebSite.Models
+@model FAQ
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container-fluid">
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label asp-for="@Model.Title">Title</label>
+                <input asp-for="@Model.Title" class="form-control" id="Title" placeholder="Title">
+                <span asp-validation-for="@Model.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="@Model.Question">Question</label>
+                <input asp-for="@Model.Question" class="form-control" id="Question" placeholder="Question">
+                <span asp-validation-for="@Model.Question" class="text-danger"></span>
+            </div>
+        </div>
+        <br />
+        <br />
+        <div class="form-row">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+
+</div>
