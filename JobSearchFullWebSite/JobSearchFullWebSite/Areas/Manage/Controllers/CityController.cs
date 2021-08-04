@@ -138,6 +138,13 @@ namespace JobSearchFullWebSite.Areas.Manage.Controllers
         public IActionResult Delete(int id)
         {
             if (!_context.Cities.Any(x => x.Id == id)) return RedirectToAction("index");
+
+                string rootPath = _env.WebRootPath;
+            var existPath = Path.Combine(rootPath, "images/cityImage", _context.Cities.FirstOrDefault(x => x.Id == id).Image);
+            if (System.IO.File.Exists(existPath))
+            {
+                System.IO.File.Delete(existPath);
+            }
             _context.Cities.Remove(_context.Cities.FirstOrDefault(x => x.Id == id));
             _context.SaveChanges();
             return RedirectToAction("index");

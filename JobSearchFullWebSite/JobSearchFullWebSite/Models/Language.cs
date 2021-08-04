@@ -12,5 +12,6 @@ namespace JobSearchFullWebSite.Models
         [StringLength(maximumLength:20,ErrorMessage ="Maksimum uzunluq 20-dir")]
         [Required]
         public string Name { get; set; }
+        public List<CandidateKnowingLanguage> KnowingLanguages { get; set; }
     }
 }

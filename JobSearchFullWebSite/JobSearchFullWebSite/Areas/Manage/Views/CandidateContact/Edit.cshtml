@@ -1,0 +1,44 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using JobSearchFullWebSite.Models
+@model CandidateContact
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label asp-for="@Model.Email">Email</label>
+                <input asp-for="@Model.Email" class="form-control" id="Email" placeholder="Email">
+                <span asp-validation-for="@Model.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="@Model.PhoneNumber">Phone</label>
+                <input asp-for="@Model.PhoneNumber" class="form-control" id="PhoneNumber" placeholder="PhoneNumber">
+                <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label asp-for="@Model.Subject">Subject</label>
+                <input asp-for="@Model.Subject" class="form-control" id="Subject" placeholder="Subject">
+                <span asp-validation-for="@Model.Subject" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="@Model.Message">Message</label>
+                <input asp-for="@Model.Message" class="form-control" id="Message" placeholder="Message">
+                <span asp-validation-for="@Model.Message" class="text-danger"></span>
+            </div>
+        </div>
+        <br />
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <br />
+        <div class="form-row">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+
+</div>
+

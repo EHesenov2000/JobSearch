@@ -13,6 +13,5 @@ namespace JobSearchFullWebSite.Models
         public Language Language { get; set; }
         public int CandidateId { get; set; }
         public Candidate Candidate { get; set; }
-        public List<CandidateKnowingLanguage> KnowingLanguages { get; set; }
     }
 }

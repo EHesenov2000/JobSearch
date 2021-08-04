@@ -178,5 +178,6 @@ namespace JobSearchFullWebSite.Areas.Manage.Controllers
         //    _context.SaveChanges();
         //    return View();
         //}
+        //sekili de papkadan silmeyi elave edecem bu hisseni acasi olsam
     }
 }

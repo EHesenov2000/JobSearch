@@ -15,16 +15,20 @@ namespace JobSearchFullWebSite.Models
         [Required]
         public string Image { get; set; }
         [NotMapped]
-        public List<IFormFile> TestimonialImage { get; set; }
-        [NotMapped]
-        public List<int?> TestimonialImageId { get; set; }
+        public IFormFile TestimonialImage { get; set; }
+        //[NotMapped]
+        //public List<int?> TestimonialImageId { get; set; }
         [StringLength(maximumLength: 50, ErrorMessage = "Maksimum uzunluq 50-dir")]
+        [Required]
         public string BlueText { get; set; }
         [StringLength(maximumLength: 200, ErrorMessage = "Maksimum uzunluq 200-dur")]
+        [Required]
         public string Content { get; set; }
         [StringLength(maximumLength: 50, ErrorMessage = "Maksimum uzunluq 50-dir")]
+        [Required]
         public string Name { get; set; }
         [StringLength(maximumLength: 30, ErrorMessage = "Maksimum uzunluq 30-dur")]
+        [Required]
         public string Position { get; set; }
     }
 }
