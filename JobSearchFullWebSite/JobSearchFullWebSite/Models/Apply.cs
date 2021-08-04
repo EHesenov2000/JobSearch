@@ -18,8 +18,8 @@ namespace JobSearchFullWebSite.Models
         [StringLength(maximumLength: 20)]
         [Required]
         public string ContactPhone { get; set; }
-        [StringLength(maximumLength: 100)]
-        public string UserName { get; set; }
+        //[StringLength(maximumLength: 100)]
+        //public string UserName { get; set; }
         [StringLength(maximumLength: 100)]
         public string FullName { get; set; }
         public DateTime RequestDate { get; set; }

@@ -1,16 +1,16 @@
-﻿using JobSearchFullWebSite.Enums;
-using Microsoft.AspNetCore.Identity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace JobSearchFullWebSite.Models
+namespace JobSearchFullWebSite.Areas.Manage.ViewModels
 {
-    public class AppUser:IdentityUser
+    public class AdminEditModel
     {
+        public string Id { get; set; }
+        public string UserName { get; set; }
         [NotMapped]
         [StringLength(maximumLength: 50)]
         [DataType(DataType.Password)]
@@ -25,11 +25,6 @@ namespace JobSearchFullWebSite.Models
         [StringLength(maximumLength: 50)]
         [DataType(DataType.Password)]
         public string CurrentPassword { get; set; }
-        public UserStatus UserStatus { get; set; }
-        public List<JobComment> JobComments { get; set; }
-        public List<Apply> Applies { get; set; }
-        public Admin Admin { get; set; }
-        public Employer Employer { get; set; }
-        public Candidate Candidate { get; set; }
+        public string FullName { get; set; }
     }
 }

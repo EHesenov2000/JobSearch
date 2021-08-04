@@ -330,7 +330,6 @@ namespace JobSearchFullWebSite.Controllers
             Candidate candidate = _context.Candidates.FirstOrDefault(x => x.AppUserId == user.Id);
             if (candidate.Gender == null) return RedirectToAction("CandidateProfileEdit");  //melumatlar doldurulmalidir
             apply.FullName = candidate.FullName;
-            apply.UserName = user.UserName;
             apply.ContactPhone = candidate.PhoneNumber;
             apply.RequestDate = DateTime.UtcNow.AddHours(4);
             apply.ApplyStatus = Enums.ApplyStatus.Pending;

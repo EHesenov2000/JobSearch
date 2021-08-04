@@ -17,10 +17,15 @@
     <Compile Remove="Migrations\20210726094059_LanugagesChangedtoManyToMany.Designer.cs" />
     <Compile Remove="Migrations\20210726101717_newtablecreatedagainagain.cs" />
     <Compile Remove="Migrations\20210726101717_newtablecreatedagainagain.Designer.cs" />
+    <Compile Remove="Migrations\20210804222017_SomeChangesOnClassesAndApplyClass.cs" />
+    <Compile Remove="Migrations\20210804222017_SomeChangesOnClassesAndApplyClass.Designer.cs" />
+    <Compile Remove="Migrations\20210804222849_SomeColumnsChange.cs" />
+    <Compile Remove="Migrations\20210804222849_SomeColumnsChange.Designer.cs" />
+    <Compile Remove="Migrations\20210804223023_SomeChangesAddedToApply.cs" />
+    <Compile Remove="Migrations\20210804223023_SomeChangesAddedToApply.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Manage\ViewModels\" />
     <Folder Include="Areas\Manage\Services\" />
     <Folder Include="wwwroot\images\jobImage\" />
     <Folder Include="wwwroot\images\employerImage\" />

@@ -1,0 +1,110 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using JobSearchFullWebSite.Models
+@model List<AppUser>
+@{
+    ViewData["Title"] = "GetAdmins";
+    Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
+    int count;
+    if (ViewBag.SelectedPage == 1)
+    {
+        count = 0;
+    }
+    else
+    {
+        count = (ViewBag.SelectedPage - 1) * 4;
+    }
+}
+@{
+    int totalPage = (int)ViewBag.TotalPageCount;
+    int selectedPage = (int)ViewBag.SelectedPage;
+}
+
+
+<div class="container-fluid">
+    <div class="row d-flex mb-2">
+        <div class="col-md-1 m-3">
+            <a asp-action="createadmin" class="d-flex m-3" style="text-decoration:none;">
+                <button class="backendButton  mr--30" style=" border-radius: 20px; color: white; background-image: linear-gradient(to right,blue,red); font: bold; ">CREATE</button>
+            </a>
+        </div>
+    </div>
+    <table class="table table-bordered">
+        <thead>
+            <tr class="row">
+                <th class="col-md-1">#</th>
+                <th class="col-md-4">UserName</th>
+                <th class="col-md-5">FullName</th>
+                <th class="col-md-2"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="row">
+                @foreach (var item in Model)
+                {
+                    count++;
+                    <td class="col-md-1">@count</td>
+                    <td class="col-md-4">@item.UserName</td>
+                    <td class="col-md-5">@item.Admin.FullName</td>
+
+                    <td class="col-md-2">
+                        <a class="btn btn-warning" asp-action="editadmin" asp-route-id="@item.Id">Edit</a>
+                        <a class="btn btn-danger delete-btn" asp-action="deleteadmin" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                }
+
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+<nav aria-label="Page navigation example" class="d-flex justify-content-center">
+    <ul class="pagination">
+        <li class="page-item"><a class="page-link" asp-route-page="1">ilk</a></li>
+        <li class="page-item">
+            <a class="page-link" asp-route-page="@(ViewBag.SelectedPage>1?ViewBag.SelectedPage-1:1)" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">Previous</span>
+            </a>
+        </li>
+        @{
+            int first = selectedPage;
+            int last = selectedPage + 2;
+            if (selectedPage > 1 && selectedPage < totalPage)
+            {
+                first = selectedPage - 1;
+                last = selectedPage + 1;
+            }
+            else if (selectedPage <= 1)
+            {
+                first = selectedPage;
+                last = selectedPage + 2 <= totalPage ? selectedPage + 2 : totalPage;
+            }
+            else if (selectedPage >= totalPage)
+            {
+                first = totalPage - 2 > 1 ? totalPage - 2 : 1;
+                last = totalPage;
+            }
+
+
+        }
+
+        @for (int i = first; i <= last; i++)
+        {
+            <li class="page-item"><a class="page-link" asp-route-page="@i" style="@(i==selectedPage?"background-color:blue;color:white;":"")">@i</a></li>
+
+        }
+        <li class="page-item">
+            <a class="page-link" asp-route-page="@(ViewBag.SelectedPage+1<ViewBag.TotalPageCount?ViewBag.SelectedPage+1:ViewBag.TotalPageCount)" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+        <li class="page-item"><a class="page-link" asp-route-page="@ViewBag.TotalPageCount">son</a></li>
+    </ul>
+</nav>
+<style>
+    .backendButton:hover {
+        background-image: linear-gradient(to right,red,blue) !important;
+    }
+</style>
+

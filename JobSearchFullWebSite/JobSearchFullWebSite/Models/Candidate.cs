@@ -40,7 +40,6 @@ namespace JobSearchFullWebSite.Models
         public List<IFormFile> Images { get; set; }
         [NotMapped]
         public List<int?> ImagesId { get; set; }
-
         [NotMapped]
         public List<IFormFile> CandidateCVS { get; set; }
         [NotMapped]
