@@ -231,11 +231,15 @@ namespace JobSearchFullWebSite.Areas.Manage.Controllers
             return View(users);
         }
 
+        [Authorize(Roles = "SuperAdmin")]
         public IActionResult EditAdmin(string id)
         {
+            if (id == null) return RedirectToAction("login");
             //AppUser user = await _userManager.FindByNameAsync(User.Identity.Name);
-            AppUser user = _context.Users.FirstOrDefault(x => x.Id == id.ToString());
+            AppUser user = _context.Users.FirstOrDefault(x => x.Id == id);
+            if(user==null) return RedirectToAction("login");
             Admin admin = _context.Admins.FirstOrDefault(x => x.AppUserId == user.Id);
+            if(admin==null) return RedirectToAction("login");
             AdminEditModel editModel = new AdminEditModel()
             {
                 FullName = admin.FullName,
