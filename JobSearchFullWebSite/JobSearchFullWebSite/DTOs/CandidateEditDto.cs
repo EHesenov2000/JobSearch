@@ -22,9 +22,9 @@ namespace JobSearchFullWebSite.DTOs
         public JobSalaryForTime? SalaryForTime { get; set; }//
         [Required]
         public DateTime? BirthdayDate { get; set; }//
-        //[StringLength(maximumLength: 1000, ErrorMessage = "Maksimum uzunluq 1000-dur")]
-        //[Required]
-        //public string AboutCandidateTextEditor { get; set; }//
+        [StringLength(maximumLength: 1000, ErrorMessage = "Maksimum uzunluq 1000-dur")]
+        [Required]
+        public string AboutCandidateTextEditor { get; set; }//
         [Required]
         public RequiredExperience? Experience { get; set; }//
         [Required]

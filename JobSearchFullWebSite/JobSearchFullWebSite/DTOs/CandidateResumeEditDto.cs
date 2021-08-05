@@ -13,14 +13,11 @@ namespace JobSearchFullWebSite.DTOs
         public int Id { get; set; }
         [NotMapped]
         public List<IFormFile> Images { get; set; }
-        [NotMapped]
         public List<int?> ImagesId { get; set; }
 
         [NotMapped]
         public IFormFile CandidateCV { get; set; }
-        [NotMapped]
         public List<int?> CandidateCVsId { get; set; }
-        [NotMapped]
         public List<int?> CandidateEducationItemsId { get; set; }
         public List<int?> CandidateWorkItemsId { get; set; }
         public List<int?> CandidateAwardItemsId { get; set; }

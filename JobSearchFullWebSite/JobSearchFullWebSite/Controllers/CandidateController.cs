@@ -110,7 +110,7 @@ namespace JobSearchFullWebSite.Controllers
             candidateEditDto.WaitingSalary = candidate.WaitingSalary;
             candidateEditDto.SalaryForTime = candidate.SalaryForTime;
             candidateEditDto.BirthdayDate = candidate.BirthdayDate;
-            //AboutCandidateTextEditor=candidate.AboutCandidateTextEditor,
+            candidateEditDto.AboutCandidateTextEditor = candidate.AboutCandidateTextEditor;
             candidateEditDto.Experience = candidate.Experience;
             candidateEditDto.Gender = candidate.Gender;
             candidateEditDto.Age = candidate.Age;
@@ -151,7 +151,6 @@ namespace JobSearchFullWebSite.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult CandidateProfileEdit(int id,CandidateEditDto candidateEditDto)
         {
-            //candidateEditDto.AboutCandidateTextEditor = "text burdadi";
             ViewBag.Languages = _context.Languages.ToList();
             ViewBag.Positions = _context.Positions.ToList();
             ViewBag.Cities = _context.Cities.ToList();
@@ -246,7 +245,7 @@ namespace JobSearchFullWebSite.Controllers
             existCandidate.SalaryForTime = candidateEditDto.SalaryForTime;
             existCandidate.BirthdayDate = candidateEditDto.BirthdayDate;
             existCandidate.CreatedAt = DateTime.UtcNow.AddHours(4);
-            //existCandidate.AboutCandidateTextEditor = candidateEditDto.AboutCandidateTextEditor;
+            existCandidate.AboutCandidateTextEditor = candidateEditDto.AboutCandidateTextEditor;
             existCandidate.Experience = candidateEditDto.Experience;
             existCandidate.Gender = candidateEditDto.Gender;
             existCandidate.Age = candidateEditDto.Age;

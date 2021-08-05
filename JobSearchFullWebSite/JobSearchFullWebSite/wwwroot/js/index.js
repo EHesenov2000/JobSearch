@@ -1,44 +1,129 @@
 $(document).ready(function () {
 
-//    document.getElementsByClassName("AddEducationItem")[0].onclick = function () {
-//        var a = document.createElement("div");
-//        var education =
-//            ` 
+    document.getElementsByClassName("AddEducationItem")[0].onclick = function () {
+        var a = document.createElement("div");
+        var education =
+            ` 
+                                <div class="CandidateResumeItem">
+                                    <input type="hidden" name="CandidateEducationItems[2].Id" value="@item.Id" />
+                                    <input type="hidden" name="CandidateEducationItems[2].CandidateId" value="@item.CandidateId" />
+                                    <div class="accordion mt-3 border-radius">@item.Title</div>
+                                    <div class="panel mt-2">
+                                        <p>
+                                            <div class="row ">
+                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Title</span></div>
+                                                <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="BEducation Title" name="CandidateEducationItems[2].Title" value="@item.Title"></div>
+                                            </div>
+                                            <br>
+                                            <div class="row ">
+                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Academy</span></div>
+                                                <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Education Academy" name="CandidateEducationItems[2].EducationPlace" value="@item.EducationPlace"></div>
+                                            </div>
+                                            <br>
+                                            <div class="row ">
+                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Years</span></div>
+                                                <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Years" name="CandidateEducationItems[2].Years" value="@item.Years"></div>
+                                            </div>
+                                            <br>
+                                            <div class="row ">
+                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Description</span></div>
+                                                <div class="col-lg-9"><input style="min-height: 150px;max-height: 150px;" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Description" name="CandidateEducationItems[2].Content" value="@item.Content"></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="d-flex flex-row justify-content-end RemoveItem"><div class="btn backColorBlue py-2 px-2"><span class="blue">Remove</span></div></div>
+                                            </div>
+                                        </p>
+                                    </div>
+                                </div>
+                                <br>
+            `;
+        a.innerHTML = education;
 
-//                            <div class="accordion mt-3 border-radius">@item.Title</div>
-//                            <div class="panel mt-2">
-//@{CandidateEducationItems[3].Id=1;}
-//                                <p>
-//                                    <div class="row ">
-//                                        <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Title</span></div>
-//                                        <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="BEducation Title" name="CandidateEducationItems[3].Title"  ></div>
-//                                    </div>
-//                                    <br>
-//                                    <div class="row ">
-//                                        <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Academy</span></div>
-//                                        <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Education Academy" name="CandidateEducationItems[3].EducationPlace" ></div>
-//                                    </div>
-//                                    <br>
-//                                    <div class="row ">
-//                                        <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Years</span></div>
-//                                        <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Years" name="CandidateEducationItems[3].Years" ></div>
-//                                    </div>
-//                                    <br>
-//                                    <div class="row ">
-//                                        <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Description</span></div>
-//                                        <div class="col-lg-9"><input style="min-height: 150px;max-height: 150px;" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Description" name="CandidateEducationItems[3].Content"></div>
-//                                    </div>
-//                                    <div class="row">
-//                                        <div class="d-flex flex-row justify-content-end RemoveItem"><div class="btn backColorBlue py-2 px-2"><span class="blue">Remove</span></div></div>
-//                                    </div>
-//                                </p>
-//                            </div>
-//                            <br>
-//            `;
-//        a.innerHTML = education;
+        document.getElementsByClassName("EducationItems")[0].appendChild(a);
+    }
+    document.getElementsByClassName("AddWorkItem")[0].onclick = function () {
 
-//        document.getElementsByClassName("EducationItems")[0].appendChild(a);
-//    }
+        var a = document.createElement("div");
+        var work = `
+                                                         <div class="CandidateResumeItem">
+                                    <input type="hidden" name="CandidateWorkItems[3].Id" value="@item.Id" />
+                                    <input type="hidden" name="CandidateWorkItems[3].CandidateId" value="@item.CandidateId" />
+                                <div class="accordion mt-3 border-radius">@item.Title</div>
+                                <div class="panel mt-2">
+                                    <p>
+                                        <div class="row ">
+                                            <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Title</span></div>
+                                            <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Title" name="CandidateWorkItems[@count1].Title"></div>
+                                        </div>
+                                        <br>
+                                        <div class="row ">
+                                            <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Start Date</span></div>
+                                            <div class="col-lg-9"><input type="date" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Start Date" name="CandidateWorkItems[@count1].StartDate"></div>
+                                        </div>
+                                        <br>
+                                        <div class="row ">
+                                            <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">End Date</span></div>
+                                            <div class="col-lg-9"><input type="date" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="End Date" name="CandidateWorkItems[@count1].EndDate"></div>
+                                        </div>
+                                        <br>
+                                        <div class="row ">
+                                            <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Company</span></div>
+                                            <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Work Place" name="CandidateWorkItems[@count1].WorkPlace"></div>
+                                        </div>
+                                        <br>
+                                        <div class="row ">
+                                            <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Description</span></div>
+                                            <div class="col-lg-9"><textarea style="min-height: 150px;max-height: 150px;" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Description" name="CandidateWorkItems[@count1].Content"></textarea></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="d-flex flex-row justify-content-end RemoveItem"><div class="btn backColorBlue py-2 px-2"><span class="blue">Remove</span></div></div>
+                                        </div>
+                                    </p>
+                                </div>
+                            </div>
+                            <br>
+
+`;
+        a.innerHTML = work;
+        document.getElementsByClassName("WorkItems")[0].appendChild(a);
+
+    }
+    document.getElementsByClassName("AddAwardItem")[0].onclick = function () {
+        var a = document.createElement("div");
+        var award = `
+                                                               <div class="CandidateResumeItem">
+                                    <input type="hidden" name="CandidateAwardItems[2].Id" value="@item.Id" />
+                                    <input type="hidden" name="CandidateAwardItems[2].CandidateId" value="@item.CandidateId" />
+                                <div class="accordion mt-3 border-radius">@item.Title</div>
+                                <div class="panel mt-2">
+                                    <p>
+                                        <div class="row ">
+                                            <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Title</span></div>
+                                            <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Title" name = "CandidateAwardItems[@count2].Title"></div>
+                                        </div>
+                                        <br>
+                                        <div class="row ">
+                                            <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Years</span></div>
+                                            <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Years" name = "CandidateAwardItems[@count2].Years"></div>
+                                        </div>
+                                        <br>
+                                        <div class="row ">
+                                            <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Description</span></div>
+                                            <div class="col-lg-9"><textarea style="min-height: 150px;max-height: 150px;" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Description"name = "CandidateAwardItems[@count2].Content"></textarea></div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="d-flex flex-row justify-content-end RemoveItem"><div class="btn backColorBlue py-2 px-2"><span class="blue">Remove</span></div></div>
+                                        </div>
+                                    </p>
+                                </div>
+
+                            </div>
+                            <br>
+`;
+        a.innerHTML = award;
+        document.getElementsByClassName("AwardItems")[0].appendChild(a);
+
+    }
 
 
 
@@ -174,12 +259,37 @@ for (
 }
 $(document).ready(function () {
 
-    var acc = document.getElementsByClassName("accordion");
-    var i;
+    //var acc = document.getElementsByClassName("accordion");
+    //var i;
 
-    for (i = 0; i < acc.length; i++) {
-        acc[i].addEventListener("click", function () {
-            console.log("salam");
+    //for (i = 0; i < acc.length; i++) {
+    //    acc[i].addEventListener("click", function () {
+    //        console.log("salam");
+    //        this.classList.toggle("active");
+
+    //        var panel = this.nextElementSibling;
+    //        if (panel.style.maxHeight) {
+    //            panel.style.maxHeight = null;
+    //        } else {
+    //            panel.style.maxHeight = panel.scrollHeight + "px";
+    //        }
+    //    });
+    //}
+
+    $(document).ready(function () {
+
+        for (var i = 0; i < document.getElementsByClassName("RemoveItem").length; i++) {
+            $(document).on("click", ".RemoveItem", function (e) {
+                e.preventDefault();
+                //this.parentElement.parentElement.parentElement.style.display = "none";
+                $(this).parents(".CandidateResumeItem").empty();
+            })
+        }
+
+    })
+    $(document).ready(function () {
+        $(document).on("click", ".accordion", function (e) {
+            e.preventDefault();
             this.classList.toggle("active");
 
             var panel = this.nextElementSibling;
@@ -189,7 +299,8 @@ $(document).ready(function () {
                 panel.style.maxHeight = panel.scrollHeight + "px";
             }
         });
-    }
+    });
+
 })
 $(document).ready(function () {
   $(".Advanced").click(function () {
@@ -313,11 +424,12 @@ window.onload = function () {
 //  $(".leftSection").attr("class", "col-lg-9 py-5 leftSection");
 //  $(".sidebar").fadeToggle();
 //});
-for (var i = 0; i < document.getElementsByClassName("RemoveItem").length; i++) {
-    document.getElementsByClassName("RemoveItem")[i].addEventListener("click", function () {
-        this.parentElement.parentElement.parentElement.style.display = "none";
-    });
-}
+
+//for (var i = 0; i < document.getElementsByClassName("RemoveItem").length; i++) {
+//    document.getElementsByClassName("RemoveItem")[i].addEventListener("click", function () {
+//        this.parentElement.parentElement.parentElement.style.display = "none";
+//    });
+//}
 
 
 //for (var i = 0; i < document.getElementsByClassName("RemoveImageItem").length; i++) {
@@ -358,3 +470,37 @@ $(document).ready(function () {
         $(this).parents(".RemoveCVItems").empty();
     })
 })
+
+
+
+$(document).ready(function () {
+
+
+    ClassicEditor
+        .create(document.querySelector('#editor'))
+        .catch(error => {
+            console.error(error);
+        });
+    InlineEditor
+        .create(document.querySelector('#editor'))
+        .catch(error => {
+            console.error(error);
+        });
+    BalloonEditor
+        .create(document.querySelector('#editor'))
+        .catch(error => {
+            console.error(error);
+        });
+    DecoupledEditor
+        .create(document.querySelector('#editor'))
+        .then(editor => {
+            const toolbarContainer = document.querySelector('#toolbar-container');
+
+            toolbarContainer.appendChild(editor.ui.view.toolbar.element);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+})
+
+

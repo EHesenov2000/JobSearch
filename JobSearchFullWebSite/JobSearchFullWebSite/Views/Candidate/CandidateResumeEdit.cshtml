@@ -15,7 +15,7 @@
                     <b>My Resume</b>
                     <br>
                     <span>CV Attachment</span>
-                    @if (Model.CandidateCVs!=null)
+                    @if (Model.CandidateCVs != null)
                     {
                         @foreach (var item in Model.CandidateCVs)
                         {
@@ -53,8 +53,10 @@
                         @{ int count = 0;
                             @foreach (var item in Model.CandidateEducationItems)
                             {
-                                <div>
-                                    <input type="hidden" name="CandidateEducationItemsId[]" value="@item.Id" />
+                                <input type="hidden" name="CandidateEducationItemsId[]" value="@item.Id"/>
+                                <div class="CandidateResumeItem">
+                                    <input type="hidden" name="CandidateEducationItems[@count].Id" value="@item.Id" />
+                                    <input type="hidden" name="CandidateEducationItems[@count].CandidateId" value="@item.CandidateId" />
 
                                     <div class="accordion mt-3 border-radius">@item.Title</div>
                                     <div class="panel mt-2">
@@ -85,6 +87,7 @@
                                     </div>
                                 </div>
                                 <br>
+
                                 count++;
                             }}
                     </div>
@@ -97,50 +100,53 @@
                 <div class="card p-4 mt-4">
                     <b>Experience</b>
                     <br>
-                    @foreach (var item in Model.CandidateWorkItems)
-                    {
-                <div>
-                    <input type="hidden" name="CandidateWorkItemsId[]" value="@item.Id" />
-
-                    <div class="accordion mt-3 border-radius">@item.Title</div>
-                    <div class="panel mt-2">
-                        <p>
-                            <div class="row ">
-                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Title</span></div>
-                                <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Title" asp-for="@item.Title"></div>
-                            </div>
+                    <div class="WorkItems">
+                        @{int count1 = 0;
+                        @foreach (var item in Model.CandidateWorkItems)
+                        {
+                                <input type="hidden" name="CandidateWorkItemsId[]"  />
+                                <div class="CandidateResumeItem">
+                                    <input type="hidden" name="CandidateWorkItems[@count].Id" value="@item.Id" />
+                                    <input type="hidden" name="CandidateWorkItems[@count].CandidateId" value="@item.CandidateId" />
+                                    <div class="accordion mt-3 border-radius">@item.Title</div>
+                                    <div class="panel mt-2">
+                                        <p>
+                                            <div class="row ">
+                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Title</span></div>
+                                                <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Title" name="CandidateWorkItems[@count1].Title"></div>
+                                            </div>
+                                            <br>
+                                            <div class="row ">
+                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Start Date</span></div>
+                                                <div class="col-lg-9"><input type="date" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Start Date" name="CandidateWorkItems[@count1].StartDate"></div>
+                                            </div>
+                                            <br>
+                                            <div class="row ">
+                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">End Date</span></div>
+                                                <div class="col-lg-9"><input type="date" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="End Date" name="CandidateWorkItems[@count1].EndDate"></div>
+                                            </div>
+                                            <br>
+                                            <div class="row ">
+                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Company</span></div>
+                                                <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Work Place" name="CandidateWorkItems[@count1].WorkPlace"></div>
+                                            </div>
+                                            <br>
+                                            <div class="row ">
+                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Description</span></div>
+                                                <div class="col-lg-9"><textarea style="min-height: 150px;max-height: 150px;" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Description" name="CandidateWorkItems[@count1].Content"></textarea></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="d-flex flex-row justify-content-end RemoveItem"><div class="btn backColorBlue py-2 px-2"><span class="blue">Remove</span></div></div>
+                                            </div>
+                                        </p>
+                                    </div>
+                                </div>
                             <br>
-                            <div class="row ">
-                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Start Date</span></div>
-                                <div class="col-lg-9"><input type="date" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Start Date" asp-for="@item.StartDate"></div>
-                            </div>
-                            <br>
-                            <div class="row ">
-                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">End Date</span></div>
-                                <div class="col-lg-9"><input type="date" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="End Date" asp-for="@item.EndDate"></div>
-                            </div>
-                            <br>
-                            <div class="row ">
-                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Company</span></div>
-                                <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Work Place" asp-for="@item.WorkPlace"></div>
-                            </div>
-                            <br>
-                            <div class="row ">
-                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Description</span></div>
-                                <div class="col-lg-9"><textarea style="min-height: 150px;max-height: 150px;" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Description" asp-for="@item.Content"></textarea></div>
-                            </div>
-                            <div class="row">
-                                <div class="d-flex flex-row justify-content-end RemoveItem"><div class="btn backColorBlue py-2 px-2"><span class="blue">Remove</span></div></div>
-                            </div>
-                        </p>
+                            count1++;
+                        }}
                     </div>
-                </div>
-
-                        <br>
-                    }
-
                     <div>
-                        <div class="btn backColorBlue py-2 px-4 d-inline-block"><span class="blue">Add Item</span></div>
+                        <div class="btn backColorBlue py-2 px-4 d-inline-block AddWorkItem"><span class="blue">Add Item</span></div>
 
                     </div>
                 </div>
@@ -148,42 +154,46 @@
                 <div class="card p-4 mt-4">
                     <b>Adward</b>
                     <br>
-                    @foreach (var item in Model.CandidateAwardItems)
-                    {
-                <div>
-                    <input type="hidden" name="CandidateAwardItemsId[]" value="@item.Id" />
+                    <div class="AwardItems">
+                        @{ int count2 = 0;
+                            @foreach (var item in Model.CandidateAwardItems)
+                            {
+                                <input type="hidden" name="CandidateAwardItemsId[]" />
 
-                    <div class="accordion mt-3 border-radius">@item.Title</div>
-                    <div class="panel mt-2">
-                        <p>
-                            <div class="row ">
-                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Title</span></div>
-                                <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Title" asp-for="@item.Title"></div>
-                            </div>
-                            <br>
-                            <div class="row ">
-                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Years</span></div>
-                                <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Years" asp-for="@item.Years"></div>
-                            </div>
-                            <br>
-                            <div class="row ">
-                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Description</span></div>
-                                <div class="col-lg-9"><textarea style="min-height: 150px;max-height: 150px;" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Description" asp-for="@item.Content"></textarea></div>
-                            </div>
-                            <div class="row">
-                                <div class="d-flex flex-row justify-content-end RemoveItem"><div class="btn backColorBlue py-2 px-2"><span class="blue">Remove</span></div></div>
-                            </div>
-                        </p>
+                                <div class="CandidateResumeItem">
+                                    <input type="hidden" name="CandidateAwardItems[@count].Id" value="@item.Id" />
+                                    <input type="hidden" name="CandidateAwardItems[@count].CandidateId" value="@item.CandidateId" />
+                                    <div class="accordion mt-3 border-radius">@item.Title</div>
+                                    <div class="panel mt-2">
+                                        <p>
+                                            <div class="row ">
+                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Title</span></div>
+                                                <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Title" name="CandidateAwardItems[@count2].Title"></div>
+                                            </div>
+                                            <br>
+                                            <div class="row ">
+                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Years</span></div>
+                                                <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Years" name="CandidateAwardItems[@count2].Years"></div>
+                                            </div>
+                                            <br>
+                                            <div class="row ">
+                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Description</span></div>
+                                                <div class="col-lg-9"><textarea style="min-height: 150px;max-height: 150px;" class="border-0 border-radius backColorBlue py-2 px-3 w-100" placeholder="Description" name="CandidateAwardItems[@count2].Content"></textarea></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="d-flex flex-row justify-content-end RemoveItem"><div class="btn backColorBlue py-2 px-2"><span class="blue">Remove</span></div></div>
+                                            </div>
+                                        </p>
+                                    </div>
+
+                                </div>
+                                <br>
+                                count2++;
+                            }}
                     </div>
 
-                </div>
-
-                        <br>
-                    }
-
-
                     <div>
-                        <div class="btn backColorBlue py-2 px-4 d-inline-block"><span class="blue">Add Item</span></div>
+                        <div class="btn backColorBlue py-2 px-4 d-inline-block AddAwardItem"><span class="blue">Add Item</span></div>
 
                     </div>
                 </div>

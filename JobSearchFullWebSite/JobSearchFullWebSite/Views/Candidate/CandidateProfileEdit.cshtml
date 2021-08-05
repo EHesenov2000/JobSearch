@@ -141,30 +141,18 @@
                             <br>
                         </div>
                     </div>
-                    @*@Html.TextBoxFor(x => x.AboutCandidateTextEditor)
-
-                @Html.TextBoxFor(x => x.AboutCandidateTextEditor, new { @class = "editor" })*@
-                <style>                    
-
-                    .main p {
-                        /*margin-bottom: 0px !important;*/
-                    }
-
-                </style>
                     <div class="col-12">
                         <div class="d-flex flex-column">
                             <label>Description</label>
-                            <div id="editor">
-                                @*@Html.TextAreaFor(m => m.AboutCandidateTextEditor, new
-                                {
-        rows = "20",
-                                    style = "resize:none;width:400px;",
-                                    placeholder = Html.DisplayNameFor(m => m.AboutCandidateTextEditor),
-                                    @class = "form-control input-lg textarea-editor"
-    })*@        
-                                @*@Html.LabelFor(m => m.AboutCandidateTextEditor)<br />
-                                @Html.TextAreaFor(m => m.AboutCandidateTextEditor)
-                                @Html.ValidationMessageFor(m => m.AboutCandidateTextEditor, "", new { @class = "error" })*@
+                            <div id="editor" name="AboutCandidateTextEditor" value="AboutCandidateTextEditor" asp-for="@Model.AboutCandidateTextEditor">
+                                <div name="AboutCandidateTextEditor" id="editor">
+@Html.Raw(Model.AboutCandidateTextEditor) 
+</div>
+                                @*@Html.TextBoxFor(a => a.AboutCandidateTextEditor)*@
+
+                                @*@Html.EditorFor(model => model.AboutCandidateTextEditor)*@
+                                @*@Html.LabelFor(x => x.AboutCandidateTextEditor, "AboutCandidateTextEditor")*@
+                                @*@Html.Raw(Model.AboutCandidateTextEditor)*@
                             </div>
                         </div>
                     </div>
