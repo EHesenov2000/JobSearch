@@ -54,43 +54,44 @@ $(document).ready(function () {
 
         var a = document.createElement("div");
         var work = `
-                                                         <div class="CandidateResumeItem">
-                                    <input type="hidden" class="WorkClickItem" name="CandidateWorkItems[3].Id" value="@item.Id" />
-                                    <input type="hidden" class="WorkClickItem" name="CandidateWorkItems[3].CandidateId" value="@item.CandidateId" />
-                                <div class="accordion mt-3 border-radius">@item.Title</div>
-                                <div class="panel mt-2">
-                                    <p>
-                                        <div class="row ">
-                                            <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Title</span></div>
-                                            <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100 WorkClickItem" placeholder="Title" name="CandidateWorkItems[@count1].Title"></div>
-                                        </div>
-                                        <br>
-                                        <div class="row ">
-                                            <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Start Date</span></div>
-                                            <div class="col-lg-9"><input type="date" class="border-0 border-radius backColorBlue py-2 px-3 w-100 WorkClickItem" placeholder="Start Date" name="CandidateWorkItems[@count1].StartDate"></div>
-                                        </div>
-                                        <br>
-                                        <div class="row ">
-                                            <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">End Date</span></div>
-                                            <div class="col-lg-9"><input type="date" class="border-0 border-radius backColorBlue py-2 px-3 w-100 WorkClickItem" placeholder="End Date" name="CandidateWorkItems[@count1].EndDate"></div>
-                                        </div>
-                                        <br>
-                                        <div class="row ">
-                                            <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Company</span></div>
-                                            <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100 WorkClickItem" placeholder="Work Place" name="CandidateWorkItems[@count1].WorkPlace"></div>
-                                        </div>
-                                        <br>
-                                        <div class="row ">
-                                            <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Description</span></div>
-                                            <div class="col-lg-9"><textarea style="min-height: 150px;max-height: 150px;" class="border-0 border-radius backColorBlue py-2 px-3 w-100 WorkClickItem" placeholder="Description" name="CandidateWorkItems[@count1].Content"></textarea></div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="d-flex flex-row justify-content-end RemoveItem"><div class="btn backColorBlue py-2 px-2"><span class="blue">Remove</span></div></div>
-                                        </div>
-                                    </p>
+                                  <input type="hidden" name="CandidateWorkItemsId[]" />
+                                <div class="CandidateResumeItem">
+                                    <input type="hidden" class="WorkClickItem" name="CandidateWorkItems[].Id" value="@item.Id" />
+                                    <input type="hidden" class="WorkClickItem" name="CandidateWorkItems[].CandidateId" value="@item.CandidateId" />
+                                    <div class="accordion mt-3 border-radius">@item.Title</div>
+                                    <div class="panel mt-2">
+                                        <p>
+                                            <div class="row ">
+                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Title</span></div>
+                                                <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100 WorkClickItem" placeholder="Title" name="CandidateWorkItems[].Title" value="@item.Title"></div>
+                                            </div>
+                                            <br>
+                                            <div class="row ">
+                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Start Date</span></div>
+                                                <div class="col-lg-9"><input type="date" class="border-0 border-radius backColorBlue py-2 px-3 w-100 WorkClickItem" placeholder="Start Date" name="CandidateWorkItems[].StartDate" value="@item.StartDate"></div>
+                                            </div>
+                                            <br>
+                                            <div class="row ">
+                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">End Date</span></div>
+                                                <div class="col-lg-9"><input type="date" class="border-0 border-radius backColorBlue py-2 px-3 w-100 WorkClickItem" placeholder="End Date" name="CandidateWorkItems[].EndDate" value="@item.EndDate"></div>
+                                            </div>
+                                            <br>
+                                            <div class="row ">
+                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Company</span></div>
+                                                <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100 WorkClickItem" placeholder="Work Place" name="CandidateWorkItems[].WorkPlace" value="@item.WorkPlace"></div>
+                                            </div>
+                                            <br>
+                                            <div class="row ">
+                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Description</span></div>
+                                                <div class="col-lg-9"><input style="min-height: 150px;max-height: 150px;" class="border-0 border-radius backColorBlue py-2 px-3 w-100 WorkClickItem" placeholder="Description" name="CandidateWorkItems[].Content" value="@item.Content"></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="d-flex flex-row justify-content-end RemoveItem"><div class="btn backColorBlue py-2 px-2"><span class="blue">Remove</span></div></div>
+                                            </div>
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                            <br>
+                                <br>
 
 `;
         a.innerHTML = work;
@@ -109,34 +110,35 @@ $(document).ready(function () {
     document.getElementsByClassName("AddAwardItem")[0].onclick = function () {
         var a = document.createElement("div");
         var award = `
-                                                               <div class="CandidateResumeItem">
-                                    <input type="hidden" class="" name="CandidateAwardItems[2].Id" value="@item.Id" />
-                                    <input type="hidden" class="" name="CandidateAwardItems[2].CandidateId" value="@item.CandidateId" />
-                                <div class="accordion mt-3 border-radius">@item.Title</div>
-                                <div class="panel mt-2">
-                                    <p>
-                                        <div class="row ">
-                                            <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Title</span></div>
-                                            <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100 " placeholder="Title" name = "CandidateAwardItems[@count2].Title"></div>
-                                        </div>
-                                        <br>
-                                        <div class="row ">
-                                            <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Years</span></div>
-                                            <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100 " placeholder="Years" name = "CandidateAwardItems[@count2].Years"></div>
-                                        </div>
-                                        <br>
-                                        <div class="row ">
-                                            <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Description</span></div>
-                                            <div class="col-lg-9"><textarea style="min-height: 150px;max-height: 150px;" class="border-0 border-radius backColorBlue py-2 px-3 w-100 " placeholder="Description"name = "CandidateAwardItems[@count2].Content"></textarea></div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="d-flex flex-row justify-content-end RemoveItem"><div class="btn backColorBlue py-2 px-2"><span class="blue">Remove</span></div></div>
-                                        </div>
-                                    </p>
-                                </div>
+                                    <input type="hidden" name="CandidateAwardItemsId[]" />
 
-                            </div>
-                            <br>
+                                <div class="CandidateResumeItem">
+                                    <input type="hidden" class="AwardClickItem" name="CandidateAwardItems[].Id" value="@item.Id" />
+                                    <input type="hidden" class="AwardClickItem" name="CandidateAwardItems[].CandidateId" value="@item.CandidateId" />
+                                    <div class="accordion mt-3 border-radius">@item.Title</div>
+                                    <div class="panel mt-2">
+                                        <p>
+                                            <div class="row ">
+                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Title</span></div>
+                                                <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100 AwardClickItem" placeholder="Title" name="CandidateAwardItems[].Title" value="@item.Title"></div>
+                                            </div>
+                                            <br>
+                                            <div class="row ">
+                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Years</span></div>
+                                                <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100 AwardClickItem" placeholder="Years" name="CandidateAwardItems[].Years" value="@item.Years"></div>
+                                            </div>
+                                            <br>
+                                            <div class="row ">
+                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Description</span></div>
+                                                <div class="col-lg-9"><input style="min-height: 150px;max-height: 150px;" class="border-0 border-radius backColorBlue py-2 px-3 w-100 AwardClickItem" placeholder="Description" name="CandidateAwardItems[].Content" value="@item.Content"></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="d-flex flex-row justify-content-end RemoveItem"><div class="btn backColorBlue py-2 px-2"><span class="blue">Remove</span></div></div>
+                                            </div>
+                                        </p>
+                                    </div>
+                                </div>
+                                <br>
 `;
         a.innerHTML = award;
         document.getElementsByClassName("AwardItems")[0].appendChild(a);

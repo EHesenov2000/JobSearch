@@ -311,7 +311,7 @@ namespace JobSearchFullWebSite.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult CandidateResumeEdit(int id,CandidateResumeEditDto resumeEditDto) 
         {
-            Candidate existCandidate = _context.Candidates.Include(x=>x.CandidateCVs).Include(x=>x.CandidateImages).FirstOrDefault(x => x.Id == id);
+            Candidate existCandidate = _context.Candidates.Include(x=>x.CandidateCVs).Include(x=>x.CandidateImages).Include(x=>x.CandidateEducationItems).Include(x=>x.CandidateWorkItems).Include(x=>x.CandidateAwardItems).FirstOrDefault(x => x.Id == id);
             if (existCandidate == null) return RedirectToAction("index");
             if (resumeEditDto.CandidateCVsId == null && resumeEditDto.CandidateCV == null)
             {
@@ -392,58 +392,125 @@ namespace JobSearchFullWebSite.Controllers
                 }
 
             }
-
-            if (resumeEditDto.Images != null)
+            if (resumeEditDto.CandidateEducationItems != null)
             {
-                foreach (var item in resumeEditDto.Images)
+                foreach (var item in resumeEditDto.CandidateEducationItems)
                 {
-                    if (item.ContentType != "image/png" && item.ContentType != "image/jpeg")
+                    if (item.Id != 0)
                     {
-                        ModelState.AddModelError("Item", "Jpeg ve ya png formatinda file daxil edilmelidir");
-                        return View();
+                        CandidateEducationItem educationItem = _context.CandidateEducationItems.Include(x=>x.Candidate).FirstOrDefault(x => x.Id == item.Id);
+                        educationItem.Title = item.Title;
+                        educationItem.Years = item.Years;
+                        educationItem.Content = item.Content;
+                        educationItem.EducationPlace = item.EducationPlace;
                     }
-                    if (item.Length > (1024 * 1024) * 5)
+                    else
                     {
-                        ModelState.AddModelError("Item", "File olcusu 5mb-dan cox olmaz!");
-                        return View();
-                    }
-                    string rootPath = _env.WebRootPath;
-                    var fileName = Guid.NewGuid().ToString() + item.FileName;
-                    var path = Path.Combine(rootPath, "images/candidateImage", fileName);
-
-                    using (FileStream stream = new FileStream(path, FileMode.Create))
-                    {
-                        item.CopyTo(stream);
-                    }
-                    CandidateImage candidateImage = new CandidateImage
-                    {
-                        CandidateId = existCandidate.Id,
-                        Image = fileName,
-                        IsPoster = false,
-                    };
-                    //resumeEditDto.CandidateImages.Add(candidateImage);//yenisi elave olunanda
-                    _context.CandidateImages.Add(candidateImage);
-                }
-            }
-            if (existCandidate.CandidateImages != null)
-            {
-                foreach (var item in existCandidate.CandidateImages)
-                {
-                    CandidateImage existImage = _context.CandidateImages.FirstOrDefault(x => x.Id == item.Id && !x.IsPoster);
-                    if (existImage != null)
-                    {
-                        string rootPath = _env.WebRootPath;
-                        var fileName = existImage.Image;
-                        var path = Path.Combine(rootPath, "images/candidateImage", fileName);
-                        if (System.IO.File.Exists(path))
+                        CandidateEducationItem educationItem = new CandidateEducationItem
                         {
-                            System.IO.File.Delete(path);
-                        }
-                        _context.CandidateImages.Remove(existImage);
+                            Title = item.Title,
+                            Years = item.Years,
+                            Content = item.Content,
+                            CandidateId = existCandidate.Id,
+                            EducationPlace = item.EducationPlace,
+                        };
+                        _context.CandidateEducationItems.Add(educationItem);
+                    }
+  
+                }
+            }
+            //if (existCandidate.CandidateEducationItems != null)
+            //{
+            //    foreach (var item in existCandidate.CandidateEducationItems)
+            //    {
+            //        if (item.Id != 0)
+            //        {
+            //            CandidateEducationItem educationItem = _context.CandidateEducationItems.FirstOrDefault(x => x.Id == item.Id);
+            //            _context.CandidateEducationItems.Remove(educationItem);
+            //        }
+
+            //    }
+            //}
+            if (resumeEditDto.CandidateWorkItems != null)
+            {
+    
+                foreach (var item in resumeEditDto.CandidateWorkItems)
+                {
+                    if (item.Id!=0)
+                    {
+                        CandidateWorkItem workItem = _context.CandidateWorkItems.Include(x => x.Candidate).FirstOrDefault(x => x.Id == item.Id);
+                        workItem.Title = item.Title;
+                        workItem.Content = item.Content;
+                        workItem.StartDate = item.StartDate;
+                        workItem.EndDate = item.EndDate;
+                        workItem.WorkPlace = item.WorkPlace;
+                    }
+                    else
+                    {
+                        CandidateWorkItem workItem = new CandidateWorkItem
+                        {
+                            Title = item.Title,
+                            StartDate = item.StartDate,
+                            EndDate = item.EndDate,
+                            WorkPlace = item.WorkPlace,
+                            Content = item.Content,
+                            CandidateId = existCandidate.Id,
+                        };
+                        _context.CandidateWorkItems.Add(workItem);
                     }
 
                 }
             }
+            //if (existCandidate.CandidateWorkItems != null)
+            //{
+            //    foreach (var item in existCandidate.CandidateWorkItems)
+            //    {
+            //        if (item.Id != 0)
+            //        {
+            //            CandidateWorkItem workItem = _context.CandidateWorkItems.FirstOrDefault(x => x.Id == item.Id);
+            //            _context.CandidateWorkItems.Remove(workItem);
+            //        }
+            //    }
+            //}
+            if (resumeEditDto.CandidateAwardItems != null)
+            {
+             
+                foreach (var item in resumeEditDto.CandidateAwardItems)
+                {
+                    if (item.Id!=0)
+                    {
+                        CandidateAwardItem awardItem = _context.CandidateAwardItems.Include(x => x.Candidate).FirstOrDefault(x => x.Id == item.Id);
+                        awardItem.Title = item.Title;
+                        awardItem.Content = item.Content;
+                        awardItem.Years = item.Years;
+                    }
+                    else
+                    {
+                        CandidateAwardItem awardItem = new CandidateAwardItem
+                        {
+                            Title = item.Title,
+                            Years = item.Years,
+                            Content = item.Content,
+                            CandidateId = existCandidate.Id,
+                        };
+                        _context.CandidateAwardItems.Add(awardItem);
+                    }
+                }
+            }
+            //if (existCandidate.CandidateAwardItems != null)
+            //{
+            //    foreach (var item in existCandidate.CandidateAwardItems)
+            //    {
+            //        if (item.Id != 0)
+            //        {
+            //            CandidateAwardItem awardItem = _context.CandidateAwardItems.FirstOrDefault(x => x.Id == item.Id);
+            //            _context.CandidateAwardItems.Remove(awardItem);
+            //        }
+            //    }
+            //}
+            _context.SaveChanges();
+
+            CandidateCV candidateCV = new CandidateCV();
             if (resumeEditDto.CandidateCV != null)
             {
                 if (resumeEditDto.CandidateCV.ContentType != "application/pdf" && resumeEditDto.CandidateCV.ContentType != "application/msword" && resumeEditDto.CandidateCV.ContentType != "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
@@ -464,18 +531,15 @@ namespace JobSearchFullWebSite.Controllers
                 {
                     resumeEditDto.CandidateCV.CopyTo(stream);
                 }
-                CandidateCV candidateCV = new CandidateCV
-                {
-                    CVName = fileName,
-                    CandidateId = existCandidate.Id,
-                };
-                _context.CandidateCVs.Add(candidateCV);
+                candidateCV.CVName = fileName;
+                candidateCV.CandidateId = existCandidate.Id;
+                
             }
             if (existCandidate.CandidateCVs != null)
             {
-                foreach (var item in existCandidate.CandidateCVs)
+                if (resumeEditDto.CandidateCVsId != null)
                 {
-                    if (resumeEditDto.CandidateCVsId != null)
+                    foreach (var item in existCandidate.CandidateCVs)
                     {
                         if (!resumeEditDto.CandidateCVsId.Contains(item.Id))
                         {
@@ -487,18 +551,71 @@ namespace JobSearchFullWebSite.Controllers
                                 System.IO.File.Delete(path);
                             }
                             _context.CandidateCVs.Remove(item);
-
                         }
-                        //else
-                        //{
-                        //    if (resumeEditDto.CandidateCV != null)
-                        //    {
-                        //        resumeEditDto.CandidateCVs.Add(item);//yenisi elave olunanda
-                        //    }
-                        //}
                     }
                 }
             }
+            if (candidateCV != null && candidateCV.CandidateId!=0 && candidateCV.CVName!=null)
+            {
+                _context.CandidateCVs.Add(candidateCV);
+            }
+            if (resumeEditDto.Images != null)
+            {
+                foreach (var item in resumeEditDto.Images)
+                {
+                    if (item.ContentType != "image/png" && item.ContentType != "image/jpeg")
+                    {
+                        ModelState.AddModelError("Images", "Mime type yanlisdir!");
+                        return View(resumeEditDto);
+                    }
+
+                    if (item.Length > (1024 * 1024) * 5)
+                    {
+                        ModelState.AddModelError("Images", "Faly olcusu 5MB-dan cox ola bilmez!");
+                        return View(resumeEditDto);
+                    }
+
+                    string rootPath = _env.WebRootPath;
+                    var fileName = Guid.NewGuid().ToString() + item.FileName;
+                    var path = Path.Combine(rootPath, "images/candidateImage", fileName);
+
+                    using (FileStream stream = new FileStream(path, FileMode.Create))
+                    {
+                        item.CopyTo(stream);
+                    }
+                    CandidateImage candidateImage = new CandidateImage
+                    {
+                        Image = fileName,
+                        IsPoster = false,
+                        CandidateId = existCandidate.Id
+                    };
+                    _context.CandidateImages.Add(candidateImage);
+                }
+            }
+            if (existCandidate.CandidateImages != null)
+            {
+                foreach (var item in existCandidate.CandidateImages)
+                {
+                    if (resumeEditDto.ImagesId != null)
+                    {
+                        if (!resumeEditDto.ImagesId.Contains(item.Id) && item.Id!=0)
+                        {
+                            if (item.IsPoster == false)
+                            {
+                                string rootPath = _env.WebRootPath;
+                                var fileName = item.Image;
+                                var path = Path.Combine(rootPath, "images/candidateImage", fileName);
+                                if (System.IO.File.Exists(path))
+                                {
+                                    System.IO.File.Delete(path);
+                                }
+                                _context.CandidateImages.Remove(item);
+                            }
+                        }
+                    }
+                }
+            }
+
             _context.SaveChanges();
             return RedirectToAction("index"); 
         }
