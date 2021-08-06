@@ -294,9 +294,11 @@ namespace JobSearchFullWebSite.Controllers
            Candidate candidate= _context.Candidates.Include(x=>x.CandidateCVs).Include(x=>x.CandidateSkills).Include(x=>x.CandidateImages).Include(x=>x.CandidateWorkItems).Include(x=>x.CandidateEducationItems).Include(x=>x.CandidateAwardItems).FirstOrDefault(x => x.Id == id);
 
            CandidateResumeEditDto candidateResume = new CandidateResumeEditDto();
-            candidateResume.CandidateImages = candidate.CandidateImages;
+            if (candidate.CandidateImages != null)
+            {
+                candidateResume.CandidateImages = candidate.CandidateImages;
+            }
             candidateResume.CandidateSkills = candidate.CandidateSkills;
-            candidateResume.CandidateImages = candidate.CandidateImages;
             candidateResume.CandidateEducationItems = candidate.CandidateEducationItems;
             candidateResume.CandidateAwardItems = candidate.CandidateAwardItems;
             candidateResume.CandidateWorkItems = candidate.CandidateWorkItems;
@@ -308,9 +310,197 @@ namespace JobSearchFullWebSite.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult CandidateResumeEdit(int id,CandidateResumeEditDto resumeEditDto) 
-        { 
-            return View(); 
-        
+        {
+            Candidate existCandidate = _context.Candidates.Include(x=>x.CandidateCVs).Include(x=>x.CandidateImages).FirstOrDefault(x => x.Id == id);
+            if (existCandidate == null) return RedirectToAction("index");
+            if (resumeEditDto.CandidateCVsId == null && resumeEditDto.CandidateCV == null)
+            {
+                ModelState.AddModelError("", "CV daxil edilmesi mutleqdir");
+                return View(resumeEditDto);
+            }
+            if (resumeEditDto.CandidateEducationItems != null)
+            {
+                foreach (var item in resumeEditDto.CandidateEducationItems)
+                {
+                    if (item.Title == null)
+                    {
+                        ModelState.AddModelError("", "Title-larin daxil edilmesi mutleqdir");
+                        return View(resumeEditDto);
+                    }
+                    if (item.Years == null)
+                    {
+                        ModelState.AddModelError("", "Tehsil illerinin daxil edilmesi mutleqdir");
+                        return View(resumeEditDto);
+                    }
+                    if(item.EducationPlace==null)
+                    {
+                        ModelState.AddModelError("", "Tehsil aldiginiz muessiselerin daxil edilmesi mutleqdir");
+                        return View(resumeEditDto);
+                    }
+                    if (item.Content == null)
+                    {
+                        ModelState.AddModelError("", "Umumi melumat daxil daxil edilmesi mutleqdir");
+                        return View(resumeEditDto);
+                    }
+                }
+            }
+            if (resumeEditDto.CandidateWorkItems != null)
+            {
+                foreach (var item in resumeEditDto.CandidateWorkItems)
+                {
+                    if (item.Title==null)
+                    {
+                        ModelState.AddModelError("", "Title-larin daxil edilmesi mutleqdir");
+                        return View(resumeEditDto);
+                    }
+                    if (item.StartDate == null || item.EndDate==null)
+                    {
+                        ModelState.AddModelError("", "Tarixlerin daxil edilmesi mutleqdir");
+                        return View(resumeEditDto);
+                    }
+                    if (item.WorkPlace==null)
+                    {
+                        ModelState.AddModelError("", "Is yerinin daxil edilmesi mutleqdir");
+                        return View(resumeEditDto);
+                    }
+                    if (item.Content==null)
+                    {
+                        ModelState.AddModelError("", "Umumi melumatin daxil edilmesi mutleqdir");
+                        return View(resumeEditDto);
+                    }
+                }
+            }
+            if (resumeEditDto.CandidateAwardItems != null)
+            {
+                foreach (var item in resumeEditDto.CandidateAwardItems)
+                {
+                    if (item.Title == null)
+                    {
+                        ModelState.AddModelError("", "Title-nin daxil edilmesi mutleqdir");
+                        return View(resumeEditDto);
+                    }
+                    if (item.Years == null)
+                    {
+                        ModelState.AddModelError("", "Tarixlerin daxil edilmesi mutleqdir");
+                        return View(resumeEditDto);
+                    }
+                    if (item.Content == null)
+                    {
+                        ModelState.AddModelError("", "Umumi melumatin daxil edilmesi mutleqdir");
+                        return View(resumeEditDto);
+                    }
+                }
+
+            }
+
+            if (resumeEditDto.Images != null)
+            {
+                foreach (var item in resumeEditDto.Images)
+                {
+                    if (item.ContentType != "image/png" && item.ContentType != "image/jpeg")
+                    {
+                        ModelState.AddModelError("Item", "Jpeg ve ya png formatinda file daxil edilmelidir");
+                        return View();
+                    }
+                    if (item.Length > (1024 * 1024) * 5)
+                    {
+                        ModelState.AddModelError("Item", "File olcusu 5mb-dan cox olmaz!");
+                        return View();
+                    }
+                    string rootPath = _env.WebRootPath;
+                    var fileName = Guid.NewGuid().ToString() + item.FileName;
+                    var path = Path.Combine(rootPath, "images/candidateImage", fileName);
+
+                    using (FileStream stream = new FileStream(path, FileMode.Create))
+                    {
+                        item.CopyTo(stream);
+                    }
+                    CandidateImage candidateImage = new CandidateImage
+                    {
+                        CandidateId = existCandidate.Id,
+                        Image = fileName,
+                        IsPoster = false,
+                    };
+                    //resumeEditDto.CandidateImages.Add(candidateImage);//yenisi elave olunanda
+                    _context.CandidateImages.Add(candidateImage);
+                }
+            }
+            if (existCandidate.CandidateImages != null)
+            {
+                foreach (var item in existCandidate.CandidateImages)
+                {
+                    CandidateImage existImage = _context.CandidateImages.FirstOrDefault(x => x.Id == item.Id && !x.IsPoster);
+                    if (existImage != null)
+                    {
+                        string rootPath = _env.WebRootPath;
+                        var fileName = existImage.Image;
+                        var path = Path.Combine(rootPath, "images/candidateImage", fileName);
+                        if (System.IO.File.Exists(path))
+                        {
+                            System.IO.File.Delete(path);
+                        }
+                        _context.CandidateImages.Remove(existImage);
+                    }
+
+                }
+            }
+            if (resumeEditDto.CandidateCV != null)
+            {
+                if (resumeEditDto.CandidateCV.ContentType != "application/pdf" && resumeEditDto.CandidateCV.ContentType != "application/msword" && resumeEditDto.CandidateCV.ContentType != "application/vnd.openxmlformats-officedocument.wordprocessingml.document")
+                {
+                    ModelState.AddModelError("CandidateCV", "Pdf,doc ve ya docx formatinda file daxil edilmelidir");
+                    return View();
+                }
+                if (resumeEditDto.CandidateCV.Length > (1024 * 1024) * 5)
+                {
+                    ModelState.AddModelError("CandidateCV", "File olcusu 5mb-dan cox olmaz!");
+                    return View();
+                }
+                string rootPath = _env.WebRootPath;
+                var fileName = Guid.NewGuid().ToString() + resumeEditDto.CandidateCV.FileName;
+                var path = Path.Combine(rootPath, "CVs", fileName);
+
+                using (FileStream stream = new FileStream(path, FileMode.Create))
+                {
+                    resumeEditDto.CandidateCV.CopyTo(stream);
+                }
+                CandidateCV candidateCV = new CandidateCV
+                {
+                    CVName = fileName,
+                    CandidateId = existCandidate.Id,
+                };
+                _context.CandidateCVs.Add(candidateCV);
+            }
+            if (existCandidate.CandidateCVs != null)
+            {
+                foreach (var item in existCandidate.CandidateCVs)
+                {
+                    if (resumeEditDto.CandidateCVsId != null)
+                    {
+                        if (!resumeEditDto.CandidateCVsId.Contains(item.Id))
+                        {
+                            string rootPath = _env.WebRootPath;
+                            var fileName = item.CVName;
+                            var path = Path.Combine(rootPath, "CVs", fileName);
+                            if (System.IO.File.Exists(path))
+                            {
+                                System.IO.File.Delete(path);
+                            }
+                            _context.CandidateCVs.Remove(item);
+
+                        }
+                        //else
+                        //{
+                        //    if (resumeEditDto.CandidateCV != null)
+                        //    {
+                        //        resumeEditDto.CandidateCVs.Add(item);//yenisi elave olunanda
+                        //    }
+                        //}
+                    }
+                }
+            }
+            _context.SaveChanges();
+            return RedirectToAction("index"); 
         }
         public IActionResult ApplyForJob(Apply apply)
         {
