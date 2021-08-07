@@ -21,8 +21,8 @@ namespace JobSearchFullWebSite.DTOs
         public List<int?> CandidateEducationItemsId { get; set; }
         public List<int?> CandidateWorkItemsId { get; set; }
         public List<int?> CandidateAwardItemsId { get; set; }
+        public List<int?> CandidateSkillsId { get; set; }
         public List<CandidateSkill> CandidateSkills { get; set; }
-
         public List<CandidateImage> CandidateImages { get; set; }
         public List<CandidateCV> CandidateCVs { get; set; }
         public List<CandidateEducationItem> CandidateEducationItems { get; set; }

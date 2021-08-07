@@ -54,8 +54,9 @@ $(document).ready(function () {
 
         var a = document.createElement("div");
         var work = `
-                                  <input type="hidden" name="CandidateWorkItemsId[]" />
+                                 
                                 <div class="CandidateResumeItem">
+<input type="hidden" name="CandidateWorkItemsId[]" value="@item.Id"/>
                                     <input type="hidden" class="WorkClickItem" name="CandidateWorkItems[].Id" value="@item.Id" />
                                     <input type="hidden" class="WorkClickItem" name="CandidateWorkItems[].CandidateId" value="@item.CandidateId" />
                                     <div class="accordion mt-3 border-radius">@item.Title</div>
@@ -110,9 +111,10 @@ $(document).ready(function () {
     document.getElementsByClassName("AddAwardItem")[0].onclick = function () {
         var a = document.createElement("div");
         var award = `
-                                    <input type="hidden" name="CandidateAwardItemsId[]" />
+                                    
 
                                 <div class="CandidateResumeItem">
+ <input type="hidden" name="CandidateAwardItemsId[]" value="@item.Id"/>
                                     <input type="hidden" class="AwardClickItem" name="CandidateAwardItems[].Id" value="@item.Id" />
                                     <input type="hidden" class="AwardClickItem" name="CandidateAwardItems[].CandidateId" value="@item.CandidateId" />
                                     <div class="accordion mt-3 border-radius">@item.Title</div>
@@ -153,6 +155,38 @@ $(document).ready(function () {
 
     }
 
+    document.getElementsByClassName("AddSkillItem")[0].onclick = function () {
+        var a = document.createElement("div");
+        var skill =
+            ` 
+                                                <div class="CandidateResumeItem">
+                                    <input type="hidden" name="CandidateSkillsId[]" value="@item.Id" />
+                                    <input type="hidden" class="SkillClickItem" name="CandidateSkills[].Id" value="@item.Id" />
+                                    <input type="hidden" class="SkillClickItem" name="CandidateSkills[].CandidateId" value="@item.CandidateId" />
+                                    <div class="accordion mt-3 border-radius">@item.Name</div>
+                                    <div class="panel mt-2">
+                                        <p>
+                                            <div class="row ">
+                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Title</span></div>
+                                                <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100 SkillClickItem" placeholder="Title" name="CandidateSkills[].Name" value="@item.Name"></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="d-flex flex-row justify-content-end RemoveItem"><div class="btn backColorBlue py-2 px-2"><span class="blue">Remove</span></div></div>
+                                            </div>
+                                        </p>
+                                    </div>
+                                </div>
+                                <br>
+            `;
+        a.innerHTML = skill;
+        document.getElementsByClassName("SkillItems")[0].appendChild(a);
+        for (var i = 0; i < document.getElementsByClassName("SkillClickItem").length / 3; i++) {
+            document.getElementsByClassName("SkillClickItem")[i * 3].setAttribute("name", `CandidateSkills[` + i + `].Id`);
+            document.getElementsByClassName("SkillClickItem")[i * 3 + 1].setAttribute("name", `CandidateSkills[` + i + `].CandidateId`);
+            document.getElementsByClassName("SkillClickItem")[i * 3 + 2].setAttribute("name", `CandidateSkills[` + i + `].Name`);
+        }
+
+    }
 
     $(".ImageXIcon ").css("display", "flex ");
 
@@ -216,6 +250,9 @@ $(document).ready(function () {
     ],
   });
 });
+
+
+
 for (
   let index = 0;
   index < document.getElementsByClassName("work-card-contentP").length;
@@ -332,6 +369,11 @@ $(document).ready(function () {
                     document.getElementsByClassName("AwardClickItem")[i * 5 + 2].setAttribute("name", `CandidateAwardItems[` + i + `].Title`);
                     document.getElementsByClassName("AwardClickItem")[i * 5 + 3].setAttribute("name", `CandidateAwardItems[` + i + `].Years`);
                     document.getElementsByClassName("AwardClickItem")[i * 5 + 4].setAttribute("name", `CandidateAwardItems[` + i + `].Content`);
+                }
+                for (var i = 0; i < document.getElementsByClassName("SkillClickItem").length / 3; i++) {
+                    document.getElementsByClassName("SkillClickItem")[i * 3].setAttribute("name", `CandidateSkills[` + i + `].Id`);
+                    document.getElementsByClassName("SkillClickItem")[i * 3 + 1].setAttribute("name", `CandidateSkills[` + i + `].CandidateId`);
+                    document.getElementsByClassName("SkillClickItem")[i * 3 + 2].setAttribute("name", `CandidateSkills[` + i + `].Name`);
                 }
             })
         }

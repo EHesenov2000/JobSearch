@@ -56,7 +56,7 @@ namespace JobSearchFullWebSite.DTOs
         public int PositionId { get; set; }//
         public Position Position { get; set; }//
         [NotMapped]
-        public List<int>? KnowingLanguageIds { get; set; }
+        public List<int?> KnowingLanguageIds { get; set; }
         public List<CandidateKnowingLanguage> KnowingLanguages { get; set; }//
     }
 }

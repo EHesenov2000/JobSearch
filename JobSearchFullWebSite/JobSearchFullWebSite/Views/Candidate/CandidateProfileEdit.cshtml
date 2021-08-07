@@ -22,7 +22,7 @@
                     <div class="col-lg-6 col-12">
                         <div class="row">
                             <div class="col-md-2 col-12 d-flex flex-row align-items-center ImageAndUpload">
-                                @if (Model != null && Model.Image!="")
+                                @if (Model != null && Model.Image != "")
                                 {
                                     <img src="~/images/candidateImage/@Model.Image"
                                          alt=""
@@ -41,7 +41,7 @@
                             </div>
                             <dv class="col-md-4 col-12 d-flex flex-row align-items-center mt-2">
                                 @*<input type="file" id="file" asp-for="@Model.File "/>
-                            <label for="file" asp-for="@Model.File " class=" backColorBlue"><span class="blue">Browse</span> </label>*@
+                                    <label for="file" asp-for="@Model.File " class=" backColorBlue"><span class="blue">Browse</span> </label>*@
                                 <input class="form-control col-md-2 " id="file" type="file" asp-for="@Model.File" style="display:contents;">
                                 <label for="file" class=" backColorBlue"><span class="blue">Browse</span></label>
                         </div>
@@ -66,38 +66,38 @@
                             <br>
                             <label asp-for="@Model.KnowingLanguageIds">Language</label>
                             @*<select class="form-control" asp-for="@Model.KnowingLanguageIds" asp-items="@(new SelectList(ViewBag.Languages,"Id","Name"))">
-        </select>*@
-                        <select class="form-control" asp-for="@Model.KnowingLanguageIds">
-                            @if (Model != null)
-                            {
-                                @if (ViewBag.Languages != null)
+                                </select>*@
+                            <select class="form-control" asp-for="@Model.KnowingLanguageIds">
+                                @if (Model != null)
                                 {
-                                    @foreach (var item in ViewBag.Languages)
+                                    @if (ViewBag.Languages != null)
                                     {
-                                        if (Model.KnowingLanguages.Any(x => x.LanguageId == item.Id))
+                                        @foreach (var item in ViewBag.Languages)
                                         {
-                                            <option selected value="@item.Id">@item.Name</option>
+                                            if (Model.KnowingLanguages.Any(x => x.LanguageId == item.Id))
+                                            {
+                                                <option selected value="@item.Id">@item.Name</option>
+                                            }
+                                            else
+                                            {
+                                                <option value="@item.Id">@item.Name</option>
+                                            }
                                         }
-                                        else
+                                    }
+
+                                }
+                                else
+                                {
+                                    @if (ViewBag.Languages != null)
+                                    {
+                                        @foreach (var item in ViewBag.Languages)
                                         {
                                             <option value="@item.Id">@item.Name</option>
                                         }
                                     }
                                 }
 
-                            }
-                            else
-                            {
-                                @if (ViewBag.Languages != null)
-                                {
-                                    @foreach (var item in ViewBag.Languages)
-                                    {
-                                            <option value="@item.Id">@item.Name</option>
-                                    }
-                                }
-                            }
-
-                        </select>
+                            </select>
                             <span asp-validation-for="@Model.KnowingLanguageIds" class="text-danger"></span>
                             <br>
                             <label asp-for="@Model.WaitingSalary">Salary</label>
@@ -134,8 +134,6 @@
                             <br>
                             <label asp-for="@Model.SalaryForTime"> Salary For Time</label>
                             <select class="border-radius border-0 backColorBlue py-2 px-2" class="border-0 backColorBlue border-radius py-2 px-2" placeholder="Salary for time" asp-for="@Model.SalaryForTime" asp-items="Html.GetEnumSelectList<JobSalaryForTime>()">
-                            
-
                             </select>
                             <span asp-validation-for="@Model.SalaryForTime" class="text-danger"></span>
                             <br>
@@ -144,16 +142,8 @@
                     <div class="col-12">
                         <div class="d-flex flex-column">
                             <label>Description</label>
-                            <div id="editor" name="AboutCandidateTextEditor" value="AboutCandidateTextEditor" asp-for="@Model.AboutCandidateTextEditor">
-                                <div name="AboutCandidateTextEditor" id="editor">
-@Html.Raw(Model.AboutCandidateTextEditor) 
-</div>
-                                @*@Html.TextBoxFor(a => a.AboutCandidateTextEditor)*@
-
-                                @*@Html.EditorFor(model => model.AboutCandidateTextEditor)*@
-                                @*@Html.LabelFor(x => x.AboutCandidateTextEditor, "AboutCandidateTextEditor")*@
-                                @*@Html.Raw(Model.AboutCandidateTextEditor)*@
-                            </div>
+                                <textarea asp-for="@Model.AboutCandidateTextEditor" >
+                                </textarea>
                         </div>
                     </div>
                 </div>
@@ -312,71 +302,9 @@
 
 
 
-@*@section Scripts{
-        <script>
-            $(document).ready(function () {
-                $(document).on("click", ".add-skill", function (e) {
-                    e.preventDefault();
-
-                    var nextIndex = $(this).attr("data-nextIndex");
-
-                    var inputGroup = ` <div class="form-group col-12" data-index="0">
-                        <label for="skillName">Skill name</label>
-                        <input name="Skills[`+ nextIndex + `].Name" type="text" class="silecem"/>
-                        <span class="text-danger"></span>
-
-                        <label for="skillPercent"> Skill percent</label>
-                        <input name="Skills[`+ nextIndex + `].Percent" type="text" class="silecem"/>
-                        <span class="text-danger"></span>
-                        <span><i class="fas fa-minus delete-skill"> </i></span>
-                    </div>`
-
-                    $("#skills").append($(inputGroup))
-
-                    nextIndex = +nextIndex + 1;
-                    console.log(nextIndex)
-
-                    $(this).attr("data-nextIndex", nextIndex)
-                })
-
-                //$(document).on("click", ".delete-skill", function (e) {
-                //    e.preventDefault();
-                //    console.log("test");
-                //    $(".silecem").attr("name", "sagol");
-                //    //$(this).parents(".form-group").empty();
-                //})
-            })
-            for (var i = 0; i < document.getElementsByClassName("delete-skill").length; i++) {
-
-                document.getElementsByClassName("delete-skill")[i].onclick = function (e) {
-                    e.preventDefault();
-                    this.parentElement.parentElement.innerHTML = null;
-                    console.log("salam qaqa");
-                    for (var z = 0; z < document.getElementsByClassName("silecem").length; z += 2) {
-                        var count = 0;
-                        for (var t = 0;t < 2; t++) {
-                            var name = "Skills[" + (z/2) + "].Name";
-                            var percent = "Skills[" + (z/2) + "].Percent";
-                            document.getElementsByClassName("silecem")[z].setAttribute("name", name);
-                            document.getElementsByClassName("silecem")[z + 1].setAttribute("name", percent);
-                            count++;
-
-                        }
-
-
-
-                    }
-                    var nextIndex = +$(".add-skill").attr("data-nextIndex");
-                    $(".add-skill").attr("data-nextIndex", nextIndex - 1);
-
-                    //$(this).attr("data-nextIndex", count)
-
-
-
-                }
-
-            }
-
-
-        </script>
-    }*@
+    <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+    <script>
+        // Replace the <textarea id="editor1"> with a CKEditor 4
+        // instance, using default configuration.
+        CKEDITOR.replace('AboutCandidateTextEditor');
+    </script>

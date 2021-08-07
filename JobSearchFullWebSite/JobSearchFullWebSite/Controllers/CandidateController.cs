@@ -164,9 +164,14 @@ namespace JobSearchFullWebSite.Controllers
             {
                 if (!_context.Positions.Any(x => x.Id == candidateEditDto.PositionId)) return RedirectToAction("index");
             }
+            if (candidateEditDto.AboutCandidateTextEditor.Length > 1000)
+            {
+                ModelState.AddModelError("AboutCandidateTextEditor", "Maksimum uzunluq 1000-dir");
+                return View(candidateEditDto);
+            }
             if (!ModelState.IsValid)
             {
-                return View();
+                return View(candidateEditDto);
             }
             if (candidateEditDto.File != null)
             {
@@ -271,7 +276,7 @@ namespace JobSearchFullWebSite.Controllers
                         CandidateKnowingLanguage knowingLanguage = new CandidateKnowingLanguage
                         {
                             CandidateId = id,
-                            LanguageId = item
+                            LanguageId = (int)item
                         };
                         _context.CandidateKnowingLanguages.Add(knowingLanguage);
                     }
@@ -288,9 +293,7 @@ namespace JobSearchFullWebSite.Controllers
             return RedirectToAction("index");
         }
         public IActionResult CandidateResumeEdit(int id) 
-        
         {
-
            Candidate candidate= _context.Candidates.Include(x=>x.CandidateCVs).Include(x=>x.CandidateSkills).Include(x=>x.CandidateImages).Include(x=>x.CandidateWorkItems).Include(x=>x.CandidateEducationItems).Include(x=>x.CandidateAwardItems).FirstOrDefault(x => x.Id == id);
 
            CandidateResumeEditDto candidateResume = new CandidateResumeEditDto();
@@ -311,12 +314,29 @@ namespace JobSearchFullWebSite.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult CandidateResumeEdit(int id,CandidateResumeEditDto resumeEditDto) 
         {
-            Candidate existCandidate = _context.Candidates.Include(x=>x.CandidateCVs).Include(x=>x.CandidateImages).Include(x=>x.CandidateEducationItems).Include(x=>x.CandidateWorkItems).Include(x=>x.CandidateAwardItems).FirstOrDefault(x => x.Id == id);
+            Candidate existCandidate = _context.Candidates.Include(x=>x.CandidateSkills).Include(x=>x.CandidateCVs).Include(x=>x.CandidateImages).Include(x=>x.CandidateEducationItems).Include(x=>x.CandidateWorkItems).Include(x=>x.CandidateAwardItems).FirstOrDefault(x => x.Id == id);
             if (existCandidate == null) return RedirectToAction("index");
             if (resumeEditDto.CandidateCVsId == null && resumeEditDto.CandidateCV == null)
             {
                 ModelState.AddModelError("", "CV daxil edilmesi mutleqdir");
                 return View(resumeEditDto);
+            }
+            if (resumeEditDto.CandidateSkills != null)
+            {
+                foreach (var item in resumeEditDto.CandidateSkills)
+                {
+                    if (item.Name == null)
+                    {
+                        ModelState.AddModelError("", "Skill Nmae-ler mutleq daxil edilmelidir");
+                        return View(resumeEditDto);
+                    }
+                    if (item.Name.Length > 30)
+                    {
+                        ModelState.AddModelError("", "SkillName-lerin max uzunlugu 30-dur");
+                        return View(resumeEditDto);
+                    }
+      
+                }
             }
             if (resumeEditDto.CandidateEducationItems != null)
             {
@@ -332,7 +352,7 @@ namespace JobSearchFullWebSite.Controllers
                         ModelState.AddModelError("", "Tehsil illerinin daxil edilmesi mutleqdir");
                         return View(resumeEditDto);
                     }
-                    if(item.EducationPlace==null)
+                    if (item.EducationPlace == null)
                     {
                         ModelState.AddModelError("", "Tehsil aldiginiz muessiselerin daxil edilmesi mutleqdir");
                         return View(resumeEditDto);
@@ -342,32 +362,69 @@ namespace JobSearchFullWebSite.Controllers
                         ModelState.AddModelError("", "Umumi melumat daxil daxil edilmesi mutleqdir");
                         return View(resumeEditDto);
                     }
+                    if (item.Title.Length > 50)
+                    {
+                        ModelState.AddModelError("", "Title-larin max uzunlugu 50-dir");
+                        return View(resumeEditDto);
+                    }
+                    if (item.Years.Length>10)
+                    {
+                        ModelState.AddModelError("", "Years-larin max uzunlugu 10-dur");
+                        return View(resumeEditDto);
+                    }
+                    if (item.EducationPlace.Length>50)
+                    {
+                        ModelState.AddModelError("", "EducationPlace-larin max uzunlugu 50-dur");
+                        return View(resumeEditDto);
+                    }
+                    if (item.Content.Length > 200)
+                    {
+                        ModelState.AddModelError("", "Content-larin max uzunlugu 200-dur");
+                        return View(resumeEditDto);
+                    }
+                   
                 }
             }
             if (resumeEditDto.CandidateWorkItems != null)
             {
                 foreach (var item in resumeEditDto.CandidateWorkItems)
                 {
-                    if (item.Title==null)
+                    if (item.Title == null)
                     {
                         ModelState.AddModelError("", "Title-larin daxil edilmesi mutleqdir");
                         return View(resumeEditDto);
                     }
-                    if (item.StartDate == null || item.EndDate==null)
+                    if (item.StartDate == null || item.EndDate == null)
                     {
                         ModelState.AddModelError("", "Tarixlerin daxil edilmesi mutleqdir");
                         return View(resumeEditDto);
                     }
-                    if (item.WorkPlace==null)
+                    if (item.WorkPlace == null)
                     {
                         ModelState.AddModelError("", "Is yerinin daxil edilmesi mutleqdir");
                         return View(resumeEditDto);
                     }
-                    if (item.Content==null)
+                    if (item.Content == null)
                     {
                         ModelState.AddModelError("", "Umumi melumatin daxil edilmesi mutleqdir");
                         return View(resumeEditDto);
                     }
+                    if (item.Title.Length > 50)
+                    {
+                        ModelState.AddModelError("", "Title-larin max uzunlugu 50-dur");
+                        return View(resumeEditDto);
+                    }
+                    if (item.WorkPlace.Length > 50)
+                    {
+                        ModelState.AddModelError("", "WorkPlace-larin max uzunlugu 50-dur");
+                        return View(resumeEditDto);
+                    }
+                    if (item.Content.Length > 200)
+                    {
+                        ModelState.AddModelError("", "Content-larin max uzunlugu 200-dur");
+                        return View(resumeEditDto);
+                    }
+                   
                 }
             }
             if (resumeEditDto.CandidateAwardItems != null)
@@ -389,13 +446,50 @@ namespace JobSearchFullWebSite.Controllers
                         ModelState.AddModelError("", "Umumi melumatin daxil edilmesi mutleqdir");
                         return View(resumeEditDto);
                     }
+                    if (item.Title.Length > 50)
+                    {
+                        ModelState.AddModelError("", "Title-larin max uzunlugu 50-dur");
+                        return View(resumeEditDto);
+                    }
+                    if (item.Years.Length > 50)
+                    {
+                        ModelState.AddModelError("", "Years-larin max uzunlugu 10-dur");
+                        return View(resumeEditDto);
+                    }
+                    if (item.Content.Length > 50)
+                    {
+                        ModelState.AddModelError("", "Content-larin max uzunlugu 200-dur");
+                        return View(resumeEditDto);
+                    }
+
                 }
 
+            }
+            if (resumeEditDto.CandidateSkills != null)
+            {
+                foreach (var item in resumeEditDto.CandidateSkills)
+                {
+                    if (item.Id != 0)
+                    {
+                        CandidateSkill candidateSkill = _context.CandidateSkills.FirstOrDefault(x => x.Id == item.Id);
+                        candidateSkill.Name = item.Name;
+                    }
+                    else
+                    {
+                        CandidateSkill candidateSkill = new CandidateSkill
+                        {
+                            Name = item.Name,
+                            CandidateId=existCandidate.Id
+                        };
+                        _context.CandidateSkills.Add(candidateSkill);
+                    }
+                }
             }
             if (resumeEditDto.CandidateEducationItems != null)
             {
                 foreach (var item in resumeEditDto.CandidateEducationItems)
                 {
+
                     if (item.Id != 0)
                     {
                         CandidateEducationItem educationItem = _context.CandidateEducationItems.Include(x=>x.Candidate).FirstOrDefault(x => x.Id == item.Id);
@@ -508,7 +602,59 @@ namespace JobSearchFullWebSite.Controllers
             //        }
             //    }
             //}
-            _context.SaveChanges();
+            if (resumeEditDto.CandidateSkillsId != null)
+            {
+                foreach (var item in existCandidate.CandidateSkills)
+                {
+                    if (!resumeEditDto.CandidateSkillsId.Contains(item.Id))
+                    {
+                        if (item.Id != 0)
+                        {
+                            _context.CandidateSkills.Remove(_context.CandidateSkills.FirstOrDefault(x => x.Id == item.Id));
+                        }
+                    }
+                }
+            }
+            if (resumeEditDto.CandidateEducationItemsId != null)
+            {
+                foreach (var item in existCandidate.CandidateEducationItems)
+                {
+                    if (!resumeEditDto.CandidateEducationItemsId.Contains(item.Id))
+                    {
+                        if (item.Id != 0)
+                        {
+                            _context.CandidateEducationItems.Remove(_context.CandidateEducationItems.FirstOrDefault(x => x.Id == item.Id));
+                        }
+                    }
+                }
+            }
+            if (resumeEditDto.CandidateWorkItemsId != null)
+            {
+                foreach (var item in existCandidate.CandidateWorkItems)
+                {
+                    if (!resumeEditDto.CandidateWorkItemsId.Contains(item.Id))
+                    {
+                        if (item.Id != 0)
+                        {
+                        _context.CandidateWorkItems.Remove(_context.CandidateWorkItems.FirstOrDefault(x => x.Id == item.Id));
+                        }
+                    }
+                }
+            }
+            if (resumeEditDto.CandidateAwardItemsId != null)
+            {
+                foreach (var item in existCandidate.CandidateAwardItems)
+                {
+                    if (!resumeEditDto.CandidateAwardItemsId.Contains(item.Id))
+                    {
+                        if (item.Id != 0)
+                        {
+                            _context.CandidateAwardItems.Remove(_context.CandidateAwardItems.FirstOrDefault(x => x.Id == item.Id));
+                        }
+                    }
+                }
+            }
+            //_context.SaveChanges();
 
             CandidateCV candidateCV = new CandidateCV();
             if (resumeEditDto.CandidateCV != null)

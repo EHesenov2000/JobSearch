@@ -57,39 +57,39 @@
                         @{ int count = 0;
                             @foreach (var item in Model.CandidateEducationItems)
                             {
-                                <input type="hidden" name="CandidateEducationItemsId[]" value="@item.Id" />
-                                <div class="CandidateResumeItem">
-                                    <input type="hidden" class="EducationClickItem" name="CandidateEducationItems[@count].Id" value="@item.Id" />
-                                    <input type="hidden" class="EducationClickItem" name="CandidateEducationItems[@count].CandidateId" value="@item.CandidateId" />
+                        <div class="CandidateResumeItem">
+                            <input type="hidden" name="CandidateEducationItemsId[]" value="@item.Id" />
+                            <input type="hidden" class="EducationClickItem" name="CandidateEducationItems[@count].Id" value="@item.Id" />
+                            <input type="hidden" class="EducationClickItem" name="CandidateEducationItems[@count].CandidateId" value="@item.CandidateId" />
 
-                                    <div class="accordion mt-3 border-radius">@item.Title</div>
-                                    <div class="panel mt-2">
-                                        <p>
-                                            <div class="row ">
-                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Title</span></div>
-                                                <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100 EducationClickItem" placeholder="BEducation Title" name="CandidateEducationItems[@count].Title" value="@item.Title"></div>
-                                            </div>
-                                            <br>
-                                            <div class="row ">
-                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Academy</span></div>
-                                                <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100 EducationClickItem" placeholder="Education Academy" name="CandidateEducationItems[@count].EducationPlace" value="@item.EducationPlace"></div>
-                                            </div>
-                                            <br>
-                                            <div class="row ">
-                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Years</span></div>
-                                                <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100 EducationClickItem" placeholder="Years" name="CandidateEducationItems[@count].Years" value="@item.Years"></div>
-                                            </div>
-                                            <br>
-                                            <div class="row ">
-                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Description</span></div>
-                                                <div class="col-lg-9"><input style="min-height: 150px;max-height: 150px;" class="border-0 border-radius backColorBlue py-2 px-3 w-100 EducationClickItem" placeholder="Description" name="CandidateEducationItems[@count].Content" value="@item.Content"></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="d-flex flex-row justify-content-end RemoveItem"><div class="btn backColorBlue py-2 px-2"><span class="blue">Remove</span></div></div>
-                                            </div>
-                                        </p>
+                            <div class="accordion mt-3 border-radius">@item.Title</div>
+                            <div class="panel mt-2">
+                                <p>
+                                    <div class="row ">
+                                        <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Title</span></div>
+                                        <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100 EducationClickItem" placeholder="BEducation Title" name="CandidateEducationItems[@count].Title" value="@item.Title"></div>
                                     </div>
-                                </div>
+                                    <br>
+                                    <div class="row ">
+                                        <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Academy</span></div>
+                                        <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100 EducationClickItem" placeholder="Education Academy" name="CandidateEducationItems[@count].EducationPlace" value="@item.EducationPlace"></div>
+                                    </div>
+                                    <br>
+                                    <div class="row ">
+                                        <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Years</span></div>
+                                        <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100 EducationClickItem" placeholder="Years" name="CandidateEducationItems[@count].Years" value="@item.Years"></div>
+                                    </div>
+                                    <br>
+                                    <div class="row ">
+                                        <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Description</span></div>
+                                        <div class="col-lg-9"><input style="min-height: 150px;max-height: 150px;" class="border-0 border-radius backColorBlue py-2 px-3 w-100 EducationClickItem" placeholder="Description" name="CandidateEducationItems[@count].Content" value="@item.Content"></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="d-flex flex-row justify-content-end RemoveItem"><div class="btn backColorBlue py-2 px-2"><span class="blue">Remove</span></div></div>
+                                    </div>
+                                </p>
+                            </div>
+                        </div>
                                 <br>
 
                                 count++;
@@ -108,8 +108,8 @@
                         @{int count1 = 0;
                             @foreach (var item in Model.CandidateWorkItems)
                             {
-                                <input type="hidden" name="CandidateWorkItemsId[]" />
                                 <div class="CandidateResumeItem">
+                                <input type="hidden" name="CandidateWorkItemsId[]" value="@item.Id"/>
                                     <input type="hidden" class="WorkClickItem" name="CandidateWorkItems[@count1].Id" value="@item.Id" />
                                     <input type="hidden" class="WorkClickItem" name="CandidateWorkItems[@count1].CandidateId" value="@item.CandidateId" />
                                     <div class="accordion mt-3 border-radius">@item.Title</div>
@@ -162,9 +162,9 @@
                         @{ int count2 = 0;
                             @foreach (var item in Model.CandidateAwardItems)
                             {
-                                <input type="hidden" name="CandidateAwardItemsId[]" />
 
                                 <div class="CandidateResumeItem">
+                                    <input type="hidden" name="CandidateAwardItemsId[]" value="@item.Id"/>
                                     <input type="hidden" class="AwardClickItem" name="CandidateAwardItems[@count2].Id" value="@item.Id" />
                                     <input type="hidden" class="AwardClickItem" name="CandidateAwardItems[@count2].CandidateId" value="@item.CandidateId" />
                                     <div class="accordion mt-3 border-radius">@item.Title</div>
@@ -197,10 +197,43 @@
 
                     <div>
                         <div class="btn backColorBlue py-2 px-4 d-inline-block AddAwardItem"><span class="blue">Add Item</span></div>
-
                     </div>
                 </div>
                 <br>
+                <div class="card p-4 mt-4">
+                    <b>SkillItems</b>
+                    <br />
+                    <div class="SkillItems">
+                        @{ int count3 = 0;
+                            foreach (var item in Model.CandidateSkills)
+                            {
+                                <div class="CandidateResumeItem">
+                                    <input type="hidden" name="CandidateSkillsId[]" value="@item.Id" />
+                                    <input type="hidden" class="SkillClickItem" name="CandidateSkills[@count3].Id" value="@item.Id" />
+                                    <input type="hidden" class="SkillClickItem" name="CandidateSkills[@count3].CandidateId" value="@item.CandidateId" />
+                                    <div class="accordion mt-3 border-radius">@item.Name</div>
+                                    <div class="panel mt-2">
+                                        <p>
+                                            <div class="row ">
+                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Title</span></div>
+                                                <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100 SkillClickItem" placeholder="Title" name="CandidateSkills[@count3].Name" value="@item.Name"></div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="d-flex flex-row justify-content-end RemoveItem"><div class="btn backColorBlue py-2 px-2"><span class="blue">Remove</span></div></div>
+                                            </div>
+                                        </p>
+                                    </div>
+                                </div>
+                                <br>
+                                count3++;
+                            }
+                        }
+                    </div>
+
+                    <div>
+                        <div class="btn backColorBlue py-2 px-4 d-inline-block AddSkillItem"><span class="blue">Add Item</span></div>
+                    </div>
+                </div>
                 <div class="card p-4 mt-4">
                     <b>Portfolio</b>
                     <br>
