@@ -17,7 +17,7 @@ namespace JobSearchFullWebSite.Controllers
         {
             _context = context;
         }
-        public IActionResult Index(string search, Job job, int page = 1)
+        public IActionResult Index(string search, Job job,string[] types,string[] experiences,string[] careerLevels,string[] qualifications, int page = 1)
         {
             ViewBag.SelectedPage = page;
             ViewBag.TotalPageCount = Math.Ceiling(_context.Jobs.ToList().Count() / 9m);
@@ -30,7 +30,7 @@ namespace JobSearchFullWebSite.Controllers
             };
             if (search != null)
             {
-                jobVM.Jobs = jobVM.Jobs.Where(x => x.Name.Contains(search)).ToList();
+                jobVM.Jobs = jobVM.Jobs.Where(x => x.Name.ToUpper().Contains(search.ToUpper().Trim())).ToList();
             }
 
             if (job.City != null)
@@ -49,6 +49,122 @@ namespace JobSearchFullWebSite.Controllers
                     jobVM.Jobs = jobVM.Jobs.Where(x => x.JobCategory.Name == jobCategory.Name).ToList();
                 }
             }
+
+            List<Job> sendJobs = new List<Job>();
+            if (types != null)
+            {
+                foreach (var item in types)
+                {
+                    if (item == Enums.JobType.Freelance.ToString())
+                    {
+                        sendJobs.AddRange(jobVM.Jobs.Where(x => x.JobType == Enums.JobType.Freelance).ToList());
+                    }
+                    else if (item == Enums.JobType.FullTime.ToString())
+                    {
+                        sendJobs.AddRange( jobVM.Jobs.Where(x => x.JobType == Enums.JobType.FullTime).ToList());
+                    }
+                    else if (item == Enums.JobType.PartTime.ToString())
+                    {
+                        sendJobs.AddRange(jobVM.Jobs.Where(x => x.JobType == Enums.JobType.PartTime).ToList());
+                    }
+                    else if (item == Enums.JobType.Internship.ToString())
+                    {
+                        sendJobs.AddRange(jobVM.Jobs.Where(x => x.JobType == Enums.JobType.Internship).ToList());
+                    }
+                    else if (item == Enums.JobType.Temporary.ToString())
+                    {
+                        sendJobs.AddRange(jobVM.Jobs.Where(x => x.JobType == Enums.JobType.Temporary).ToList());
+                    }
+                }
+            }
+            if (experiences != null)
+            {
+                foreach (var item in experiences)
+                {
+                    if (item == Enums.RequiredExperience.Fresh.ToString())
+                    {
+                        sendJobs.AddRange( jobVM.Jobs.Where(x => x.RequiredExperience == Enums.RequiredExperience.Fresh).ToList());
+                    }
+                    else if (item == Enums.RequiredExperience.Year_1.ToString())
+                    {
+                        sendJobs.AddRange(jobVM.Jobs.Where(x => x.RequiredExperience == Enums.RequiredExperience.Year_1).ToList());
+                    }
+                    else if (item == Enums.RequiredExperience.Year_2.ToString())
+                    {
+                        sendJobs.AddRange(jobVM.Jobs.Where(x => x.RequiredExperience == Enums.RequiredExperience.Year_2).ToList());
+                    }
+                    else if (item == Enums.RequiredExperience.Year_3.ToString())
+                    {
+                        sendJobs.AddRange( jobVM.Jobs.Where(x => x.RequiredExperience == Enums.RequiredExperience.Year_3).ToList());
+                    }
+                    else if (item == Enums.RequiredExperience.Year_4.ToString())
+                    {
+                        sendJobs.AddRange(jobVM.Jobs.Where(x => x.RequiredExperience == Enums.RequiredExperience.Year_4).ToList());
+                    }
+                    else if (item == Enums.RequiredExperience.More.ToString())
+                    {
+                        sendJobs.AddRange(jobVM.Jobs.Where(x => x.RequiredExperience == Enums.RequiredExperience.More).ToList());
+                    }
+                }
+            }
+            if (careerLevels != null)
+            {
+                foreach (var item in careerLevels)
+                {
+                    if (item == Enums.CareerLevel.Manager.ToString())
+                    {
+                        sendJobs.AddRange(jobVM.Jobs.Where(x => x.CareerLevel == Enums.CareerLevel.Manager).ToList());
+                    }
+                    else if (item == Enums.CareerLevel.Officer.ToString())
+                    {
+                        sendJobs.AddRange(jobVM.Jobs.Where(x => x.CareerLevel == Enums.CareerLevel.Officer).ToList());
+                    }
+                    else if (item == Enums.CareerLevel.Student.ToString())
+                    {
+                        sendJobs.AddRange( jobVM.Jobs.Where(x => x.CareerLevel == Enums.CareerLevel.Student).ToList());
+                    }
+                    else if (item == Enums.CareerLevel.Executive.ToString())
+                    {
+                        sendJobs.AddRange(jobVM.Jobs.Where(x => x.CareerLevel == Enums.CareerLevel.Executive).ToList());
+                    }
+                    else if (item == Enums.CareerLevel.Others.ToString())
+                    {
+                        sendJobs.AddRange(jobVM.Jobs.Where(x => x.CareerLevel == Enums.CareerLevel.Others).ToList());
+                    }
+                }
+            }
+            if (qualifications != null)
+            {
+                foreach (var item in qualifications)
+                {
+                    if (item == Enums.Qualification.Certificate.ToString())
+                    {
+                        sendJobs.AddRange(jobVM.Jobs.Where(x => x.RequiredQualificationr == Enums.Qualification.Certificate).ToList());
+                    }
+                    else if (item == Enums.Qualification.Associate.ToString())
+                    {
+                        sendJobs.AddRange(jobVM.Jobs.Where(x => x.RequiredQualificationr == Enums.Qualification.Associate).ToList());
+                    }
+                    else if (item == Enums.Qualification.Bachelor_Degree.ToString())
+                    {
+                        sendJobs.AddRange(jobVM.Jobs.Where(x => x.RequiredQualificationr == Enums.Qualification.Bachelor_Degree).ToList());
+                    }
+                    else if (item == Enums.Qualification.Master_Degree.ToString())
+                    {
+                        sendJobs.AddRange(jobVM.Jobs.Where(x => x.RequiredQualificationr == Enums.Qualification.Master_Degree).ToList());
+                    }
+                    else if (item == Enums.Qualification.Doctorate_Degree.ToString())
+                    {
+                        sendJobs.AddRange(jobVM.Jobs.Where(x => x.RequiredQualificationr == Enums.Qualification.Doctorate_Degree).ToList());
+                    }
+                }
+            }
+            if (sendJobs.Count()!=0)
+            {
+                jobVM.Jobs = sendJobs;
+                
+            }
+            jobVM.Jobs = jobVM.Jobs.Distinct().ToList();
             jobVM.Jobs = jobVM.Jobs.Skip((page - 1) * 9).Take(9).ToList();
             return View(jobVM);
         }

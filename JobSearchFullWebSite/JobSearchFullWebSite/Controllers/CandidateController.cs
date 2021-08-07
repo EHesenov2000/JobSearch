@@ -316,11 +316,12 @@ namespace JobSearchFullWebSite.Controllers
         {
             Candidate existCandidate = _context.Candidates.Include(x=>x.CandidateSkills).Include(x=>x.CandidateCVs).Include(x=>x.CandidateImages).Include(x=>x.CandidateEducationItems).Include(x=>x.CandidateWorkItems).Include(x=>x.CandidateAwardItems).FirstOrDefault(x => x.Id == id);
             if (existCandidate == null) return RedirectToAction("index");
-            if (resumeEditDto.CandidateCVsId == null && resumeEditDto.CandidateCV == null)
-            {
-                ModelState.AddModelError("", "CV daxil edilmesi mutleqdir");
-                return View(resumeEditDto);
-            }
+            //burdaki o demekdiki acsam bunu bir defe elave edilibse cv bir ededi qalibsa onu silmek olmaz
+            //if (resumeEditDto.CandidateCVsId == null && resumeEditDto.CandidateCV == null)
+            //{
+            //    ModelState.AddModelError("", "CV daxil edilmesi mutleqdir");
+            //    return View(resumeEditDto);
+            //}
             if (resumeEditDto.CandidateSkills != null)
             {
                 foreach (var item in resumeEditDto.CandidateSkills)
@@ -681,6 +682,27 @@ namespace JobSearchFullWebSite.Controllers
                 candidateCV.CandidateId = existCandidate.Id;
                 
             }
+            else
+            {
+                if (resumeEditDto.CandidateCVsId == null)
+                {
+                    if (existCandidate.CandidateCVs != null)
+                    {
+                        foreach (var item in existCandidate.CandidateCVs)
+                        {
+           
+                                string rootPath = _env.WebRootPath;
+                                var fileName = item.CVName;
+                                var path = Path.Combine(rootPath, "CVs", fileName);
+                                if (System.IO.File.Exists(path))
+                                {
+                                    System.IO.File.Delete(path);
+                                }
+                                _context.CandidateCVs.Remove(item);
+                        }
+                    }
+                }
+            }
             if (existCandidate.CandidateCVs != null)
             {
                 if (resumeEditDto.CandidateCVsId != null)
@@ -701,6 +723,7 @@ namespace JobSearchFullWebSite.Controllers
                     }
                 }
             }
+
             if (candidateCV != null && candidateCV.CandidateId!=0 && candidateCV.CVName!=null)
             {
                 _context.CandidateCVs.Add(candidateCV);
@@ -799,7 +822,6 @@ namespace JobSearchFullWebSite.Controllers
             _context.SaveChanges();
             return RedirectToAction();
         }
-
         public IActionResult Following(int employerId)
         {
             AppUser user = null;

@@ -1,5 +1,36 @@
 $(document).ready(function () {
-
+    $(document).on("click", ".enum", function () {
+        console.log("klik edildi");
+        $(this).toggleClass("actived");
+        var count = 0;
+        for (var i = 0; i < document.getElementsByClassName("typeEnum").length; i++) {
+            if (document.getElementsByClassName("typeEnum")[i].getAttribute("class") =="typeEnum enum actived") {
+                document.getElementsByClassName("typeEnum")[i].setAttribute("name", `types[`+count+`]`);
+                count++;
+            }
+        }
+        var count1 = 0;
+        for (var j = 0; j < document.getElementsByClassName("experienceEnum").length; j++) {
+            if (document.getElementsByClassName("experienceEnum")[j].getAttribute("class") == "experienceEnum enum actived") {
+                document.getElementsByClassName("experienceEnum")[j].setAttribute("name", `experiences[` + count1 + `]`);
+                count1++;
+            }
+        }
+        var count2 = 0;
+        for (var t = 0; t < document.getElementsByClassName("levelEnum").length; t++) {
+            if (document.getElementsByClassName("levelEnum")[t].getAttribute("class") == "levelEnum enum actived") {
+                document.getElementsByClassName("levelEnum")[t].setAttribute("name", `careerLevels[` + count2 + `]`);
+                count2++;
+            }
+        }
+        var count3 = 0;
+        for (var z = 0; z < document.getElementsByClassName("qualificationEnum").length; z++) {
+            if (document.getElementsByClassName("qualificationEnum")[z].getAttribute("class") == "qualificationEnum enum actived") {
+                document.getElementsByClassName("qualificationEnum")[z].setAttribute("name", `qualifications[` + count3 + `]`);
+                count3++;
+            }
+        }
+    });
 
     document.getElementsByClassName("AddEducationItem")[0].onclick = function () {
         var a = document.createElement("div");
