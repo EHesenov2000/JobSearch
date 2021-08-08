@@ -1,4 +1,6 @@
 ﻿using JobSearchFullWebSite.DAL.AppDbContext;
+using JobSearchFullWebSite.DTOs;
+using JobSearchFullWebSite.Enums;
 using JobSearchFullWebSite.Models;
 using JobSearchFullWebSite.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -65,6 +67,91 @@ namespace JobSearchFullWebSite.Controllers
 
             };
             return View(employerDetailViewModel);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ChangeStatus(int id,ApplyStatus  status)
+        {
+            Apply apply = _context.Applies.FirstOrDefault(x => x.Id == id);
+            if (apply == null)
+            {
+                return RedirectToAction("index");
+            }
+            apply.ApplyStatus = status;
+            _context.SaveChanges();
+            return RedirectToAction("index");
+        }
+        public IActionResult EmployerDashboard(int id)
+        {
+            Employer employer = _context.Employers.Include(x=>x.Followers).Include(x=>x.AppUser).ThenInclude(x=>x.Applies).Include(x=>x.EmployerContacts).Include(x=>x.Jobs).FirstOrDefault(x => x.Id == id);
+            if (employer == null) return RedirectToAction("index");
+            return View(employer);
+        }
+        public IActionResult EmployerProileEdit(int id)
+        {
+            ViewBag.Cities = _context.Cities.ToList();
+            ViewBag.Categories = _context.Categories.ToList();
+            Employer existEmployer = _context.Employers.Include(x => x.EmployerImages).FirstOrDefault(x => x.Id == id);
+            if (existEmployer == null) return RedirectToAction("index");
+            EmployerEditDto employerEditDto = new EmployerEditDto();
+            employerEditDto.Id = existEmployer.Id;
+            employerEditDto.Name = existEmployer.Name;
+            employerEditDto.FoundedDate = existEmployer.FoundedDate;
+            employerEditDto.IsFeatured = false;
+            employerEditDto.CreatedAt = existEmployer.CreatedAt;
+            employerEditDto.PhoneNumber = existEmployer.PhoneNumber;
+            employerEditDto.Email = existEmployer.Email;
+            employerEditDto.FacebookUrl = existEmployer.FacebookUrl;
+            employerEditDto.InstagramUrl = existEmployer.InstagramUrl;
+            employerEditDto.LinkedinUrl = existEmployer.LinkedinUrl;
+            employerEditDto.TwitterUrl = existEmployer.TwitterUrl;
+            employerEditDto.CompanyContent = existEmployer.CompanyContent;
+            employerEditDto.Website=existEmployer.Website;
+            if (existEmployer.Category != null)
+            {
+                employerEditDto.CategoryId = existEmployer.Category.Id;
+            }
+            else
+            {
+                employerEditDto.CategoryId = 0;
+            }
+            if (existEmployer.City != null)
+            {
+                employerEditDto.CityId = existEmployer.City.Id;
+            }
+            else
+            {
+                employerEditDto.CityId = 0;
+            }
+            if (existEmployer.EmployerImages.Count() != 0)
+            {
+                employerEditDto.EmployerImages = existEmployer.EmployerImages;
+                if (existEmployer.EmployerImages.FirstOrDefault(x => x.IsPoster)!=null)
+                {
+                    employerEditDto.PosterImage = existEmployer.EmployerImages.FirstOrDefault(x => x.IsPoster).Image;
+
+                }
+                else
+                {
+                    employerEditDto.PosterImage = "";
+                }
+            }
+            else
+            {
+                employerEditDto.PosterImage = "";
+            }
+            return View(employerEditDto);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EmployerProileEdit(int id,EmployerEditDto employerEditDto)
+        {
+            ViewBag.Cities = _context.Cities.ToList();
+            ViewBag.Categories = _context.Categories.ToList();
+            Employer existEmployer = _context.Employers.Include(x => x.EmployerImages).FirstOrDefault(x => x.Id == id);
+            if (existEmployer == null) return RedirectToAction("index");
+
+            return View();
         }
     }
 }

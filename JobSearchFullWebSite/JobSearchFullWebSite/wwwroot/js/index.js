@@ -1,4 +1,25 @@
+
 $(document).ready(function () {
+
+    $(document).on("click", ".PortfolioXIcon", function () {
+        //$(this).parents(".img-box").attr("style", "background-color:unset");
+        $(this).parents(".PositionRelativeForIcon").css("display", "none ");
+
+        $(this).parents(".PositionRelativeForIcon").empty();
+    })
+})
+$(document).ready(function () {
+    $(".ImageXIcon ").css("display", "flex ");
+
+    $(".ImageXIcon").click(function (e) {
+        e.preventDefault();
+        $(".HiddenInputImage").css("display", "none ");
+        $(".HiddenInputImage").attr("value", "");
+        $(".ImageAndUpload img").css("display", "none ");
+        $(".ImageXIcon ").css("display", "none ");
+    });
+
+
     $(document).on("click", ".enum", function () {
         console.log("klik edildi");
         $(this).toggleClass("actived");
@@ -219,15 +240,7 @@ $(document).ready(function () {
 
     }
 
-    $(".ImageXIcon ").css("display", "flex ");
 
-        $(".ImageXIcon").click(function (e) {
-            e.preventDefault();
-            $(".HiddenInputImage").css("display", "none ");
-            $(".HiddenInputImage").attr("value", "");
-            $(".ImageAndUpload img").css("display", "none ");
-            $(".ImageXIcon ").css("display", "none ");
-        });
   $("#dropdownMenu2").click(function () {
     $(".dropdown-menu").slideToggle();
   });
@@ -576,15 +589,7 @@ for (var i = 0; i < document.getElementsByClassName("RemoveCVItem").length; i++)
 //    }
 //}
 
-$(document).ready(function () {
 
-    $(document).on("click", ".PortfolioXIcon", function (e) {
-        e.preventDefault();
-        console.log("salam");
-        //$(this).parents(".img-box").attr("style", "background-color:unset");
-        $(this).parents(".PositionRelativeForIcon").empty();
-    })
-})
 $(document).ready(function () {
 
     $(document).on("click", ".RemoveCVItem", function (e) {

@@ -70,6 +70,7 @@ namespace JobSearchFullWebSite.Controllers
         public IActionResult CandidateDashboard(int id)
         {
             Candidate candidate = _context.Candidates.Include(x=>x.AppUser).ThenInclude(x=>x.Applies).Include(x=>x.ShortLists).Include(x=>x.Followers).FirstOrDefault(x => x.Id == id);
+            if (candidate == null) return RedirectToAction("index");
             return View(candidate);
         }
         public IActionResult CandidateApplieds(int id)
@@ -164,10 +165,15 @@ namespace JobSearchFullWebSite.Controllers
             {
                 if (!_context.Positions.Any(x => x.Id == candidateEditDto.PositionId)) return RedirectToAction("index");
             }
+            if (candidateEditDto.AboutCandidateTextEditor == null)
+            {
+                ModelState.AddModelError("AboutCandidateTextEditor", "Context daxil edilmelidir");
+                return View();
+            }
             if (candidateEditDto.AboutCandidateTextEditor.Length > 1000)
             {
                 ModelState.AddModelError("AboutCandidateTextEditor", "Maksimum uzunluq 1000-dir");
-                return View(candidateEditDto);
+                return View();
             }
             if (!ModelState.IsValid)
             {
@@ -788,9 +794,10 @@ namespace JobSearchFullWebSite.Controllers
             _context.SaveChanges();
             return RedirectToAction("index"); 
         }
-        public IActionResult ApplyForJob(Apply apply)
+        public IActionResult ApplyForJob(int jobId)
         {
-            Job job = _context.Jobs.FirstOrDefault(x => x.Id == apply.JobId);
+            Apply apply = new Apply();
+            Job job = _context.Jobs.FirstOrDefault(x => x.Id == jobId);
             if (job == null) return RedirectToAction("index");
             AppUser user = null;
             if (User.Identity.IsAuthenticated)
@@ -801,9 +808,12 @@ namespace JobSearchFullWebSite.Controllers
             {
                 return RedirectToAction("index");
             }
-            if (_context.Applies.Any(x => x.AppUserId == user.Id && x.JobId == apply.JobId)) return RedirectToAction("index");// artiq var
+            if(user==null) return RedirectToAction("index");
+            if (_context.Applies.Any(x => x.AppUserId == user.Id && x.JobId == jobId)) return RedirectToAction("index");// artiq var
             Candidate candidate = _context.Candidates.FirstOrDefault(x => x.AppUserId == user.Id);
-            if (candidate.Gender == null) return RedirectToAction("CandidateProfileEdit");  //melumatlar doldurulmalidir
+            if (candidate.PhoneNumber == null || candidate.FullName==null) return RedirectToAction("CandidateProfileEdit");  //melumatlar doldurulmalidir
+            apply.AppUserId = user.Id;
+            apply.JobId = jobId;
             apply.FullName = candidate.FullName;
             apply.ContactPhone = candidate.PhoneNumber;
             apply.RequestDate = DateTime.UtcNow.AddHours(4);
