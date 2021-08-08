@@ -1,0 +1,26 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using JobSearchFullWebSite.Models
+@model BlogItemLearn
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label asp-for="@Model.Learn">Learn</label>
+                <input asp-for="@Model.Learn" class="form-control" id="Learn" placeholder="Learn">
+                <span asp-validation-for="@Model.Learn" class="text-danger"></span>
+            </div>
+        </div>
+        <br />
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <br />
+        <div class="form-row">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+
+</div>

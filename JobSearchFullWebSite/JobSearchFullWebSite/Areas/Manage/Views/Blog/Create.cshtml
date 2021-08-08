@@ -1,0 +1,54 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using JobSearchFullWebSite.Models
+@model BlogItem
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container-fluid">
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label asp-for="@Model.Title">Title</label>
+                <input asp-for="@Model.Title" class="form-control" id="Title" placeholder="Title">
+                <span asp-validation-for="@Model.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-12">
+                <label asp-for="@Model.Subject">Subject</label>
+                <input asp-for="@Model.Subject" class="form-control" id="Subject" placeholder="Subject">
+                <span asp-validation-for="@Model.Subject" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-12">
+                <label asp-for="@Model.BackBlueTextHead">BackBlueTextHead</label>
+                <input asp-for="@Model.BackBlueTextHead" class="form-control" id="BackBlueTextHead" placeholder="BackBlueTextHead">
+                <span asp-validation-for="@Model.BackBlueTextHead" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-12">
+                <label asp-for="@Model.BackBlueTextFoot">BackBlueTextFoot</label>
+                <input asp-for="@Model.BackBlueTextFoot" class="form-control" id="BackBlueTextFoot" placeholder="BackBlueTextFoot">
+                <span asp-validation-for="@Model.BackBlueTextFoot" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label asp-for="@Model.ContainerImageFile">ContainerImageFile</label>
+                <input asp-for="@Model.ContainerImageFile" class="form-control" id="ContainerImageFile" placeholder="ContainerImageFile">
+                <span asp-validation-for="@Model.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="@Model.FullImageFile">FullImageFile</label>
+                <input asp-for="@Model.FullImageFile" class="form-control" id="FullImageFile" placeholder="FullImageFile">
+                <span asp-validation-for="@Model.FullImageFile" class="text-danger"></span>
+            </div>
+        </div>
+        <br />
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <br />
+        <div class="form-row">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+
+</div>

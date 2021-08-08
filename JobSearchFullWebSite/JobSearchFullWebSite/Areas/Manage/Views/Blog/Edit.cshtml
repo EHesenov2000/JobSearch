@@ -1,0 +1,67 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using JobSearchFullWebSite.Models
+@model BlogItem
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
+}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-3"><a asp-action="index" asp-controller="blogitemlearn" asp-route-id="@Model.Id"><button class="btn-primary">Requirements</button></a></div>
+
+        <div class="col-md-3"><a asp-action="index" asp-controller="blogitemlearn" asp-route-id="@Model.Id"><button class="btn-primary">Learns</button></a></div>
+    </div>
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label asp-for="@Model.Title">Title</label>
+                <input asp-for="@Model.Title" class="form-control" id="Title" placeholder="Title">
+                <span asp-validation-for="@Model.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-12">
+                <label asp-for="@Model.Subject">Subject</label>
+                <input asp-for="@Model.Subject" class="form-control" id="Subject" placeholder="Subject">
+                <span asp-validation-for="@Model.Subject" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-12">
+                <label asp-for="@Model.BackBlueTextHead">BackBlueTextHead</label>
+                <input asp-for="@Model.BackBlueTextHead" class="form-control" id="BackBlueTextHead" placeholder="BackBlueTextHead">
+                <span asp-validation-for="@Model.BackBlueTextHead" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-12">
+                <label asp-for="@Model.BackBlueTextFoot">BackBlueTextFoot</label>
+                <input asp-for="@Model.BackBlueTextFoot" class="form-control" id="BackBlueTextFoot" placeholder="BackBlueTextFoot">
+                <span asp-validation-for="@Model.BackBlueTextFoot" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label asp-for="@Model.ContainerImageFile">ContainerImageFile</label>
+                <input asp-for="@Model.ContainerImageFile" class="form-control" id="ContainerImageFile" placeholder="ContainerImageFile">
+                <span asp-validation-for="@Model.Title" class="text-danger"></span>
+                <div class="img-box col-md-4" style="position:relative;max-width:200px;width:200px;height:200px;max-height:200px;">
+                    <img class="d-block" src="~/uploads/@Model.ContainerImage" style="max-width:180px;width:180px;height:180px;max-height:180px;margin-left:10px;padding-top:20px" />
+                    <i class="fas fa-times remove-img-box" style="color:red;position:absolute;cursor:pointer;right:4px;top:2px;font-size:17px"></i>
+                    @*<input type="hidden" name="AboutTopImageId[]" value="@item.Id" />*@
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="@Model.FullImageFile">FullImageFile</label>
+                <input asp-for="@Model.FullImageFile" class="form-control" id="FullImageFile" placeholder="FullImageFile">
+                <span asp-validation-for="@Model.FullImageFile" class="text-danger"></span>
+                <div class="img-box col-md-4" style="position:relative;max-width:200px;width:200px;height:200px;max-height:200px;">
+                    <img class="d-block" src="~/uploads/@Model.FullImage" style="max-width:180px;width:180px;height:180px;max-height:180px;margin-left:10px;padding-top:20px" />
+                    <i class="fas fa-times remove-img-box" style="color:red;position:absolute;cursor:pointer;right:4px;top:2px;font-size:17px"></i>
+                    @*<input type="hidden" name="AboutTopImageId[]" value="@item.Id" />*@
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <br />
+        <div class="form-row">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+
+</div>

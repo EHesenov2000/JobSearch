@@ -34,6 +34,7 @@
     <Folder Include="wwwroot\CVs\" />
     <Folder Include="wwwroot\images\aboutImage\" />
     <Folder Include="wwwroot\images\howworkImage\" />
+    <Folder Include="wwwroot\images\blogImage\" />
     <Folder Include="wwwroot\images\testimonialImage\" />
     <Folder Include="wwwroot\images\settingImage\" />
     <Folder Include="wwwroot\images\sponsorImage\" />

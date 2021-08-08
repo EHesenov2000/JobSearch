@@ -1,5 +1,5 @@
 ﻿@using JobSearchFullWebSite.Models
-@model List<Apply>
+@model List<BlogItem>
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "Index";
@@ -21,21 +21,20 @@
 
 <div class="container-fluid">
     <div class="row d-flex  mb-2">
-        <div class="col-md-1 m-3">
-            <a asp-action="create" asp-controller="blog" class="d-flex m-3" style="text-decoration:none;">
-                <button class="backendButton  mr--30" style=" border-radius: 20px; color: white; background-image: linear-gradient(to right,blue,red); font: bold; ">CREATE</button>
-            </a>
+            <div class="col-md-1 m-3">
+                <a asp-action="create" asp-controller="blogitem" class="d-flex m-3" style="text-decoration:none;">
+                    <button class="backendButton  mr--30" style=" border-radius: 20px; color: white; background-image: linear-gradient(to right,blue,red); font: bold; ">CREATE</button>
+                </a>
+            </div>
         </div>
-    </div>
     <table class="table table-bordered">
         <thead>
             <tr class="row">
                 <th class="col-md-1">#</th>
-                <th class="col-md-2">FullName</th>
-                <th class="col-md-2">UserName</th>
-                <th class="col-md-2">Phone</th>
-                <th class="col-md-2">Reqauest Date</th>
-                <th class="col-md-2">Status</th>
+                <th class="col-md-4">Title</th>
+                <th class="col-md-2">Requirements Count</th>
+                <th class="col-md-2">Learns Count</th>
+                <th class="col-md-2">Created Date</th>
                 <th class="col-md-1"></th>
             </tr>
         </thead>
@@ -46,36 +45,14 @@
                 count++;
                 <tr class="row">
                     <td class="col-md-1">@count</td>
-                    <td class="col-md-2">@item.FullName</td>
-                    <td class="col-md-2">@item.AppUser.UserName</td>
-                    <td class="col-md-2">@item.ContactPhone</td>
-                    <td class="col-md-2">@item.RequestDate.ToString("dd MMM yyyy")</td>
-                    <td class="col-md-2">
-                        @{
-
-                            if (item.ApplyStatus == JobSearchFullWebSite.Enums.ApplyStatus.Accepted)
-                            {
-                                <span style="padding:10px" class="badge badge-pill badge-secondary">Accepted</span>
-                            }
-                            else if (item.ApplyStatus == JobSearchFullWebSite.Enums.ApplyStatus.Pending)
-                            {
-                                <span style="padding:10px" class="badge badge-pill badge-info">Pending</span>
-                            }
-                            else if (item.ApplyStatus == JobSearchFullWebSite.Enums.ApplyStatus.UserReject || item.ApplyStatus == JobSearchFullWebSite.Enums.ApplyStatus.AdminReject)
-                            {
-                                <span style="padding:10px" class="badge badge-pill badge-danger">@(item.ApplyStatus == JobSearchFullWebSite.Enums.ApplyStatus.UserReject?"User rejected":"Admin rejected")</span>
-                            }
-                            else
-                            {
-                                <span style="padding:10px" class="badge badge-pill badge-danger">Blocked</span>
-                            }
-
-                        }
-                    </td>
+                    <td class="col-md-4">@item.Title</td>
+                    <td class="col-md-2">@item.BlogItemRequirements.Count()</td>
+                    <td class="col-md-2">@item.BlogItemLearns.Count()</td>
+                    <td class="col-md-2">@item.CreatedAt.ToString("dd MMM yyyy")</td>
                     <td class="col-md-1">
-                        <a class="btn btn-warning" asp-action="edit" asp-controller="blog" asp-route-id="@item.Id">Edit</a>
+                        <a class="btn btn-warning" asp-action="edit" asp-route-id="@item.Id">Edit</a>
                         &nbsp;
-                        <a class="btn btn-info delete-btn" asp-action="delete" asp-controller="blog" asp-route-id="@item.Id">Delete</a>
+                        <a class="btn btn-info delete-btn" asp-action="delete" asp-route-id="@item.Id">Delete</a>
                     </td>
                 </tr>
             }
@@ -147,6 +124,3 @@
         </ul>
     </nav>
 </div>
-
-
-
