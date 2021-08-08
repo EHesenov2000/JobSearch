@@ -1,6 +1,7 @@
 ﻿using JobSearchFullWebSite.DAL.AppDbContext;
 using JobSearchFullWebSite.Models;
 using JobSearchFullWebSite.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -169,7 +170,6 @@ namespace JobSearchFullWebSite.Controllers
             return View(jobVM);
         }
         public IActionResult Detail(int id)
-        
         {
             if (!_context.Jobs.Any(x => x.Id == id))
             {
@@ -177,14 +177,13 @@ namespace JobSearchFullWebSite.Controllers
             }
 
             Job existjob = _context.Jobs.Include(x=>x.Employer).FirstOrDefault(x => x.Id == id);
-
             JobDetailViewModel JobVM = new JobDetailViewModel
             {
-                Job = _context.Jobs.Include(x => x.JobCategory).Include(x => x.JobImages).Include(x => x.City).Include(x => x.Employer).ThenInclude(x => x.Category).FirstOrDefault(x => x.Id == id),
+                Job = _context.Jobs.Include(x => x.JobCategory).Include(x => x.JobImages).Include(x=>x.JobComments).ThenInclude(x=>x.AppUser).ThenInclude(x=>x.Candidate).Include(x => x.City).Include(x => x.Employer).ThenInclude(x => x.Category).FirstOrDefault(x => x.Id == id),
                 EmployerImage = _context.EmployerImages.FirstOrDefault(x => x.IsPoster),
                 RelatedJobs = _context.Jobs.Include(x=>x.JobImages).Include(x => x.JobCategory).Include(x => x.City).Where(x => x.Employer.Name == existjob.Employer.Name).ToList(),
+                AppUser= _context.Users.FirstOrDefault(x => x.UserName == User.Identity.Name),
             };
-            
 
             return View(JobVM);
         }
@@ -228,6 +227,38 @@ namespace JobSearchFullWebSite.Controllers
             _context.SaveChanges();
             return RedirectToAction();
         }
+        //[Authorize(Roles = "Candidate")]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AddComment(JobComment coment)
+        {
+            if(coment.JobId==0 || coment.AppUserId==null ||coment.Comment==null || coment.Comment.Length>500) return RedirectToAction("index");
+            Job job = _context.Jobs.Include(x => x.JobComments).FirstOrDefault(x => x.Id == coment.JobId);
 
+            if (job == null) return RedirectToAction("index");
+
+            var user = _context.Users.FirstOrDefault(x => x.UserName == User.Identity.Name);
+            coment.AppUserId = user.Id;
+
+            if (_context.JobComments.Any(x => x.JobId == coment.JobId && x.AppUserId == user.Id))
+            {
+                return RedirectToAction("index");
+            }
+
+            double commentCount = job.JobComments.Count() + 1;
+            coment.CreatedAt = DateTime.UtcNow;
+            _context.JobComments.Add(coment);
+
+            _context.SaveChanges();
+
+            return RedirectToAction("detail", new { id = coment.JobId });
+        }
+        //[Authorize(Roles = "Member")]
+        public IActionResult LoadComment(int id, int page = 1)
+        {
+            List<JobComment> comments = _context.JobComments.Include(x => x.AppUser).Where(x => x.JobId == id).OrderByDescending(x => x.CreatedAt).Skip((page - 1) * 2).Take(2).ToList();
+
+            return PartialView("_CourseComments", comments);
+        }
     }
 }

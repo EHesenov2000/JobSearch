@@ -9,6 +9,7 @@ namespace JobSearchFullWebSite.ViewModels
     public class JobDetailViewModel
     {
         public Job Job { get; set; }
+        public AppUser AppUser { get; set; }
         public EmployerImage EmployerImage { get; set; }
         public List<Job> RelatedJobs { get; set; }
         public JobContact JobContact { get; set; }
