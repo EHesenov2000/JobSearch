@@ -12,6 +12,12 @@ namespace JobSearchFullWebSite.Models
     public class Job
     {
         public int Id { get; set; }
+        [NotMapped]
+        public IFormFile File { get; set; }
+        [NotMapped]
+        public List<IFormFile> Images { get; set; }
+        [NotMapped]
+        public List<int?> ImagesId { get; set; }
         public int CityId { get; set; }
         public int JobCategoryId { get; set; }
         public JobCategory JobCategory { get; set; }
@@ -44,15 +50,13 @@ namespace JobSearchFullWebSite.Models
         [Required(ErrorMessage = "İş haqqında məlumat daxil etməlisiz")]
         [StringLength(maximumLength: 2000, ErrorMessage = "Maksimum uzunluq 80-dir")]
         public string JobContentTextEditor { get; set; }
-        [NotMapped]
-        public List<IFormFile> Photos { get; set; }
-        [NotMapped]
-        public List<int?> PhotosId { get; set; }
         public List<JobImage> JobImages { get; set; }
         public City City { get; set; }
         public int? EmployerId { get; set; }
         public Employer Employer { get; set; }
         public List<JobContact> Contacts { get; set; }
+        [NotMapped]
+        public List<int?> RequiredLanguageIds { get; set; }
         public List<JobRequiredLanguage> RequiredLanguages { get; set; }
         public List<JobComment> JobComments { get; set; }
         public List<Apply> Applies { get; set; }

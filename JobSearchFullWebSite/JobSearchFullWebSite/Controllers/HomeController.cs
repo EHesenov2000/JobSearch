@@ -22,7 +22,7 @@ namespace JobSearchFullWebSite.Controllers
         public IActionResult Index(int jobsPage=1)
         {
             ViewBag.SelectedPage = jobsPage;
-            ViewBag.TotalPageCount = Math.Ceiling(_context.Jobs.Include(x => x.JobImages).Include(x => x.Employer).ThenInclude(x => x.Category).Include(x => x.City).Where(x => x.IsFeatured).ToList().Count()/9m);
+            ViewBag.TotalPageCount = Math.Ceiling(_context.Jobs.Where(x => x.IsFeatured).ToList().Count()/9m);
             HomeViewModel HomeVm = new HomeViewModel
             {
                 HowWorks = _context.HowWorks.ToList(),

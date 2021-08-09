@@ -363,22 +363,145 @@ namespace JobSearchFullWebSite.Controllers
             }
             return View(followers);
         }
-        public IActionResult SubmitJob(int id)
+        public IActionResult SubmitJob(int newId)
         {
             ViewBag.Categories = _context.JobCategories.ToList();
             ViewBag.Cities = _context.Cities.ToList();
-            Employer employer = _context.Employers.FirstOrDefault(x => x.Id == id);
+            ViewBag.Languages = _context.Languages.ToList();
+            Employer employer = _context.Employers.FirstOrDefault(x => x.Id == newId);
             if (employer == null) return RedirectToAction("index");
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult SubmitJob(int id,Job job)
+        public IActionResult SubmitJob(int newId,Job createJob)
         {
-            Employer employer = _context.Employers.FirstOrDefault(x => x.Id == id);
+            ViewBag.Categories = _context.JobCategories.ToList();
+            ViewBag.Cities = _context.Cities.ToList();
+            ViewBag.Languages = _context.Languages.ToList();
+            Employer employer = _context.Employers.FirstOrDefault(x => x.Id == newId);
             if (employer == null) return RedirectToAction("index");
+            if (!ModelState.IsValid)
+            {
+                if (createJob.CityId == 0)
+                {
+                    ModelState.AddModelError("CityId", "Seher secilmelidir");
+                }
+                if (createJob.JobCategoryId == 0)
+                {
+                    ModelState.AddModelError("JobCategoryId", "Kateqoriya secilmelidir");
 
+                }
+                if (createJob.RequiredLanguageIds == null)
+                {
+                    ModelState.AddModelError("RequiredLanguageIds", "Language secilmelidir");
+                }
+                return View();
+            }
+            if (createJob.CityId == 0)
+            {
+                ModelState.AddModelError("CityId", "Seher secilmelidir");
+                return View();
+            }
+            if (createJob.JobCategoryId == 0)
+            {
+                ModelState.AddModelError("JobCategoryId", "Kateqoriya secilmelidir");
+
+                return View();
+            }
+            if (createJob.RequiredLanguageIds.Count() == 0)
+            {
+                ModelState.AddModelError("RequiredLanguageIds", "Language secilmelidir");
+                return View();
+            }
+            createJob.EmployerId = newId;
+            _context.Jobs.Add(createJob);
+            _context.SaveChanges();
+            if (createJob.File != null)
+            {
+                if (createJob.File.ContentType != "image/png" && createJob.File.ContentType != "image/jpeg")
+                {
+                    ModelState.AddModelError("File", "Jpeg ve ya png formatinda file daxil edilmelidir");
+                    return View();
+                }
+                if (createJob.File.Length > (1024 * 1024) * 5)
+                {
+                    ModelState.AddModelError("File", "File olcusu 5mb-dan cox olmaz!");
+                    return View();
+                }
+                string rootPath = _env.WebRootPath;
+                var fileName = Guid.NewGuid().ToString() + createJob.File.FileName;
+                var path = Path.Combine(rootPath, "images/jobImage", fileName);
+                using (FileStream stream = new FileStream(path, FileMode.Create))
+                {
+                    createJob.File.CopyTo(stream);
+                }
+                JobImage jobImage = new JobImage
+                {
+                    Image = fileName,
+                    IsPoster = true,
+                    JobId = createJob.Id,
+                };
+                _context.JobImages.Add(jobImage);
+            }
+            if (createJob.Images != null)
+            {
+                foreach (var item in createJob.Images)
+                {
+                    if (item.ContentType != "image/png" && item.ContentType != "image/jpeg")
+                    {
+                        ModelState.AddModelError("File", "Jpeg ve ya png formatinda file daxil edilmelidir");
+                        return View();
+                    }
+                    if (item.Length > (1024 * 1024) * 5)
+                    {
+                        ModelState.AddModelError("File", "File olcusu 5mb-dan cox olmaz!");
+                        return View();
+                    }
+                    string rootPath = _env.WebRootPath;
+                    var fileName = Guid.NewGuid().ToString() + item.FileName;
+                    var path = Path.Combine(rootPath, "images/jobImage", fileName);
+                    using (FileStream stream = new FileStream(path, FileMode.Create))
+                    {
+                        item.CopyTo(stream);
+                    }
+                    JobImage jobImage = new JobImage
+                    {
+                        Image=fileName,
+                        IsPoster=false,
+                        JobId=createJob.Id,
+
+                    };
+                    _context.JobImages.Add(jobImage);
+                }
+            }
+            if (createJob.RequiredLanguageIds != null)
+            {
+                foreach (var item in createJob.RequiredLanguageIds)
+                {
+                    if (_context.Languages.FirstOrDefault(x => x.Id == item) != null)
+                    {
+                        JobRequiredLanguage jobRequiredLanguage = new JobRequiredLanguage
+                        {
+                            Language = _context.Languages.FirstOrDefault(x => x.Id == item).Name,
+                            JobId=createJob.Id
+                        };
+                        _context.JobRequiredLanguages.Add(jobRequiredLanguage);
+                    }
+                }
+            }
+            _context.SaveChanges();
             return RedirectToAction("index");
+        }
+        public IActionResult EditJob(int jobId)
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditJob(int jobId,Job editJob)
+        {
+            return View();
         }
     }
 }

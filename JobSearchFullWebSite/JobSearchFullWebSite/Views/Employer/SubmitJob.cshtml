@@ -10,29 +10,14 @@
         <b>Submit Job</b>
         <br />
         <br />
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-6 col-12">
                     <div class="row">
-                        <div class="col-md-2 col-12 d-flex flex-row align-items-center ImageAndUpload">
-                            @if (Model != null && Model.JobImages.FirstOrDefault(x => x.IsPoster).Image != "")
-                            {
-                                <img src="~/images/candidateImage/@Model.JobImages.FirstOrDefault(x=>x.IsPoster).Image"
-                                     alt=""
-                                     style="height: 60px; width: 60px"
-                                     class="border-radius" />
-                                <input type="hidden" value="@Model.JobImages.FirstOrDefault(x=>x.IsPoster).Image" name="JobImages[0].Image" class="HiddenInputImage" />
-                                <div class="ImageXIcon backColorBlue  border-radius p-2  align-items-center justify-content-center" style="width: 20px;height: 20px;"><i class="fas fa-times blue"></i></div>
-                            }
-                            else
-                            {
-                                <div>Sekil yukle</div>
-                            }
-                        </div>
                         <dv class="col-md-4 col-12 d-flex flex-row align-items-center mt-2">
                             @*<input type="file" id="file" asp-for="@Model.File "/>
                         <label for="file" asp-for="@Model.File " class=" backColorBlue"><span class="blue">Browse</span> </label>*@
-                            <input class="form-control col-md-2 " id="file" type="file" asp-for="@Model.JobImages.FirstOrDefault(x=>x.IsPoster).File" style="display:contents;">
+                            <input class="form-control col-md-2 " id="file" type="file" asp-for="@Model.File" style="display:contents;">
                             <label for="file" class=" backColorBlue"><span class="blue">Browse</span></label>
                     </div>
 
@@ -49,13 +34,13 @@
                     </div>
                     <div class="col-md-4 d-flex flex-column">
                         <label asp-for="@Model.OfferedMaxSalary">OfferedMaxSalary</label>
-                        <input type="text" class="border-0 backColorBlue border-radius py-2 px-2" placeholder="Job OfferedMaxSalary" asp-for="@Model.OfferedMaxSalary">
+                        <input class="border-0 backColorBlue border-radius py-2 px-2" placeholder="Job OfferedMaxSalary" asp-for="@Model.OfferedMaxSalary">
                         <span asp-validation-for="@Model.OfferedMaxSalary" class="text-danger"></span>
                         <br>
                     </div>
                     <div class="col-md-4 d-flex flex-column">
                         <label asp-for="@Model.OfferedMinSalary">OfferedMinSalary</label>
-                        <input type="text" class="border-0 backColorBlue border-radius py-2 px-2" placeholder="Job OfferedMinSalary" asp-for="@Model.OfferedMinSalary">
+                        <input class="border-0 backColorBlue border-radius py-2 px-2" placeholder="Job OfferedMinSalary" asp-for="@Model.OfferedMinSalary">
                         <span asp-validation-for="@Model.OfferedMinSalary" class="text-danger"></span>
                         <br>
                     </div>
@@ -75,13 +60,13 @@
                     </div>
                     <div class="col-md-4 d-flex flex-column">
                         <label asp-for="@Model.IsUrgent">IsUrgent</label>
-                        <input type="text" class="border-0 backColorBlue border-radius py-2 px-2" placeholder="Job IsUrgent" asp-for="@Model.IsUrgent">
+                        <input class="border-0 backColorBlue border-radius py-2 px-2" placeholder="Job IsUrgent" asp-for="@Model.IsUrgent">
                         <span asp-validation-for="@Model.IsUrgent" class="text-danger"></span>
                         <br>
                     </div>
                     <div class="col-md-4 d-flex flex-column">
                         <label asp-for="@Model.ExpirationDate">ExpirationDate</label>
-                        <input type="text" class="border-0 backColorBlue border-radius py-2 px-2" placeholder="Job ExpirationDate" asp-for="@Model.ExpirationDate">
+                        <input class="border-0 backColorBlue border-radius py-2 px-2" placeholder="Job ExpirationDate" asp-for="@Model.ExpirationDate">
                         <span asp-validation-for="@Model.ExpirationDate" class="text-danger"></span>
                         <br>
                     </div>
@@ -113,13 +98,29 @@
                         <span asp-validation-for="@Model.CareerLevel" class="text-danger"></span>
                         <br>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 d-flex flex-column">
                         <label asp-for="@Model.CityId">City</label>
                         <select class="border-radius border-0 backColorBlue py-2 px-2" asp-for="@Model.CityId" asp-items="@(new SelectList(ViewBag.Cities, "Id", "CityName"))">
                             <option class="" selected disabled>City sec</option>
                         </select>
                         <span asp-validation-for="@Model.CityId" class="text-danger"></span>
                         <br>
+                    </div>
+                    <div class="col-md-4 d-flex flex-column">
+                        <label asp-for="@Model.JobCategoryId">Categoriya</label>
+                        <select class="border-radius border-0 backColorBlue py-2 px-2" asp-for="@Model.JobCategoryId" asp-items="@(new SelectList(ViewBag.Categories, "Id", "Name"))">
+                            <option class="" selected disabled>Categoriya sec</option>
+                        </select>
+                        <span asp-validation-for="@Model.JobCategoryId" class="text-danger"></span>
+                        <br>
+                    </div>
+                    <div class="col-md-4 d-flex flex-column">
+                        <label asp-for="@Model.RequiredLanguageIds">Language</label>
+                        <select class="form-control" asp-for="@Model.RequiredLanguageIds" asp-items="@(new SelectList(ViewBag.Languages,"Id","Name"))"></select>
+                        @*<select class="form-control" asp-for="@Model.RequiredLanguageIds"><option selected  disabled >Dilleri sec</option>
+
+                        </select>*@
+                        <span asp-validation-for="@Model.RequiredLanguageIds" class="text-danger"></span>
                     </div>
                     <div class="col-12 d-flex flex-column">
                         <label asp-for="@Model.JobContentTextEditor">JobContentTextEditor</label>
@@ -128,36 +129,17 @@
                         <span asp-validation-for="@Model.JobContentTextEditor" class="text-danger"></span>
                         <br>
                     </div>
-                    <div class="col-md-4">
-                        <label asp-for="@Model.JobCategoryId">Categoriya</label>
-                        <select class="border-radius border-0 backColorBlue py-2 px-2" asp-for="@Model.JobCategoryId" asp-items="@(new SelectList(ViewBag.Categories, "Id", "Name"))">
-                            <option class="" selected disabled>Categoriya sec</option>
-                        </select>
-                        <span asp-validation-for="@Model.JobCategoryId" class="text-danger"></span>
-                        <br>
+                    <div class="col-12" >
+                        <B>Images</B>
+                        <br />
+                        <input class="form-control  col-md-4" style="display:block !important; width:auto !important;height:auto !important;" asp-for="@Model.Images">
+                        <span asp-validation-for="@Model.Images" class="text-danger"></span>
                     </div>
+                    <br />
+                    <br />
                 </div>
-                @{ int m = 0;
-                    if (Model != null)
-                    {
-                        if (Model.JobImages != null)
-                        {
-                            @foreach (var item in Model.JobImages.Where(x => !x.IsPoster))
-                            {
-                                <div class="col-lg-3 col-md-6 col-12 PositionRelativeForIcon">
-                                    <input type="hidden" name="PhotosId[]" value="@item.Id" />
-                                    <input type="hidden" name="JobImages[@m].Image" value="@item.Image" />
-                                    <img src="./../SiteImages/@item.Image" alt="" class="border-radius" style="width: 200px;height: 200px;">
-                                    <div class="PortfolioXIcon backColorBlue  border-radius p-2 d-flex align-items-center justify-content-center RemoveImageItem" style="width: 20px;height: 20px;"><i class="fas fa-times blue"></i></div>
-                                </div>
-                                m++;
-                            }}
-                    }
-                }
-                <div>
-                    <input class="form-control col-md-2 " asp-for="@Model.Photos" style="display:block !important; width:auto !important;height:auto !important;">
-                    <span asp-validation-for="@Model.Photos" class="text-danger"></span>
-                </div>
+
+
             </div>
             <br />
             <br />
