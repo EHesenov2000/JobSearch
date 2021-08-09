@@ -1,0 +1,159 @@
+﻿@using JobSearchFullWebSite.Models
+@model List<Follower>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "GetFollowers";
+}
+@{
+    int totalPage = (int)ViewBag.TotalPageCount;
+    int selectedPage = (int)ViewBag.SelectedPage;
+}
+<div class="cont">
+    <div class="main px-4">
+        <div class="row gx-4 gy-4" >
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4">
+                    <div class="card d-flex flex-row  py-2">
+                        <div class="col-md-10 d-flex flex-row align-items-center">
+                            <div class="Image"><img src="@item.Candidate.CandidateImages.FirstOrDefault(x=>x.IsPoster).Image" alt="Sekil yuklenmedi" style="width:50px;height:50px;border-radius:50%;" /></div>
+                            <div class="Name ms-2">@item.Candidate.FullName</div>
+                        </div>
+                        <div class="col-md-2 d-flex flex-row align-items-center justify-content-end" >
+                            <a class="İcon backColorBlue d-flex justify-content-center align-items-center" style="border-radius:50%;width:20px;height:20px;"><i class="fas fa-times p-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+
+    <br />
+        <div class="d-flex justify-content-center w-100">
+            <a asp-action="getfollowers" asp-controller="employer" asp-route-page="@(selectedPage<totalPage?selectedPage+1:totalPage)"><button class="btn btn-primary px-4">Load More Listing</button></a>
+        </div>
+    </div>
+    <div class="sidebar ps-3">
+        <div class="">
+            <div class="ImageAndUserName flex-row">
+                <div class="UserImage d-flex align-items-center">
+                    <img src="./../SiteImages/member4.jpg"
+                         alt=""
+                         style="width: 60px; height: 60px; border-radius: 50%" />
+                </div>
+                <div class="
+                    d-flex
+                    flex-column
+                    ms-3
+                    align-items-center
+                    justify-content-center
+                  ">
+                    <div class="UserName"><b>User Name</b></div>
+                    <div class="UserCity">User City</div>
+                    <div class="UserProfileButton">
+                        <a href="">
+                            <button class="btn btn-primary" style="font-size: 10px">
+                                View Profile
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex flex-column">
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="far fa-file-alt"></i></div>
+                    <div class="SectionName ms-2">User Dashboard</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="far fa-user-circle"></i></div>
+                    <div class="SectionName ms-2">Profile</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="fas fa-file-signature"></i></div>
+                    <div class="SectionName ms-2">My resume</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="fas fa-volume-up"></i></div>
+                    <div class="SectionName ms-2">My applied</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="far fa-bookmark"></i></div>
+                    <div class="SectionName ms-2">Shortlist Jobs</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="far fa-user"></i></div>
+                    <div class="SectionName ms-2">Following Employers</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="fas fa-volume-up"></i></div>
+                    <div class="SectionName ms-2">Alert Jobs</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="fab fa-weixin"></i></div>
+                    <div class="SectionName ms-2">Messages</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="fas fa-lock"></i></div>
+                    <div class="SectionName ms-2">Change Password</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="far fa-trash-alt"></i></div>
+                    <div class="SectionName ms-2">Delete Profile</div>
+                </a>
+                <a class="d-flex mt-2 UserProfileItem px-2 border-radius">
+                    <div class="Icon"><i class="fas fa-power-off"></i></div>
+                    <div class="SectionName ms-2">Logout</div>
+                </a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+<style>
+    .İcon:hover {
+        background-color: blue;
+        transition-duration: 0.3s;
+    }
+    .İcon:hover i {
+      color: white !important;
+    }
+    .İcon {
+        transition-duration: 0.3s;
+    }
+
+    body {
+        font-size: 15px !important;
+    }
+
+    .sidebar {
+        background: black;
+        color: white;
+        position: fixed;
+        width: 20%;
+        height: 100%;
+        left: 0;
+        overflow: auto;
+        display: block;
+        margin-top: -30px !important;
+        padding-top: 40px !important;
+    }
+
+    .main {
+        background: silver;
+        color: black;
+        width: 80%;
+        float: right;
+    }
+
+        .main p {
+            margin-bottom: 50px;
+        }
+
+    footer {
+        display: none;
+    }
+
+    .ImageAndUserName {
+        display: flex;
+    }
+</style>

@@ -3,10 +3,12 @@ using JobSearchFullWebSite.DTOs;
 using JobSearchFullWebSite.Enums;
 using JobSearchFullWebSite.Models;
 using JobSearchFullWebSite.ViewModels;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,9 +16,11 @@ namespace JobSearchFullWebSite.Controllers
 {
     public class EmployerController : Controller
     {
+        private readonly IWebHostEnvironment _env;
         private readonly AppDbContext _context;
-        public EmployerController(AppDbContext context)
+        public EmployerController(AppDbContext context, IWebHostEnvironment env)
         {
+            _env = env;
             _context = context;
         }
         public IActionResult Index(string search,Employer employer, int page = 1)
@@ -150,8 +154,231 @@ namespace JobSearchFullWebSite.Controllers
             ViewBag.Categories = _context.Categories.ToList();
             Employer existEmployer = _context.Employers.Include(x => x.EmployerImages).FirstOrDefault(x => x.Id == id);
             if (existEmployer == null) return RedirectToAction("index");
+            if (employerEditDto.CityId != 0)
+            {
+                if (!_context.Cities.Any(x => x.Id == employerEditDto.CityId)) return RedirectToAction("index");
+            }
+            if (employerEditDto.CategoryId != 0)
+            {
+                if (!_context.Categories.Any(x => x.Id == employerEditDto.CategoryId)) return RedirectToAction("index");
+            }
+            if (employerEditDto.CompanyContent == null)
+            {
+                ModelState.AddModelError("CompanyContent", "Context daxil edilmelidir");
+                return View();
+            }
+            if (employerEditDto.CompanyContent.Length > 1500)
+            {
+                ModelState.AddModelError("CompanyContent", "Maksimum uzunluq 1000-dir");
+                return View();
+            }
+            if (!ModelState.IsValid)
+            {
+                return View(employerEditDto);
+            }
+            if (employerEditDto.PosterImageFile != null)
+            {
+                if (employerEditDto.PosterImageFile.ContentType != "image/png" && employerEditDto.PosterImageFile.ContentType != "image/jpeg")
+                {
+                    ModelState.AddModelError("PosterImageFile", "Jpeg ve ya png formatinda file daxil edilmelidir");
+                    return View();
+                }
+                if (employerEditDto.PosterImageFile.Length > (1024 * 1024) * 5)
+                {
+                    ModelState.AddModelError("PosterImageFile", "File olcusu 5mb-dan cox olmaz!");
+                    return View();
+                }
+                string rootPath = _env.WebRootPath;
+                var fileName = Guid.NewGuid().ToString() + employerEditDto.PosterImageFile.FileName;
+                var path = Path.Combine(rootPath, "images/employerImage", fileName);
 
+
+
+
+                using (FileStream stream = new FileStream(path, FileMode.Create))
+                {
+                    employerEditDto.PosterImageFile.CopyTo(stream);
+                }
+                if (existEmployer.EmployerImages.Count != 0)
+                {
+                    if (existEmployer.EmployerImages.FirstOrDefault(x => x.IsPoster)!=null)
+                    {
+                        if (existEmployer.EmployerImages.FirstOrDefault(x => x.IsPoster).Image != null)
+                        {
+                            string existPath = Path.Combine(_env.WebRootPath, "images/employerImage", existEmployer.EmployerImages.FirstOrDefault(x => x.IsPoster).Image);
+                            if (System.IO.File.Exists(existPath))
+                            {
+                                System.IO.File.Delete(existPath);
+                            }
+                        }
+                    }
+                }
+
+                if (existEmployer.EmployerImages.FirstOrDefault(x => x.IsPoster) != null)
+                {
+                    existEmployer.EmployerImages.FirstOrDefault(x => x.IsPoster).Image = fileName;
+                }
+                else
+                {
+                    EmployerImage employerImage = new EmployerImage()
+                    {
+                        EmployerId = existEmployer.Id,
+                        IsPoster = true,
+                        Image = fileName,
+                    };
+                    _context.EmployerImages.Add(employerImage);
+                    employerEditDto.PosterImage = fileName;
+                }
+            }
+            if (employerEditDto.PosterImage == null)
+            {
+                //candidateEditDto.Image = "";
+                if (existEmployer.EmployerImages.Any(x => x.IsPoster))
+                {
+                    string rootPath = _env.WebRootPath;
+                    var fileName = existEmployer.EmployerImages.FirstOrDefault(x => x.IsPoster).Image; ;
+                    var path = Path.Combine(rootPath, "images/employerImage", fileName);
+                    if (System.IO.File.Exists(path))
+                    {
+                        System.IO.File.Delete(path);
+
+                    }
+                    _context.EmployerImages.Remove(_context.EmployerImages.FirstOrDefault(x => x.EmployerId == existEmployer.Id && x.IsPoster));
+
+                }
+
+            }
+            if (employerEditDto.Images != null)
+            {
+                foreach (var item in employerEditDto.Images)
+                {
+                    if (item.ContentType != "image/png" && item.ContentType != "image/jpeg")
+                    {
+                        ModelState.AddModelError("Images", "Mime type yanlisdir!");
+                        return View(employerEditDto);
+                    }
+
+                    if (item.Length > (1024 * 1024) * 5)
+                    {
+                        ModelState.AddModelError("Images", "Faly olcusu 5MB-dan cox ola bilmez!");
+                        return View(employerEditDto);
+                    }
+
+                    string rootPath = _env.WebRootPath;
+                    var fileName = Guid.NewGuid().ToString() + item.FileName;
+                    var path = Path.Combine(rootPath, "images/employerImage", fileName);
+
+                    using (FileStream stream = new FileStream(path, FileMode.Create))
+                    {
+                        item.CopyTo(stream);
+                    }
+                    EmployerImage employerImage = new EmployerImage
+                    {
+                        Image = fileName,
+                        IsPoster = false,
+                        EmployerId = existEmployer.Id
+                    };
+                    _context.EmployerImages.Add(employerImage);
+                }
+            }
+            if (existEmployer.EmployerImages != null)
+            {
+                foreach (var item in existEmployer.EmployerImages)
+                {
+                    if (employerEditDto.ImagesId != null)
+                    {
+                        if (!employerEditDto.ImagesId.Contains(item.Id) && item.Id != 0)
+                        {
+                            if (item.IsPoster == false)
+                            {
+                                string rootPath = _env.WebRootPath;
+                                var fileName = item.Image;
+                                var path = Path.Combine(rootPath, "images/employerImage", fileName);
+                                if (System.IO.File.Exists(path))
+                                {
+                                    System.IO.File.Delete(path);
+                                }
+                                _context.EmployerImages.Remove(item);
+                            }
+                        }
+     
+                    }
+                    else
+                    {
+                        if (employerEditDto.Images == null)
+                        {
+                            if (item.IsPoster == false)
+                            {
+                                string rootPath = _env.WebRootPath;
+                                var fileName = item.Image;
+                                var path = Path.Combine(rootPath, "images/employerImage", fileName);
+                                if (System.IO.File.Exists(path))
+                                {
+                                    System.IO.File.Delete(path);
+                                }
+                                _context.EmployerImages.Remove(item);
+                            }
+                        }
+        
+                    }
+                }
+            }
+            existEmployer.Name = employerEditDto.Name;
+            existEmployer.FoundedDate = employerEditDto.FoundedDate;
+            existEmployer.IsFeatured = false;
+            existEmployer.CreatedAt = DateTime.UtcNow.AddHours(4);
+            existEmployer.PhoneNumber = employerEditDto.PhoneNumber;
+            existEmployer.Email = employerEditDto.Email;
+            existEmployer.FacebookUrl = employerEditDto.FacebookUrl;
+            existEmployer.InstagramUrl = employerEditDto.InstagramUrl;
+            existEmployer.LinkedinUrl = employerEditDto.LinkedinUrl;
+            existEmployer.TwitterUrl = employerEditDto.TwitterUrl;
+            existEmployer.CompanyContent = employerEditDto.CompanyContent;
+            existEmployer.Website = employerEditDto.Website;
+            existEmployer.CityId = employerEditDto.CityId;
+            existEmployer.CategoryId = employerEditDto.CategoryId;
+            _context.SaveChanges();
+            return RedirectToAction("index");
+        }
+        public IActionResult GetJobs(int id,int page=1)
+        {
+            ViewBag.TotalPageCount = Math.Ceiling(_context.Jobs.Where(x => x.EmployerId == id).Count() / 10m);
+            ViewBag.SelectedPage = page;
+            Employer employer = _context.Employers.FirstOrDefault(x => x.Id == id);
+            if (employer == null) return RedirectToAction("index");
+            List<Job> jobs = _context.Jobs.Include(x=>x.JobImages).Include(x=>x.JobCategory).Include(x=>x.Employer).ThenInclude(x=>x.Category).Include(x=>x.City).Where(x => x.EmployerId == id).Skip((page-1)*10).Take(10).ToList();
+            if (jobs == null) return RedirectToAction("index");
+            return View(jobs);
+        }
+        public IActionResult GetFollowers(int id,int page=1)
+        {
+            ViewBag.TotalPageCount = Math.Ceiling(_context.Followers.Where(x => x.EmployerId == id).Count() / 5m);
+            ViewBag.SelectedPage = page;
+            Employer employer = _context.Employers.FirstOrDefault(x => x.Id == id);
+            if (employer == null) return RedirectToAction("index");
+            List<Follower> followers = _context.Followers.Include(x => x.Candidate).ThenInclude(x=>x.CandidateImages).Include(x => x.Employer).Where(x => x.EmployerId==id).Skip((page-1)*5).Take(5).ToList();
+            if (followers==null)
+            {
+                return RedirectToAction("index");
+            }
+            return View(followers);
+        }
+        public IActionResult SubmitJob(int id)
+        {
+            ViewBag.Categories = _context.JobCategories.ToList();
+            ViewBag.Cities = _context.Cities.ToList();
+            Employer employer = _context.Employers.FirstOrDefault(x => x.Id == id);
+            if (employer == null) return RedirectToAction("index");
             return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SubmitJob(int id,Job job)
+        {
+            Employer employer = _context.Employers.FirstOrDefault(x => x.Id == id);
+            if (employer == null) return RedirectToAction("index");
+
+            return RedirectToAction("index");
         }
     }
 }
