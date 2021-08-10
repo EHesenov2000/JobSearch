@@ -490,18 +490,169 @@ namespace JobSearchFullWebSite.Controllers
                     }
                 }
             }
+            createJob.CreatedAt = DateTime.UtcNow.AddHours(4);
+            createJob.IsFeatured = false;
             _context.SaveChanges();
             return RedirectToAction("index");
         }
         public IActionResult EditJob(int jobId)
         {
-            return View();
+            ViewBag.Categories = _context.JobCategories.ToList();
+            ViewBag.Cities = _context.Cities.ToList();
+            ViewBag.Languages = _context.Languages.ToList();
+            Job job = _context.Jobs.Include(x=>x.JobImages).Include(x=>x.JobCategory).Include(x=>x.City).Include(x=>x.Employer).Include(x=>x.RequiredLanguages).FirstOrDefault(x => x.Id == jobId);
+            if (job == null) return RedirectToAction("index");
+
+            return View(job);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult EditJob(int jobId,Job editJob)
         {
-            return View();
+            ViewBag.Categories = _context.JobCategories.ToList();
+            ViewBag.Cities = _context.Cities.ToList();
+            ViewBag.Languages = _context.Languages.ToList();
+            Job existJob = _context.Jobs.Include(x => x.JobImages).Include(x => x.JobCategory).Include(x => x.City).Include(x => x.Employer).Include(x => x.RequiredLanguages).FirstOrDefault(x => x.Id == jobId);
+            if (existJob == null) return RedirectToAction("index");
+            if (editJob.File != null)
+            {
+                if (editJob.File.ContentType != "image/png" && editJob.File.ContentType != "image/jpeg")
+                {
+                    ModelState.AddModelError("File", "Jpeg ve ya png formatinda file daxil edilmelidir");
+                    return View();
+                }
+                if (editJob.File.Length > (1024 * 1024) * 5)
+                {
+                    ModelState.AddModelError("File", "File olcusu 5mb-dan cox olmaz!");
+                    return View();
+                }
+                string rootPath = _env.WebRootPath;
+                var fileName = Guid.NewGuid().ToString() + editJob.File.FileName;
+                var path = Path.Combine(rootPath, "images/jobImage", fileName);
+                using (FileStream stream = new FileStream(path, FileMode.Create))
+                {
+                    editJob.File.CopyTo(stream);
+                }
+                if(existJob.JobImages.FirstOrDefault(x => x.IsPoster) != null)
+                {
+                    if (existJob.JobImages.FirstOrDefault(x => x.IsPoster).Image!=null)
+                    {
+                        existJob.JobImages.FirstOrDefault(x => x.IsPoster).Image = fileName;
+
+                    }
+                }
+                else
+                {
+                    JobImage jobImage = new JobImage
+                    {
+                        Image = fileName,
+                        IsPoster = true,
+                        JobId = jobId,
+
+                    };
+                    _context.JobImages.Add(jobImage);
+                }
+            }
+            if (editJob.Images != null)
+            {
+                foreach (var item in editJob.Images)
+                {
+                    if (item.ContentType != "image/png" && item.ContentType != "image/jpeg")
+                    {
+                        ModelState.AddModelError("File", "Jpeg ve ya png formatinda file daxil edilmelidir");
+                        return View();
+                    }
+                    if (item.Length > (1024 * 1024) * 5)
+                    {
+                        ModelState.AddModelError("File", "File olcusu 5mb-dan cox olmaz!");
+                        return View();
+                    }
+                    string rootPath = _env.WebRootPath;
+                    var fileName = Guid.NewGuid().ToString() + item.FileName;
+                    var path = Path.Combine(rootPath, "images/jobImage", fileName);
+                    using (FileStream stream = new FileStream(path, FileMode.Create))
+                    {
+                        item.CopyTo(stream);
+                    }
+                    JobImage jobImage = new JobImage
+                    {
+                        Image = fileName,
+                        IsPoster = false,
+                        JobId =jobId,
+
+                    };
+                    _context.JobImages.Add(jobImage);
+                }
+            }
+            if (existJob.JobImages != null)
+            {
+                foreach (var item in existJob.JobImages)
+                {
+                    if (editJob.ImageIds != null)
+                    {
+                        if (!editJob.ImageIds.Contains(item.Id) && item.Id != 0)
+                        {
+                            //if (item.IsPoster == false)
+                            //{
+                                string rootPath = _env.WebRootPath;
+                                var fileName = item.Image;
+                                var path = Path.Combine(rootPath, "images/jobImage", fileName);
+                                if (System.IO.File.Exists(path))
+                                {
+                                    System.IO.File.Delete(path);
+                                }
+                                _context.JobImages.Remove(item);
+                            //}
+                        }
+                    }
+                    else
+                    {
+                        if (editJob.Images == null)
+                        {
+                            string rootPath = _env.WebRootPath;
+                            var fileName = item.Image;
+                            var path = Path.Combine(rootPath, "images/jobImage", fileName);
+                            if (System.IO.File.Exists(path))
+                            {
+                                System.IO.File.Delete(path);
+                            }
+                            _context.JobImages.Remove(item);
+                        }
+
+                    }
+                }
+            }
+
+            if (existJob.RequiredLanguages != null)
+            {
+                foreach (var item in existJob.RequiredLanguages)
+                {
+                    _context.JobRequiredLanguages.Remove(item);
+                }
+            }
+            foreach (var item in editJob.RequiredLanguageIds)
+            {
+                if (_context.Languages.FirstOrDefault(x => x.Id == item) != null)
+                {
+                    JobRequiredLanguage jobRequiredLanguage = new JobRequiredLanguage
+                    {
+                        Language = _context.Languages.FirstOrDefault(x => x.Id == item).Name,
+                        JobId = jobId
+                    };
+                    _context.JobRequiredLanguages.Add(jobRequiredLanguage);
+                }
+            }
+            existJob.CreatedAt = DateTime.UtcNow.AddHours(4);
+            _context.SaveChanges();
+            return RedirectToAction("index");
+        }
+        public IActionResult DeleteJob(int jobId)
+        {
+            Job job = _context.Jobs.FirstOrDefault(x => x.Id == jobId);
+            if (job == null) return RedirectToAction("index");
+            _context.Jobs.Remove(job);
+            _context.SaveChanges();
+            return RedirectToAction("index");
         }
     }
 }

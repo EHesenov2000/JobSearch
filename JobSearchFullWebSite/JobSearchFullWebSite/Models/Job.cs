@@ -17,7 +17,7 @@ namespace JobSearchFullWebSite.Models
         [NotMapped]
         public List<IFormFile> Images { get; set; }
         [NotMapped]
-        public List<int?> ImagesId { get; set; }
+        public List<int?> ImageIds { get; set; }
         public int CityId { get; set; }
         public int JobCategoryId { get; set; }
         public JobCategory JobCategory { get; set; }

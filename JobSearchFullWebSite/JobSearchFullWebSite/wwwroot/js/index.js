@@ -17,6 +17,7 @@ $(document).ready(function () {
         $(".HiddenInputImage").attr("value", "");
         $(".ImageAndUpload img").css("display", "none ");
         $(".ImageXIcon ").css("display", "none ");
+        $(this).parents(".ImageAndUpload").empty();
     });
 
 
