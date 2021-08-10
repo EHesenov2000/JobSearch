@@ -1,13 +1,11 @@
-﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@using JobSearchFullWebSite.Models
+﻿@using JobSearchFullWebSite.Models
 @using JobSearchFullWebSite.Enums
 @model Job
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Edit";
     Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
 }
-
-
 
 <div class="container-fluid">
     <form method="post" enctype="multipart/form-data">
@@ -80,31 +78,57 @@
                 <input asp-for="@Model.ExpirationDate" class="form-control" id="ExpirationDate" placeholder="ExpirationDate">
                 <span asp-validation-for="@Model.ExpirationDate" class="text-danger"></span>
             </div>
-             
+
             <div class="form-group col-md-4 d-flex flex-column">
                 <label asp-for="@Model.CityId">City</label>
-                <select class="border-radius border-0 backColorBlue py-2 px-2" asp-for="@Model.CityId" asp-items="@(new SelectList(ViewBag.Cities,"Id","CityName"))">
+                <select class="border-radius border-0 backColorBlue py-2 px-2" asp-for="@Model.CityId" asp-items="@(new SelectList(ViewBag.Cities, "Id", "CityName"))">
                     <option class="" selected disabled value="">Seher sec</option>
                 </select>
                 <span asp-validation-for="@Model.CityId" class="text-danger"></span>
             </div>
             <div class="form-group col-md-4 d-flex flex-column">
                 <label asp-for="@Model.JobCategoryId">JobCategory</label>
-                <select class="border-radius border-0 backColorBlue py-2 px-2" asp-for="@Model.JobCategoryId" asp-items="@(new SelectList(ViewBag.Categories,"Id","Name"))">
+                <select class="border-radius border-0 backColorBlue py-2 px-2" asp-for="@Model.JobCategoryId" asp-items="@(new SelectList(ViewBag.Categories, "Id", "Name"))">
                     <option class="" selected disabled value="">Kateqoriya sec</option>
                 </select>
                 <span asp-validation-for="@Model.JobCategoryId" class="text-danger"></span>
-            </div> 
+            </div>
             <div class="form-group col-md-4 d-flex flex-column">
                 <label asp-for="@Model.EmployerId">Employer</label>
-                <select class="border-radius border-0 backColorBlue py-2 px-2" asp-for="@Model.EmployerId" asp-items="@(new SelectList(ViewBag.Employers,"Id","Name"))">
+                <select class="border-radius border-0 backColorBlue py-2 px-2" asp-for="@Model.EmployerId" asp-items="@(new SelectList(ViewBag.Employers, "Id", "Name"))">
                     <option class="" selected disabled value="">Employer Sec</option>
                 </select>
                 <span asp-validation-for="@Model.EmployerId" class="text-danger"></span>
             </div>
             <div class="form-group col-md-4 d-flex flex-column">
                 <label asp-for="@Model.RequiredLanguageIds">RequiredLanguages</label>
-                <select class="form-control" asp-for="@Model.RequiredLanguageIds" asp-items="@(new SelectList(ViewBag.Languages,"Id","Name"))"></select>
+                <select class="form-control" asp-for="@Model.RequiredLanguageIds">
+                    @if (Model != null)
+                    {
+                        @foreach (var item in ViewBag.Languages)
+                        {
+                            if (Model.RequiredLanguages.Any(x => x.Language == item.Name))
+                            {
+                                <option selected value="@item.Id">@item.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                        }
+                    }
+                    @*else
+                        {
+                            @if (ViewBag.Languages != null)
+                            {
+                                @foreach (var item in ViewBag.Languages)
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
+                            }
+                        }*@
+
+                </select>
                 <span asp-validation-for="@Model.RequiredLanguageIds" class="text-danger"></span>
             </div>
         </div>
@@ -117,20 +141,58 @@
             <div class="row">
                 <div class="col-md-4 col-12  mt-2">
                     @*<input type="file" id="file" asp-for="@Model.File "/>
-                <label for="file" asp-for="@Model.File " class=" backColorBlue"><span class="blue">Browse</span> </label>*@
+                        <label for="file" asp-for="@Model.File " class=" backColorBlue"><span class="blue">Browse</span> </label>*@
                     <b>Image</b>
                     <br />
                     <input class="form-control col-md-2 blue border-radius" id="file" type="file" asp-for="@Model.File" style="display:contents;">
                     <label for="file" class="border-radius px-3 py-2 " style="background-color: blue !important;color:white !important;border-radius:20px;"><span class="blue">Browse</span></label>
                     <span asp-validation-for="@Model.File" class="text-danger"></span>
                 </div>
+                @if (Model != null)
+                {
+            <div class="img-box col-md-4" style="position:relative;max-width:200px;width:200px;height:200px;max-height:200px;">
+                @if (Model.JobImages.FirstOrDefault(x => x.IsPoster) != null)
+                {
+                    <img class="d-block" src="~/uploads/@Model.JobImages.FirstOrDefault(x => x.IsPoster).Image" style="max-width:180px;width:180px;height:180px;max-height:180px;margin-left:10px;padding-top:20px" />
+                    <i class="fas fa-times remove-img-box" style="color:red;position:absolute;cursor:pointer;right:4px;top:2px;font-size:17px"></i>
+                    <input type="hidden" name="ImageIds[]" value="@Model.JobImages.FirstOrDefault(x=>x.IsPoster).Id" />
+                }
+            </div>
+                }
             </div>
             <br />
             <div class="col-12">
                 <b>Images</b>
+                @*<br />
+                    @{ int m = 0;
+                        if (Model.JobImages != null)
+                        {
+                            @foreach (var item in Model.JobImages.Where(x => !x.IsPoster))
+                            {
+                                <div class="col-lg-3 col-md-6 col-12 PositionRelativeForIcon">
+                                    <input type="hidden" name="ImageIds[]" value="@item.Id" />
+                                    <input type="hidden" name="JobImages[@m].Image" value="@item.Image" />
+                                    <img src="~/images/jobImage/@item.Image" alt="" class="border-radius" style="width: 200px;height: 200px;">
+                                    <div class="PortfolioXIcon backColorBlue  border-radius p-2 d-flex align-items-center justify-content-center RemoveImageItem" style="width: 20px;height: 20px;"><i class="fas fa-times blue"></i></div>
+                                </div>
+                                m++;
+                            }}
+                    }*@
                 <br />
                 <input class="form-control  col-md-4" style="display:block !important; width:auto !important;height:auto !important;" asp-for="@Model.Images">
                 <span asp-validation-for="@Model.Images" class="text-danger"></span>
+                <div class="row">
+                    @{ int m = 0;
+                        @foreach (var item in Model.JobImages.Where(x => x.IsPoster == false))
+                        {
+                            <div class="img-box col-md-4" style="position:relative;max-width:200px;width:200px;height:200px;max-height:200px;">
+                                <img class="d-block" src="~/uploads/@item.Image" style="max-width:180px;width:180px;height:180px;max-height:180px;margin-left:10px;padding-top:20px" />
+                                <i class="fas fa-times remove-img-box" style="color:red;position:absolute;cursor:pointer;right:4px;top:2px;font-size:17px"></i>
+                                <input type="hidden" name="ImageIds[]" value="@item.Id" />
+                                <input type="hidden" name="JobImages[@m].Image" value="@item.Image" />
+                            </div>
+                        }}
+                </div>
             </div>
         </div>
         <br />
@@ -151,3 +213,14 @@
     // instance, using default configuration.
     CKEDITOR.replace('JobContentTextEditor');
 </script>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+
+            $(document).on("click", ".remove-img-box", function (e) {
+                $(this).parents(".img-box").attr("style", "background-color:unset");
+                $(this).parents(".img-box").empty();
+            })
+        })
+    </script>
+}

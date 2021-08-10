@@ -52,7 +52,7 @@ namespace JobSearchFullWebSite.Models
         public string JobContentTextEditor { get; set; }
         public List<JobImage> JobImages { get; set; }
         public City City { get; set; }
-        public int? EmployerId { get; set; }
+        public int EmployerId { get; set; }
         public Employer Employer { get; set; }
         public List<JobContact> Contacts { get; set; }
         [NotMapped]
