@@ -1,7 +1,331 @@
-﻿
+﻿@using JobSearchFullWebSite.Models
+@using JobSearchFullWebSite.DTOs
+@using JobSearchFullWebSite.Enums
+@model CandidateDto
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Areas/Manage/Views/Shared/_Layout.cshtml";
 }
 
 
+
+
+<div class="container-fluid">
+    <form method="post" enctype="multipart/form-data">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label asp-for="@Model.FullName">FullName</label>
+                <input asp-for="@Model.FullName" class="form-control" id="FullName" placeholder="FullName">
+                <span asp-validation-for="@Model.FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="@Model.BirthdayDate">BirthdayDate</label>
+                <input asp-for="@Model.BirthdayDate" class="form-control" id="BirthdayDate" placeholder="BirthdayDate">
+                <span asp-validation-for="@Model.BirthdayDate" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-3">
+                <label asp-for="@Model.WaitingSalary">WaitingSalary</label>
+                <input asp-for="@Model.WaitingSalary" class="form-control" id="PhoneNumber" placeholder="PhoneNumber">
+                <span asp-validation-for="@Model.WaitingSalary" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="@Model.SalaryForTime">SalaryForTime</label>
+                <select class="border-radius border-0 backColorBlue py-2 px-2" asp-for="@Model.SalaryForTime" asp-items="Html.GetEnumSelectList<JobSalaryForTime>()">
+                </select>
+                <span asp-validation-for="@Model.SalaryForTime" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="@Model.CityId">City</label>
+                <select class="border-radius border-0 backColorBlue py-2 px-2" asp-for="@Model.CityId" asp-items="@(new SelectList(ViewBag.Cities,"Id","CityName"))">
+                    <option class="" selected disabled value="">Seher sec</option>
+                </select>
+                <span asp-validation-for="@Model.CityId" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="@Model.PositionId">Position</label>
+                <select class="border-radius border-0 backColorBlue py-2 px-2" asp-for="@Model.PositionId" asp-items="@(new SelectList(ViewBag.Positions,"Id","PositionName"))">
+                    <option class="" selected disabled value="">Seher sec</option>
+                </select>
+                <span asp-validation-for="@Model.PositionId" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="@Model.Experience">Experience</label>
+                <select class="border-radius border-0 backColorBlue py-2 px-2" asp-for="@Model.Experience" asp-items="Html.GetEnumSelectList<RequiredExperience>()">
+                </select>
+                <span asp-validation-for="@Model.Experience" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="@Model.Gender">Gender</label>
+                <select class="border-radius border-0 backColorBlue py-2 px-2" asp-for="@Model.Gender" asp-items="Html.GetEnumSelectList<Gender>()">
+                </select>
+                <span asp-validation-for="@Model.Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="@Model.Age">Age</label>
+                <input asp-for="@Model.Age" class="form-control" id="Age" placeholder="Age">
+                <span asp-validation-for="@Model.Age" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="@Model.PhoneNumber">PhoneNumber</label>
+                <input asp-for="@Model.PhoneNumber" class="form-control" id="PhoneNumber" placeholder="PhoneNumber">
+                <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="@Model.Email">Email</label>
+                <input asp-for="@Model.Email" class="form-control" id="Email" placeholder="Email">
+                <span asp-validation-for="@Model.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4">
+                <label asp-for="@Model.Qualification">Qualification</label>
+                <select class="border-radius border-0 backColorBlue py-2 px-2" asp-for="@Model.Qualification" asp-items="Html.GetEnumSelectList<Qualification>()">
+                </select>
+                <span asp-validation-for="@Model.Qualification" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-12">
+                <label asp-for="@Model.FacebookUrl">FacebookUrl</label>
+                <input asp-for="@Model.FacebookUrl" class="form-control" id="FacebookUrl" placeholder="FacebookUrl">
+                <span asp-validation-for="@Model.FacebookUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-12">
+                <label asp-for="@Model.TwitterUrl">TwitterUrl</label>
+                <input asp-for="@Model.TwitterUrl" class="form-control" id="TwitterUrl" placeholder="TwitterUrl">
+                <span asp-validation-for="@Model.TwitterUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-12">
+                <label asp-for="@Model.LinkedinUrl">LinkedinUrl</label>
+                <input asp-for="@Model.LinkedinUrl" class="form-control" id="LinkedinUrl" placeholder="LinkedinUrl">
+                <span asp-validation-for="@Model.LinkedinUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-12">
+                <label asp-for="@Model.InstagramUrl">InstagramUrl</label>
+                <input asp-for="@Model.InstagramUrl" class="form-control" id="InstagramUrl" placeholder="InstagramUrl">
+                <span asp-validation-for="@Model.InstagramUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-4 d-flex flex-column">
+                <label asp-for="@Model.KnowingLanguageIds">KnowingLanguages</label>
+                <select class="form-control" asp-for="@Model.KnowingLanguageIds" asp-items="@(new SelectList(ViewBag.Languages,"Id","Name"))"></select>
+                <span asp-validation-for="@Model.KnowingLanguageIds" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-12">
+                <label asp-for="@Model.AboutCandidateTextEditor">AboutCandidateTextEditor</label>
+                <textarea asp-for="@Model.AboutCandidateTextEditor" class="form-control" id="AboutCandidateTextEditor" placeholder="AboutCandidateTextEditor"></textarea>
+                <span asp-validation-for="@Model.AboutCandidateTextEditor" class="text-danger"></span>
+            </div>
+
+            <div class="form-group col-md-6">
+                <label asp-for="@Model.File">PosterImageFile</label>
+                <input asp-for="@Model.File" class="form-control" id="File" placeholder="File">
+                <span asp-validation-for="@Model.File" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="@Model.Images">Images</label>
+                <input asp-for="@Model.Images" class="form-control" id="Images" placeholder="Images">
+                <span asp-validation-for="@Model.Images" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-6">
+                <label asp-for="@Model.CandidateCV">CandidateCV</label>
+                <input asp-for="@Model.CandidateCV" class="form-control" id="CandidateCV" placeholder="CandidateCV">
+                <span asp-validation-for="@Model.CandidateCV" class="text-danger"></span>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="card p-4 mt-4">
+                    <b>Education</b>
+                    <br>
+
+                    <div class="EducationItems">
+
+                        <div class="CandidateResumeItem">
+                            <input type="hidden" name="CandidateEducationItemsId[]" value="CandidateEducationItems[0].Id" />
+                            <input type="hidden" class="EducationClickItem" name="CandidateEducationItems[0].Id" value="CandidateEducationItems[0].Id" />
+                            <input type="hidden" class="EducationClickItem" name="CandidateEducationItems[0].CandidateId" value="CandidateEducationItems[0].CandidateId" />
+
+                            <div class="accordion mt-3 border-radius backColorAqua py-2 px-2">CandidateEducationItems[0].Title</div>
+                            <div class="panel mt-2">
+                                <p>
+                                    <div class="row ">
+                                        <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Title</span></div>
+                                        <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100 EducationClickItem" placeholder="BEducation Title" name="CandidateEducationItems[0].Title" value="CandidateEducationItems[0].Title"></div>
+                                    </div>
+                                    <br>
+                                    <div class="row ">
+                                        <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Academy</span></div>
+                                        <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100 EducationClickItem" placeholder="Education Academy" name="CandidateEducationItems[0].EducationPlace" value="CandidateEducationItems[0].EducationPlace"></div>
+                                    </div>
+                                    <br>
+                                    <div class="row ">
+                                        <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Years</span></div>
+                                        <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100 EducationClickItem" placeholder="Years" name="CandidateEducationItems[0].Years" value="CandidateEducationItems[0].Years"></div>
+                                    </div>
+                                    <br>
+                                    <div class="row ">
+                                        <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Description</span></div>
+                                        <div class="col-lg-9"><input style="min-height: 150px;max-height: 150px;" class="border-0 border-radius backColorBlue py-2 px-3 w-100 EducationClickItem" placeholder="Description" name="CandidateEducationItems[0].Content" value="CandidateEducationItems[0].Content"></div>
+                                    </div>
+                                    <div class="row d-flex flex-row justify-content-end m-3" >
+                                        <button class="d-flex flex-row justify-content-end RemoveItem  btn btn-danger"><span class="white">Remove</span></button>
+                                    </div>
+                                </p>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+                    <div>
+                        <button class="btn backColorBlue py-2 px-4 d-inline-block AddEducationItem  btn btn-primary"><span class="blue">Add Item</span></button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="card p-4 mt-4">
+                    <b>Experience</b>
+                    <br>
+                    <div class="WorkItems">
+                       
+
+                            <div class="CandidateResumeItem">
+                                <input type="hidden" name="CandidateWorkItemsId[]" value="CandidateWorkItems[0].Id" />
+                                <input type="hidden" class="WorkClickItem" name="CandidateWorkItems[0].Id" value="CandidateWorkItems[0].Id" />
+                                <input type="hidden" class="WorkClickItem" name="CandidateWorkItems[0].CandidateId" value="CandidateWorkItems[0].CandidateId" />
+                                <div class="accordion mt-3 border-radius backColorAqua py-2 px-2">CandidateWorkItems[0].Title</div>
+                                <div class="panel mt-2">
+                                    <p>
+                                        <div class="row ">
+                                            <div class="col-lg-3 d-flex flex-row align-items-center "><span class="grey ">Title</span></div>
+                                            <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100 WorkClickItem" placeholder="Title" name="CandidateWorkItems[0].Title" value="CandidateWorkItems[0].Title"></div>
+                                        </div>
+                                        <br>
+                                        <div class="row ">
+                                            <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Start Date</span></div>
+                                            <div class="col-lg-9"><input type="date" class="border-0 border-radius backColorBlue py-2 px-3 w-100 WorkClickItem" placeholder="Start Date" name="CandidateWorkItems[0].StartDate" value="CandidateWorkItems[0].StartDate"></div>
+                                        </div>
+                                        <br>
+                                        <div class="row ">
+                                            <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">End Date</span></div>
+                                            <div class="col-lg-9"><input type="date" class="border-0 border-radius backColorBlue py-2 px-3 w-100 WorkClickItem" placeholder="End Date" name="CandidateWorkItems[0].EndDate" value="CandidateWorkItems[0].EndDate"></div>
+                                        </div>
+                                        <br>
+                                        <div class="row ">
+                                            <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Company</span></div>
+                                            <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100 WorkClickItem" placeholder="Work Place" name="CandidateWorkItems[0].WorkPlace" value="CandidateWorkItems[0].WorkPlace"></div>
+                                        </div>
+                                        <br>
+                                        <div class="row ">
+                                            <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Description</span></div>
+                                            <div class="col-lg-9"><input style="min-height: 150px;max-height: 150px;" class="border-0 border-radius backColorBlue py-2 px-3 w-100 WorkClickItem" placeholder="Description" name="CandidateWorkItems[0].Content" value="CandidateWorkItems[0].Content"></div>
+                                        </div>
+                                        <div class="row">
+                                            <button class="d-flex flex-row justify-content-end RemoveItem  btn btn-danger"><span class="white">Remove</span></button>
+                                        </div>
+                                    </p>
+                                </div>
+                            </div>
+                            <br>
+                        
+                    </div>
+                    <div>
+                        <button class="btn backColorBlue py-2 px-4 d-inline-block AddWorkItem  btn btn-primary"><span class="blue">Add Item</span></button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="card p-4 mt-4">
+                    <b>Adward</b>
+                    <br>
+                    <div class="AwardItems">
+
+
+                        <div class="CandidateResumeItem">
+                            <input type="hidden" name="CandidateAwardItemsId[]" value="CandidateAwardItems[0].Id" />
+                            <input type="hidden" class="AwardClickItem" name="CandidateAwardItems[0].Id" value="CandidateAwardItems[0].Id" />
+                            <input type="hidden" class="AwardClickItem" name="CandidateAwardItems[0].CandidateId" value="CandidateAwardItems[0].CandidateId" />
+                            <div class="accordion mt-3 border-radius backColorAqua py-2 px-2">CandidateAwardItems[0].Title</div>
+                            <div class="panel mt-2">
+                                <p>
+                                    <div class="row ">
+                                        <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Title</span></div>
+                                        <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100 AwardClickItem" placeholder="Title" name="CandidateAwardItems[0].Title" value="CandidateAwardItems[0].Title"></div>
+                                    </div>
+                                    <br>
+                                    <div class="row ">
+                                        <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Years</span></div>
+                                        <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100 AwardClickItem" placeholder="Years" name="CandidateAwardItems[0].Years" value="CandidateAwardItems[0].Years"></div>
+                                    </div>
+                                    <br>
+                                    <div class="row ">
+                                        <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Description</span></div>
+                                        <div class="col-lg-9"><input style="min-height: 150px;max-height: 150px;" class="border-0 border-radius backColorBlue py-2 px-3 w-100 AwardClickItem" placeholder="Description" name="CandidateAwardItems[0].Content" value="CandidateAwardItems[0].Content"></div>
+                                    </div>
+                                    <div class="row">
+                                        <button class="d-flex flex-row justify-content-end RemoveItem  btn btn-danger"><span class="white">Remove</span></button>
+                                    </div>
+                                </p>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+
+                    <div>
+                        <button class="btn backColorBlue py-2 px-4 d-inline-block AddAwardItem  btn btn-primary" ><span class="blue">Add Item</span></button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-12">
+                <div class="card p-4 mt-4">
+                    <b>SkillItems</b>
+                    <br />
+                    <div class="SkillItems">
+                        <div class="CandidateResumeItem">
+                            <input type="hidden" name="CandidateSkillsId[]" value="CandidateSkills[0].Id" />
+                            <input type="hidden" class="SkillClickItem" name="CandidateSkills[0].Id" value="CandidateSkills[0].Id" />
+                            <input type="hidden" class="SkillClickItem" name="CandidateSkills[0].CandidateId" value="CandidateSkills[0].CandidateId" />
+                            <div class="accordion mt-3 border-radius backColorAqua py-2 px-2">CandidateSkills[0].Name</div>
+                            <div class="panel mt-2">
+                                <p>
+                                    <div class="row ">
+                                        <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Title</span></div>
+                                        <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100 SkillClickItem" placeholder="Title" name="CandidateSkills[0].Name" value="CandidateSkills[0].Name"></div>
+                                    </div>
+                                    <div class="row">
+                                        <button class="d-flex flex-row justify-content-end RemoveItem  btn btn-danger"><span class="white">Remove</span></button>
+                                    </div>
+                                </p>
+                            </div>
+                        </div>
+                        <br>
+                    </div>
+
+                    <div>
+                        <button class="btn backColorBlue py-2 px-4 d-inline-block AddSkillItem btn btn-primary"><span class="blue">Add Item</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+        <br />
+        <div class="form-row">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+
+</div>
+<style>    
+    .panel {
+        max-height:10px;
+        overflow:hidden;
+    }
+    .backColorAqua{
+        background-color:aqua;
+        border-radius:15px;
+    }
+</style>
+<script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
+<script>
+    // Replace the <textarea id="editor1"> with a CKEditor 4
+    // instance, using default configuration.
+    CKEDITOR.replace('AboutCandidateTextEditor');
+</script>

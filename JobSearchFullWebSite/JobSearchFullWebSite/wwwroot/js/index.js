@@ -207,7 +207,6 @@ $(document).ready(function () {
         }
 
     }
-
     document.getElementsByClassName("AddSkillItem")[0].onclick = function () {
         var a = document.createElement("div");
         var skill =

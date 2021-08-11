@@ -1,4 +1,5 @@
 ﻿using JobSearchFullWebSite.DAL.AppDbContext;
+using JobSearchFullWebSite.DTOs;
 using JobSearchFullWebSite.Models;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -32,40 +33,44 @@ namespace JobSearchFullWebSite.Areas.Manage.Controllers
         {
             ViewBag.Cities = _context.Cities.ToList();
             ViewBag.Positions = _context.Positions.ToList();
-            ViewBag.Language = _context.Languages.ToList();
+            ViewBag.Languages = _context.Languages.ToList();
 
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Candidate candidate)
+        public IActionResult Create(CandidateDto candidate)
         {
             ViewBag.Cities = _context.Cities.ToList();
             ViewBag.Positions = _context.Positions.ToList();
-            ViewBag.Language = _context.Languages.ToList();
-
+            ViewBag.Languages = _context.Languages.ToList();
+            if (!ModelState.IsValid) return View();
             return RedirectToAction("index");
         }
         public IActionResult Edit(int id)
         {
             ViewBag.Cities = _context.Cities.ToList();
             ViewBag.Positions = _context.Positions.ToList();
-            ViewBag.Language = _context.Languages.ToList();
+            ViewBag.Languages = _context.Languages.ToList();
 
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id,Candidate candidate)
+        public IActionResult Edit(int id, CandidateDto candidate)
         {
             ViewBag.Cities = _context.Cities.ToList();
             ViewBag.Positions = _context.Positions.ToList();
-            ViewBag.Language = _context.Languages.ToList();
+            ViewBag.Languages = _context.Languages.ToList();
 
             return RedirectToAction("index");
         }
         public IActionResult Delete(int id)
         {
+            Candidate candidate = _context.Candidates.FirstOrDefault(x => x.Id == id);
+            if (candidate == null) return RedirectToAction("index");
+            _context.Candidates.Remove(candidate);
+            _context.SaveChanges();
             return RedirectToAction("index");
         }
     }
