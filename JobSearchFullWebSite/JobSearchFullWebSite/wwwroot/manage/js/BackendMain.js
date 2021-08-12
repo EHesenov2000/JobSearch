@@ -14,38 +14,41 @@
         var a = document.createElement("div");
         var education =
             ` 
-                                <div class="CandidateResumeItem">
-                                    <input type="hidden" class="EducationClickItem" name="CandidateEducationItems[2].Id" value="@item.Id" />
-                                    <input type="hidden" class="EducationClickItem" name="CandidateEducationItems[2].CandidateId" value="@item.CandidateId" />
-                                    <div class="accordion mt-3 border-radius">@item.Title</div>
-                                    <div class="panel mt-2">
-                                        <p>
-                                            <div class="row ">
-                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Title</span></div>
-                                                <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100 EducationClickItem" placeholder="BEducation Title" name="CandidateEducationItems[2].Title" value="@item.Title"></div>
-                                            </div>
-                                            <br>
-                                            <div class="row ">
-                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Academy</span></div>
-                                                <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100 EducationClickItem" placeholder="Education Academy" name="CandidateEducationItems[2].EducationPlace" value="@item.EducationPlace"></div>
-                                            </div>
-                                            <br>
-                                            <div class="row ">
-                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Years</span></div>
-                                                <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100 EducationClickItem" placeholder="Years" name="CandidateEducationItems[2].Years" value="@item.Years"></div>
-                                            </div>
-                                            <br>
-                                            <div class="row ">
-                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Description</span></div>
-                                                <div class="col-lg-9"><input style="min-height: 150px;max-height: 150px;" class="border-0 border-radius backColorBlue py-2 px-3 w-100 EducationClickItem" placeholder="Description" name="CandidateEducationItems[2].Content" value="@item.Content"></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="d-flex flex-row justify-content-end RemoveItem"><div class="btn backColorBlue py-2 px-2"><span class="blue">Remove</span></div></div>
-                                            </div>
-                                        </p>
+                        <div class="CandidateResumeItem">
+                            <input type="hidden" name="CandidateEducationItemsId[]" value="CandidateEducationItems[0].Id" />
+                            <input type="hidden" class="EducationClickItem" name="CandidateEducationItems[0].Id" value="CandidateEducationItems[0].Id" />
+                            <input type="hidden" class="EducationClickItem" name="CandidateEducationItems[0].CandidateId" value="CandidateEducationItems[0].CandidateId" />
+
+                            <div class="accordion mt-3 border-radius backColorAqua py-2 px-2 d-flex flex-row justify-content-between"><div>CandidateEducationItems[0].Title</div><div class="d-flex flex-row justify-content-end align-items-center" ><i class="fas fa-angle-down" style="font-size:20px"></i></div></div>
+                            <div class="panel mt-2">
+                                <p>
+                                    <div class="row ">
+                                        <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Title</span></div>
+                                        <div class="col-lg-9"><input type="text" class=" border-radius backColorBlue py-2 px-3 w-100 EducationClickItem" placeholder="BEducation Title" name="CandidateEducationItems[0].Title" value="CandidateEducationItems[0].Title"></div>
                                     </div>
-                                </div>
-                                <br>
+                                    <br>
+                                    <div class="row ">
+                                        <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Academy</span></div>
+                                        <div class="col-lg-9"><input type="text" class=" border-radius backColorBlue py-2 px-3 w-100 EducationClickItem" placeholder="Education Academy" name="CandidateEducationItems[0].EducationPlace" value="CandidateEducationItems[0].EducationPlace"></div>
+                                    </div>
+                                    <br>
+                                    <div class="row ">
+                                        <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Years</span></div>
+                                        <div class="col-lg-9"><input type="text" class="border-radius backColorBlue py-2 px-3 w-100 EducationClickItem" placeholder="Years" name="CandidateEducationItems[0].Years" value="CandidateEducationItems[0].Years"></div>
+                                    </div>
+                                    <br>
+                                    <div class="row ">
+                                        <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Description</span></div>
+                                        <div class="col-lg-9"><input style="min-height: 150px;max-height: 150px;" class=" border-radius backColorBlue py-2 px-3 w-100 EducationClickItem" placeholder="Description" name="CandidateEducationItems[0].Content" value="CandidateEducationItems[0].Content"></div>
+                                    </div>
+                                    <div class="row d-flex flex-row justify-content-end m-3
+                                         " >
+                                        <button class="d-flex flex-row justify-content-end RemoveItem  btn btn-danger"><span class="white">Remove</span></button>
+                                    </div>
+                                </p>
+                            </div>
+                        </div>
+                        <br>
             `;
         a.innerHTML = education;
         document.getElementsByClassName("EducationItems")[0].appendChild(a);
@@ -62,46 +65,44 @@
     document.getElementsByClassName("AddWorkItem")[0].onclick = function () {
 
         var a = document.createElement("div");
-        var work = `
-                                 
-                                <div class="CandidateResumeItem">
-<input type="hidden" name="CandidateWorkItemsId[]" value="@item.Id"/>
-                                    <input type="hidden" class="WorkClickItem" name="CandidateWorkItems[].Id" value="@item.Id" />
-                                    <input type="hidden" class="WorkClickItem" name="CandidateWorkItems[].CandidateId" value="@item.CandidateId" />
-                                    <div class="accordion mt-3 border-radius">@item.Title</div>
-                                    <div class="panel mt-2">
-                                        <p>
-                                            <div class="row ">
-                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Title</span></div>
-                                                <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100 WorkClickItem" placeholder="Title" name="CandidateWorkItems[].Title" value="@item.Title"></div>
-                                            </div>
-                                            <br>
-                                            <div class="row ">
-                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Start Date</span></div>
-                                                <div class="col-lg-9"><input type="date" class="border-0 border-radius backColorBlue py-2 px-3 w-100 WorkClickItem" placeholder="Start Date" name="CandidateWorkItems[].StartDate" value="@item.StartDate"></div>
-                                            </div>
-                                            <br>
-                                            <div class="row ">
-                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">End Date</span></div>
-                                                <div class="col-lg-9"><input type="date" class="border-0 border-radius backColorBlue py-2 px-3 w-100 WorkClickItem" placeholder="End Date" name="CandidateWorkItems[].EndDate" value="@item.EndDate"></div>
-                                            </div>
-                                            <br>
-                                            <div class="row ">
-                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Company</span></div>
-                                                <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100 WorkClickItem" placeholder="Work Place" name="CandidateWorkItems[].WorkPlace" value="@item.WorkPlace"></div>
-                                            </div>
-                                            <br>
-                                            <div class="row ">
-                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Description</span></div>
-                                                <div class="col-lg-9"><input style="min-height: 150px;max-height: 150px;" class="border-0 border-radius backColorBlue py-2 px-3 w-100 WorkClickItem" placeholder="Description" name="CandidateWorkItems[].Content" value="@item.Content"></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="d-flex flex-row justify-content-end RemoveItem"><div class="btn backColorBlue py-2 px-2"><span class="blue">Remove</span></div></div>
-                                            </div>
-                                        </p>
+        var work = `                        <div class="CandidateResumeItem">
+                            <input type="hidden" name="CandidateWorkItemsId[]" value="CandidateWorkItems[0].Id" />
+                            <input type="hidden" class="WorkClickItem" name="CandidateWorkItems[0].Id" value="CandidateWorkItems[0].Id" />
+                            <input type="hidden" class="WorkClickItem" name="CandidateWorkItems[0].CandidateId" value="CandidateWorkItems[0].CandidateId" />
+                            <div class="accordion mt-3 border-radius backColorAqua py-2 px-2 d-flex flex-row justify-content-between"><div>CandidateWorkItems[0].Title</div><div class="d-flex flex-row justify-content-end align-items-center"><i class="fas fa-angle-down" style="font-size:20px"></i></div></div>
+                            <div class="panel mt-2">
+                                <p>
+                                    <div class="row ">
+                                        <div class="col-lg-3 d-flex flex-row align-items-center "><span class="grey ">Title</span></div>
+                                        <div class="col-lg-9"><input type="text" class=" border-radius backColorBlue py-2 px-3 w-100 WorkClickItem" placeholder="Title" name="CandidateWorkItems[0].Title" value="CandidateWorkItems[0].Title"></div>
                                     </div>
-                                </div>
-                                <br>
+                                    <br>
+                                    <div class="row ">
+                                        <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Start Date</span></div>
+                                        <div class="col-lg-9"><input type="date" class="border-radius backColorBlue py-2 px-3 w-100 WorkClickItem" placeholder="Start Date" name="CandidateWorkItems[0].StartDate" value="CandidateWorkItems[0].StartDate"></div>
+                                    </div>
+                                    <br>
+                                    <div class="row ">
+                                        <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">End Date</span></div>
+                                        <div class="col-lg-9"><input type="date" class=" border-radius backColorBlue py-2 px-3 w-100 WorkClickItem" placeholder="End Date" name="CandidateWorkItems[0].EndDate" value="CandidateWorkItems[0].EndDate"></div>
+                                    </div>
+                                    <br>
+                                    <div class="row ">
+                                        <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Company</span></div>
+                                        <div class="col-lg-9"><input type="text" class="border-radius backColorBlue py-2 px-3 w-100 WorkClickItem" placeholder="Work Place" name="CandidateWorkItems[0].WorkPlace" value="CandidateWorkItems[0].WorkPlace"></div>
+                                    </div>
+                                    <br>
+                                    <div class="row ">
+                                        <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Description</span></div>
+                                        <div class="col-lg-9"><input style="min-height: 150px;max-height: 150px;" class=" border-radius backColorBlue py-2 px-3 w-100 WorkClickItem" placeholder="Description" name="CandidateWorkItems[0].Content" value="CandidateWorkItems[0].Content"></div>
+                                    </div>
+                                    <div class="row d-flex flex-row justify-content-end m-3">
+                                        <button class="d-flex flex-row justify-content-end RemoveItem  btn btn-danger"><span class="white">Remove</span></button>
+                                    </div>
+                                </p>
+                            </div>
+                        </div>
+                            <br>
 
 `;
         a.innerHTML = work;
@@ -120,36 +121,34 @@
     document.getElementsByClassName("AddAwardItem")[0].onclick = function () {
         var a = document.createElement("div");
         var award = `
-                                    
-
-                                <div class="CandidateResumeItem">
- <input type="hidden" name="CandidateAwardItemsId[]" value="@item.Id"/>
-                                    <input type="hidden" class="AwardClickItem" name="CandidateAwardItems[].Id" value="@item.Id" />
-                                    <input type="hidden" class="AwardClickItem" name="CandidateAwardItems[].CandidateId" value="@item.CandidateId" />
-                                    <div class="accordion mt-3 border-radius">@item.Title</div>
-                                    <div class="panel mt-2">
-                                        <p>
-                                            <div class="row ">
-                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Title</span></div>
-                                                <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100 AwardClickItem" placeholder="Title" name="CandidateAwardItems[].Title" value="@item.Title"></div>
-                                            </div>
-                                            <br>
-                                            <div class="row ">
-                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Years</span></div>
-                                                <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100 AwardClickItem" placeholder="Years" name="CandidateAwardItems[].Years" value="@item.Years"></div>
-                                            </div>
-                                            <br>
-                                            <div class="row ">
-                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Description</span></div>
-                                                <div class="col-lg-9"><input style="min-height: 150px;max-height: 150px;" class="border-0 border-radius backColorBlue py-2 px-3 w-100 AwardClickItem" placeholder="Description" name="CandidateAwardItems[].Content" value="@item.Content"></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="d-flex flex-row justify-content-end RemoveItem"><div class="btn backColorBlue py-2 px-2"><span class="blue">Remove</span></div></div>
-                                            </div>
-                                        </p>
+                        <div class="CandidateResumeItem">
+                            <input type="hidden" name="CandidateAwardItemsId[]" value="CandidateAwardItems[0].Id" />
+                            <input type="hidden" class="AwardClickItem" name="CandidateAwardItems[0].Id" value="CandidateAwardItems[0].Id" />
+                            <input type="hidden" class="AwardClickItem" name="CandidateAwardItems[0].CandidateId" value="CandidateAwardItems[0].CandidateId" />
+                            <div class="accordion mt-3 border-radius backColorAqua py-2 px-2 d-flex flex-row justify-content-between"><div>CandidateAwardItems[0].Title</div><div class="d-flex flex-row justify-content-end align-items-center"><i class="fas fa-angle-down" style="font-size:20px"></i></div></div>
+                            <div class="panel mt-2">
+                                <p>
+                                    <div class="row ">
+                                        <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Title</span></div>
+                                        <div class="col-lg-9"><input type="text" class="border-radius backColorBlue py-2 px-3 w-100 AwardClickItem" placeholder="Title" name="CandidateAwardItems[0].Title" value="CandidateAwardItems[0].Title"></div>
                                     </div>
-                                </div>
-                                <br>
+                                    <br>
+                                    <div class="row ">
+                                        <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Years</span></div>
+                                        <div class="col-lg-9"><input type="text" class=" border-radius backColorBlue py-2 px-3 w-100 AwardClickItem" placeholder="Years" name="CandidateAwardItems[0].Years" value="CandidateAwardItems[0].Years"></div>
+                                    </div>
+                                    <br>
+                                    <div class="row ">
+                                        <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Description</span></div>
+                                        <div class="col-lg-9"><input style="min-height: 150px;max-height: 150px;" class="border-radius backColorBlue py-2 px-3 w-100 AwardClickItem" placeholder="Description" name="CandidateAwardItems[0].Content" value="CandidateAwardItems[0].Content"></div>
+                                    </div>
+                                    <div class="row d-flex flex-row justify-content-end m-3">
+                                        <button class="d-flex flex-row justify-content-end RemoveItem  btn btn-danger"><span class="white">Remove</span></button>
+                                    </div>
+                                </p>
+                            </div>
+                        </div>
+                        <br>
 `;
         a.innerHTML = award;
         document.getElementsByClassName("AwardItems")[0].appendChild(a);
@@ -167,24 +166,24 @@
         var a = document.createElement("div");
         var skill =
             ` 
-                                                <div class="CandidateResumeItem">
-                                    <input type="hidden" name="CandidateSkillsId[]" value="@item.Id" />
-                                    <input type="hidden" class="SkillClickItem" name="CandidateSkills[].Id" value="@item.Id" />
-                                    <input type="hidden" class="SkillClickItem" name="CandidateSkills[].CandidateId" value="@item.CandidateId" />
-                                    <div class="accordion mt-3 border-radius">@item.Name</div>
-                                    <div class="panel mt-2">
-                                        <p>
-                                            <div class="row ">
-                                                <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Title</span></div>
-                                                <div class="col-lg-9"><input type="text" class="border-0 border-radius backColorBlue py-2 px-3 w-100 SkillClickItem" placeholder="Title" name="CandidateSkills[].Name" value="@item.Name"></div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="d-flex flex-row justify-content-end RemoveItem"><div class="btn backColorBlue py-2 px-2"><span class="blue">Remove</span></div></div>
-                                            </div>
-                                        </p>
+                        <div class="CandidateResumeItem">
+                            <input type="hidden" name="CandidateSkillsId[]" value="CandidateSkills[0].Id" />
+                            <input type="hidden" class="SkillClickItem" name="CandidateSkills[0].Id" value="CandidateSkills[0].Id" />
+                            <input type="hidden" class="SkillClickItem" name="CandidateSkills[0].CandidateId" value="CandidateSkills[0].CandidateId" />
+                            <div class="accordion mt-3 border-radius backColorAqua py-2 px-2 d-flex flex-row justify-content-between"><div>CandidateSkills[0].Title</div><div class="d-flex flex-row justify-content-end align-items-center"><i class="fas fa-angle-down" style="font-size:20px"></i></div></div>
+                            <div class="panel mt-2">
+                                <p>
+                                    <div class="row ">
+                                        <div class="col-lg-3 d-flex flex-row align-items-center"><span class="grey ">Title</span></div>
+                                        <div class="col-lg-9"><input type="text" class="border-radius backColorBlue py-2 px-3 w-100 SkillClickItem" placeholder="Title" name="CandidateSkills[0].Name" value="CandidateSkills[0].Name"></div>
                                     </div>
-                                </div>
-                                <br>
+                                    <div class="row d-flex flex-row justify-content-end m-3">
+                                        <button class="d-flex flex-row justify-content-end RemoveItem  btn btn-danger"><span class="white">Remove</span></button>
+                                    </div>
+                                </p>
+                            </div>
+                        </div>
+                        <br>
             `;
         a.innerHTML = skill;
         document.getElementsByClassName("SkillItems")[0].appendChild(a);

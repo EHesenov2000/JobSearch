@@ -26,10 +26,12 @@ namespace JobSearchFullWebSite.Controllers
             HomeViewModel HomeVm = new HomeViewModel
             {
                 HowWorks = _context.HowWorks.ToList(),
-                Jobs = _context.Jobs.Include(x=>x.JobImages).Include(x=>x.Employer).ThenInclude(x=>x.Category).Include(x=>x.City).Where(x => x.IsFeatured).Skip((jobsPage - 1) * 9).Take(9).ToList(),
-                Cities=_context.Cities.Include(x=>x.Jobs).Take(5).ToList(),
-                Candidates=_context.Candidates.Include(x=>x.CandidateImages).Include(x=>x.Position).Include(x=>x.City).Where(x=>x.IsFeatured).ToList(),
-                BlogItems = _context.BlogItems.OrderBy(x=>x.CreatedAt).Take(3).ToList(),
+                Jobs = _context.Jobs.Include(x => x.JobImages).Include(x=>x.JobCategory).Include(x => x.Employer).ThenInclude(x => x.Category).Include(x => x.City).Where(x => x.IsFeatured).Skip((jobsPage - 1) * 9).Take(9).ToList(),
+                Cities = _context.Cities.Include(x => x.Jobs).OrderByDescending(x=>x.Jobs.Count()).ToList(),
+                Candidates = _context.Candidates.Include(x => x.CandidateImages).Include(x => x.Position).Include(x => x.City).Where(x => x.IsFeatured).ToList(),
+                BlogItems = _context.BlogItems.OrderBy(x => x.CreatedAt).Take(3).ToList(),
+                JobCategories = _context.JobCategories.Include(x => x.Jobs).ToList(),
+                Candidate=(_context.Candidates.Include(x=>x.AppUser).FirstOrDefault(x=>x.AppUser.UserName==User.Identity.Name)!=null? _context.Candidates.Include(x => x.AppUser).FirstOrDefault(x => x.AppUser.UserName == User.Identity.Name):null)
             };
             return View(HomeVm);
         }

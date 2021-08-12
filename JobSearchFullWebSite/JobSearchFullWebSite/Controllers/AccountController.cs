@@ -170,7 +170,6 @@ namespace JobSearchFullWebSite.Controllers
         {
 
             AppUser user = await _userManager.FindByNameAsync(loginModel.UserName);
-
             if (user == null || user.UserStatus==Enums.UserStatus.Admin)
             {
                 ModelState.AddModelError("", "UserName or Password is incorrect");

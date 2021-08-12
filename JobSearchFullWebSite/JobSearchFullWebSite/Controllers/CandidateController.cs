@@ -3,6 +3,7 @@ using JobSearchFullWebSite.DTOs;
 using JobSearchFullWebSite.Enums;
 using JobSearchFullWebSite.Models;
 using JobSearchFullWebSite.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -298,6 +299,7 @@ namespace JobSearchFullWebSite.Controllers
             //return View(candidateEditDto);
             return RedirectToAction("index");
         }
+        [Authorize(Roles ="Candidate")]
         public IActionResult CandidateResumeEdit(int id) 
         {
            Candidate candidate= _context.Candidates.Include(x=>x.CandidateCVs).Include(x=>x.CandidateSkills).Include(x=>x.CandidateImages).Include(x=>x.CandidateWorkItems).Include(x=>x.CandidateEducationItems).Include(x=>x.CandidateAwardItems).FirstOrDefault(x => x.Id == id);

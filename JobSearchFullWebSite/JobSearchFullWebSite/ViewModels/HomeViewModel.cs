@@ -13,5 +13,8 @@ namespace JobSearchFullWebSite.ViewModels
         public List<City> Cities { get; set; }
         public List<Candidate> Candidates { get; set; }
         public List<BlogItem> BlogItems { get; set; }
+        public Job Job { get; set; }
+        public List<JobCategory> JobCategories { get; set; }
+        public Candidate Candidate { get; set; }
     }
 }
