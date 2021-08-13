@@ -130,7 +130,7 @@ header {
 
 @media (max-width: 1200px) {
   .findJob {
-    width: 100%;
+    /*width: 100%;*/
   }
   .findJob button {
     width: 100%;
@@ -228,17 +228,24 @@ header {
     width: 100%;
   }
 }
+.inputSpan1 {
+    width: 50% ;
 
+}
 @media (max-width: 524px) {
   .inputSpan {
-    width: 100%;
+    width: 100% !important;
     border: unset;
     margin-right: 0px !important;
   }
+    .inputSpan1 {
+        width: 100% !important;
+        border-right: none !important;
+    }
   .Cities {
     padding-right: 50px !important;
-    padding-left: 50px !important;
-    margin-left: 0px !important;
+    /*padding-left: 50px !important;*/
+    /*margin-left: 0px !important;*/
   }
 }
 
@@ -253,7 +260,18 @@ header {
     margin-left: 2% !important;
   }
 }
-
+@media (max-width: 255px) {
+    .inputSpan{
+        display: block !important;
+        margin-top: 10px !important;
+        align-items:center !important;
+    }
+    .inputSpan button{
+        justify-content:center !important;
+        align-items:center !important;
+        margin-top:5px !important;
+    }
+}
 a:hover {
   cursor: pointer;
 }
@@ -312,9 +330,12 @@ a:hover {
     padding-left: 10px !important;
     display: block;
   }
-  .CommonContent {
-    margin-top: 4%;
-  }
+    .CommonContent {
+        margin-top: 4%;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
 }
 
 .JobCardRight {
@@ -414,8 +435,23 @@ a:hover {
   .CitiesImage {
     height: 424px !important;
   }
+    .JobnAME {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+    }
+    .FlexCenter{
+        justify-content:center !important;
+    }
 }
-
+@media (max-width: 310px) {
+    .cardRightJobs{
+        flex-direction:column !important;
+    }
+}
+a {
+    text-decoration: none;
+}
 .Browse {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
@@ -1033,8 +1069,8 @@ body {
 .switch {
   position: relative;
   display: inline-block;
-  width: 45px;
-  height: 26px;
+  width: 31px;
+  height: 18px;
 }
 
 .switch input {
@@ -1055,19 +1091,30 @@ body {
   -webkit-transition: 0.3s;
   transition: 0.3s;
 }
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 10px;
+        width: 10px;
+        left: 4px;
+        bottom: 3px;
+        background-color: grey;
+        -webkit-transition: 0.3s;
+        transition: 0.3s;
+    }
+@media (max-width: 348px) {
+    .JobListCardImage {
+        display: flex;
+        justify-content: center;
+    }
+    .beCenter{
+        justify-content:center;
 
-.slider:before {
-  position: absolute;
-  content: "";
-  height: 16px;
-  width: 16px;
-  left: 4px;
-  bottom: 4px;
-  background-color: grey;
-  -webkit-transition: 0.3s;
-  transition: 0.3s;
+    }
+    .center{
+        text-align:center;
+    }
 }
-
 input:checked + .slider {
   background-color: #2196f3;
 }
@@ -1078,8 +1125,8 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(16px);
-  transform: translateX(16px);
+  -webkit-transform: translateX(10px);
+  transform: translateX(10px);
   background-color: white;
 }
 

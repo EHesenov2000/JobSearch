@@ -24,9 +24,10 @@ namespace JobSearchFullWebSite.Controllers
             ViewBag.TotalPageCount = Math.Ceiling(_context.Jobs.ToList().Count() / 9m);
             JobIndexViewModel jobVM = new JobIndexViewModel
             {
-                Jobs = _context.Jobs.Include(x => x.JobImages).Include(x => x.JobCategory).Include(X => X.City).ToList(),
+                Jobs = _context.Jobs.Include(x => x.JobImages).Include(x=>x.Employer).ThenInclude(x=>x.Category).Include(x => x.JobCategory).Include(X => X.City).ToList(),
                 Cities = _context.Cities.ToList(),
                 JobCategories = _context.JobCategories.ToList(),
+                Candidate= (_context.Candidates.Include(x => x.AppUser).FirstOrDefault(x => x.AppUser.UserName == User.Identity.Name) != null ? _context.Candidates.Include(x => x.AppUser).FirstOrDefault(x => x.AppUser.UserName == User.Identity.Name) : null)
 
             };
             if (search != null)

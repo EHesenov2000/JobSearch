@@ -21,18 +21,18 @@
     overflow: hidden !important;
   ">
         <div class=" mt-5 d-flex  ms-3">
-            <div class="col-7  d-flex flex-column justify-content-center">
+            <div class="col-lg-7 col-12  d-flex flex-column justify-content-center">
                 <div class=" white mt-5" style="width: ">
                     <h1 class=" text-center"><b>ÖZ İŞİNİ TAP</b></h1>
                     <p class=" text-center">İş axtarışı & Karyera imkanları</p>
                     <form  class="w-100 py-2" asp-controller="job" asp-action="index">
                         <div class="input-group d-flex px-1 bg-white " style="border-radius: 4px;">
-                            <span class="w-50
+                            <span class="
                     input-group-text
                     bg-white
                     py-4
                     border-start-0
-                    inputSpan
+                    inputSpan1
                                   
                   ">
                                 <i class="fas fa-search ms-3 grey" style="font-size:20px"></i><input type="text" style="border-top:0px !important;" name="search"
@@ -51,7 +51,7 @@
                                    class="d-flex flex-row justify-content-end align-items-center findJob text-decoration-none">
                                     <button type="submit"
                                             class="background-yellow border-0 button white d-flex flex-row justify-content-end">
-                                        Find Jobs
+                                        Axtar
                                     </button>
                                 </a>
                             </div>
@@ -170,24 +170,32 @@
         <div class="cards container mt-5">
             @foreach (var item in Model.Jobs)
             {
-                <div class="
+                    <div class="
 
-              d-flex
-              flex-column
-              align-content-center
-              justify-content-center
-            ">
-                    <div class="col-12">
-                        <div class="card mb-5 flex-row py-4 border-radius FeaturedCard">
-                            <!-- <div class="col-1"> -->
-                            @if (@item.JobImages.FirstOrDefault(x => x.IsPoster == true) != null)
-                            {
-                                if (@item.JobImages.FirstOrDefault(x => x.IsPoster == true).Image != null)
+                  d-flex
+                  flex-column
+                  align-content-center
+                  justify-content-center
+                ">
+                        <div class="col-12">
+                            <div class="card mb-5 flex-row py-4 border-radius FeaturedCard mx-5">
+                                 <div class="d-flex justify-content-center flex-row" > 
+                                @if (@item.JobImages.FirstOrDefault(x => x.IsPoster == true) != null)
                                 {
-                                    <img src="~/images/jobImage/@item.JobImages.FirstOrDefault(x=>x.IsPoster==true).Image"
-                                         alt=""
-                                         style="height: 60px; width: 60px"
-                                         class="CardImage" />
+                                    if (@item.JobImages.FirstOrDefault(x => x.IsPoster == true).Image != null)
+                                    {
+                                        <img src="~/images/jobImage/@item.JobImages.FirstOrDefault(x=>x.IsPoster==true).Image"
+                                             alt=""
+                                             style="height: 60px; width: 60px"
+                                             class="CardImage" />
+                                    }
+                                    else
+                                    {
+                                        <img src="https://apusthemes.com/wp-demo/superio/wp-content/themes/superio/images/placeholder.png"
+                                             alt=""
+                                             style="height: 60px; width: 60px"
+                                             class="CardImage" />
+                                    }
                                 }
                                 else
                                 {
@@ -196,105 +204,99 @@
                                          style="height: 60px; width: 60px"
                                          class="CardImage" />
                                 }
-                            }
-                            else
+
+                                 </div> 
+
+                                <div class="
+                        col-lg-8 col-11
+                        d-flex
+                        flex-column
+                        align-self-center
+                        ms-3
+                        CommonContent
+                      ">
+                                    <div class="col-12 d-flex  flex-row JobnAME">
+                                        <b>@item.Name</b>
+                                        &nbsp;
+                                        &nbsp;
+                                        &nbsp;
+                                        <span style="font-size: 13px; color: green">@(item.IsFeatured?"Xüsusi":"")</span>
+                                    </div>
+                                    <div class="col-12 d-flex flex-row row pt-2 FlexCenter">
+                                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
+                                            <i class="bi bi-briefcase"></i>
+                                            <span>@item.Employer.Category.Name</span>
+                                        </div>
+                                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
+                                            <i class="bi bi-geo-alt"></i>
+                                            <span>@item.City.CityName</span>
+                                        </div>
+                                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
+                                            <i class="bi bi-clock"></i>
+                                            <span>@item.CreatedAt.ToString("dd.MM.yyyy")</span>
+                                        </div>
+                                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
+                                            <i class="bi bi-cash-stack"></i>
+                                            <span>@item.OfferedMinSalary - @item.OfferedMaxSalary</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="
+                        col-lg-2 col-11
+                        flex-column
+                        align-self-center
+                        JobCardRight
+                        ms-3
+                      ">
+                                    <div class="col-12 d-flex cardRightJobs">
+                                        <div class="icon d-flex cardRightJobsIcon">
+                                            @if (Model.Candidate != null)
+                                            {
+                                                <a asp-action="AddJobToShortlist" asp-controller="job" asp-route-jobİd="@item.Id" asp-route-candidateId="@(Model.Candidate.Id)" class="text-decoration-none">
+                                                    <i style="font-size: 13px"
+                                                       class="bi bi-bookmark d-flex justify-content-end"></i>
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a asp-action="login" asp-controller="account " class="text-decoration-none">
+                                                    <i style="font-size: 13px"
+                                                       class="bi bi-bookmark d-flex justify-content-end"></i>
+                                                </a>
+                                            }
+
+                                        </div>
+
+                                        <div class="FullTimeUrgent justify-content-end pt-2">
+
+                                            <span class="px-3 d-flex align-items-center"
+                                                  style="
+                              background-color: #dde8f8;
+                              border-radius: 20px;
+                              color: #7b64ac;
+                              font-size: 12px;
+                            ">@item.JobType.ToString()</span>
+                            &nbsp;&nbsp;&nbsp;
+                            @if (item.IsUrgent)
                             {
-                                <img src="https://apusthemes.com/wp-demo/superio/wp-content/themes/superio/images/placeholder.png"
-                                     alt=""
-                                     style="height: 60px; width: 60px"
-                                     class="CardImage" />
+                                <span class="px-3 d-flex align-items-center"
+                                      style="
+                              background-color: #fef2d9;
+                              border-radius: 20px;
+                              color: #fcc546;
+                              font-size: 12px;
+                            ">Təcili</span>
                             }
 
-                            <!-- </div> -->
-
-                            <div class="
-                    col-lg-8 col-11
-                    d-flex
-                    flex-column
-                    align-self-center
-                    ms-3
-                    CommonContent
-                  ">
-                                <div class="col-12">
-                                    <b>@item.Name</b>
-                                    &nbsp;
-                                    <span style="font-size: 13px; color: green">@(item.IsFeatured?"Featured":"")</span>
-                                </div>
-                                <div class="col-12 d-flex flex-row row pt-2">
-                                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
-                                        <i class="bi bi-briefcase"></i>
-                                        <span>@item.Employer.Category.Name</span>
-                                    </div>
-                                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
-                                        <i class="bi bi-geo-alt"></i>
-                                        <span>@item.City.CityName</span>
-                                    </div>
-                                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
-                                        <i class="bi bi-clock"></i>
-                                        <span>@item.CreatedAt.ToString("dd.MM.yyyy")</span>
-                                    </div>
-                                    <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6 col-12 grey">
-                                        <i class="bi bi-cash-stack"></i>
-                                        <span>@item.OfferedMinSalary - @item.OfferedMaxSalary</span>
-                                    </div>
-                                </div>
                             </div>
-
-                            <div class="
-                    col-lg-2 col-11
-                    flex-column
-                    align-self-center
-                    JobCardRight
-                    ms-3
-                  ">
-                                <div class="col-12 d-flex cardRightJobs">
-                                    <div class="icon d-flex cardRightJobsIcon">
-                                        @if (Model.Candidate != null)
-                                        {
-                                            <a asp-action="AddJobToShortlist" asp-controller="job" asp-route-jobİd="@item.Id" asp-route-candidateId="@(Model.Candidate.Id)" class="text-decoration-none">
-                                                <i style="font-size: 13px"
-                                                   class="bi bi-bookmark d-flex justify-content-end"></i>
-                                            </a>
-                                        }
-                                        else
-                                        {
-                                            <a asp-action="login" asp-controller="account " class="text-decoration-none">
-                                                <i style="font-size: 13px"
-                                                   class="bi bi-bookmark d-flex justify-content-end"></i>
-                                            </a>
-                                        }
-
-                                    </div>
-
-                                    <div class="FullTimeUrgent justify-content-end pt-2">
-
-                                        <span class="px-3 d-flex align-items-center"
-                                              style="
-                          background-color: #dde8f8;
-                          border-radius: 20px;
-                          color: #7b64ac;
-                          font-size: 12px;
-                        ">@item.JobType.ToString()</span>
-                        &nbsp;&nbsp;&nbsp;
-                        @if (item.IsUrgent)
-                        {
-                            <span class="px-3 d-flex align-items-center"
-                                  style="
-                          background-color: #fef2d9;
-                          border-radius: 20px;
-                          color: #fcc546;
-                          font-size: 12px;
-                        ">Urgent</span>
-                        }
-
-                        </div>
-                        </div>
-                        </div>
-                        </div>
-    </div>
-</div>
-
-}
+                            </div>
+                            </div>
+                            </div>
+        </div>
+                    </div>
+                
+             }
             <div class="d-flex justify-content-center w-100">
                 <a asp-action="index" asp-controller="home" asp-route-jobsPage="@(ViewBag.SelectedPage<ViewBag.TotalPageCount?ViewBag.SelectedPage+1:ViewBag.TotalPageCount)"><button class="btn btn-primary px-4">Daha çox</button></a>
             </div>
@@ -466,7 +468,7 @@
                                     }
                                     else
                                     {
-                                        <img src="https://apusthemes.com/wp-demo/superio/wp-content/themes/superio/images/placeholder.png"
+                                        <img src="https://secure.gravatar.com/avatar/70bb49755b38874fc6ef1a6cc91118d7?s=80&d=mm&r=g"
                                              alt=""
                                              style="width: 80px; height: 80px; border-radius: 50%"
                                              class="d-flex justify-content-center" />
@@ -474,7 +476,7 @@
                                 }
                                 else
                                 {
-                                    <img src="https://apusthemes.com/wp-demo/superio/wp-content/themes/superio/images/placeholder.png"
+                                    <img src="https://secure.gravatar.com/avatar/70bb49755b38874fc6ef1a6cc91118d7?s=80&d=mm&r=g"
                                          alt=""
                                          style="width: 80px; height: 80px; border-radius: 50%"
                                          class="d-flex justify-content-center" />
@@ -534,7 +536,7 @@
                                 <span class="grey">@item.CreatedAt.ToString("dd.MM.yyyy")</span>
                                 @*<li class="ms-1 grey">3 Comments</li>*@
                             </div>
-                            <div><a asp-action="detail" asp-controller="blog" asp-route-id="@item.Id">@item.Title</a></div>
+                            <div><a asp-action="detail" asp-controller="blog" asp-route-id="@item.Id">@(item.Title.Length>108?item.Title.ToString().Substring(0, 108):item.Title.ToString())...</a></div>
                         </div>
                     </div>
                 </div>

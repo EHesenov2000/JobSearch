@@ -18,5 +18,6 @@ namespace JobSearchFullWebSite.ViewModels
         public CareerLevel CareerLevel { get; set; }
         public Qualification Qualification { get; set; }
 
+        public Candidate Candidate { get; set; }
     }
 }

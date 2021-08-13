@@ -17,7 +17,7 @@
                   align-items-center
                 ">
                             <div class="JobTitleIcon">
-                                <i class="fas fa-search" style="font-size: 20px"></i>
+                                <i class="fas fa-search grey" style="font-size: 20px"></i>
                             </div>
                             <div>
                                 <input type="text"
@@ -33,7 +33,7 @@
                   align-items-center
                 ">
                             <div class="JobTitleIcon">
-                                <i class="fas fa-map-marker-alt" style="font-size: 20px"></i>
+                                <i class="fas fa-map-marker-alt grey" style="font-size: 20px"></i>
                             </div>
                             <select  class="ms-2 border-0 grey Width" asp-for="@Model.Job.City.Id" asp-items="@(new SelectList(Model.Cities, "Id", "CityName"))">
                                 <option value="">All Cities</option>
@@ -46,7 +46,7 @@
                   align-items-center
                 ">
                             <div class="JobTitleIcon">
-                                <i class="fas fa-briefcase" style="font-size: 20px"></i>
+                                <i class="fas fa-briefcasey grey" style="font-size: 20px"></i>
                             </div>
                             <select class="ms-2 border-0 grey Width" asp-for="@Model.Job.JobCategory.Id" asp-items="@(new SelectList(Model.JobCategories, "Id", "Name"))">
                                 <option value="">All Categories</option>
@@ -155,7 +155,7 @@
         </div>
 
         <div class="container">
-            <div class="row my-5">
+            @*<div class="row my-5">
                 <div class="col-md-6 col-12">Showing All 18 Results</div>
                 <div class="col-md-6 col-12">
                     <div class="d-flex flex-row justify-content-end">
@@ -186,7 +186,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>*@
         </div>
         <div class="mx-4">
             <div class="row my-5 g-4">
@@ -202,30 +202,46 @@
                                         {
                                             if (item.JobImages.FirstOrDefault(x => x.IsPoster).Image != null)
                                             {
-                                                <img src="~/SiteImages/@item.JobImages.FirstOrDefault(x=>x.IsPoster).Image"
+                                                <img src="~/images/jobImage/@item.JobImages.FirstOrDefault(x=>x.IsPoster).Image"
+                                                     alt="" style="width:60px;height:60px"/>
+                                                     
+                                            }
+                                            else
+                                            {
+                                                <img src="https://apusthemes.com/wp-demo/superio/wp-content/themes/superio/images/placeholder.png"
                                                      alt="" />
                                             }
                                         }
+                                        else
+                                        {
+                                            <img src="https://apusthemes.com/wp-demo/superio/wp-content/themes/superio/images/placeholder.png"
+                                                 alt="" />
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <img src="https://apusthemes.com/wp-demo/superio/wp-content/themes/superio/images/placeholder.png"
+                                             alt="" />
                                     }
 
                                 </div>
-                                <div class="row ms-2">
+                                <div class="row ms-2 mt-2">
                                     <div class="row">
-                                        <div class="col-sm-10 col-12 d-flex flex-row">
+                                        <div class="col-sm-10 col-12 d-flex flex-row beCenter">
                                             <div class="row">
-                                                <div class="col-lg-8 col-12">
-                                                    <h5><b>@item.Name</b></h5>
+                                                <div class=" col-12">
+                                                    <h5 class="center"><b>@item.Name</b></h5>
                                                 </div>
                                                 @if (item.IsFeatured)
                                                 {
-                                                    <div class="col-lg-4 col-12">
-                                                        <span class="green">Featured</span>
+                                                    <div class=" col-12 center">
+                                                        <span class="green ">Xüsusi</span>
                                                     </div>
                                                 }
 
                                             </div>
                                         </div>
-                                        <div class="col-sm-2 col-12 d-flex flex-row">
+                                        <div class="col-sm-2 col-12 d-flex flex-row beCenter">
                                             <i class="far fa-bookmark"></i>
                                         </div>
                                     </div>
@@ -264,20 +280,21 @@
                                             <span>@item.OfferedMinSalary-@item.OfferedMaxSalary/@item.OfferedSalaryForTime</span>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-md-4 col-12">
+                                    <div class="row beCenter">
+                                        <div class="col-md-4 col-12" style="max-width:fit-content;">
                                             <div class="
                           border-radius
                           px-2
                           d-flex
                           align-items-center
                           justify-content-center
+                                                 mt-1
                         "
-                                                 style="background-color: #dde8f8; color: #1967d2">
-                                                <span>@item.JobType</span>
+                                                 style="background-color: #dde8f8; color: #1967d2;">
+                                                <span >@item.JobType</span>
                                             </div>
                                         </div>
-                                        <div class="col-md-4 col-12">
+                                        <div class="col-md-4 col-12" style="max-width: fit-content;">
                                             @if (item.IsUrgent)
                                             {
                                                 <div class="
@@ -286,9 +303,10 @@
                           d-flex
                           align-items-center
                           justify-content-center
+                                                     mt-1
                         "
-                                                     style="background-color: #fef2d9; color: #fbbb00">
-                                                    <span>Urgent</span>
+                                                     style="background-color: #fef2d9; color: #fbbb00;">
+                                                    <span>Təcili</span>
                                                 </div>
                                             }
                                         </div>
